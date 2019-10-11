@@ -7,7 +7,7 @@ fi
 ##sudo mkdir /var/lib/pgsql9/$1
 ##sudo chown postgres /var/lib/pgsql9/$1
 ##sudo initdb -D /var/lib/pgsql9/$1
-##cp ../csjl_nvo/forapi_* .
+cp ../csjl_nvo/forapi_* .
 export PGPASSWORD=$3
 cat > $0.sql << fin
 drop database $1;
@@ -36,6 +36,21 @@ select forapi.autoriza_usuario('$2');
 delete from pg_authid where rolcanlogin=false and rolname not in ('admon','temporalg');
 fin
 psql inicio -U inicio -h localhost  < $0.sql  >> $0.log
-tar -xzf forapi_php.tar.gz
+cat > $0.sql << fin
+select '<?php'
+union all
+select 'define(MENU,''' || idmenu || ''');' from forapi.menus where descripcion='Mtto a menus'
+union all
+select 'define(MENUS_CAMPOS,''' || idmenu || ''');' from forapi.menus where descripcion='Campos de menus'
+union all
+select '?>'
+fin
+tar -xvzf forapi_php.tar.gz
+echo "desempaco archivo"
+psql -t inicio -U inicio -h localhost  < $0.sql  > idmenus.php
+echo "creo constantes"
+sed -i -e "s/ //g" idmenus.php
+tail -n 1 "idmenus.php" | wc -c | xargs -I {} truncate "idmenus.php" -s -{}
 sed -i -e "s/wldbname='forapi1.1'/wldbname='$1'/g" -e "s/password='Temporal_forapi'/password='$3'/g" conneccion.php
+echo "cambio variales de la base"
 rm $0.sql
