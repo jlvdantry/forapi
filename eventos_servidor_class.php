@@ -1785,23 +1785,21 @@ class eventos_servidor_class extends xmlhttp_class
    */   
    function cuenta_errores($usuario)
    { 
-            $sql="select grababitacora(0, 999, 0,0,current_date,current_date,cast('".session_id()."' as text))";		   
+            $sql="select forapi.grababitacora(0, 999, 0,0,current_date,current_date,cast('".session_id()."' as text))";		   
 	   		$sql_result = @pg_exec($this->connection,$sql);
        		if (strlen(pg_last_error($this->connection))>0)
        		{
        			return "Error al grabar en bitacora cuenta_errores sql".$sql." error ".pg_last_error($this->connection);
        		}                                          
        			     
-       		$sql=" select count(*) from cat_bitacora where ".
-//       		     " usuario_alta='".$usuario."'".  // lo quite porque al ingresar el usuario a registrar en bitacora
-													  // es el usuario temporal
+       		$sql=" select count(*) from forapi.cat_bitacora where ".
        		     " idproceso=999 and ".
        		     " descripcion='".session_id()."'".
        		     " and fecha_alta > current_timestamp - interval '3 min'";
 	   		$sql_result = @pg_exec($this->connection,$sql);
        		if (strlen(pg_last_error($this->connection))>0)
        		{
-       			return "Error al contar bitacora bloquea_usuario sql".$sql." error ".pg_last_error($this->connection);
+       			return "Error al contar bitacora bloquea_usuario ";
        		}                                          
     		$Row = pg_fetch_array($sql_result, 0); 
 			if ($Row[0]>2)       		
@@ -1883,16 +1881,6 @@ class eventos_servidor_class extends xmlhttp_class
 	*/	
 	function salidacontra($wlmensaje)
 	{
-		$usename=$this->argumentos["wl_usename"];
-		$nombre=$this->argumentos["wl_nombre"];
-		$apepat=$this->argumentos["wl_apepat"];
-		$apemat=$this->argumentos["wl_apemat"];
-		$correoe=$this->argumentos["wl_correoe"];
-		//echo "<error> $usename $nombre $apepat $apemat $correoe </error>	";
-		$sql = 	"	insert into contra.cat_personas (nombre,apepat,apemat,usename,correoe)	".
-				"	values ('$nombre','$apepat','$apemat','$usename','$correoe')	";
-		//echo "<error>$sql</error>";
-		$sql_result = pg_exec($this->connection,$sql);
 		if (strlen(pg_last_error($this->connection))>0) { echo "<error>Error al ejecutar qry ".$sql." ".pg_last_error($this->connection)."</error>"; }
 		$this->salida("El registro se realizo exitosamente");
 	}
