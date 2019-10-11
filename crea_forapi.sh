@@ -4,7 +4,10 @@ if [ "$#" -eq  "0" ]
      echo "$0 $1=nombre de base de datos $2=usuario administrador  $3=pwd del administrador"
      exit 1
 fi
-cp ../csjl_nvo/forapi_* .
+##sudo mkdir /var/lib/pgsql9/$1
+##sudo chown postgres /var/lib/pgsql9/$1
+##sudo initdb -D /var/lib/pgsql9/$1
+##cp ../csjl_nvo/forapi_* .
 export PGPASSWORD=$3
 cat > $0.sql << fin
 drop database $1;
@@ -30,6 +33,7 @@ insert into forapi.cat_usuarios_pg_group(usename,groname) values ('Temporal1','t
 insert into forapi.cat_usuarios_pg_group(usename,groname) values ('$2','admon');
 select forapi.autoriza_usuario('Temporal_forapi');
 select forapi.autoriza_usuario('$2');
+delete from pg_authid where rolcanlogin=false and rolname not in ('admon','temporalg');
 fin
 psql inicio -U inicio -h localhost  < $0.sql  >> $0.log
 tar -xzf forapi_php.tar.gz
