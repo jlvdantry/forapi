@@ -37,23 +37,23 @@ class seguridad extends xmlhttp_class
 		**/
 		function permisosgrupo()
 		{
-			if($this->argumentos['wl_grosysid']=="")
+			if($this->argumentos['wl_rolname']=="")
 			{
 				echo "<error>No esta definido el grupo a reasignar permisos</error>";
 				return;
 			}
-            $sql="select autoriza_usuario(cu.usename) from cat_usuarios_pg_group as pg	".
-            	"	join cat_usuarios as cu on (cu.usename=pg.usename)	".
-            	"	where grosysid='".$this->argumentos['wl_grosysid']."' and estatus=1;";
+            $sql="select forapi.autoriza_usuario(cu.usename) from forapi.cat_usuarios_pg_group as pg	".
+            	"	join forapi.cat_usuarios as cu on (cu.usename=pg.usename)	".
+            	"	where groname='".$this->argumentos['wl_rolname']."' and estatus=1;";
             $sql_result = @pg_exec($this->connection,$sql);
         	if (strlen(pg_last_error($this->connection))>0)
         	{
-        				echo "<error>Error al autorizar permisos del grupo".$sql."</error>";	        		
+        				echo "<error>Error al autorizar permisos del grupo</error>";	        		
                                         $this->Enviaemail("error en validausuario".$sql." error ".pg_last_error($this->connection));
         				return;
         	}            
 	  		$row=pg_fetch_array($sql_result, 0);                                          
-			echo "<error>".$row[0]."</error>";
+			echo "<error>Se autorizo el grupo ".$this->argumentos['wl_rolname']."</error>";
 		}		
 		
 		/**
