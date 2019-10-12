@@ -23,19 +23,20 @@ create role temporalg;
 create role admon;
 fin
 psql -U postgres < $0.sql
-psql inicio -U inicio -h localhost  < forapi_esquema.sql > $0.log
-psql inicio -U inicio -h localhost  < forapi_insert.sql >> $0.log
+psql $1 -U $2 -h localhost  < forapi_esquema.sql > $0.log
+psql $1 -U $2 -h localhost  < forapi_insert.sql >> $0.log
 cat > $0.sql << fin
-insert into forapi.cat_usuarios (usename,nombre,id_tipomenu,password) values ('Temporal1','temporal',1,'$3');
-insert into forapi.cat_usuarios (usename,nombre,id_tipomenu,password,menu) values ('$2','$2',1,'$3',
-(select idmenu from forapi.menus where descripcion='Mtto a usuarios'));
+insert into forapi.cat_usuarios (usename,nombre,id_tipomenu,password,estatus) values ('Temporal1','temporal',1,'$3',1);
+insert into forapi.cat_usuarios (usename,nombre,id_tipomenu,password,menu,estatus) values ('$2','$2',1,'$3',
+(select idmenu from forapi.menus where descripcion='Mtto a usuarios'),1);
 insert into forapi.cat_usuarios_pg_group(usename,groname) values ('Temporal1','temporalg');
 insert into forapi.cat_usuarios_pg_group(usename,groname) values ('$2','admon');
+delete from forapi.menus_pg_tables where nspname not in ('forapi','pg_catalog','estadistica','public');
 select forapi.autoriza_usuario('Temporal_forapi');
 select forapi.autoriza_usuario('$2');
 delete from pg_authid where rolcanlogin=false and rolname not in ('admon','temporalg');
 fin
-psql inicio -U inicio -h localhost  < $0.sql  >> $0.log
+psql $1 -U $2 -h localhost  < $0.sql  >> $0.log
 cat > $0.sql << fin
 select '<?php'
 union all
@@ -45,12 +46,13 @@ select 'define(MENUS_CAMPOS,''' || idmenu || ''');' from forapi.menus where desc
 union all
 select '?>'
 fin
-tar -xvzf forapi_php.tar.gz
+tar -xzf forapi_php.tar.gz
 echo "desempaco archivo"
-psql -t inicio -U inicio -h localhost  < $0.sql  > idmenus.php
+psql -t $1 -U $2 -h localhost  < $0.sql  > idmenus.php
 echo "creo constantes"
 sed -i -e "s/ //g" idmenus.php
 tail -n 1 "idmenus.php" | wc -c | xargs -I {} truncate "idmenus.php" -s -{}
 sed -i -e "s/wldbname='forapi1.1'/wldbname='$1'/g" -e "s/password='Temporal_forapi'/password='$3'/g" conneccion.php
 echo "cambio variales de la base"
 rm $0.sql
+rm $0.log

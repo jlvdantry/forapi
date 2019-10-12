@@ -69,7 +69,7 @@ CREATE TABLE cat_usuarios (
     id_persona integer,
     password character varying(20),
     id_puesto integer,
-    id_tipomenu smallint DEFAULT 3,
+    id_tipomenu smallint DEFAULT 1,
     menu integer,
     id_modulo integer DEFAULT 0,
     rfc character varying(13) DEFAULT ''::character varying,
@@ -197,6 +197,7 @@ CREATE FUNCTION alta_menus() RETURNS trigger
     BEGIN
         if new.tabla='' or new.tabla is null then
                 --select relname,nspname into new.tabla,new.nspname from forapi.tablas where reltype=new.reltype;
+                return new;
         else
                 if new.reltype!=(select reltype from forapi.tablas where relname=new.tabla and nspname=new.nspname) then
                    select reltype into new.reltype from forapi.tablas where relname=new.tabla and nspname=new.nspname;
@@ -237,6 +238,7 @@ CREATE FUNCTION alta_menus_campos() RETURNS trigger
         select count (*) into wlnum from forapi.campos where tabla=new.tabla and nspname=new.nspname and attname=new.descripcion  
                and valor_default like '%nextval%';
         if wlnum>0 then
+           raise notice 'alta_menus_campos % % % %' , new.idmenu,new.tabla,new.descripcion,new.nspname;
            insert into forapi.menus_pg_tables (idmenu,tablename,tselect,tinsert,tupdate,tdelete,tall,tgrant,nspname)
                   values (new.idmenu,trim(new.tabla)||'_'||trim(new.descripcion)||'_seq' ,1 ,0 ,1 ,0 ,0 ,0 ,new.nspname);
         end if;
@@ -307,7 +309,7 @@ CREATE FUNCTION autoriza_usuario(text) RETURNS character varying
 --     wlsentencia=' grant usage on schema contra to ' ||  $1 ;    -- 2007-03-23
 --     execute wlsentencia;                                          -- 2007-03-23 
 --     2007-07-20  jlv lo modifique para que si la tabla viene en espacion no haga el grant
-            raise notice ' entro  % ', $1  ;
+--            raise notice ' entro  % ', $1  ;
      select count(*) into wlcuantos from forapi.cat_usuarios_pg_group
             where trim(usename)=trim($1);
      if wlcuantos=0 then
@@ -328,60 +330,60 @@ CREATE FUNCTION autoriza_usuario(text) RETURNS character varying
 		   , forapi.menus_pg_tables as mpgt
                             ,forapi.menus as me
                    where trim(cupg.usename)=trim($1) 
---                   and cupg.grosysid = mpg.grosysid
+--                   and cupg.groname = mpg.groname
                    and me.idmenu  = mpgt.idmenu
                    and me.idmenu  in ((select idmenu from forapi.menus_pg_group as mpg where
-		                                  cupg.grosysid = mpg.grosysid
+		                                  cupg.groname = mpg.groname
                                      union
 				     select idsubvista from forapi.menus_subvistas as ms where
 				            ms.idmenu in 
-					    (select idmenu from forapi.menus_pg_group as mpg where cupg.grosysid = mpg.grosysid)
+					    (select idmenu from forapi.menus_pg_group as mpg where cupg.groname = mpg.groname)
                                      --group by 1
                                      union
-				     select mc.altaautomatico_idmenu from forapi.menus_campos as mc join forapi.menus_pg_group as mpg on (mc.idmenu=mpg.idmenu) where cupg.grosysid = mpg.grosysid and mc.altaautomatico_idmenu>0
+				     select mc.altaautomatico_idmenu from forapi.menus_campos as mc join forapi.menus_pg_group as mpg on (mc.idmenu=mpg.idmenu) where cupg.groname = mpg.groname and mc.altaautomatico_idmenu>0
 				     union
-				     select distinct mc.fuente_busqueda_idmenu from forapi.menus_campos as mc join forapi.menus_pg_group as mpg on (mc.idmenu=mpg.idmenu) where cupg.grosysid = mpg.grosysid and mc.fuente_busqueda_idmenu>0
+				     select distinct mc.fuente_busqueda_idmenu from forapi.menus_campos as mc join forapi.menus_pg_group as mpg on (mc.idmenu=mpg.idmenu) where cupg.groname = mpg.groname and mc.fuente_busqueda_idmenu>0
 				     union
-				     select distinct mc.idsubvista from forapi.menus_campos as mc join forapi.menus_pg_group as mpg on (mc.idmenu=mpg.idmenu) where cupg.grosysid = mpg.grosysid and mc.idsubvista>0
+				     select distinct mc.idsubvista from forapi.menus_campos as mc join forapi.menus_pg_group as mpg on (mc.idmenu=mpg.idmenu) where cupg.groname = mpg.groname and mc.idsubvista>0
 				     union
 				     select idsubvista from forapi.menus_subvistas as ms where
 				            ms.idmenu in 
-					    (select mc.idsubvista from forapi.menus_campos as mc join forapi.menus_pg_group as mpg on (mc.idmenu=mpg.idmenu) where cupg.grosysid = mpg.grosysid and mc.idsubvista>0
+					    (select mc.idsubvista from forapi.menus_campos as mc join forapi.menus_pg_group as mpg on (mc.idmenu=mpg.idmenu) where cupg.groname = mpg.groname and mc.idsubvista>0
 						union
-					     select distinct mc.altaautomatico_idmenu from forapi.menus_campos as mc join forapi.menus_pg_group as mpg on (mc.idmenu=mpg.idmenu) where cupg.grosysid = mpg.grosysid and mc.altaautomatico_idmenu>0
+					     select distinct mc.altaautomatico_idmenu from forapi.menus_campos as mc join forapi.menus_pg_group as mpg on (mc.idmenu=mpg.idmenu) where cupg.groname = mpg.groname and mc.altaautomatico_idmenu>0
 						union
-					     select distinct mc.fuente_busqueda_idmenu from forapi.menus_campos as mc join forapi.menus_pg_group as mpg on (mc.idmenu=mpg.idmenu) where cupg.grosysid = mpg.grosysid and mc.fuente_busqueda_idmenu>0)
+					     select distinct mc.fuente_busqueda_idmenu from forapi.menus_campos as mc join forapi.menus_pg_group as mpg on (mc.idmenu=mpg.idmenu) where cupg.groname = mpg.groname and mc.fuente_busqueda_idmenu>0)
                                      group by 1
                                      union
                                      select distinct mc2.altaautomatico_idmenu from forapi.menus_campos as mc2 where mc2.idmenu in
 						(select idsubvista from forapi.menus_subvistas as ms where
 							ms.idmenu in 
-							(select idmenu from forapi.menus_pg_group as mpg where cupg.grosysid = mpg.grosysid)) and mc2.altaautomatico_idmenu>0
+							(select idmenu from forapi.menus_pg_group as mpg where cupg.groname = mpg.groname)) and mc2.altaautomatico_idmenu>0
                                      union
                                      select distinct mc2.fuente_busqueda_idmenu from forapi.menus_campos as mc2 where mc2.idmenu in
 						(select idsubvista from forapi.menus_subvistas as ms where
 							ms.idmenu in 
-							(select idmenu from forapi.menus_pg_group as mpg where cupg.grosysid = mpg.grosysid))  and mc2.fuente_busqueda_idmenu>0
+							(select idmenu from forapi.menus_pg_group as mpg where cupg.groname = mpg.groname))  and mc2.fuente_busqueda_idmenu>0
 					union
 					select idsubvista from forapi.menus_subvistas as mss where
 				            mss.idmenu in 
 					    ( select idsubvista from forapi.menus_subvistas as ms where
 				            ms.idmenu in 
-					    (select idmenu from forapi.menus_pg_group as mpg where cupg.grosysid = mpg.grosysid))
+					    (select idmenu from forapi.menus_pg_group as mpg where cupg.groname = mpg.groname))
                                      union
                                      select distinct mc2.altaautomatico_idmenu from forapi.menus_campos as mc2 where mc2.idmenu in
 						(select idsubvista from forapi.menus_subvistas as mss where
 				            mss.idmenu in 
 					    ( select idsubvista from forapi.menus_subvistas as ms where
 				            ms.idmenu in 
-					    (select idmenu from forapi.menus_pg_group as mpg where cupg.grosysid = mpg.grosysid))) and mc2.altaautomatico_idmenu>0
+					    (select idmenu from forapi.menus_pg_group as mpg where cupg.groname = mpg.groname))) and mc2.altaautomatico_idmenu>0
                                      union
                                      select distinct mc2.fuente_busqueda_idmenu from forapi.menus_campos as mc2 where mc2.idmenu in
 						(select idsubvista from forapi.menus_subvistas as mss where
 				            mss.idmenu in 
 					    ( select idsubvista from forapi.menus_subvistas as ms where
 				            ms.idmenu in 
-					    (select idmenu from forapi.menus_pg_group as mpg where cupg.grosysid = mpg.grosysid)))  and mc2.fuente_busqueda_idmenu>0
+					    (select idmenu from forapi.menus_pg_group as mpg where cupg.groname = mpg.groname)))  and mc2.fuente_busqueda_idmenu>0
 					union
 					select idsubvista from forapi.menus_subvistas as msss where
 				            msss.idmenu in 
@@ -389,7 +391,7 @@ CREATE FUNCTION autoriza_usuario(text) RETURNS character varying
 				            mss.idmenu in 
 					    ( select idsubvista from forapi.menus_subvistas as ms where
 				            ms.idmenu in 
-					    (select idmenu from forapi.menus_pg_group as mpg where cupg.grosysid = mpg.grosysid)))
+					    (select idmenu from forapi.menus_pg_group as mpg where cupg.groname = mpg.groname)))
                                      union
                                      select distinct mc2.altaautomatico_idmenu from forapi.menus_campos as mc2 where mc2.idmenu in
 						(select idsubvista from forapi.menus_subvistas as msss where
@@ -398,7 +400,7 @@ CREATE FUNCTION autoriza_usuario(text) RETURNS character varying
 				            mss.idmenu in 
 					    ( select idsubvista from forapi.menus_subvistas as ms where
 				            ms.idmenu in 
-					    (select idmenu from forapi.menus_pg_group as mpg where cupg.grosysid = mpg.grosysid)))) and mc2.altaautomatico_idmenu>0
+					    (select idmenu from forapi.menus_pg_group as mpg where cupg.groname = mpg.groname)))) and mc2.altaautomatico_idmenu>0
                                      union
                                      select distinct mc2.fuente_busqueda_idmenu from forapi.menus_campos as mc2 where mc2.idmenu in
 						(select idsubvista from forapi.menus_subvistas as msss where
@@ -407,7 +409,7 @@ CREATE FUNCTION autoriza_usuario(text) RETURNS character varying
 				            mss.idmenu in 
 					    ( select idsubvista from forapi.menus_subvistas as ms where
 				            ms.idmenu in 
-					    (select idmenu from forapi.menus_pg_group as mpg where cupg.grosysid = mpg.grosysid))))  and mc2.fuente_busqueda_idmenu>0
+					    (select idmenu from forapi.menus_pg_group as mpg where cupg.groname = mpg.groname))))  and mc2.fuente_busqueda_idmenu>0
 				     ))
                    group by 1,2
                    order by 1,2
@@ -455,7 +457,7 @@ CREATE FUNCTION autoriza_usuario(text) RETURNS character varying
            end if;
          if trim(mireg.tablename)!='' then   -- 20070720
             wlsentencia='grant ' || trim(wlper) || '  on ' || trim(mireg.tablename) || ' to ' ||  $1 || ' with grant option ';
-            raise notice ' sentencia % %', wlsentencia,mireg.descripcion  ;
+            --raise notice ' sentencia % %', wlsentencia,mireg.descripcion  ;
             if wlper!='' then
                execute wlsentencia;     -- 20070720
             end if;
@@ -471,11 +473,11 @@ CREATE FUNCTION autoriza_usuario(text) RETURNS character varying
                    where trim(cupg.usename)=trim($1)
                    and me.idmenu  = mpgt.idmenu
                    and me.idmenu  in ((select idmenu from forapi.menus_pg_group as mpg where
-                                                  cupg.grosysid = mpg.grosysid
+                                                  cupg.groname = mpg.groname
                                      union
                                      select idsubvista from forapi.menus_subvistas as ms where
                                             ms.idmenu in
-                                            (select idmenu from forapi.menus_pg_group as mpg where cupg.grosysid = mpg.grosysid)
+                                            (select idmenu from forapi.menus_pg_group as mpg where cupg.groname = mpg.groname)
                                      group by 1
                                      ))
                    group by 1
@@ -485,10 +487,10 @@ CREATE FUNCTION autoriza_usuario(text) RETURNS character varying
             --execute wlsentencia;
             wlsentencia=' grant usage,create on schema ' || trim(mireg.nspname) || ' to ' ||  $1 || ' with grant option ';
             execute wlsentencia;
-            raise notice ' sentencia % ', wlsentencia  ;
+            --raise notice ' sentencia % ', wlsentencia  ;
             wlsentencia=' grant all PRIVILEGES on all sequences in schema ' || trim(mireg.nspname) || ' to ' ||  $1 || ' with grant option ';
             execute wlsentencia;
-            raise notice ' sentencia % ', wlsentencia  ;
+            --raise notice ' sentencia % ', wlsentencia  ;
          end if;
 --   termina 20070602
      end loop ;
@@ -538,7 +540,7 @@ CREATE FUNCTION baja_cat_usuarios_pg_group() RETURNS trigger
     DECLARE
       wlestado numeric;
     BEGIN
-        insert into his_cat_usuarios_pg_group (usename,grosysid,cve_movto)
+        insert into forapi.his_cat_usuarios_pg_group (usename,grosysid,cve_movto)
                values (old.usename,old.grosysid,'b');
      return old;
     END;$$;
@@ -837,7 +839,7 @@ CREATE FUNCTION cambio_menus_pg_tables() RETURNS trigger
     DECLARE
       wlestado numeric;
     BEGIN
-        insert into his_menus_pg_tables (idmenu,tablename,cve_movto,tselect,tinsert,tupdate,tdelete,tall)
+        insert into forapi.his_menus_pg_tables (idmenu,tablename,cve_movto,tselect,tinsert,tupdate,tdelete,tall)
                values (new.idmenu,new.tablename,'c',new.tselect,new.tinsert,new.tupdate,new.tdelete,new.tall);
      return new;
     END;$$;
@@ -1075,40 +1077,41 @@ begin
 --select trim(nspname),trim(descripcion) into wlnspname,wldescripcion from forapi.menus where idmenu = $1;
 for r in
 select trim('delete from forapi.menus where idmenu in (select idmenu from forapi.menus where nspname=''' || coalesce(nspname,'') || ''' and descripcion=''' || descripcion || ''');'), 10 as orden,0 as idmenupadre
-from forapi.menus where nspname = 'forapi'
+from forapi.menus where (nspname = 'forapi' or (nspname='pg_catalog' and tabla='pg_authid'))
 union all
 select * from (
-select 'insert into forapi.menus( descripcion, objeto, php, modoconsulta, idmenupadre, idmovtos, movtos, fuente, presentacion, columnas, tabla, reltype, filtro, limite, orden, menus_campos, dialogwidth, dialogheight, s_table, s_table_height,inicioregistros, nspname, css, imprime, limpiaralta, table_width, table_height, table_align, manual,noconfirmamovtos  ) VALUES (' || '''' ||  COALESCE(descripcion,'') || ''',''' ||  COALESCE(objeto,'') || ''','''  ||  COALESCE(php,'') || ''',' ||  COALESCE(modoconsulta,'0') || ',' || COALESCE( 'coalesce((select idmenu from forapi.menus where descripcion=''' || COALESCE((select descripcion from forapi.menus where idmenu=mes.idmenupadre),'') || '''),0)' ,'0') || ',' ||  COALESCE(idmovtos,'0') || ',''' ||  COALESCE(movtos,'') || ''',''' ||  COALESCE(fuente,'') || ''',' ||  COALESCE(presentacion,'0') || ',' ||  COALESCE(columnas,'0') || ',''' ||  COALESCE(tabla,'') || ''',' ||  COALESCE(reltype,'0') || ',''' ||  COALESCE(replace(filtro,'''',''''''),'') || ''',' ||  COALESCE(limite,'0') || ',''' ||  COALESCE(orden,'') || ''',' ||  COALESCE(menus_campos,'0') || ',' ||  dialogwidth || ',' ||  COALESCE(dialogheight,'0') || ',' ||  COALESCE(s_table,'0') || ',' ||  COALESCE(s_table_height,'0') || ',' ||  COALESCE(inicioregistros,'0') || ',''' ||  COALESCE(nspname,'') || ''',''' ||  COALESCE(css,'') || ''',' ||  COALESCE(imprime,'0') || ',' ||  COALESCE(limpiaralta,'0') || ',' ||  COALESCE(table_width,'0') || ',' ||  COALESCE(table_height,'0') || ',''' ||  COALESCE(table_align,'') || ''',''' ||  COALESCE(manual,'') || ''',''' || COALESCE(noconfirmamovtos,'') || ''');' , 20 as orden, idmenupadre from forapi.menus as mes where nspname = 'forapi' ) a
+select 'insert into forapi.menus( descripcion, objeto, php, modoconsulta, idmenupadre, idmovtos, movtos, fuente, presentacion, columnas, tabla, reltype, filtro, limite, orden, menus_campos, dialogwidth, dialogheight, s_table, s_table_height,inicioregistros, nspname, css, imprime, limpiaralta, table_width, table_height, table_align, manual,noconfirmamovtos  ) VALUES (' || '''' ||  COALESCE(descripcion,'') || ''',''' ||  COALESCE(objeto,'') || ''','''  ||  COALESCE(php,'') || ''',' ||  COALESCE(modoconsulta,'0') || ',' || COALESCE( 'coalesce((select idmenu from forapi.menus where descripcion=''' || COALESCE((select descripcion from forapi.menus where idmenu=mes.idmenupadre),'') || '''),0)' ,'0') || ',' ||  COALESCE(idmovtos,'0') || ',''' ||  COALESCE(movtos,'') || ''',''' ||  COALESCE(fuente,'') || ''',' ||  COALESCE(presentacion,'0') || ',' ||  COALESCE(columnas,'0') || ',''' ||  COALESCE(tabla,'') || ''',' ||  COALESCE(reltype,'0') || ',''' ||  COALESCE(replace(filtro,'''',''''''),'') || ''',' ||  COALESCE(limite,'0') || ',''' ||  COALESCE(orden,'') || ''',' ||  COALESCE(menus_campos,'0') || ',' ||  dialogwidth || ',' ||  COALESCE(dialogheight,'0') || ',' ||  COALESCE(s_table,'0') || ',' ||  COALESCE(s_table_height,'0') || ',' ||  COALESCE(inicioregistros,'0') || ',''' ||  COALESCE(nspname,'') || ''',''' ||  COALESCE(css,'') || ''',' ||  COALESCE(imprime,'0') || ',' ||  COALESCE(limpiaralta,'0') || ',' ||  COALESCE(table_width,'0') || ',' ||  COALESCE(table_height,'0') || ',''' ||  COALESCE(table_align,'') || ''',''' ||  COALESCE(manual,'') || ''',''' || COALESCE(noconfirmamovtos,'') || ''');' , 20 as orden, idmenupadre from forapi.menus as mes where (nspname = 'forapi' or (nspname='pg_catalog' and tabla='pg_authid')) ) a
 union all
 select 'insert into forapi.menus_pg_group (idmenu,groname) values(' || '(select idmenu from forapi.menus where nspname=''' || coalesce(nspname,'') || ''' and descripcion=''' || descripcion || ''')' || ',''' || COALESCE(groname,'') || ''');'  , 30 as orden,0 as idmenupadre
- from  forapi.menus_pg_group as mpg , forapi.menus m where mpg.idmenu=m.idmenu and m.nspname='forapi'
+ from  forapi.menus_pg_group as mpg , forapi.menus m where mpg.idmenu=m.idmenu and (m.nspname = 'forapi' or (m.nspname='pg_catalog' and m.tabla='pg_authid'))
 -- and (select groname from pg_group where pg_group.grosysid=mpg.grosysid)='admon'
 union all
 select
-'INSERT INTO forapi.menus_eventos( idmenu, idevento, donde, descripcion, fecha_alta, usuario_alta, fecha_modifico, usuario_modifico) VALUES (' ||  '(select idmenu from forapi.menus where nspname=''' || m.nspname || ''' and descripcion=''' || m.descripcion || ''')'  || ',' ||  idevento  || ',' ||  donde || ',''' ||  COALESCE(me.descripcion,'') || ''',''' || me.fecha_alta || ''',''' ||  COALESCE(me.usuario_alta,'') || ''',''' ||  me.fecha_modifico || ''',''' ||  COALESCE(me.usuario_modifico,'') || '''' || ');'  , 40 as orden,0 as idmenupadre from forapi.menus_eventos me, forapi.menus m where me.idmenu=m.idmenu and m.nspname='forapi'
+'INSERT INTO forapi.menus_eventos( idmenu, idevento, donde, descripcion, fecha_alta, usuario_alta, fecha_modifico, usuario_modifico) VALUES (' ||  '(select idmenu from forapi.menus where nspname=''' || m.nspname || ''' and descripcion=''' || m.descripcion || ''')'  || ',' ||  idevento  || ',' ||  donde || ',''' ||  COALESCE(me.descripcion,'') || ''',''' || me.fecha_alta || ''',''' ||  COALESCE(me.usuario_alta,'') || ''',''' ||  me.fecha_modifico || ''',''' ||  COALESCE(me.usuario_modifico,'') || '''' || ');'  , 40 as orden,0 as idmenupadre from forapi.menus_eventos me, forapi.menus m where me.idmenu=m.idmenu and (m.nspname = 'forapi' or (m.nspname='pg_catalog' and m.tabla='pg_authid'))
 union all
 select
 'insert into forapi.menus_subvistas( idmenu, texto, imagen, idsubvista, funcion, dialogwidth, dialogheight, esboton, donde, eventos_antes, eventos_despues, campo_filtro, valor_padre, fecha_alta, usuario_alta, fecha_modifico, usuario_modifico, clase, posicion, orden, ventana) VALUES (' || '(select idmenu from forapi.menus where nspname=''' || m.nspname || ''' and descripcion=''' || m.descripcion || ''')' || ',''' ||  COALESCE(texto,'') || ''',''' ||  COALESCE(imagen,'') || ''',' ||  
             'coalesce((select idmenu from forapi.menus where descripcion=''' || COALESCE((select descripcion from forapi.menus where idmenu=idsubvista),'') || '''),0)' || ',''' ||  COALESCE(funcion,'') || ''',' || COALESCE(ms.dialogwidth,'0') || ',' || COALESCE(ms.dialogheight,'0') || ',' ||  COALESCE(esboton,'0') || ',' ||  COALESCE(donde,'0') || ',''' ||  COALESCE(eventos_antes,'') || ''',''' ||  COALESCE(eventos_despues,'') || ''',''' ||  COALESCE(campo_filtro,'') || ''',''' ||  COALESCE(valor_padre,'') || ''',current_date,current_user,null,' || 'null,''' ||  COALESCE(clase,'') || ''',' ||  COALESCE(posicion,'0') || ',' ||  COALESCE(ms.orden,'0') || ',' ||  COALESCE(ventana,'0') || ');'   , 40 as orden,0 as idmenupadre
-	from forapi.menus_subvistas as ms, forapi.menus m where ms.idmenu=m.idmenu and m.nspname='forapi'
+	from forapi.menus_subvistas as ms, forapi.menus m where ms.idmenu=m.idmenu and (m.nspname = 'forapi' or (m.nspname='pg_catalog' and m.tabla='pg_authid'))
 union all
 select
 'INSERT INTO forapi.menus_movtos( idmenu, idmovto, descripcion, imagen) VALUES (' || '(select idmenu from forapi.menus where nspname=''' || m.nspname || ''' and descripcion=''' || COALESCE(m.descripcion,'') || ''')' || ',''' || COALESCE(idmovto,'') || ''',''' || COALESCE(mm.descripcion,'') || ''',''' || COALESCE(imagen,'') || ''');'  , 50 as orden ,0 as idmenupadre
-from forapi.menus_movtos mm, forapi.menus m where mm.idmenu=m.idmenu and m.nspname='forapi'
+from forapi.menus_movtos mm, forapi.menus m where mm.idmenu=m.idmenu and (m.nspname = 'forapi' or (m.nspname='pg_catalog' and m.tabla='pg_authid'))
 union all
 select 
 'INSERT INTO forapi.menus_campos( idmenu, reltype, attnum, descripcion, size, male, fuente, fuente_campodes, fuente_campodep, fuente_campofil, fuente_where, fuente_evento, orden, idsubvista, dialogwidth, dialogheight, obligatorio, busqueda, altaautomatico, tcase, checaduplicidad, readonly, valordefault, esindex, tipayuda, espassword, tabla, nspname, fuente_busqueda, val_particulares, htmltable, fuente_nspname, altaautomatico_idmenu, fuente_busqueda_idmenu, upload_file, formato_td, colspantxt, rowspantxt, autocomplete, imprime, totales, cambiarencambios, link_file, fuente_info, fuente_info_idmenu, fuente_actu, fuente_actu_idmenu,eshidden) VALUES (' ||
-            '(select idmenu from forapi.menus where nspname=''' || m.nspname || ''' and descripcion=''' || m.descripcion || ''')' || ',' ||  COALESCE(mc.reltype,'0') || ',' ||  'COALESCE((select attnum from forapi.campos where nspname=''' || m.nspname || ''' and relname=''' || mc.tabla || ''' and attname=''' || COALESCE((select attname from forapi.campos where campos.nspname=m.nspname and campos.relname=mc.tabla and campos.attnum=mc.attnum),'') || '''),''0'')' || ',''' ||  COALESCE(mc.descripcion,'') || ''',' ||  COALESCE(size,'0') || ',' ||  COALESCE(male,'0') || ',''' ||  COALESCE(mc.fuente,'') || ''',''' ||  COALESCE(fuente_campodes,'') || ''',''' ||  COALESCE(fuente_campodep,'') || ''',''' ||  COALESCE(fuente_campofil,'') || ''',''' ||  COALESCE( fuente_where,'') || ''',' ||  COALESCE(fuente_evento,'0') || ',' ||  COALESCE(mc.orden,'0') || ',' ||  COALESCE(idsubvista,'0') || ',' ||  COALESCE(mc.dialogwidth,'0') || ',' ||  COALESCE( mc.dialogheight,'0') || ',' ||  COALESCE(obligatorio,'0') || ',' ||  COALESCE(busqueda,'0') || ',' ||  COALESCE(altaautomatico,'0') || ',' ||  COALESCE(tcase,'0') || ',' ||  COALESCE(checaduplicidad,'f') || ',' ||  COALESCE(readonly,'0') || ',''' ||  COALESCE(valordefault,'') || ''',' ||  COALESCE(esindex,'0') || ',''' ||  COALESCE(tipayuda,'') || ''',' || COALESCE(espassword,'0') || ',''' ||  COALESCE(mc.tabla,'') || ''',''' ||  COALESCE(mc.nspname,'') || ''',' ||  COALESCE(fuente_busqueda,'0') || ',''' ||  COALESCE(val_particulares,'') || ''',' ||  COALESCE(htmltable,'0') || ',''' ||  COALESCE(fuente_nspname,'0') || ''',' ||  COALESCE(altaautomatico_idmenu,'0') || ',' ||  COALESCE(fuente_busqueda_idmenu,'0') || ',' ||  COALESCE(upload_file,'0') || ',' ||  COALESCE( formato_td,'0') || ',' ||  COALESCE(colspantxt,'0') || ',' ||  COALESCE(rowspantxt,'0') || ',' ||  COALESCE(autocomplete,'0') || ',' ||  COALESCE(mc.imprime,'0') || ',' ||  COALESCE(totales,'0') || ',' ||  COALESCE(cambiarencambios,'0') || ',' || COALESCE(link_file,'0') || ',' ||  COALESCE(fuente_info,'0') || ',' ||  COALESCE(fuente_info_idmenu,'0') || ',' ||  COALESCE(fuente_actu,'0') || ',' ||  COALESCE(fuente_actu_idmenu,'0') || ',' || COALESCE(eshidden,'0') || ');', 60+attnum as orden,0 as idmenupadre from forapi.menus_campos mc,forapi.menus m where mc.idmenu=m.idmenu and m.nspname='forapi'
+            '(select idmenu from forapi.menus where nspname=''' || m.nspname || ''' and descripcion=''' || m.descripcion || ''')' || ',' ||  COALESCE(mc.reltype,'0') || ',' ||  'COALESCE((select attnum from forapi.campos where nspname=''' || m.nspname || ''' and relname=''' || mc.tabla || ''' and attname=''' || COALESCE((select attname from forapi.campos where campos.nspname=m.nspname and campos.relname=mc.tabla and campos.attnum=mc.attnum),'') || '''),''0'')' || ',''' ||  COALESCE(mc.descripcion,'') || ''',' ||  COALESCE(size,'0') || ',' ||  COALESCE(male,'0') || ',''' ||  COALESCE(mc.fuente,'') || ''',''' ||  COALESCE(fuente_campodes,'') || ''',''' ||  COALESCE(fuente_campodep,'') || ''',''' ||  COALESCE(fuente_campofil,'') || ''',''' ||  COALESCE( fuente_where,'') || ''',' ||  COALESCE(fuente_evento,'0') || ',' ||  COALESCE(mc.orden,'0') || ',' ||  COALESCE(idsubvista,'0') || ',' ||  COALESCE(mc.dialogwidth,'0') || ',' ||  COALESCE( mc.dialogheight,'0') || ',' ||  COALESCE(obligatorio,'0') || ',' ||  COALESCE(busqueda,'0') || ',' ||  COALESCE(altaautomatico,'0') || ',' ||  COALESCE(tcase,'0') || ',' ||  COALESCE(checaduplicidad,'f') || ',' ||  COALESCE(readonly,'0') || ',''' ||  COALESCE(valordefault,'') || ''',' ||  COALESCE(esindex,'0') || ',''' ||  COALESCE(tipayuda,'') || ''',' || COALESCE(espassword,'0') || ',''' ||  COALESCE(mc.tabla,'') || ''',''' ||  COALESCE(mc.nspname,'') || ''',' ||  COALESCE(fuente_busqueda,'0') || ',''' ||  COALESCE(val_particulares,'') || ''',' ||  COALESCE(htmltable,'0') || ',''' ||  COALESCE(fuente_nspname,'0') || ''',' ||  COALESCE(altaautomatico_idmenu,'0') || ',' ||  COALESCE(fuente_busqueda_idmenu,'0') || ',' ||  COALESCE(upload_file,'0') || ',' ||  COALESCE( formato_td,'0') || ',' ||  COALESCE(colspantxt,'0') || ',' ||  COALESCE(rowspantxt,'0') || ',' ||  COALESCE(autocomplete,'0') || ',' ||  COALESCE(mc.imprime,'0') || ',' ||  COALESCE(totales,'0') || ',' ||  COALESCE(cambiarencambios,'0') || ',' || COALESCE(link_file,'0') || ',' ||  COALESCE(fuente_info,'0') || ',' ||  COALESCE(fuente_info_idmenu,'0') || ',' ||  COALESCE(fuente_actu,'0') || ',' ||  COALESCE(fuente_actu_idmenu,'0') || ',' || COALESCE(eshidden,'0') || ');', 60+attnum as orden,0 as idmenupadre from forapi.menus_campos mc,forapi.menus m where mc.idmenu=m.idmenu and (m.nspname = 'forapi' or (m.nspname='pg_catalog' and m.tabla='pg_authid'))
 union all
 select
-'INSERT INTO forapi.menus_campos_eventos( attnum, idmenu, idevento, donde, descripcion) VALUES (' || attnum || ',' || '(select idmenu from forapi.menus where nspname=''' || m.nspname || ''' and descripcion=''' || m.descripcion || ''')' || ',' || idevento || ',' || donde || ',''' || me.descripcion || ''');' , 310 as orden,0 as idmenupadre from forapi.menus_campos_eventos me, forapi.menus m where me.idmenu=m.idmenu and m.nspname='forapi'
+'INSERT INTO forapi.menus_campos_eventos( attnum, idmenu, idevento, donde, descripcion) VALUES (' || attnum || ',' || '(select idmenu from forapi.menus where nspname=''' || m.nspname || ''' and descripcion=''' || m.descripcion || ''')' || ',' || idevento || ',' || donde || ',''' || me.descripcion || ''');' , 310 as orden,0 as idmenupadre from forapi.menus_campos_eventos me, forapi.menus m where me.idmenu=m.idmenu and (m.nspname = 'forapi' or (m.nspname='pg_catalog' and m.tabla='pg_authid'))
             union
 select 'INSERT INTO forapi.menus_pg_tables( idmenu, tablename, tselect, tinsert, tupdate, tdelete, tall, tgrant,  nspname) VALUES (' || '(select idmenu from forapi.menus where nspname=''' || m.nspname || ''' and descripcion=''' || m.descripcion || ''')' || ',''' || tablename || ''',''' || COALESCE(tselect,'0') || ''',''' || COALESCE(tinsert,'0') || ''',''' ||  COALESCE(tupdate,'0') || ''',''' || COALESCE(tdelete,'0') || ''',''' || COALESCE(tall,'0') || ''',''' || COALESCE(tgrant,'0') || ''','''  || mt.nspname || ''');' , 400 as orden,0 as idmenupadre
-from forapi.menus_pg_tables mt , forapi.menus m where mt.idmenu=m.idmenu and m.nspname='forapi'
+from forapi.menus_pg_tables mt , forapi.menus m where mt.idmenu=m.idmenu and (m.nspname = 'forapi' or (m.nspname='pg_catalog' and m.tabla='pg_authid'))
 union all
 select
-'update forapi.menus_subvistas set idsubvista=' || 'coalesce((select idmenu from forapi.menus where descripcion=''' || COALESCE((select descripcion from forapi.menus where idmenu=idsubvista),'') || ''' where idmenu=' || '(select idmenu from forapi.menus where nspname=''' || m.nspname || ''' and descripcion=''' || m.descripcion 
-            || ''');', 500 as orden,0 as idmenu  from forapi.menus_subvistas as ms, forapi.menus m where ms.idmenu=m.idmenu and m.nspname='forapi' and ms.idsubvista!=0
+'update forapi.menus_subvistas ms set idsubvista=' || 'coalesce((select idmenu from forapi.menus where descripcion=''' || COALESCE((select descripcion from forapi.menus where idmenu=ms.idsubvista),'') || '''),'''') where idmenu=' || '(select idmenu from forapi.menus where nspname=''' || m.nspname || ''' and descripcion=''' || m.descripcion 
+            || ''');', 500 as orden,0 as idmenu  from forapi.menus_subvistas as ms, forapi.menus m where ms.idmenu=m.idmenu and (m.nspname = 'forapi' or (m.nspname='pg_catalog' and m.tabla='pg_authid'))
+and ms.idsubvista!=0
  order by orden, idmenupadre
  loop
 return next r;
@@ -1121,6 +1124,44 @@ $_$;
 
 
 ALTER FUNCTION forapi.gen_menu_todo() OWNER TO postgres;
+
+--
+-- Name: grababitacora(integer, integer, integer, integer, date, date, text); Type: FUNCTION; Schema: forapi; Owner: postgres
+--
+
+CREATE FUNCTION grababitacora(integer, integer, integer, integer, date, date, text) RETURNS text
+    LANGUAGE plpgsql
+    AS $_$
+DECLARE
+  wlestado numeric;
+  aoutput  text;
+  begin
+   if $1 = 0 then
+--      raise notice ' antes de insert %, fecha inicial % ', $7,$5;
+--      aoutput := ' insert into cat_bitacora (idproceso,fecha_inicio,fecha_fin,at_inicio,at_fin,descripcion) ' ||
+--         ' values (' || $2 || ',''' || $5 || ''',''' || $6 || ''',' ||
+--            $3 || ',' || $4 || ',''' || $7 || ''');' ;
+--      raise notice ' va a ejecutar insert % ', aoutput;
+--      execute aoutput;
+        insert into forapi.cat_bitacora (idproceso,fecha_inicio,fecha_fin,at_inicio,at_fin,descripcion) 
+          values ( $2 , $5 , $6, $3 , $4 , $7 );
+--      raise notice ' va a ejecutar insert % ', aoutput;
+      select currval('forapi.cat_bitacora_idbitacora_seq') into wlestado;
+   else
+      if $7 <> '' then
+          update forapi.cat_bitacora set estado=1, descripcion=$7
+             where idbitacora=$1;
+      else
+          update forapi.cat_bitacora set estado=1
+             where idbitacora=$1;
+      end if;
+   end if;
+--  commit transaction;
+  return wlestado;
+  end;$_$;
+
+
+ALTER FUNCTION forapi.grababitacora(integer, integer, integer, integer, date, date, text) OWNER TO postgres;
 
 --
 -- Name: tiene_grupo(text); Type: FUNCTION; Schema: forapi; Owner: postgres
@@ -1216,11 +1257,61 @@ CREATE VIEW campos AS
 ALTER TABLE forapi.campos OWNER TO postgres;
 
 --
+-- Name: cat_bitacora; Type: TABLE; Schema: forapi; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cat_bitacora (
+    idbitacora integer DEFAULT nextval(('forapi.cat_bitacora_idbitacora_seq'::text)::regclass),
+    idproceso integer,
+    fecha_inicio date,
+    fecha_fin date,
+    at_inicio smallint,
+    at_fin smallint,
+    estado smallint DEFAULT 0,
+    descripcion text,
+    fecha_alta timestamp with time zone DEFAULT ('now'::text)::timestamp without time zone,
+    usuario_alta text DEFAULT getpgusername(),
+    fecha_modifico timestamp with time zone DEFAULT ('now'::text)::timestamp without time zone,
+    usuario_modifico text DEFAULT getpgusername()
+);
+
+
+ALTER TABLE forapi.cat_bitacora OWNER TO postgres;
+
+--
+-- Name: cat_bitacora_idbitacora_seq; Type: SEQUENCE; Schema: forapi; Owner: postgres
+--
+
+CREATE SEQUENCE cat_bitacora_idbitacora_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE forapi.cat_bitacora_idbitacora_seq OWNER TO postgres;
+
+--
+-- Name: cat_bitacora_seq; Type: SEQUENCE; Schema: forapi; Owner: postgres
+--
+
+CREATE SEQUENCE cat_bitacora_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    MAXVALUE 2147483647
+    CACHE 1;
+
+
+ALTER TABLE forapi.cat_bitacora_seq OWNER TO postgres;
+
+--
 -- Name: cat_preguntas; Type: TABLE; Schema: forapi; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE cat_preguntas (
-    idpregunta integer DEFAULT nextval(('cat_preguntas_seq'::text)::regclass),
+    idpregunta integer DEFAULT nextval(('forapi.cat_preguntas_idpregunta_seq'::text)::regclass),
     descripcion character varying(100),
     fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
     usuario_alta character varying(20) DEFAULT getpgusername(),
@@ -1230,6 +1321,20 @@ CREATE TABLE cat_preguntas (
 
 
 ALTER TABLE forapi.cat_preguntas OWNER TO postgres;
+
+--
+-- Name: cat_preguntas_idpregunta_seq; Type: SEQUENCE; Schema: forapi; Owner: postgres
+--
+
+CREATE SEQUENCE cat_preguntas_idpregunta_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE forapi.cat_preguntas_idpregunta_seq OWNER TO postgres;
 
 --
 -- Name: estados_usuarios; Type: TABLE; Schema: forapi; Owner: postgres; Tablespace: 
@@ -1301,7 +1406,7 @@ ALTER TABLE forapi.his_cambios_pwd OWNER TO postgres;
 --
 
 CREATE TABLE his_cat_usuarios (
-    idcambio integer DEFAULT nextval(('forapi.his_cat_usuarios_seq'::text)::regclass),
+    idcambio integer DEFAULT nextval(('forapi.his_cat_usuarios_idcambio_seq'::text)::regclass) NOT NULL,
     usename character(15) NOT NULL,
     nombre character varying(30),
     apepat character varying(30),
@@ -1328,11 +1433,25 @@ CREATE TABLE his_cat_usuarios (
 ALTER TABLE forapi.his_cat_usuarios OWNER TO postgres;
 
 --
+-- Name: his_cat_usuarios_idcambio_seq; Type: SEQUENCE; Schema: forapi; Owner: postgres
+--
+
+CREATE SEQUENCE his_cat_usuarios_idcambio_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE forapi.his_cat_usuarios_idcambio_seq OWNER TO postgres;
+
+--
 -- Name: his_cat_usuarios_pg_group; Type: TABLE; Schema: forapi; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE his_cat_usuarios_pg_group (
-    idcambio integer NOT NULL,
+    idcambio integer DEFAULT nextval(('forapi.his_cat_usuarios_pg_group_idcambio_seq'::text)::regclass) NOT NULL,
     usename character(15),
     grosysid integer,
     fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
@@ -1422,7 +1541,7 @@ ALTER TABLE forapi.his_menus OWNER TO postgres;
 --
 
 CREATE TABLE his_menus_pg_group (
-    idcambio integer DEFAULT nextval(('forapi.his_menus_pg_group_seq'::text)::regclass),
+    idcambio integer DEFAULT nextval(('forapi.his_menus_pg_group_idcambio_seq'::text)::regclass),
     idmenu integer,
     grosysid integer,
     fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
@@ -1432,6 +1551,20 @@ CREATE TABLE his_menus_pg_group (
 
 
 ALTER TABLE forapi.his_menus_pg_group OWNER TO postgres;
+
+--
+-- Name: his_menus_pg_group_idcambio_seq; Type: SEQUENCE; Schema: forapi; Owner: postgres
+--
+
+CREATE SEQUENCE his_menus_pg_group_idcambio_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE forapi.his_menus_pg_group_idcambio_seq OWNER TO postgres;
 
 --
 -- Name: his_menus_pg_group_seq; Type: SEQUENCE; Schema: forapi; Owner: postgres
@@ -1452,7 +1585,7 @@ ALTER TABLE forapi.his_menus_pg_group_seq OWNER TO postgres;
 --
 
 CREATE TABLE his_menus_pg_tables (
-    idcambio integer DEFAULT nextval(('forapi.his_menus_pg_group_seq'::text)::regclass),
+    idcambio integer DEFAULT nextval(('forapi.his_menus_pg_tables_idcambio_seq'::text)::regclass),
     idmenu integer,
     tablename name,
     tselect character(1) DEFAULT ''::bpchar,
@@ -1468,6 +1601,20 @@ CREATE TABLE his_menus_pg_tables (
 
 
 ALTER TABLE forapi.his_menus_pg_tables OWNER TO postgres;
+
+--
+-- Name: his_menus_pg_tables_idcambio_seq; Type: SEQUENCE; Schema: forapi; Owner: postgres
+--
+
+CREATE SEQUENCE his_menus_pg_tables_idcambio_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE forapi.his_menus_pg_tables_idcambio_seq OWNER TO postgres;
 
 --
 -- Name: his_tablas_cambios; Type: TABLE; Schema: forapi; Owner: postgres; Tablespace: 
@@ -2460,13 +2607,6 @@ ALTER TABLE ONLY eventos ALTER COLUMN idevento SET DEFAULT nextval('eventos_idev
 
 
 --
--- Name: idcambio; Type: DEFAULT; Schema: forapi; Owner: postgres
---
-
-ALTER TABLE ONLY his_cat_usuarios_pg_group ALTER COLUMN idcambio SET DEFAULT nextval('his_cat_usuarios_pg_group_idcambio_seq'::regclass);
-
-
---
 -- Name: idmenu; Type: DEFAULT; Schema: forapi; Owner: postgres
 --
 
@@ -2556,6 +2696,14 @@ ALTER TABLE ONLY menus_tiempos ALTER COLUMN idtiempo SET DEFAULT nextval('menus_
 
 ALTER TABLE ONLY eventos
     ADD CONSTRAINT eventos_pkey PRIMARY KEY (idevento);
+
+
+--
+-- Name: his_cat_usuarios_pkey; Type: CONSTRAINT; Schema: forapi; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY his_cat_usuarios
+    ADD CONSTRAINT his_cat_usuarios_pkey PRIMARY KEY (idcambio);
 
 
 --
@@ -2900,6 +3048,20 @@ CREATE INDEX xakhis_cambios_pwdfcpnva ON his_cambios_pwd USING btree (usuario_al
 
 
 --
+-- Name: xalcat_bitacora; Type: INDEX; Schema: forapi; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX xalcat_bitacora ON cat_bitacora USING btree (idproceso, fecha_inicio, fecha_fin);
+
+
+--
+-- Name: xpkcat_bitacora; Type: INDEX; Schema: forapi; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX xpkcat_bitacora ON cat_bitacora USING btree (idbitacora);
+
+
+--
 -- Name: xpkcat_preguntas; Type: INDEX; Schema: forapi; Owner: postgres; Tablespace: 
 --
 
@@ -3044,6 +3206,13 @@ CREATE TRIGGER ti_menus_pg_group BEFORE INSERT ON menus_pg_group FOR EACH ROW EX
 --
 
 CREATE TRIGGER ti_menus_pg_tables BEFORE INSERT ON menus_pg_tables FOR EACH ROW EXECUTE PROCEDURE alta_menus_pg_tables();
+
+
+--
+-- Name: tu_cat_bitacora; Type: TRIGGER; Schema: forapi; Owner: postgres
+--
+
+CREATE TRIGGER tu_cat_bitacora BEFORE UPDATE ON cat_bitacora FOR EACH ROW EXECUTE PROCEDURE up_usuario_fecha();
 
 
 --

@@ -1819,7 +1819,7 @@ class eventos_servidor_class extends xmlhttp_class
    */         
    function activa_usuario($usuario)
    {
-	   $sql=" update cat_usuarios set estatus=1 where usename='".$usuario."'";
+	   $sql=" update forapi.cat_usuarios set estatus=1 where usename='".$usuario."'";
 	   $sql_result = @pg_exec($this->connection,$sql);
        if (strlen(pg_last_error($this->connection))>0)
        {
