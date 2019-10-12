@@ -14,7 +14,8 @@
 include("mensajes.php");
 require_once("class.phpmailer.php");
 require_once("menudata.php");
-require_once("class_logmenus.php");   //20070623   cambie el log del select de menudata a este php
+require_once("class_logmenus.php");   
+require_once("idmenus.php");   
 /**
 *   clase que genera la pantalla que genera la solicitud de datos 
 *   <pre>
@@ -901,7 +902,7 @@ class soldatos
 			$wlonchange=$this->agregaevento('2',$wlonchange,$menumce); 		//20071109
 			$wlonfocus=$this->agregaevento('3',$wlonfocus,$menumce); 		//20071109
 			$wlonblur=$this->agregaevento('1',$wlonblur,$menumce); 		//20071109
-                        $wlondck=($this->menu["esadmon"]!="0" && $this->menu["esadmon"]!="") ? 'abre_subvista("man_menus.php","idmenu=1001&filtro=idmenu='.$this->idmenu.' and idcampo='.$wlidcampo.'","","",1001,800,600,"Idmenu")' : "";
+                        $wlondck=($this->menu["esadmon"]!="0" && $this->menu["esadmon"]!="") ? 'abre_subvista("man_menus.php","idmenu='.MENUS_CAMPOS.'&filtro=idmenu='.$this->idmenu.' and idcampo='.$wlidcampo.'","","",'.MENUS_CAMPOS.',800,600,"Idmenu")' : "";
 
 			$vas=$vas.($wlonchange!="" ? " onChange='".$wlonchange.";'" : "".$esfiltrode );  //20071109
 			$vas=$vas.($wlonfocus!="" ? " onFocus='".$wlonfocus.";'" : "");  //20071109
@@ -1199,7 +1200,7 @@ class soldatos
 						$wlonblur=$this->agregaevento('1',$wlonblur,$menumce);						
 						$wlonkp=$this->agregaevento('5',$wlonkp,$menumce);
 						$wlonck=$this->agregaevento('4',$wlonck,$menumce);
-                                                $wlondck=($this->menu["esadmon"]!="0" && $this->menu["esadmon"]!="") ? 'abre_subvista("man_menus.php","idmenu=1001&filtro=idmenu='.$this->idmenu.' and idcampo='.$wlidcampo.'","","",1001,800,600,"Idmenu")' : "";
+                                                $wlondck=($this->menu["esadmon"]!="0" && $this->menu["esadmon"]!="") ? 'abre_subvista("man_menus.php","idmenu='.MENUS_CAMPOS.'&filtro=idmenu='.$this->idmenu.' and idcampo='.$wlidcampo.'","","",'.MENUS_CAMPOS.',800,600,"Idmenu")' : "";
 						$wli=$wli.($wlfocus!="" ? " onFocus='".$wlfocus.";'" : "" );
 						$wli=$wli.($wlonChange!="" ? " onChange='".$wlonChange.";'" : "" );
 						$wli=$wli.($wlonblur!="" ? " onBlur='".$wlonblur.";'" : "" );						
@@ -1614,9 +1615,6 @@ class soldatos
 		
         if (strpos($this->movto_mantto,"p")!==false)     	  
         {
-//     	    echo "<td id=\"x\" class=\"botones\" > ".
-//     	     " <input id=\"xid\" type=\"button\"  title=\"xt \"  ".
-//        	 "  onclick=\"x()\" value=\"charros\" ></input></td>\n";	        
 			echo "<TD id='imprime' class=botones > <input onclick='imprime(\"\");return false' id='iimprime'  value=Imprime type=button class=button ></input> </TD>";
         }
         		
@@ -1691,11 +1689,10 @@ class soldatos
 
 
 
-//20070223  oh este dia fue muy productivo, inclui la opcion a que es autodiseñ/20070223  esto es muy util cuando aun estas ajustando la forma                
         if ($meda->camposm["esadmon"]!="0" && $meda->camposm["esadmon"]!="")
         	{
 				echo "<td id='Autodiseno' class=botones ><input type=button class=button id='iAutoDiseno' title='Entra al diseno de la forma' ".
-									  " onclick='abre_subvista(\"man_menus.php\",\"idmenu=999".
+									  " onclick='abre_subvista(\"man_menus.php\",\"idmenu=".MENU.
 						              " &filtro=idmenu=".$this->menu["idmenu"].
 						              "\",\"\",\"\",999,800,600,\"Diseno de form\"".	//20070526
 						              ");return false;' value=AutoDiseno >".
