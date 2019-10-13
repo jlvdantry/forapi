@@ -108,7 +108,6 @@ class seguridad extends xmlhttp_class
        	  if (strlen(pg_last_error($this->connection))>0)
        	  {
        			echo "<error>Error al validausuario</error>";
-       			//echo "<error>Error al validausuario".pg_last_error($this->connection)."</error>";
                         $this->Enviaemail("error en validausuario usuario=".$parametro1p." sql=".$sql." error ".pg_last_error($this->connection));
        			return;  
        	  }                                          
@@ -123,7 +122,6 @@ class seguridad extends xmlhttp_class
 	   	  $sql_result = @pg_exec($this->connection,$sql);
        	  if (strlen(pg_last_error($this->connection))>0)
        	  {
-       			//echo  "<error>Error al debe_cambiarpwd </error>";
        			echo  "<error>Error al debe_cambiarpwd ".pg_last_error($this->connection)."</error>";
                         $this->Enviaemail("Error al debe_cambiarpwd ".$sql." error ".pg_last_error($this->connection));
        			return ;

@@ -25,3 +25,4 @@ require('./val_inactividad.js');
 require('./val_particulares.js');
 require('./xtree.js');
 require('./xloadtree.js');
+require('./htmlspecialchars_decode.js');

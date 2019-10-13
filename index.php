@@ -2,6 +2,7 @@
     header("Access-Control-Allow-Origin: *");
     session_start();
     $_SESSION = array();
+    include("src/php/idmenus.php");
     echo "<html class=\"html-custom\" >";
     echo "<head>\n";
     echo " <meta name='viewport' content='width=device-width, initial-scale=1'>\n";
@@ -15,9 +16,11 @@
     echo "</div>\n";
     echo "<div id=menus class='div_menus' >\n";
     echo "</div>\n";
+    echo "<div >\n";
     echo "<div id=entrada class='div_menus' >\n";
-    include('src/php/entrada.php');
+    echo "</id>";
     echo "</div>\n";
+    echo "  <script>muestra_vista(".MENUS_BIENVENIDO.",'abre');</script> ";
     echo "</body>\n";
     echo "</html>\n";
 ?>

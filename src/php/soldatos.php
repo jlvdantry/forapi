@@ -506,9 +506,9 @@ class soldatos
     */   
   function inicio_html()
   {
-    echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"";
-    echo "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">";
-    echo "<html>\n";
+    //echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"";
+    //echo "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">";
+    //echo "<html>\n";
     echo "<BODY id='soldatos' onunload='this.Cierraforma()' onresize=\"this.Cambiasize('".$this->idmenu."');\" onClick='sumaclicks()' onLoad=\"try { inicia();inicioforma();\n pone_focus_forma('formpr');\n pone_sort_scroll(); \n sumatotales();\n } catch (e) { };ContextMenu.intializeContextMenu();\"  >\n";            
     echo " <LINK id=estilo REL=StyleSheet HREF=\"".($this->menu["css"]=="" ? "pupan.css" : $this->menu["css"] )."\" TYPE=\"text/css\" MEDIA=screen>\n";
     echo " <LINK id=estilo REL=StyleSheet HREF=\"".($this->menu["css"]=="" ? "pupan.css" : "print_".$this->menu["css"] )."\" TYPE=\"text/css\" MEDIA=print>\n";    
@@ -558,7 +558,7 @@ class soldatos
     echo "      <script language=\"JavaScript\">";
         //echo "  actualizaRelog ();      ";
         echo "  </script>       ";
-    echo "</html>";
+    //echo "</html>";
   } 
 
   function __construct()

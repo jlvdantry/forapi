@@ -263,6 +263,22 @@ class xmlhttp_class
    /**
      *  Arma el insert,delete o update para darle mantenimiento a una tabla
      **/
+   function muestra_vista()
+   {
+      $soldatos = new soldatos();
+      $soldatos->idmenu=$this->argumentos['idmenu'];
+      $soldatos->connection=$this->connection;
+      $soldatos->datos=array('MTA');
+      ob_start();
+      $soldatos->despledatos();
+      $wlrenglones=ob_get_contents();
+      ob_end_clean();
+      echo '<vista>'.htmlspecialchars($wlrenglones,ENT_IGNORE,UTF-8).'</vista>';
+   }
+
+   /**
+     *  Arma el insert,delete o update para darle mantenimiento a una tabla
+     **/
    function mantto_tabla()
    {
       if($this->argumentos['idmenu']=='')

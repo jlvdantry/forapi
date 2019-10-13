@@ -1709,12 +1709,18 @@ function clearSelect(wl) {
 }
 
 
+window.muestra_vista = function (wlmenu) {
+                        wlurl='src/php/xmlhttp.php';//20071105
+                        passData='&opcion=muestra_vista&idmenu='+wlmenu;
+                        CargaXMLDoc();
+                        return;
+}
 //  recibe el menu o vista sobre el cual va a dar mantenimiento
 //  el movimiento que va a efectuar i=insert,d=delete,u=update
 //  la llave con la que va a dara de baja o cambio
 //  el renglon que va a dar de baja de la tabla
 //20071112   se incluyo los eventos a efectuar en el cliente   wleventoantescl, wleventodespuescl
-function mantto_tabla(wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,wleventodespues,wleventoantescl,wleventodespuescl,noconfirmamovto)
+window.mantto_tabla = function (wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,wleventodespues,wleventoantescl,wleventodespuescl,noconfirmamovto)
 {
 	    if (wlmovto=='d' || wlmovto=='u' || wlmovto=='s' || wlmovto=='S' || wlmovto=='B' )
 	    {
@@ -2118,6 +2124,18 @@ function querespuesta()
               return;
            } 
 	        	        
+           if (req.responseText.indexOf("<vista>") != -1)
+           {
+              //document.getElementById('entrada').innerHTML=req.responseXML.getElementsByTagName("vista")[0].innerHTML;
+             entrada=document.getElementById('entrada');
+             html=req.responseXML.getElementsByTagName("vista")[0].innerHTML;
+             html=htmlspecialchars_decode(html);
+             parser = new DOMParser();
+             doc = parser.parseFromString(html, "text/html");
+             entrada.insertAdjacentHTML('afterend', html);
+             return;
+           }
+
            if (req.responseText.indexOf("<error>") != -1)
            {
               var items = req.responseXML.getElementsByTagName("noconfirma");
