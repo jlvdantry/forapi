@@ -15,6 +15,7 @@
     echo "</div>\n";
     echo "<div id=menus class='div_menus' >\n";
     echo "</div>\n";
+    echo "<div id=entrada class='div_menus' >\n";
     include('src/php/entrada.php');
     echo "</div>\n";
     echo "</body>\n";

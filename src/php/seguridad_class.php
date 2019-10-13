@@ -156,7 +156,7 @@ class seguridad extends xmlhttp_class
           $_SESSION["servidor"]=$this->servidort; //20070822
           $_SESSION["bada"]=$this->badat; //20070822
           $_SESSION["puerto"]=$this->puerto; //20070822
-			echo "<otrahoja>opciones_antn.php</otrahoja>";		
+			echo "<otrahoja>src/php/opciones_antn.php</otrahoja>";		
 		}
 }		
 

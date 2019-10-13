@@ -49,6 +49,14 @@
 | Created 2000-12-11 | All changes are in the log above. | Updated 2006-05-26 |
 \----------------------------------------------------------------------------*/
 var prev;
+/*
+ *  * WebFXCookie class
+ *   */
+
+window.WebFXCookie = function() {
+        if (document.cookie.length) { this.cookies = ' ' + document.cookie; }
+}
+
 window.webFXTreeConfig = {
 	rootIcon        : 'images/foldericon.png',
 	openRootIcon    : 'images/openfoldericon.png',
@@ -69,7 +77,7 @@ window.webFXTreeConfig = {
 	usePersistence	: true
 };
 
-var webFXTreeHandler = {
+window.webFXTreeHandler = {
 	idCounter : 0,
 	idPrefix  : "webfx-tree-object-",
 	all       : {},
@@ -126,13 +134,6 @@ var webFXTreeHandler = {
 	}
 };
 
-/*
- * WebFXCookie class
- */
-
-function WebFXCookie() {
-	if (document.cookie.length) { this.cookies = ' ' + document.cookie; }
-}
 
 WebFXCookie.prototype.setCookie = function (key, value) {
 	document.cookie = key + "=" + escape(value);
@@ -155,7 +156,7 @@ WebFXCookie.prototype.getCookie = function (key) {
  * WebFXTreeAbstractNode class
  */
 
-function WebFXTreeAbstractNode(sText, sAction) {
+window.WebFXTreeAbstractNode = function(sText, sAction) {
 	this.childNodes  = [];
 	this.id     = webFXTreeHandler.getId();
 	this.text   = sText || webFXTreeConfig.defaultText;
@@ -313,7 +314,7 @@ WebFXTreeAbstractNode.prototype.indent = function(lvl, del, last, level, nodesLe
  * WebFXTree class
  */
 
-function WebFXTree(sText, sAction, sBehavior, sIcon, sOpenIcon) {
+window.WebFXTree = function(sText, sAction, sBehavior, sIcon, sOpenIcon) {
 	this.base = WebFXTreeAbstractNode;
 	this.base(sText, sAction);
 	this.icon      = sIcon || webFXTreeConfig.rootIcon;
@@ -401,7 +402,7 @@ WebFXTree.prototype.toString = function() {
  * WebFXTreeItem class
  */
 
-function WebFXTreeItem(sText, sAction, eParent, sIcon, sOpenIcon) {
+window.WebFXTreeItem = function(sText, sAction, eParent, sIcon, sOpenIcon) {
 //	alert('entro aqui'+sText);
 	this.base = WebFXTreeAbstractNode;
 	this.base(sText, sAction);

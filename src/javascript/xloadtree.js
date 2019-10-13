@@ -38,7 +38,7 @@
 | Created 2001-09-27 | All changes are in the log above. | Updated 2006-05-28 |
 \----------------------------------------------------------------------------*/
 
-
+window.webFXTreeConfig="";
 webFXTreeConfig.loadingText = "Loading...";
 webFXTreeConfig.loadErrorTextTemplate = "Error loading \"%1%\"";
 webFXTreeConfig.emptyErrorTextTemplate = "Error \"%1%\" does not contain any tree items";

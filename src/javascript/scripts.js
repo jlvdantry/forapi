@@ -17,7 +17,7 @@ function do_search(submit) {
 
 }
 
-function SetImageWidth() {
+window.SetImageWidth = function() {
   var ImageMaxWidth = 700;
 
   screenshotImage = document.getElementById("ScreenshotImage");
@@ -38,7 +38,7 @@ var menu_hide_timeout = 0;
 var menu_anim_timeout = 0;
 
 var menu_anim = new Array();
-function menu_anim_step(){
+window.menu_anim_step = function(){
     menu_anim_timeout = window.setTimeout("menu_anim_step();", 10);
     for (var i=0; i<menu_anim.length; i++)
     {
@@ -72,7 +72,7 @@ function menu_anim_step(){
 }
 menu_anim_step();
 
-function menu_render(id, items){
+window.menu_render = function(id, items){
     var div = document.createElement("div");
     var html = "<table celpadding='0' cellspacing='0' border='0' width='100%'>";
     for (var j=0; j<items.items.length; j++)
@@ -106,7 +106,7 @@ function menu_render(id, items){
     return div;
 }
 
-function menu_init(){
+window.menu_init= function(){
 	//alert('entro menu_init');
     if (menu_initialized)return;
     menu_initialized = true;
@@ -119,7 +119,7 @@ function menu_init(){
     }
 }
 
-function menu_node_pos(n){
+window.menu_node_pos = function(n){
     if (n.offsetParent)
     {
         var pos = menu_node_pos(n.offsetParent);
@@ -132,7 +132,7 @@ function menu_node_pos(n){
     return {x:n.offsetLeft, y:n.offsetTop, w:n.offsetWidth, h:n.offsetHeight};
 }
 
-function menu_click(id){
+window.menu_click = function(id){
     var cur = menu_data;
     var tmp = id.split(/:/);
     var path = new Array();
@@ -169,7 +169,7 @@ function menu_click(id){
 /*
 * funcion que muestra el cotenido del menu
 **/
-function menu_over(n, id){
+window.menu_over = function(n, id){
 	//alert (n.value+' '+id);
 	//alert (menu_initialized);
     if (!menu_initialized)return;
@@ -255,14 +255,14 @@ function menu_over(n, id){
     }
 }
 
-function menu_out(n, id){
+window.menu_out = function(n, id){
 //	alert('salio');
     if (!menu_initialized)return;
     window.clearTimeout(menu_hide_timeout);
     menu_hide_timeout = window.setTimeout("menu_hide();", 300);
 }
 
-function menu_hide(){
+window.menu_hide = function(){
 	//alert ('menuhide');
     for (var i=0; i<menu_current.length; i++ )
     {
@@ -278,7 +278,7 @@ function menu_hide(){
     }
 }
 
-function menu_hide_first(n){
+window.menu_hide_first = function(n){
     var anim = null;
     var pos = menu_anim.length;
     for (var i=0; i<menu_anim.length; i++)
@@ -300,7 +300,7 @@ function menu_hide_first(n){
     anim.limit = 0;
     anim.step = -(menu_speed*3);
 }
-function menu_show_first(n){
+window.menu_show_first = function(n){
 	//alert ('entro menu_show_first');
     var anim = null;
     var pos = menu_anim.length;
