@@ -1,0 +1,235 @@
+//Globales
+.html-custom{
+  min-height: 100%;
+  position: relative;
+}
+
+.body-custom{
+  margin: 0;
+  margin-bottom: 10rem;
+
+}
+
+@media (min-width: 768px){
+  .body-custom{
+    margin-bottom: 7rem;
+  }
+}
+
+body{
+  font-family: $font-family-base;
+}
+
+img{
+  width: 100%;
+}
+
+.seccion{
+  margin: 1rem 0;
+}
+
+.w-85{
+  width: 85%;
+}
+
+.check{
+  width: auto;
+  float: right;
+  margin-top: .5rem;
+}
+
+button{
+  border: 0;
+  width: 100%;
+
+  &:focus{
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+@media (min-width: 768px){
+  button{
+    width: auto;
+  }
+
+}
+
+//header
+.imagen-encabezado{
+  margin: .9rem 0;
+  max-width: 22.6rem;
+}
+
+h1{
+  margin: 1rem 0;
+  font-size: $fs-24;
+  line-height: $fs-32;
+  color: $verde-oscuro;
+  font-weight: 700;
+
+  span{
+    color: $verde-primario;
+  }
+}
+
+p{
+  margin: 0;
+  font-size: $fs-14;
+  font-weight: 400;
+  line-height: $fs-24;
+  color: $gray-01;
+
+}
+
+h3{
+  @extend p;
+  margin: 1rem 0;
+  color: $verde-aqua;
+  font-weight: 700;
+}
+
+h2{
+  @extend p;
+  margin: 1rem 0;
+  color: $verde-oscuro;
+  font-weight: 700;
+}
+
+h4{
+  font-size: $fs-16;
+  line-height: $fs-24;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: $verde-primario;
+}
+
+h5{
+  @extend p;
+  color: $verde-oscuro;
+  font-weight: 700;
+  margin: .8rem 0;
+}
+
+a{
+  color: $verde-oscuro;
+  font-weight: bold;
+  text-decoration:underline;
+
+  &:hover{
+    color: $verde-aqua;
+  }
+}
+//pleca
+
+.pleca{
+min-height: 2.5rem;
+background-color: $gray-05;
+display: flex;
+align-items: center;
+border-top: solid .31rem $gray-04;
+}
+
+//aviso-registro-exitoso
+
+.aviso-registro-exitoso,
+.aviso-inmueble-exitoso{
+  margin: 3rem auto;
+  width: 100%;
+  border-radius: .875rem;
+  background-color: transparent;
+  border: solid .12rem $verde-primario;
+  padding: 1rem 1.5rem;
+
+  h1{
+    text-transform: uppercase;
+    color: $verde-primario;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  p{
+    text-align: center;
+  }
+}
+
+@media (min-width: 768px){
+  .aviso-registro-exitoso{
+    padding: 1.62rem 4.5rem;
+    width: 50%;
+  }
+}
+
+.aviso-inmueble-exitoso{
+  p{
+    text-align: left;
+  }
+}
+
+@media (min-width: 768px){
+  .aviso-inmueble-exitoso{
+    padding: 1.62rem 4.5rem;
+    width: 80%;
+  }
+}
+
+.lista{
+ul{
+  list-style: none;
+  padding-left: 0;
+
+  li{
+    @extend p;
+    display: inline-block;
+    margin-right: 1rem;
+
+    &:last-of-type{
+      margin-right: 0;
+    }
+  }
+}
+}
+
+.avisos-alerta{
+  p{
+    text-align: center;
+    color: $red;
+    font-size: $fs-16;
+    font-weight: bold;
+    margin: 1rem auto;
+    span{
+      font-size: $fs-14;
+      font-weight: normal;
+      color: $red;
+    }
+  }
+}
+
+
+.alert-success{
+  background-color: transparent;
+  p{
+    text-align: center;
+    color: $green;
+    font-size: $fs-16;
+    font-weight: bold;
+    margin: 1rem auto;
+    span{
+      font-size: $fs-14;
+      font-weight: normal;
+      color: $green;
+    }
+  }
+}
+
+.aviso-error{
+  text-align: center;
+  margin: 5rem auto;
+
+  h1{
+    font-size: $fs-80;
+    font-weight: normal;
+    color: $gray-02;
+    padding: 6rem 0 5rem;
+  }
+}

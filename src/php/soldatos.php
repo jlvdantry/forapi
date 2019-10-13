@@ -155,25 +155,6 @@ class soldatos
     */
   function arma_js()
   {
-	echo "<script src='dhtmlwindow.js'></script>\n";    
-	echo "<script src='modal.js'></script>\n";    
-	echo "<script src='common.js'></script>\n";    
-	echo "<script src='subModal.js'></script>\n";    
-	echo "<script src='cookies1.js'></script>\n";    
-	echo "<script src='val_comunes.js'></script>\n";    
-	echo "<script src='val_particulares.js'></script>\n";    
-	echo "<script src='eve_particulares.js'></script>\n";    	
-	echo "<script src='md5.js'></script>\n";    		
-	echo "<script src='altaautomatica.js'></script>\n";    		
-	echo "<script src='altaadjuntara.js'></script>\n";    		
-	echo "<script src='leearchivo.js'></script>\n";    		
-	echo "<script src='dom-drag.js'></script>\n";    		
-        echo "<script src='captcha.js'></script>\n";
-        echo "<script language='JavaScript' type='text/javascript' src='jsrsasign-latest-all-min.js'></script>\n";
-//    include("val_comunes.js");
-//    include("val_particulares.js");    
-//    include("eve_particulares.js");        
-//    include("md5.js");    
     echo "<script>\n";
 
 //20070524    include("sortable.js");
@@ -254,16 +235,13 @@ class soldatos
           switch (current($this->datos))
           {
              case 'BI':
-//                include("broseaing.js");
-				echo "<script src='broseaing.js'></script>\n";                    
+				//echo "<script src='broseaing.js'></script>\n";                    
                 break;
              case 'MTA':
-				echo "<script src='broseaing.js'></script>\n";                                 
-//                include("broseaing.js");
+				//echo "<script src='broseaing.js'></script>\n";                                 
                 break;
              case 'AA':
-				echo "<script src='broseaing.js'></script>\n";                                 
-//                include("broseaing.js");
+				//echo "<script src='broseaing.js'></script>\n";                                 
                 break;                
 
           }
@@ -531,43 +509,12 @@ class soldatos
     echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"";
     echo "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">";
     echo "<html>\n";
-//   20070524   cambio de size
-//20070703    echo "<BODY onunload='Cierraforma()' onresize=\"Cambiasize('".$this->idmenu."');\" onLoad=\"try { inicioforma();pone_focus_forma('formpr');pone_sort_scroll(); } catch (e) { } \"  >\n";        
-##    echo "<BODY onunload='Cierraforma()' onresize=\"Cambiasize('".$this->idmenu."');\" onLoad=\"try { inicioforma();pone_focus_forma('formpr');pone_sort_scroll(); } catch (e) { alert('error onload'+e.decription); };ContextMenu.intializeContextMenu(); \"  >\n";            
     echo "<BODY id='soldatos' onunload='this.Cierraforma()' onresize=\"this.Cambiasize('".$this->idmenu."');\" onClick='sumaclicks()' onLoad=\"try { inicia();inicioforma();\n pone_focus_forma('formpr');\n pone_sort_scroll(); \n sumatotales();\n } catch (e) { };ContextMenu.intializeContextMenu();\"  >\n";            
-// 20070818  se modifico para poder manejar mas de un archivo css    
     echo " <LINK id=estilo REL=StyleSheet HREF=\"".($this->menu["css"]=="" ? "pupan.css" : $this->menu["css"] )."\" TYPE=\"text/css\" MEDIA=screen>\n";
     echo " <LINK id=estilo REL=StyleSheet HREF=\"".($this->menu["css"]=="" ? "pupan.css" : "print_".$this->menu["css"] )."\" TYPE=\"text/css\" MEDIA=print>\n";    
-//    echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"datepicker.css\" />\n";
-    echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"subModal.css\" />\n";
-    echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"modal.css\" />\n";
-    echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"dhtmlwindow.css\" />\n";
-    
-
-//	echo "<script src='sorttable_n.js'></script>\n";   // 20070511
-##20080209  los comentarice para tratar de ver cual era el error
-##20080209	echo "<script src='sortable_otro.js'></script>\n";   // 20070515 probando otro rutina para sortear y fijar titulos
-	echo "<script src='ieemu.js'></script>\n";	
-	echo "<script src='ContextMenu.js'></script>\n";
-	echo "<script src='sortable_otro.js'></script>\n";	
-	echo "<script src='datepicker.js'></script>\n";			
-	echo "<script src='val_inactividad.js'></script>\n";				
-//	echo "<script type='text/javascript'>\n";
-//	include("sortable_otro.js");
-//	echo "</script>\n";	
-//	echo "<script type='text/javascript'>\n";
-//	include("datepicker.js");
-//	echo "</script>\n";	
-//	echo "<script type='text/javascript'>\n";
-//	include("ieemu.js");
-//	echo "</script>\n";
-
-
-
-##20080209    echo "<script src='datepicker.js'></script>\n";
-##20080209	echo "<script src='ieemu.js'></script><script src='ContextMenu.js'></script>\n";  //20070703    
-
-
+    echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"src/css/subModal.css\" />\n";
+    echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"src/css/modal.css\" />\n";
+    echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"src/css/dhtmlwindow.css\" />\n";
   }
   /**
     *  Arma el boton

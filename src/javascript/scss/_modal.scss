@@ -1,0 +1,23 @@
+.modal-body,
+.modal-header{
+  h1{
+    text-align: center;
+    color: $verde-aqua;
+  }
+
+  p{
+    text-align: center;
+  }
+
+  a{
+    text-decoration: none;
+  }
+}
+
+.modal-footer{
+  border-top: 0;
+}
+
+.modal-header{
+  border-bottom: 0;
+}

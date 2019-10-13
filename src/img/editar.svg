@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="21px" viewBox="0 0 16 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56 (81588) - https://sketch.com -->
+    <title>Group 5</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0.141776271 0.254117177 6.45423729 0.254117177 6.45423729 5.71986441 0.141776271 5.71986441"></polygon>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons/edit/green" transform="translate(-4.000000, -2.000000)">
+            <g id="Group-5" transform="translate(4.000000, 2.000000)">
+                <path d="M5.93572881,5.95102373 L0,14.1837017 L0.0282033898,20.0849898 L5.81233898,18.6723797 L11.736678,10.453261 L14.6416271,6.7355661 L8.85450847,2.21434576 L5.93572881,5.95102373 Z M2.44447458,14.9666169 L7.87335593,7.43468475 L9.27566102,5.63997288 L11.216,7.15590508 L9.79905085,8.96905763 L4.35877966,16.5150915 L2.4539661,16.9801763 L2.44447458,14.9666169 Z" id="Fill-1" fill="#00B140"></path>
+                <g id="Group-4" transform="translate(9.491525, 0.017193)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Clip-3"></g>
+                    <path d="M5.51614915,2.2939661 L3.56740339,0.771525424 C2.5051661,-0.0583050847 0.971335593,0.130169492 0.141776271,1.19240678 L5.93675932,5.71986441 C6.76658983,4.65762712 6.57838644,3.12379661 5.51614915,2.2939661" id="Fill-2" fill="#00B140" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

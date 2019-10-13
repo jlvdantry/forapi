@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="21px" viewBox="0 0 16 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56 (81588) - https://sketch.com -->
+    <title>Group 11</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0.209625 0.1585 9.109125 0.1585 9.109125 2.418375 0.209625 2.418375"></polygon>
+        <polygon id="path-3" points="0 20.5 15.81875 20.5 15.81875 0.1585 0 0.1585"></polygon>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons/bin/red" transform="translate(-4.000000, -2.000000)">
+            <g id="Group-11" transform="translate(4.000000, 2.000000)">
+                <g id="Group-10">
+                    <polygon id="Fill-1" fill="#E02020" points="12.434175 6.8806 12.434175 18.34135 3.384675 18.34135 3.384675 6.8806 1.134675 6.8806 1.134675 20.59135 14.684175 20.59135 14.684175 6.8806"></polygon>
+                    <polygon id="Fill-2" fill="#E02020" points="0 5.889925 15.81875 5.889925 15.81875 3.639925 0 3.639925"></polygon>
+                    <g id="Group-9" transform="translate(0.000000, 0.091425)">
+                        <g id="Group-5" transform="translate(3.250000, 0.000000)">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <g id="Clip-4"></g>
+                            <path d="M9.109125,2.358875 C9.109125,1.143625 8.124125,0.158375 6.908875,0.158375 L2.409875,0.158375 C1.194875,0.158375 0.209625,1.143625 0.209625,2.358875 L0.209625,2.418375 L9.109125,2.418375 L9.109125,2.358875 Z" id="Fill-3" fill="#E02020" mask="url(#mask-2)"></path>
+                        </g>
+                        <mask id="mask-4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <g id="Clip-7"></g>
+                        <polygon id="Fill-6" fill="#E02020" mask="url(#mask-4)" points="5.08775 15.97275 7.33775 15.97275 7.33775 6.9335 5.08775 6.9335"></polygon>
+                        <polygon id="Fill-8" fill="#E02020" mask="url(#mask-4)" points="8.468 15.97275 10.718 15.97275 10.718 6.9335 8.468 6.9335"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

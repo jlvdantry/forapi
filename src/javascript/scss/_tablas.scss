@@ -1,0 +1,74 @@
+.tabla{
+  width: 100%;
+
+thead{
+  background-color: $verde-aqua;
+
+  width: 100%;
+  text-align: center;
+
+
+  th{
+    color: $white;
+    font-size: $fs-14;
+    padding: .625rem;
+  }
+}
+
+tr{
+  text-align: center;
+  border-bottom: solid .0625rem $gray-06;
+
+
+td{
+  line-height: $fs-19;
+  color: $gray-03;
+  padding: 1rem;
+  }
+}
+
+}
+
+.red{
+  color: $red!important;
+  font-weight: bold;
+}
+
+.green{
+  @extend .red;
+  color: $verde-primario!important;
+}
+
+.orange{
+  @extend .red;
+  color: $orange!important;
+}
+
+.tabla-inmuebles, .simulacros, .comites {
+  width: 100%;
+  background-color: $gray-05;
+  font-size: $fs-14;
+
+  th{
+    color: $gray-03;
+    font-size: $fs-14;
+    padding: .625rem;
+    text-align: center;
+    font-weight: 600;
+  }
+
+
+tr{
+  text-align: center;
+  border-bottom: solid .03125rem $gray-06;
+
+
+td{
+  line-height: $fs-19;
+  color: $gray-03;
+  padding: 1rem;
+  font-weight: 400;
+  }
+}
+
+}

@@ -1,0 +1,191 @@
+.form-control-custom{
+  border: solid .0625rem $gray-02;
+  font-size: $fs-14;
+  color: $gray-02;
+  border-radius: .5rem;
+}
+
+.form-label-custom{
+  font-size: $fs-12;
+  color: $verde-aqua;
+  font-weight: bold;
+}
+
+.form-control{
+  &:invalid{
+    background-image: none!important;
+  }
+  &:valid{
+    background-image: none!important;
+    color: $gray-03;
+    font-weight: 600;
+  }
+}
+
+.label-custom-check,
+.label-custom-formulario{
+  font-size: $fs-14;
+  color: $gray-03;
+  font-weight: 400;
+  margin-top: .5rem;
+}
+
+.was-validated .form-check-input:valid~.form-check-label{
+    color: $gray-03;
+}
+
+.was-validated .form-check-input:invalid ~ .form-check-label, .form-check-input.is-invalid ~ .form-check-label {
+    color: $gray-03;
+}
+
+.label-custom-formulario{
+  color: $gray-03;
+}
+check
+//checkboxes
+
+.radio-cuadrado,
+.formulario-checkbox{
+  text-align: left;
+  label{
+    display: inline;
+    font-size: $fs-14;
+    font-weight: 400;
+    line-height: $fs-18;
+    color: $gray-03;
+    margin: 0;
+  }
+
+  input[type="radio"],
+  input[type="checkbox"]{
+    display: inline;
+    width: auto;
+    margin-right: .6rem;
+    margin-left: 2rem;
+
+    &:first-child{
+      margin-left: 0;
+    }
+  }
+
+  input[type="radio"],
+  input[type="checkbox"] {
+    position: absolute;
+    left: -9999px;
+  }
+
+  input[type="radio"] + label,
+  input[type="checkbox"] + label {
+    position: relative;
+    padding: .1875rem 0 0 1.5625rem;
+    cursor: pointer;
+
+    &:before {  //cuadrado de radio
+      content: '';
+      background: white;
+      border: .125rem solid $gray-06;
+      border-radius: .125rem;
+      height: 1rem;
+      width: 1rem;
+      position: absolute;
+      top: .1rem;
+      left: 0;
+    }
+
+    &:after {
+      content: '';
+      background: url("../../img/check_back.svg");
+      width: 1rem;
+      height: 1rem;
+      position: absolute;
+      top: .1rem;
+      left: 0;
+      opacity: 0;
+      transform: scale(0);
+      transition: opacity .5s ease-in-out;
+    }
+  }
+
+  input[type="radio"]:checked + label:after,
+  input[type="checkbox"]:checked + label:after {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity .5s ease-in-out;
+  }
+}
+
+textarea{
+  min-height: 7rem;
+}
+
+//Type file (subir documentos)
+
+.custom-file-label{
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: .45rem .75rem;
+  border: solid .06rem $gray-02;
+  border-radius: .5rem;
+  font-size: $fs-14;
+  background-color: transparent;
+  margin: .5rem 0 1rem;
+  min-height: 2.5rem;
+
+  p{
+  color: $gray-02;
+}
+
+  &::after{
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    padding: .375rem .75rem;
+    content: "";
+    bottom: 0;
+    z-index: 3;
+    display: block;
+    height: calc(1.5em + .75rem);
+    background: url("../../img/carpeta.svg") no-repeat;
+    border-left: 0;
+  }
+
+}
+
+.enlaces-ingreso{
+  display: flex;
+  justify-content:space-between;
+
+  a{
+    font-size: $fs-12;
+    margin: .4rem 0;
+  }
+}
+
+.subtitulos-formulario{
+  h2{
+    line-height: 1.3rem;
+    padding-top: 1rem;
+    margin-bottom: .5rem;
+  }
+}
+
+.form-control:focus{
+    border-color: $verde-aqua;
+    box-shadow: 0 1px 1px rgba($verde-aqua, 0.075)inset, 0 0 8px rgba($verde-aqua,0.6);
+    outline: 0 none;
+}
+
+.custom-file-input:focus ~ .custom-file-label{
+    border-color: $verde-aqua;
+    box-shadow: 0 1px 1px rgba($verde-aqua, 0.075)inset, 0 0 8px rgba($verde-aqua,0.6);
+    outline: 0 none;
+}
+
+.texto{
+  display: inline-block;
+  max-width: 90%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

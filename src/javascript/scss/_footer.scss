@@ -1,0 +1,35 @@
+.footer{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  background-color: $dark-gray;
+  min-height: 74px;
+  bottom: 0;
+  width: 100%;
+  padding: .8rem;
+
+  p{
+    font-size: $fs-11;
+    line-height: $fs-12;
+    color: $white;
+    margin: 0;
+  }
+
+  .btn-privacidad{
+    cursor: pointer;
+    font-size: $fs-11;
+    line-height: $fs-12;
+    font-weight: 400;
+    color: $white;
+    margin: 0;
+    text-decoration: none;
+
+    &:hover{
+      color: $verde-aqua;
+    }
+  }
+
+  img{
+    width: 100%;
+  }
+}
