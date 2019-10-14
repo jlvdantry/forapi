@@ -157,8 +157,9 @@ class seguridad extends xmlhttp_class
           $_SESSION["bada"]=$this->badat; //20070822
           $_SESSION["puerto"]=$this->puerto; //20070822
 		        $this->argumentos["idmenu"] = 17;		##20071105
-                        error_log($today."src/php/seguridad_class.php ".print_r($this,true)."\n",3,"/var/tmp/errores.log");
+                        //error_log($today."src/php/seguridad_class.php ".print_r($this,true)."\n",3,"/var/tmp/errores.log");
                         parent::muestra_vista();
+                        parent::dame_menus();
 
 		}
 }		

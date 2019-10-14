@@ -14,7 +14,11 @@
     echo "<div  id='div_titulos'  >\n";
     include('src/php/titulos.php');
     echo "</div>\n";
-    echo "<div id=menus class='div_menus' >\n";
+    echo "<div id=menus class=\"navbar navbar-expand-lg navbar-light bg-light\" >\n";
+    echo "<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n";
+    echo "     <ul class=\"navbar-nav mr-auto\" id=\"navbarSupportedContentul\">\n";
+    echo "     </ul>";
+    echo "</div>\n";
     echo "</div>\n";
     echo "<div >\n";
     echo "<div id=entrada class='div_menus' >\n";

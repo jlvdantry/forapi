@@ -1709,11 +1709,61 @@ function clearSelect(wl) {
 }
 
 
-window.muestra_vista = function (wlmenu) {
+window.muestra_vista = function (wlmenu,donde='entrada') {
                         wlurl='src/php/xmlhttp.php';//20071105
-                        passData='&opcion=muestra_vista&idmenu='+wlmenu;
+                        passData='&opcion=muestra_vista&idmenu='+wlmenu+'&donde='+donde;
                         CargaXMLDoc();
                         return;
+}
+window.muestra_menus = function (menus,donde='navbarSupportedContentul') {
+     console.log('menus'+menus[0]); 
+     m=menus[0].getElementsByTagName('menu');
+     nav=document.getElementByID(donde);
+     for ( var ren in m) {
+         if (typeof(m[ren])=='object') {
+            idpadre=m[ren].childNodes[3].innerHTML;
+            des=m[ren].childNodes[0].innerHTML
+            idmenu=m[ren].childNodes[4].innerHTML
+            if (idpadre==0) { /* si el idpadre es creo es un menu padre o se ejecutar una acciones */
+               lid=document.createElement('li');
+               lid.setAttribute('class','nav-item dropdown');
+               ad=document.createElement('a');
+               ad.setAttribute('class','nav-link dropdown-toggle');
+               ad.setAttribute('id','navbarDropdown_'+idmenu);
+               ad.setAttribute('role','button');
+               ad.setAttribute('href','#');
+               ad.setAttribute('data-toggle','dropdown');
+               ad.setAttribute('aria-haspopup',true);
+               ad.setAttribute('aria-expanded',false);
+               div=document.createElement('div');
+               div.setAttribute('class','dropdown-menu');
+               div.setAttribute('aria-labelledby','navbarDropdown_'+idmenu);
+               div.setAttribute('id','navbarDropdown_id_'+idmenu);
+               adt = document.createTextNode(des)
+               ad.appendChild(adt) 
+               ad.appendChild(div) 
+               lid.appendChild(ad) 
+               nav.appendChild(lid);
+            }
+         }
+     }
+     for ( var ren in m) {
+         if (typeof(m[ren])=='object') {
+            idpadre=m[ren].childNodes[3].innerHTML;
+            des=m[ren].childNodes[0].innerHTML
+            idmenu=m[ren].childNodes[4].innerHTML
+            if (idpadre!=0) { /* si el idpadre es creo es un menu padre o se ejecutar una acciones */
+               ad=document.createElement('a');
+               ad.setAttribute('class','dropdown-item');
+               ad.setAttribute('href','#');
+               ad.setAttribute('onclick',"muestra_vista("+idmenu+");return false;");
+               adt = document.createTextNode(des)
+               ad.appendChild(adt)
+               nav=document.getElementByID('navbarDropdown_id_'+idpadre);
+               nav.appendChild(ad);
+            }
+         }
+     }
 }
 //  recibe el menu o vista sobre el cual va a dar mantenimiento
 //  el movimiento que va a efectuar i=insert,d=delete,u=update
@@ -2124,15 +2174,21 @@ function querespuesta()
               return;
            } 
 	        	        
-           if (req.responseText.indexOf("<vista>") != -1)
+           if (req.responseText.indexOf("<muestra_vista>") != -1)
            {
-              //document.getElementById('entrada').innerHTML=req.responseXML.getElementsByTagName("vista")[0].innerHTML;
              entrada=document.getElementById('entrada');
-             html=req.responseXML.getElementsByTagName("vista")[0].innerHTML;
+             soldatos=document.getElementById('soldatos');
+             if (soldatos) {
+                 entrada.removeChild(soldatos);
+             }
+             html=req.responseXML.getElementsByTagName("muestra_vista")[0].innerHTML;
              html=htmlspecialchars_decode(html);
              parser = new DOMParser();
              doc = parser.parseFromString(html, "text/html");
-             entrada.insertAdjacentHTML('afterend', html);
+             entrada.insertAdjacentHTML('afterbegin', html);
+             if (req.responseText.indexOf("<menus>") != -1) {
+                muestra_menus(req.responseXML.getElementsByTagName("menus"));
+             }
              return;
            }
 

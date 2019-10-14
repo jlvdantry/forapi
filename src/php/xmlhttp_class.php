@@ -261,6 +261,46 @@ class xmlhttp_class
    
    
    /**
+     *  regresa el menu del usuario logeado
+     **/
+   function dame_menus()
+   {     
+                   $sql=
+                        "       select distinct m.descripcion, m.php, m.idmenupadre as a, m.idmenu".
+                        "       ,(select count (*) from forapi.menus as mm where mm.idmenupadre=m.idmenu) as hijos      ".
+                        "       ,case when m.idmenupadre=0 then m.descripcion else (select descripcion from forapi.menus as mm where mm.idmenu=m.idmenupadre) end as orden ".
+                        "       ,usename ".
+                        "       from    forapi.cat_usuarios_pg_group as cupg    ".
+                        "       left join forapi.menus_pg_group as mpg on (mpg.groname=cupg.groname or mpg.grosysid=cupg.grosysid)      ".
+                        "       left join forapi.menus as m on m.idmenu=mpg.idmenu      ".
+                        "       where   usename=current_user    ".
+                        "       and     m.descripcion<>'accesosistema'  ".
+                        "       and not ((php='' or php is null) and (select count (*) from forapi.menus as mm where mm.idmenupadre=m.idmenu)=0)        ".
+                        "       order by 6,5 desc";
+           $sql_result = pg_exec($this->connection,$sql);
+           if (strlen(pg_last_error($this->connection))>0)
+           {    return   pg_last_error($this->connection);}
+           $num = pg_numrows($sql_result);
+           $registro=[];
+           $menus="<menus>";
+           if ($num>=1) {
+                for ($i=0; $i < $num ;$i++) {
+                     $row = pg_fetch_array($sql_result, $i);
+                     $registros[$i]=$row;
+                     $menus.="<menu>";
+                     $menus.="<des>".$row['descripcion']."</des>";
+                     $menus.="<hijos>".$row['hijos']."</hijos>";
+                     $menus.="<orden>".$row['orden']."</orden>";
+                     $menus.="<padre>".$row['a']."</padre>";
+                     $menus.="<idmenu>".$row['idmenu']."</idmenu>";
+                     $menus.="</menu>";
+                }
+           }
+           $menus.="</menus>";
+           echo $menus;
+   }                   
+
+   /**
      *  Arma el insert,delete o update para darle mantenimiento a una tabla
      **/
    function muestra_vista()
@@ -273,7 +313,7 @@ class xmlhttp_class
       $soldatos->despledatos();
       $wlrenglones=ob_get_contents();
       ob_end_clean();
-      echo '<vista>'.htmlspecialchars($wlrenglones,ENT_IGNORE,UTF-8).'</vista>';
+      echo '<muestra_vista>'.htmlspecialchars($wlrenglones,ENT_IGNORE,UTF-8).'</muestra_vista>';
    }
 
    /**
@@ -497,7 +537,6 @@ class xmlhttp_class
       //   baja de un registros
       if($this->argumentos['movto']=='d') 
       { 
-//	      echo '<error>entro en d</error>';
         if ($this->argumentos['wlllave']=="")
         {  echo '<error>no esta definida la llave para borrar</error>'; } 
         else
@@ -506,11 +545,7 @@ class xmlhttp_class
                " where ".$this->argumentos['wlllave'];
            $sql_result = pg_exec($this->connection,$sql);
            $errorc=pg_last_error($this->connection);
-//  20070419  se modifico para que desplegara el sql, ya que solo enviaba error y no sabiamos porque           
-//  20070502  la instruccion lo regrese a como estaba originalente ya que es muy peligroso que despliegue los sql
            if ($errorc!="") { echo '<error>Delete'.$errorc.'</error>'; return; }
-//                    or die('<error>'.$sql.'</error>');
-//					  or echo '<error>'.$sql.'</error>'; return;
            $Row = pg_cmdtuples($sql_result); 
            if($Row!=0)
               {  echo '<bajaok>Baja efectuada</bajaok>'; }
@@ -704,8 +739,6 @@ class xmlhttp_class
      **/
    function checaduplicados($array,$camposm,$camposmc)
    {
-##	   print_r($array);
-##	   die();
 	  $wlllave=$this->damellave($array,$camposmc);
 	  $wlvalores="";
 
