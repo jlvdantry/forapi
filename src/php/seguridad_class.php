@@ -2,6 +2,8 @@
 require_once("class_men.php");
 require_once("xmlhttp_class.php");
 require_once("eventos_servidor_class.php");
+$t=getdate();
+$today=date('Y-m-d h:i:s',$t[0]);
 /**
   *  valida la seguridad
   *  @package forapi
@@ -154,7 +156,10 @@ class seguridad extends xmlhttp_class
           $_SESSION["servidor"]=$this->servidort; //20070822
           $_SESSION["bada"]=$this->badat; //20070822
           $_SESSION["puerto"]=$this->puerto; //20070822
-			echo "<otrahoja>src/php/opciones_antn.php</otrahoja>";		
+		        $this->argumentos["idmenu"] = 17;		##20071105
+                        error_log($today."src/php/seguridad_class.php ".print_r($this,true)."\n",3,"/var/tmp/errores.log");
+                        parent::muestra_vista();
+
 		}
 }		
 
@@ -168,7 +173,8 @@ class seguridad extends xmlhttp_class
 		$va->servidort = $wlhost;  //20070822
 		$va->badat= $wldbname;  //20070822
 		$va->puerto= $wlport;  //20070822
-		$va->procesa();		
+		$va->procesa();
+                
 	}
 	
 ?>

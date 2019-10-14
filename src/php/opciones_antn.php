@@ -1,5 +1,6 @@
 <?php
 error_reporting(0);
+/*
 echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"";
 echo "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">";
 echo "<head>\n";
@@ -14,16 +15,10 @@ echo "	function salir()\n";
 echo "	{	";
 echo "	mensaje= window.confirm('Desea salir del sistema?' );\n";
 echo "	if (mensaje){ 	";
-##echo "		location.href='index.php';	";
-##echo "		window.open ('index.php');	";
 echo "                  parent.window.location.replace('index.php');";
 echo "	}";
 echo " else { return;}";
 echo "}	\n";
-echo "/**\n";
-echo " * Resizes the given iFrame width so it fits its content\n";
-echo " * @param e The iframe to resize\n";
-echo " */\n";
 echo "function resizeIframeWidth(e){\n";
 echo "    // Set width of iframe according to its content\n";
 echo "    if (e.Document && e.Document.body.scrollHeight) //ie5+ syntax\n";
@@ -34,6 +29,8 @@ echo "    else if (e.contentDocument && e.contentDocument.body.offsetHeight) //s
 echo "        e.style.height = e.contentDocument.body.offsetHeight ;\n";
 echo "}\n";
 echo "	</script>	\n";
+*/
+require_once("xmlhttp_class.php");
 
 class opciones_antn 
 {
@@ -51,6 +48,7 @@ class opciones_antn
         				return;
         	}            
 	  		$row=pg_fetch_array($sql_result, 0);                                          
+      ob_start();
 			if ($row['id_tipomenu']==0)
 			{   $this->menu0(); }
 			if ($row['id_tipomenu']==1)
@@ -61,17 +59,16 @@ class opciones_antn
 			{   $this->menu3($row['current_user']); }
 			if ($row['id_tipomenu']==4)
 			{   $this->menu4($row['current_user']); }
-			
-			// se agrega para cargar la pantalla default del usuario
 			$wlidmenu=$row['menu'];
-			if ($wlidmenu>0)
-			{
-				echo "<script language='JavaScript' type='text/javascript'>\n";
-				echo "	window.open ('man_menus.php?idmenu=".$wlidmenu."','pantallas');	";
-				echo "</script>";
-			}
-			
-			
+      ob_end_clean();
+
+                        $va = new xmlhttp_class();
+                        $va->connection = $this->connection;
+                        $va->argumentos = ["idmenu" => $row['menu'] ];
+                        $va->funcion = "muestra_vista";
+                        echo $va->procesa();
+
+                   
    }
    function leemenus()
    {	 
