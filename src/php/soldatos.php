@@ -849,7 +849,7 @@ class soldatos
 			$wlonchange=$this->agregaevento('2',$wlonchange,$menumce); 		//20071109
 			$wlonfocus=$this->agregaevento('3',$wlonfocus,$menumce); 		//20071109
 			$wlonblur=$this->agregaevento('1',$wlonblur,$menumce); 		//20071109
-                        $wlondck=($this->menu["esadmon"]!="0" && $this->menu["esadmon"]!="") ? 'abre_subvista("man_menus.php","idmenu='.MENUS_CAMPOS.'&filtro=idmenu='.$this->idmenu.' and idcampo='.$wlidcampo.'","","",'.MENUS_CAMPOS.',800,600,"Idmenu")' : "";
+                        $wlondck=($this->menu["esadmon"]!="0" && $this->menu["esadmon"]!="") ? 'abre_subvista("src/php/man_menus.php","idmenu='.MENUS_CAMPOS.'&filtro=idmenu='.$this->idmenu.' and idcampo='.$wlidcampo.'","","",'.MENUS_CAMPOS.',800,600,"Idmenu")' : "";
 
 			$vas=$vas.($wlonchange!="" ? " onChange='".$wlonchange.";'" : "".$esfiltrode );  //20071109
 			$vas=$vas.($wlonfocus!="" ? " onFocus='".$wlonfocus.";'" : "");  //20071109
@@ -1147,7 +1147,7 @@ class soldatos
 						$wlonblur=$this->agregaevento('1',$wlonblur,$menumce);						
 						$wlonkp=$this->agregaevento('5',$wlonkp,$menumce);
 						$wlonck=$this->agregaevento('4',$wlonck,$menumce);
-                                                $wlondck=($this->menu["esadmon"]!="0" && $this->menu["esadmon"]!="") ? 'abre_subvista("man_menus.php","idmenu='.MENUS_CAMPOS.'&filtro=idmenu='.$this->idmenu.' and idcampo='.$wlidcampo.'","","",'.MENUS_CAMPOS.',800,600,"Idmenu")' : "";
+                                                $wlondck=($this->menu["esadmon"]!="0" && $this->menu["esadmon"]!="") ? 'abre_subvista("src/php/man_menus.php","idmenu='.MENUS_CAMPOS.'&filtro=idmenu='.$this->idmenu.' and idcampo='.$wlidcampo.'","","",'.MENUS_CAMPOS.',800,600,"Idmenu")' : "";
 						$wli=$wli.($wlfocus!="" ? " onFocus='".$wlfocus.";'" : "" );
 						$wli=$wli.($wlonChange!="" ? " onChange='".$wlonChange.";'" : "" );
 						$wli=$wli.($wlonblur!="" ? " onBlur='".$wlonblur.";'" : "" );						
@@ -1639,7 +1639,7 @@ class soldatos
         if ($meda->camposm["esadmon"]!="0" && $meda->camposm["esadmon"]!="")
         	{
 				echo "<td id='Autodiseno' class=botones ><input type=button class=button id='iAutoDiseno' title='Entra al diseno de la forma' ".
-									  " onclick='abre_subvista(\"man_menus.php\",\"idmenu=".MENU.
+									  " onclick='abre_subvista(\"src/php/man_menus.php\",\"idmenu=".MENU.
 						              " &filtro=idmenu=".$this->menu["idmenu"].
 						              "\",\"\",\"\",999,800,600,\"Diseno de form\"".	//20070526
 						              ");return false;' value=AutoDiseno >".
@@ -1770,7 +1770,7 @@ class soldatos
         	                          	"\",\"".//20071113
         	                          	// evento despues de dar cambio//20071113
         	                          	(($meda->camposme[8][1]['donde']==0) ? $meda->camposme[8][1]['descripcion'] : "").//20071113
-						              	"\",\"u1\");abre_subvista(\"man_menus.php\",\"idmenu=".
+						              	"\",\"u1\");abre_subvista(\"src/php/man_menus.php\",\"idmenu=".
 						              	$meda->camposmc[pg_fieldname($sql_result, $j)]['idsubvista'].
 						              	"&filtro=".pg_fieldname($sql_result, $j)."=".
 						              	$Row[pg_fieldname($sql_result, $j)]."\",\"".
@@ -1904,7 +1904,7 @@ class soldatos
   {
 			return "<option ".
                    			"value='daunClick(\"cam".$z."\");".
-						              "abre_subvista(\"man_menus.php\",\"idmenu=".
+						              "abre_subvista(\"src/php/man_menus.php\",\"idmenu=".
 						              $meda->camposmsv[$mm]['idsubvista'].
 						              "&filtro=".$this->pon_filtro($meda->camposmsv[$mm],$Row,$meda->camposmc)."\",\"".
 						              //  evento antes de abrir subvista
@@ -1965,7 +1965,7 @@ class soldatos
 //20070630        	                          (($meda->camposme[8]['donde']==1) ? $meda->camposme[8]['descripcion'] : "").
 //20070630						              "\",\"s\");abre_subvista(\"man_menus.php\",\"idmenu=".
                    			"onclick='daunClick(\"cam".$z."\");".
-						              "abre_subvista(\"man_menus.php\",\"idmenu=".
+						              "abre_subvista(\"src/php/man_menus.php\",\"idmenu=".
 						              $meda->camposmsv[$mm]['idsubvista'].
 						              "&filtro=".$this->pon_filtro($meda->camposmsv[$mm],$Row,$meda->camposmc)."\",\"".
 						              //  evento antes de abrir subvista

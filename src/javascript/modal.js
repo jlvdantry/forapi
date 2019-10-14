@@ -10,7 +10,7 @@ if (typeof dhtmlwindow=="undefined") {
 alert('ERROR: Modal Window script requires all files from "DHTML Window widget" in order to work!');
 } else { dhtmlwindow.addEvent(window, function(){if (typeof dhtmlmodal!="undefined") dhtmlmodal.adjustveil()}, "resize"); }
 
-var dhtmlmodal={
+window.dhtmlmodal= {
 veilstack: 0,
 _doc: null,
 _fra: null,
@@ -83,9 +83,6 @@ closeveil:function(){ //function to close veil
 
 
 close:function(t, forceclose){ //DHTML modal close function
-	//t.contentDoc=(t.contentarea.datatype=="iframe")? window.frames["_iframe-"+t.id].document : t.contentarea //return reference to modal window DIV (or document object in the case of iframe
-	//t.contentDoc=(t.contentarea.datatype=="iframe")? this._fra.window.frames["_iframe-"+t.id].document : t.contentarea //return reference to modal window DIV (or document object in the case of iframe
-	t.contentDoc=t.contentarea //return reference to modal window DIV (or document object in the case of iframe
 	if (typeof forceclose!="undefined")
 		t.onclose=function(){return true}
 	if (dhtmlwindow.close(t)) //if close() returns true
@@ -99,5 +96,3 @@ show:function(t){
 	dhtmlwindow.show(t)
 }
 } //END object declaration
-
-

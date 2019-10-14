@@ -1,6 +1,6 @@
 
-     var WebFX_PopUp="";
-     var  WebFX_PopUpcss="";
+     window.WebFX_PopUp="";
+     window.WebFX_PopUpcss="";
 window.ContextMenu = function(){}
 ContextMenu.intializeContextMenu=function()
 {
@@ -13,9 +13,9 @@ try {  // firefox
 	WebFX_PopUpcss.onblur  = function(){WebFX_PopUpcss.style.display="none";;};
 	document.body.attachEvent("onblur",function(){WebFX_PopUpcss.style.display="none";})
 } catch (err) { alert("error ContextMenu.intializeContextMenu="+err) }
-}
+};
 
-function ContextSeperator(){}
+window.ContextSeperator = function(){};
 
 
 ContextMenu.showPopup=function(x,y)
@@ -107,39 +107,16 @@ ContextMenu.display=function(popupoptions)
 			WebFX_PopUpcss.style.width = "10%";
 			WebFX_PopUpcss.style.height = "10%";
 		        body = WebFX_PopUp.document.body;
-/*
-                        alert ('\nXbody.scrollHeight='+body.scrollHeight+
-                               '\nbody.scrollWidth='+body.scrollWidth+
-                               '\nWebFX_PopUpcss.offsetHeight='+WebFX_PopUpcss.offsetHeight+
-                               '\nWebFX_PopUpcss.offsetWidth='+WebFX_PopUpcss.offsetWidth+
-                               '\nbody.clientHeight='+body.clientHeight+
-                               '\nbody.clientWidth='+body.clientWidth+
-                               '\nh='+h+
-                               '\nw='+w);
-*/
-	// check offsetHeight twice... fixes a bug where scrollHeight is not valid because the visual state is undefined
 			var dummy = WebFX_PopUpcss.offsetHeight + " dummy";
 			h = body.scrollHeight + WebFX_PopUpcss.offsetHeight - body.clientHeight;
 			w = body.scrollWidth + WebFX_PopUpcss.offsetWidth - body.clientWidth;
 			WebFX_PopUpcss.style.height = h + "px";
 			WebFX_PopUpcss.style.width = w + "px";
-/*
-                        alert ('\n2body.scrollHeight='+body.scrollHeight+
-                               '\nbody.scrollWidth='+body.scrollWidth+
-                               '\nWebFX_PopUpcss.offsetHeight='+WebFX_PopUpcss.offsetHeight+
-                               '\nWebFX_PopUpcss.offsetWidth='+WebFX_PopUpcss.offsetWidth+
-                               '\nbody.clientHeight='+body.clientHeight+
-                               '\nbody.clientWidth='+body.clientWidth+
-                               '\nh='+h+
-                               '\nw='+w);
-*/
 		}
 		catch (err)
 		{
 			alert('error fixsize '+err);
 		}
-//		alert("body"+body+" body.clientHeight"+body.clientHeight+" WebFX_PopUpcss.offsetHeight="+WebFX_PopUpcss.offsetHeight);
-	//use document.height for moz
 	}
 ContextMenu.populatePopup=function(arr,win)
 {
@@ -197,7 +174,7 @@ ContextMenu.populatePopup=function(arr,win)
 catch (err) { alert('error =ContextMenu.populatePopup'+err) }
 }
 
-function ContextItem(str,fnc,disabled)
+window.ContextItem = function(str,fnc,disabled)
 {
 	this.text     = str;
 	this.action   = fnc; 

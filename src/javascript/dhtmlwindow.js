@@ -130,7 +130,7 @@ open:function(t, contenttype, contentsource, title, attr, recalonload){
 	}
         t.scrollIntoView();
 	return t
-   } catch(er) { alert('error open'+err.description); }
+   } catch(err) { alert('error open'+err.description); }
 },
 
 setSize:function(t, w, h){ //set window size (min is 150px wide by 100px tall)

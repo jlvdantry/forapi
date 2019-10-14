@@ -1,15 +1,15 @@
 //<script>
 // variables globales
-var isIE = '\v'=='v';;
-var req;
-var wlurl;
-var glr=0 ;  // variable donde se gurdar el renglon a actualizar
-var passData ; // variable donde se guardan todos los datos de la format
-var __eventocontinua = false;   // resultado o respuesta de haber llamado un objeto en el servidor
-var Cambiosize = 0;
-var autocomplete = "";
-var _aa_ ;  // variable para la altaautomatica
-var _aad_ ;  // variable para altaadjuntar
+window.isIE = '\v'=='v';;
+window.req;
+window.wlurl;
+window.glr=0 ;  // variable donde se gurdar el renglon a actualizar
+window.passData ; // variable donde se guardan todos los datos de la format
+window.__eventocontinua = false;   // resultado o respuesta de haber llamado un objeto en el servidor
+window.Cambiosize = 0;
+window.autocomplete = "";
+window._aa_ ;  // variable para la altaautomatica
+window._aad_ ;  // variable para altaadjuntar
 
      window.showModalDialog = function (url,w,h,titulo,wlventana) 
      { 
@@ -472,7 +472,7 @@ this.dispatchEvent(evt);
 
 
 //  20070703 se habilito el popmenu y cambio de color del renglon seleccionado
-function muestra_renglon(wlrenglon)
+window.muestra_renglon = function (wlrenglon)
 {
    	var wlid = 	'cam'+wlrenglon.id.substring(2);
    	try { document.getElementById(wlid).click() } catch (err) { };   	
@@ -480,7 +480,7 @@ function muestra_renglon(wlrenglon)
 
 /* funcion que cambia el color del renglon seleccionado
 */
-function color_renglon(wlrenglon)
+window.color_renglon = function (wlrenglon)
 {
    	color_renglon.poneclase(wlrenglon,'todofoco');
   	var wltabladinamica = document.getElementById('tabdinamica');
@@ -508,7 +508,7 @@ color_renglon.poneclase= function(wlrenglon,wlclase)
 /*
  funcion que muestra el contextmenu en la tabla de capura
  */
-function contextForTABLE(objtabla)
+window.contextForTABLE = function(objtabla)
 {
 	var wlTABLE=document.getElementById("tabbotones");
 	var siSelect = wlTABLE.getElementsByTagName('TD');
@@ -523,7 +523,7 @@ function contextForTABLE(objtabla)
   		}
 	        if (wlstr!='') { wlstr=wlstr+','; }
                 wlstr=wlstr+'new ContextItem("Salir",function() { salir(); })';
-  		wlstr='popupoptions = ['+wlstr+']';
+  		wlstr=' window.popupoptions = ['+wlstr+']';
                 wlstr=wlstr.replace(/\&quot\;/g,'\'');
 		eval(wlstr);
    		ContextMenu.display(popupoptions)		
@@ -534,7 +534,7 @@ function contextForTABLE(objtabla)
 /*
    muestra el conextmenu en la tabla de los reglones 
   */
-function contextForTR(objtr)
+window.contextForTR = function (objtr)
 {
 	var wlTR=document.getElementById(objtr.id);
 	var siSelect = wlTR.getElementsByTagName('SELECT');
@@ -669,7 +669,7 @@ for (i=0; i<listitems.length; i++)
 return str;
 }
 
-function muestrafecha(wlcampos)
+window.muestrafecha = function(wlcampos)
 {
 	try {
 	 var wlnombre=wlcampos.name.replace(/fe_/,"wl_");
@@ -692,7 +692,7 @@ function muestrafecha(wlcampos)
   *   20070301 Abre una ventana para solicita un texto
   *   @param objecto  objeto del campo
   */
-function muestratexto(wlcampos)
+window.muestratexto = function(wlcampos)
 {
 	var wlnombre=wlcampos.name.replace(/txt_/,"wl_");
         x=document.getElementsByName(wlnombre)[0];
@@ -715,7 +715,7 @@ function muestratexto(wlcampos)
 //  20070616 sololimite,  0=indica que no  1= si  sololimite quiere decir que en las opciones solo mostro el limite para no   
 //  20070616               saturar el browser
 //  20080117    fuente_busqueda_idmenu   numero de menu a mostrar para buscar informacion
-function pidebusqueda(wlselect,wlfiltropadre,wlfiltrohijo,fuentewhere,fuenteevento,sololimite,fuente_busqueda_idmenu)
+window.pidebusqueda = function(wlselect,wlfiltropadre,wlfiltrohijo,fuentewhere,fuenteevento,sololimite,fuente_busqueda_idmenu)
 {
 	try 
 	{ 
@@ -751,7 +751,7 @@ function pidebusqueda(wlselect,wlfiltropadre,wlfiltrohijo,fuentewhere,fuenteeven
   *   20070301 Muestra el menu que sube un archivo
   *   @param objecto  objeto del campo
   */
-function subearchivo(obj)
+window.subearchivo = function(obj)
 {
 	try 
 	{ 	
@@ -782,7 +782,7 @@ function subearchivo(obj)
 	};	
 }
 /* sube como archivo lo del clipboard */
-function subeclb(wlcampos)
+window.subeclb= function(wlcampos)
 {
 	try 
 	{ 	
@@ -799,7 +799,7 @@ function subeclb(wlcampos)
 	{ alert('error en subearchivo '+err.description); 
 	};	
 }
-function muestra_image(imagen)
+window.muestra_image= function(imagen)
 {
 	alert('debe de mostrar image'+imagen);
 }
@@ -813,7 +813,7 @@ function vales()
 // recibe la hoja a abrir, y los campos de la hoja
 // evento a ejecutar antes de abrir la subvista
 // evento a ejecutar despues de abrir la subvista
-function abre_subvista(wlhoja,wlcampos,wleventoantes,wleventodespues,idmenu,wldialogWidth,wldialogHeight,wltitulo)
+window.abre_subvista = function(wlhoja,wlcampos,wleventoantes,wleventodespues,idmenu,wldialogWidth,wldialogHeight,wltitulo)
 {
 	try
 	{
