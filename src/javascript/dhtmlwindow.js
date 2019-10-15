@@ -8,7 +8,7 @@
 // -------------------------------------------------------------------
 
  window.dhtmlwindow={
-imagefiles:['img/min.gif', 'img/close.gif', 'img/restore.gif', 'img/resize.gif'], //Path to 4 images used by script, in that order
+imagefiles:['img/min.gif', 'close', 'img/restore.gif', 'img/resize.gif'], //Path to 4 images used by script, in that order
 ajaxbustcache: true, //Bust caching when fetching a file via Ajax?
 ajaxloadinghtml: '<b>Loading Page. Please wait...</b>', //HTML to show while window fetches Ajax Content?
 
@@ -30,7 +30,7 @@ init:function(t){
 	domwindow.className="dhtmlwindow"
 	var domwindowdata=''
 	domwindowdata='<div class="drag-handle">'
-	domwindowdata+='DHTML Window <div class="drag-controls"><img src="'+this.imagefiles[0]+'" title="Minimize" /><img src="'+this.imagefiles[1]+'" title="Cerrar" /></div>'
+	domwindowdata+='DHTML Window <div class="drag-controls"><img src="'+this.imagefiles[0]+'" title="Minimize" /><button type="button" class="'+this.imagefiles[1]+'" title="Cerrar" /><span aria-hidden="true">&times;</span></button></div>'
 	domwindowdata+='</div>'
 	domwindowdata+='<div class="drag-contentarea"></div>'
 	domwindowdata+='<div class="drag-statusarea"><div class="drag-resizearea" style="background: transparent url('+this.imagefiles[3]+') top right no-repeat;">&nbsp;</div></div>'
