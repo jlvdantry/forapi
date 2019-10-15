@@ -1102,12 +1102,10 @@ class soldatos
 	    	            (($tipodedato == "timestamptz" || $tipodedato == "date") & $readonly!='t' ? " <input tabindex='-1' class='img' type=image id='fe_".$nombre."' name=fe_".$nombre." src='img/icon_datepicker_pink.gif' onclick='muestrafecha(this);return false' title='Selecciona la fecha del calendario'></input>" : " " ). 
                             (($espassword=="3") ? " <input tabindex='-1' size=20 class='captcha' readonly='on' type=text id='wl_".$nombre."_img' name=wl_".$nombre."_img title='Imagen de la captcha' ></input>&nbsp<input tabindex='-1' class='img' type=image id='wl_".$nombre."_bot' name=wl_".$nombre."_bot src='img/refresh.png' onclick='ReDrawCaptcha(this);return false' title='Refresca la imagen del captcha'></input>" : " " ).
 	    	            (($tipodedato == "text") & $readonly!='t' ? " <input  tabindex='-1' type=image class='img' id='txt_".$nombre."' name=txt_".$nombre." src='img/nota.gif' onclick='muestratexto(this);return false' title='Amplia el panel de la captura'></input>" : " " );  // 20070301  modificacion para abrir un ventana auxiliar en textos largos
-	    	            //(($espassword == "2") ? " <image id='upl_".$nombre."' name=upl_".$nombre." src='img/i_attach.gif' onclick='subearchivo(this)' title='Adjunta un archivo'></image>" : " " );  // 20070301  modificacion para subir archivos	    	            
 						if ($mecq["upload_file"]=='t')
 						{ 
-                                                  $wli.=" <input class='img' type=image abbr='' id='upl_".$nombre."' name=upl_".$nombre." src='img/i_attach.gif' onclick='subearchivo(this);return false' title='Adjunta archivo de explorador' />"; 
+                                                  $wli.=" <input class='img' type=image abbr='' id='upl_".$nombre."' name=upl_".$nombre." src='/dist/img/carpeta.svg' onclick='subearchivo(this);return false' title='Adjunta archivo de explorador' />"; 
                                                   $wli.=" <input class='img' type=hidden abbr='' id='uplh_".$nombre."' name=uplh_".$nombre."  />"; 
-						  ##$wli.=" <input class='img' type=image abbr='' id='clb_".$nombre."' name=clb_".$nombre." src='img/i_attach2.gif' onclick='subeclb(this);return false' title='Adjuntar archivo de clipboard'></input>"; 						
 						}
 	    	            $wli.="</td>\n";
 //    	     }
