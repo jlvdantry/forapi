@@ -1,5 +1,7 @@
 
 const path = require('path');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+console.log('dirname'+__dirname);
 
 module.exports = {
     entry: './src/javascript/index.js',
@@ -9,6 +11,11 @@ module.exports = {
     },
     mode: 'development',
     watch:true,
+   plugins: [
+        new CopyWebpackPlugin([
+            {from:'src/css',to:'css'} 
+        ]), 
+    ],
     
     module: {
         rules: [
@@ -36,18 +43,23 @@ module.exports = {
                     {
                         loader: "file-loader",
                         options: {
-                            outputPath: 'images'
+                            name: '[name].[ext]',
+                            outputPath: 'img/',
+                            publicPath: 'dist/img/'
                         }
                     }
                 ]
             },
+
             {
                 test: /\.(woff|woff2|ttf|otf|eot)$/,
                 use: [
                     {
                         loader: "file-loader",
                         options: {
-                            outputPath: 'fonts'
+                            name: '[name].[ext]',
+                            outputPath: 'fonts',
+                            publicPath: 'dist/fonts/'
                         }
                     }
                 ]

@@ -346,46 +346,6 @@ class soldatos
   function inicio_tabcaptura($table_width,$table_height,$table_align)
   { 
 /**
-* ajuste 20130118.grecar
-* se optimiza la logica del siguiente codigo
-*
-        //$wh=" width:".(($table_width>0)
-       // 			? $table_width : "100" )."%; height:".(($table_height!="") ? $table_height : "100" )."%";
-        echo    " <table align=\"".(($table_align!='') ? $table_align : "center")."\" style=\" width:".
-                (($table_width>0) ? $table_width : "100" )."%; height:".(($table_height!="") ? $table_height : "100" ).
-                                         "%\"  oncontextmenu='contextForTABLE(this);return false;'".
-                                         ($this->menu["imprime"]=="2" ? " name=noimprime " : "").">\n";
-        //if ($_SESSION["parametro1"]=="")
-        //{ echo "<tr height=150 ></tr>"; }
-        echo "<tr><td colspan=10>";
-        echo "<div align='center' class=titulo >".$this->titulos."</div>";
-        echo "</td></tr>";
-        echo "<tr><div class='fecha' >";
-        if ($_SESSION["parametro1"]!="")
-        { 
-             echo "<td class='enca' ><input class='enca'  tabindex='-1' align='left' type=image id='imostrar' src='images/xp/Lminus.png' ".
-                  "onclick=\"return toggleDiv('".$this->titulos."',this);\" /></td>";
-             echo "<td class='enca' ><input class='enca' readonly size=30% type=text id=\"wl_encausr\" value=\"Usuario: ".trim($_SESSION["parametro1"])."\"></td>"; 
-        }
-        echo "<td class='enca' ><input class='enca' size=25% readonly align='right' type=text id=\"wl_encafecha\" /></td>";
-        echo "<td class='enca' ><input class='enca' size=15% readonly align='right' type=text id=\"wl_encahora\" /></td>";
-        echo "</div></tr>";
-        echo "</table>";
-        echo "termino tabla";
-        ##echo "</div>";
-        echo "<div id='".$this->titulos."'>";
-        echo    " <table align=\"".(($table_align!='') 
-        							? $table_align 
-        							: "center")."\" style=\" width:".
-                (($table_width>0)
-                	? $table_width 
-                	: "100" )."%; height:".(($table_height!="")
-                								? $table_height 
-                								: "100" ).
-			"%;\" id='tabcaptura' oncontextmenu='contextForTABLE(this);return false;'".
-            ($this->menu["imprime"]=="2" ? " name=noimprime " : "").">\n";
-*/
-/**
 * inicia ajuste 20130118.grecar
 */
         echo    " <table ".(strlen($table_align)>0 ? " align=".$table_align : "" ).
@@ -395,21 +355,16 @@ class soldatos
 				"	\" oncontextmenu='contextForTABLE(this);return false;' ".($this->menu["imprime"]=="2" ? " name=noimprime " : "" ).">".
         	"<tr>".
         	"	<td colspan=10>".
-			"		<div align='center' class=titulo >".$this->titulos."</div>".
+			"		<h1 align='center' class=titulo >".$this->titulos."</h1>".
         	"	</td>".
         	"</tr>".
         	"<tr>".
         	"	<div class='fecha' >".
         ($_SESSION["parametro1"]!=""
         ?	"		<td class='enca' >".
-			"			<input class='enca' type=image  tabindex='-1' id='imostrar' src='images/xp/Lminus.gif' onclick=\"return toggleDiv('".$this->titulos."',this);\" /></input>".
-			"		</td>".
-			"		<td class='enca' >".
-			"			<input class='enca' readonly size=30% type=text id=\"wl_encausr\" value=\"Usuario: ".trim($_SESSION["parametro1"])."\"></input>".
-			"		</td>"
+		"			<button class='btn-mostrar' type=button  tabindex='-1' id='imostrar' onclick=\"return toggleDiv('".$this->titulos."',this);\" /></input>".
+		"		</td>"
         :	"" ).
-			"		<td class='enca' ><input class='enca' size=25% readonly type=text id=\"wl_encafecha\" /></td>".
-			"		<td class='enca' ><input class='enca' size=15% readonly type=text id=\"wl_encahora\" /></td>".
 			"	</div>".
 			"</tr>".
 			"</table>".
@@ -466,18 +421,7 @@ class soldatos
     */
   function inicio_tab($s_table=0,$s_table_height=0)
   {
-//  20070523  ya no funciona lo del height del scroll por la nueva funcion	  
-//  20070523	  	if ($s_table==0)
-//  20070523	  	{
-//  20070523    		echo "<TABLE class='scrolling_table_body' id='tabdinamica' style='height: ".$s_table_height."px;'>\n";
-//    		echo "<TABLE class='sortable' id='tabdinamica' style='height: ".$s_table_height."px;'>\n";
-//  20070523		}
-//  20070523		else
-//  20070523		{
-    		return "<table id='tabdinamica' class='scrolling_table_body'  style='visibility:hidden' ".
-//    		($this->menu["imprime"]=="1" ? " name=noimprime " : "").    	    		
-    		">\n";			
-//  20070523		}
+    		return "<table id='tabdinamica' class='tabla seccion'  style='visibility:hidden' >\n";			
   }
   
   /**
@@ -488,8 +432,6 @@ class soldatos
      if ($this->accion!="")
      { echo "  <form method=POST name='formpr' id='formpr' action=".$this->accion." target='".$this->destino."' >\n"; }
      else
-//20070306     { echo "  <form method=POST name=formpr action=".$_SERVER['PHP_SELF'].">\n"; }
-//20080209     { echo "  <form method=POST name=formpr action=".$_SERVER['PHP_SELF']." enctype=\"multipart/form-data\" >\n"; }     //20070306
      { echo "  <form method=POST name='formpr' id='formpr'  action=".$_SERVER['PHP_SELF']." >\n"; }     //20070306     
   }
 
@@ -509,12 +451,12 @@ class soldatos
     //echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"";
     //echo "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">";
     //echo "<html>\n";
-    echo "<div id='soldatos' onunload='this.Cierraforma()' onresize=\"this.Cambiasize('".$this->idmenu."');\" onClick='sumaclicks()' onLoad=\"try { inicia();inicioforma();\n pone_focus_forma('formpr');\n pone_sort_scroll(); \n sumatotales();\n } catch (e) { };ContextMenu.intializeContextMenu();\"  >\n";            
-    echo " <LINK id=estilo REL=StyleSheet HREF=\"".($this->menu["css"]=="" ? "pupan.css" : $this->menu["css"] )."\" TYPE=\"text/css\" MEDIA=screen>\n";
-    echo " <LINK id=estilo REL=StyleSheet HREF=\"".($this->menu["css"]=="" ? "pupan.css" : "print_".$this->menu["css"] )."\" TYPE=\"text/css\" MEDIA=print>\n";    
-    echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"src/css/subModal.css\" />\n";
-    echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"src/css/modal.css\" />\n";
-    echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"src/css/dhtmlwindow.css\" />\n";
+    echo "<div id='soldatos' class='container' onunload='this.Cierraforma()' onresize=\"this.Cambiasize('".$this->idmenu."');\" onClick='sumaclicks()' onLoad=\"try { inicia();inicioforma();\n pone_focus_forma('formpr');\n pone_sort_scroll(); \n sumatotales();\n } catch (e) { };ContextMenu.intializeContextMenu();\"  >\n";            
+    ##echo " <LINK id=estilo REL=StyleSheet HREF=\"".($this->menu["css"]=="" ? "pupan.css" : $this->menu["css"] )."\" TYPE=\"text/css\" MEDIA=screen>\n";
+    ##echo " <LINK id=estilo REL=StyleSheet HREF=\"".($this->menu["css"]=="" ? "pupan.css" : "print_".$this->menu["css"] )."\" TYPE=\"text/css\" MEDIA=print>\n";    
+    echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"/dist/css/subModal.css\" />\n";
+    echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"/dist/css/modal.css\" />\n";
+    echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"/dist/css/dhtmlwindow.css\" />\n";
   }
   /**
     *  Arma el boton
@@ -797,7 +739,7 @@ class soldatos
                         $wlbusqueda=   (($busqueda=='t')    ? "<font color='black'>*</font>" : "");
                         $wlobligatorio=(($obligatorio=='t') ? "<font ".$wleshiden." color='red'  >*</font>" : "");
                         $wlidcampo=$mecq["idcampo"];
-   		    $vas="<td ".$wleshiden."id='wlt_".$wlnombre."' name='wlt_".$wlnombre."' abbr=\"".$descripcion."\" value=\"".$descripcion."\" ".
+   		    $vas="<td class='form-label-custom' ".$wleshiden."id='wlt_".$wlnombre."' name='wlt_".$wlnombre."' abbr=\"".$descripcion."\" value=\"".$descripcion."\" ".
    		    
    		    	(	($wltdf=="1")
    		    		? " colSpan=2  "
@@ -810,7 +752,7 @@ class soldatos
 ##   			$vas=$vas."<td > ";
 	        $vas=$vas.($wltdf=="1" || $wltdf=="2" || $wltdf=="3" ? "" : "<td".$wleshiden.">");
 	 		$vas = ($menuc["autocomplete"]=='1' ? $vas." <input type=text ".$wleshiden." readonly=true class='leesinborder' name=au_".$wlnombre." ></input><br>\n" : $vas );
-   			$vas=$vas."<select ".$wleshiden."placeholder=\"prueba\" ".
+   			$vas=$vas."<select class='form-control form-control-custom' ".$wleshiden."placeholder=\"prueba\" ".
 	 		            ($menuc["autocomplete"]=='1' ? " ;restaura_autocomplete(this)" : "" ). 	      	 		   			               			
    			            (($menumce[1]["idevento"]=='1' && $menumce[1]["donde"]=='0' && $menumce[1]["descripcion"]!='') ? "return eventosparticulares(this,\"".$menumce[1]["descripcion"]."\");" : "").   			
    			          "' ";   			            
@@ -885,7 +827,7 @@ class soldatos
 // 20070622     		$vas=$vas."  </select>";  //20070214   		
 			$vas=$vas.$DefaultSelect.$opciones."  </select>".$wlobligatorio;
 	 		$vas = ($altaautomatico=='t' ? $vas. //20070214 	           		
-             	  " <input tabindex='-1' type=image class=img src='img/add.gif' title='Alta de un nuevo registro de: ".$descripcion."' value='Alta' id='aa_".$wlnombre."' name=matriz ". 
+             	  " <button tabindex='-1' type=button class='btn-agregar'  title='Alta de un nuevo registro de: ".$descripcion."' value='Alta' id='aa_".$wlnombre."' name=matriz ". 
             	  "onclick='altaautomatico(\"".$idmenu."\",\"".$attnum."\",".   //20070214
             	  trim(substr($this->armaid_cc($j),4))."".
             	  ",\"".$menuc["fuente"]."\"".
@@ -1096,7 +1038,7 @@ class soldatos
     $wlobligatorio=(($obligatorio=='t') ? "<font ".$wleshiden." color='red'>*</font>" : "");
     $wlidcampo=$mecq["idcampo"];
     $wltipodedato=((substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? " type='tel' " : "");
-		$wli="<td ".$wleshiden." id='wlt_".$nombre."' name=wlt_".$nombre." title=\"".$descripcion."\" abbr=\"".$descripcion."\"".
+		$wli="<td class='form-label-custom' ".$wleshiden." id='wlt_".$nombre."' name=wlt_".$nombre." title=\"".$descripcion."\" abbr=\"".$descripcion."\"".
 			(($wltdf=="1")
 				?    " colSpan=2  "
 			  : (($wltdf=="2")
@@ -1109,8 +1051,8 @@ class soldatos
 			  	(($wltdf=="1" || $wltdf=="2") ? "<br>" :(($wltdf=="3") ? "" : "</td>"));  // 20081015 grecar modifique esta linea para asignarles un valor las etiquetas td
 	    $wli=$wli.($wltdf=="1" || $wltdf=="2" || $wltdf=="3" ? ""  : "<td ".$wleshiden.">").
 	    				(($tipodedato != "text") 
-	    					? "<input ".$wleshiden." onKeydown='return quitaenter(this,event)' " 
-	    					: "<textarea ".$wleshiden.((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
+	    					? "<input class='form-control form-control-custom' ".$wleshiden." onKeydown='return quitaenter(this,event)' " 
+	    					: "<textarea class='form-control form-control-custom' ".$wleshiden.((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
 	    									? "cols=".$mecq["colspantxt"] : "" )
 	    				).
 /**
@@ -1218,11 +1160,9 @@ class soldatos
     * @return string regresa el foco armado
     */
   function foco($readonly)
-//  { return " onfocus='this.className=\"foco\";alert(\"sipi\"+this.className+\" name\"+this.name);'".(($readonly=='t') ? " onblur='this.className=\"lee\"' " : " onblur='this.className=\"lee\";alert(\"salio\")'" ).";  "; }
-##20080209  { return " onfocus='this.className=\"foco\";'".(($readonly=='t') ? " onblur='this.className=\"lee\"' " : " onblur='this.className=\"\"'" ).";  "; }
-  { return " this.className=\"foco\""; }
+  { return " \"\""; }
   function blur($readonly)  
-  { return $readonly=='t' ? " this.className=\"lee\" " : " this.className=\"\"" ; }
+  { return $readonly=='t' ? " this.className=\"lee\" " : " \"\"" ; }
     	  
   /**
     * desplega los campos para capturar en una tabla
@@ -1473,7 +1413,7 @@ class soldatos
                                         echo "<div>";
 	    		                $this->inicio_tabcaptura_t($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);	
                                         echo "<tr><td class=htmltable id='_t_".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."'colspan=".($this->menu["columnas"]*2).">";
-                                        echo "<input class='enca'  tabindex='-1' align='left' type=image id='imostrar' src='images/xp/Lminus.gif' ".
+                                        echo "<button class='btn-mostrar'  tabindex='-1' align='left' type=button id='imostrar' ".
                                              "onclick=\"return toggleDiv('".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."',this);\">";
                                         echo "<label>".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."</label></td></tr></table></div>";
 					echo "<div id='".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."'>";
@@ -1496,7 +1436,7 @@ class soldatos
 //    20070920  se modifico para que en las alta se pueda poner la descripcion de una opcion	        
 //20070920     		echo "<td  class='botones' > <input type=image id='iAlta' src='img/add.gif' title='alta' value='Alta' name=matriz ".
      		echo "<td  class='botones' > ".  //20070920
-            ($this->menum['i']['idmovto']=='i' && $this->menum['i']["descripcion"]!="" ? "<input type=button class=button id='iAlta' value='".$this->menum['i']["descripcion"]."' title='Alta'  " : "<input type=button class=button id='iAlta' src='img/add.gif' title='Alta' value='Alta' name=matriz ").  //20070920
+            ($this->menum['i']['idmovto']=='i' && $this->menum['i']["descripcion"]!="" ? "<input type=button class='btn-01' id='iAlta' value='".$this->menum['i']["descripcion"]."' title='Alta'  " : "<input type=button class='btn-01' id='iAlta' src='img/add.gif' title='Alta' value='Alta' name=matriz ").  //20070920
         	"onclick='mantto_tabla(\"".$this->idmenu.
         	                          "\",\"".
         	                          (strpos($this->movto_mantto,"i")!==false ? "i" : "")
@@ -1524,8 +1464,7 @@ class soldatos
         		|| strpos($this->movto_mantto,"B")!==false        		        		
            )     	  
         {
-     	echo "<td class='botones'> <input type=button class=button id='iBusca' src='img/action_search_20.gif' title='Buscat'  name=busca value=Buscar ".
-     	##echo "<td class='botones'> <input type=button class=button id='iBusca' src='img/action_search_20.gif' title='Buscat'  name=busca ".
+     	echo "<td class='botones'> <input type=button class='btn-01' id='iBusca' src='img/action_search_20.gif' title='Buscat'  name=busca value=Buscar ".
         	"onclick='mantto_tabla(\"".$this->idmenu.
         	                          "\",\"".
         	                          (strpos($this->movto_mantto,"s")!==false ? "s" : "")
@@ -1553,7 +1492,7 @@ class soldatos
     	if (strpos($this->movto_mantto,"u")!==false)     	  
         {
 	     	echo "<td id='cambio' class='botones' > ".
-	     	($this->menum['u']['idmovto']=='u' && $this->menum['u']["descripcion"]!="" ? "<input type=button class='hidden' id='iCambio' value='".$this->menum['u']["descripcion"]."' title='Cambio'  " : "<input type=image class='hidden' id='iCambio' src='img/icon_edit.gif' title='Cambio' value='Cambio' ").
+	     	($this->menum['u']['idmovto']=='u' && $this->menum['u']["descripcion"]!="" ? "<input type='btn-01' class='hidden' id='iCambio' value='".$this->menum['u']["descripcion"]."' title='Cambio'  " : "<input type=image class='hidden' id='iCambio' src='img/icon_edit.gif' title='Cambio' value='Cambio' ").
         	  "onclick='alert(\"Primero debe selecionar un renglon\");return false'></input></td>\n";	        
         }    	
 	
@@ -1562,18 +1501,18 @@ class soldatos
 		
         if (strpos($this->movto_mantto,"p")!==false)     	  
         {
-			echo "<TD id='imprime' class=botones > <input onclick='imprime(\"\");return false' id='iimprime'  value=Imprime type=button class=button ></input> </TD>";
+			echo "<TD id='imprime' class=botones > <input onclick='imprime(\"\");return false' id='iimprime'  value=Imprime type=button class='btn-01' ></input> </TD>";
         }
         		
         if (strpos($this->movto_mantto,"l")!==false)     	  
         {
-     	    echo "<td id='Limpiar' class='botones' > <input type=button class=button id='iLimpiar' title='Limpia datos de la pantalla'  ".
+     	    echo "<td id='Limpiar' class='botones' > <input type=button class='btn-01' id='iLimpiar' title='Limpia datos de la pantalla'  ".
         	 "  onclick='pone_focus_forma(\"formpr\");formReset(\"formpr\",\"t\")' value='Limpiar' ></input></td>\n";	        
         }
 
         if (strpos($this->movto_mantto,"f")!==false)     	  
         {
-     	    echo "<td id='Archvio' class='botones' > <input type=button class=button id='iArchvio' title='Genera archvio en txt'  ".
+     	    echo "<td id='Archvio' class='botones' > <input type=button class='btn-01' id='iArchvio' title='Genera archvio en txt'  ".
         	"onclick='mantto_tabla(\"".$this->idmenu.
         	                          "\",\"f\",\"\",\"\",\"".
         	                          // evento antes 
@@ -1594,7 +1533,7 @@ class soldatos
 
         if (strpos($this->movto_mantto,"ex")!==false)
         {
-            echo "<td id=Excel class='botones' > <input type=button class=button id='iExcel' title='Genera archvio en Excel'  ".
+            echo "<td id=Excel class='botones' > <input type=button class='btn-01' id='iExcel' title='Genera archvio en Excel'  ".
                 "onclick='mantto_tabla(\"".$this->idmenu.
                                           "\",\"ex\",\"\",\"\",\"".
                                           // evento antes
@@ -1615,7 +1554,7 @@ class soldatos
 
         if (strpos($this->movto_mantto,"ea")!==false)
         {
-            echo "<td id=ExcelA class='botones' > <input type=button class=button id='iExcelA' title='Genera archivo en Excel con documentos escaneados'  ".
+            echo "<td id=ExcelA class='botones' > <input type=button class='btn-01' id='iExcelA' title='Genera archivo en Excel con documentos escaneados'  ".
                 "onclick='mantto_tabla(\"".$this->idmenu.
                                           "\",\"ea\",\"\",\"\",\"".
                                           // evento antes
@@ -1638,7 +1577,7 @@ class soldatos
 
         if ($meda->camposm["esadmon"]!="0" && $meda->camposm["esadmon"]!="")
         	{
-				echo "<td id='Autodiseno' class=botones ><input type=button class=button id='iAutoDiseno' title='Entra al diseno de la forma' ".
+				echo "<td id='Autodiseno' class=botones ><input type=button class='btn-01' id='iAutoDiseno' title='Entra al diseno de la forma' ".
 									  " onclick='abre_subvista(\"src/php/man_menus.php\",\"idmenu=".MENU.
 						              " &filtro=idmenu=".$this->menu["idmenu"].
 						              "\",\"\",\"\",999,800,600,\"Diseno de form\"".	//20070526
@@ -1954,7 +1893,7 @@ class soldatos
   function arma_subvistasbotonliga($sql_result,$Row,$z,$meda,$posicion,$mm,$i)
   {
 			return "<td name=noimprime class=botones >".
-				  (	$meda->camposmsv[$mm]['esboton']==1 ? "<input class=button type=button id='".$meda->camposmsv[$mm]['texto']."'" : "<a id='".$meda->camposmsv[$mm]['texto']."' href=## ").
+				  (	$meda->camposmsv[$mm]['esboton']==1 ? "<input class='btn-01' type=button id='".$meda->camposmsv[$mm]['texto']."'" : "<a id='".$meda->camposmsv[$mm]['texto']."' href=## ").
 //20070630  lo modifique para que en vez de ejecutar muestra cambia se fuera como si lieramos un click a select							  
 //20070630			      " onclick='muestra_cambio(\"formpr\",".
 //20070630							          $z.",".$i.",\"".$wlllave."\",".$meda->camposm['idmenu'].
@@ -1995,7 +1934,7 @@ class soldatos
   function arma_subvistasbotonligacomando($sql_result,$Row,$z,$meda,$posicion,$mm,$i)
   {
 	 return "<td class='botones' name=noimprime >".
-	  (	$meda->camposmsv[$mm]['esboton']==1 ? "<input type=button id='".$meda->camposmsv[$mm]['texto']."' class=button " : "<a href=## ").
+	  (	$meda->camposmsv[$mm]['esboton']==1 ? "<input type=button id='".$meda->camposmsv[$mm]['texto']."' class='btn-01' " : "<a href=## ").
         		"onclick='daunClick(\"cam".$z."\");".
 	              "comandos_servidor(\"".$meda->camposmsv[$mm]['clase']."\",\"".$meda->camposmsv[$mm]['funcion']."\",".$meda->camposm['idmenu'].
 	              ");return false;'".
@@ -2168,7 +2107,6 @@ class soldatos
 	  $this->menumht=$menu->camposmht;	     /*   20070627   */	  	  	  
 	  $this->metada=$menu;    // 20070818
 	  $this->idmenu=$menu->idmenu;
-//      echo "entro en mantotab";	  print_r($this->menuc);
   }
   
   /**	
@@ -2193,7 +2131,6 @@ class soldatos
          	 )
      	) 
      	{
-##	     	menerror("No hay registros "); 
 	     	};
      if ( $num >= $this->menu["limite"] )
         {menerror("El limite de registros para mostrar fue rebasado, limite:".$this->menu["limite"]); };
@@ -2204,8 +2141,6 @@ class soldatos
       $reg->registra($this->idmenu ,trim($this->camposm["tabla"]." ".$this->filtro." regs=".$num));//20070623
       $reg=null;        //20070623
   }
-##     echo "movtos".$this->movto_mantto;
-##   2006-03-08      
      if (   strpos($this->movto_mantto,"i")!==false 
          || strpos($this->movto_mantto,"s")!==false 
          || strpos($this->movto_mantto,"S")!==false          
@@ -2214,7 +2149,6 @@ class soldatos
          || strpos($this->movto_mantto,"e")!==false         
          || strpos($this->movto_mantto,"I")!==false    // 20070115 solo altas en automatico
          ) 
-//20070818         { $this->campo_cap($sql_result,$menu); }
          { $this->campo_cap($sql_result,$this->metada); }         
          
      if (   strpos($this->movto_mantto,"i")!==false 
@@ -2227,11 +2161,7 @@ class soldatos
          || strpos($this->movto_mantto,"B")!==false                      
          )          
          {
-//20070818     		$this->inicio_tab($menu->camposm["s_table"],$menu->camposm["s_table_height"]);	  	          		    
      		echo $this->inicio_tab($this->menu["s_table"],$this->menu["s_table_height"]);	  	          		         		
-//20070623  modifique a filas_ing porque hacia dos veces el armado del sql     		
-//20070623     		$this->filas_ing($sql_result, $num);
-//20070818     		$this->filas_ing($sql_result, $num, $menu);     		//20070623
      		echo $this->filas_ing($sql_result, $num, $this->metada);     		//20070623   
      		echo "</table>";  		
  		 }

@@ -14,7 +14,7 @@
  */
 
 // Popup code
-function SubMod(url,w,h) {
+window.SubMod = function(url,w,h) {
    this._PopupMask = null;
    this._PopupContainer = null;
    this._PopFrame = null;

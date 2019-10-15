@@ -64,14 +64,14 @@
   cursor: pointer;
   width: 21px;
   height: 26px;
-  background-image: url("../../img/editar_gray.svg");
+  background-image: url("../img/editar_gray.svg");
   background-repeat: no-repeat;
   background-color: transparent;
 
   &:hover {
     width: 21px;
     height: 26px;
-    background-image: url("../../img/editar.svg");
+    background-image: url("../img/editar.svg");
     background-repeat: no-repeat;
     background-color: transparent;
   }
@@ -81,14 +81,14 @@
   cursor: pointer;
   width: 27px;
   height: 18px;
-  background-image: url("../../img/ver_gray.svg");
+  background-image: url("../img/ver_gray.svg");
   background-repeat: no-repeat;
   background-color: transparent;
 
   &:hover {
     width: 27px;
     height: 18px;
-    background-image: url("../../img/ver.svg");
+    background-image: url("../img/ver.svg");
     background-repeat: no-repeat;
     background-color: transparent;
   }
@@ -98,14 +98,14 @@
   cursor: pointer;
   width: 20px;
   height: 26px;
-  background-image: url("../../img/eliminar_gray.svg");
+  background-image: url("../img/eliminar_gray.svg");
   background-repeat: no-repeat;
   background-color: transparent;
 
   &:hover {
     width: 20px;
     height: 26px;
-    background-image: url("../../img/eliminar.svg");
+    background-image: url("../img/eliminar.svg");
     background-repeat: no-repeat;
     background-color: transparent;
   }
@@ -151,14 +151,14 @@ p{
   display: inline;
   width: 10px;
   height: 7px;
-  background-image: url("../../img/flecha_down_select.svg");
+  background-image: url("../img/flecha_down_select.svg");
   background-repeat: no-repeat;
   background-color: transparent;
 
   &.active {
     width: 10px;
     height: 7px;
-    background-image: url("../../img/flecha_down_select_active.svg");
+    background-image: url("../img/flecha_down_select_active.svg");
     background-repeat: no-repeat;
     background-color: transparent;
   }
@@ -196,7 +196,7 @@ p{
     display: inline;
     width: 10px;
     height: 7px;
-    background-image: url("../../img/flecha_down_select_hover.svg");
+    background-image: url("../img/flecha_down_select_hover.svg");
     background-repeat: no-repeat;
     background-color: transparent;
     }
@@ -257,20 +257,30 @@ img{
 }
 
 
+.btn-agregar{
+  cursor: pointer;
+  padding-top: .5rem;
+  display: inline;
+  width: 10px;
+  height: 7px;
+  background-image: url("../img/agregar.svg");
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
 .btn-mostrar{
   cursor: pointer;
   padding-top: .5rem;
   display: inline;
   width: 10px;
   height: 7px;
-  background-image: url("../../img/flecha_down_select.svg");
+  background-image: url("../img/flecha_down_select.svg");
   background-repeat: no-repeat;
   background-color: transparent;
 
   &:hover{
     width: 10px;
     height: 7px;
-    background-image: url("../../img/flecha_down_select_green_hover.svg");
+    background-image: url("../img/flecha_down_select_green_hover.svg");
     background-repeat: no-repeat;
     background-color: transparent;
   }
@@ -278,7 +288,7 @@ img{
   &.active{
     width: 10px;
     height: 7px;
-    background-image: url("../../img/flecha_down_select_green.svg");
+    background-image: url("../img/flecha_down_select_green.svg");
     background-repeat: no-repeat;
     background-color: transparent;
   }

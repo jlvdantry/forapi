@@ -1,6 +1,6 @@
 var T = [], globcol = 0, globo = null;
 
-function initable( id, types, first, func, offtop ) {
+window.initable = function( id, types, first, func, offtop ) {
 //	alert('entro en initable'+id.tagName);
 try
 {

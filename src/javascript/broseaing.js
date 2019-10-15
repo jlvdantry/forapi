@@ -101,7 +101,7 @@ if(typeof HTMLElement!='undefined'&&!HTMLElement.prototype.click)  // por firefo
 	}
 }
 
-function formReset(wlforma,limpiaralta)
+window.formReset = function(wlforma,limpiaralta)
 {
 	if (limpiaralta=='t')
   		document.getElementById(wlforma).reset();
@@ -153,14 +153,14 @@ function registrofinal()
 
 	/*	restaura del campos donde los valores del autocomplete
 	*/
-  function restaura_autocomplete(objeto)
+  window.restaura_autocomplete = function(objeto)
   {
       var nombre=objeto.name.replace(/wl_/,"au_");						  
 	  document.getElementById(nombre).value="";
   }
 	/*	LLena un campo select con los datos tecleados
 	*/  
-  function autollenado(objeto,e,sql,filtro)
+  window.autollenado = function(objeto,e,sql,filtro)
   {
 		if(e.keyCode==13 || e.keyCode==9 || e.keyCode==16 || e.keyCode==48 || e.keyCode==36 || e.keyCode==40 || e.keyCode==38 || e.keyCode==91 || e.keyCode==18)return;	  
 		try 
@@ -181,7 +181,7 @@ function registrofinal()
 		}
 		catch (err) { alert('no existe el campo de autollenado'+err.description+'objeto.name'+objeto.name ); }
   }
-  function toggleDiv(divid,objeto){
+  window.toggleDiv = function(divid,objeto){
 	try {
     	if(document.getElementById(divid).style.display == 'none'){
       		document.getElementById(divid).style.display = 'block';
@@ -201,7 +201,7 @@ function registrofinal()
 	que al cerrarse la ventana manda a actualizar a el servidor el size de la pantalla
 	Parametro recibido numero de menu
 */
-function Cambiasize(idmenu)
+window.Cambiasize = function(idmenu)
 {	stickhead(); // esta line va ligado con sortable_otro.js 20070524
         Cambiosize=idmenu; 
         //eventos_servidor("cambio de size",0,"cambiotamano","",idmenu,document.body.clientWidth,document.body.clientHeight);
@@ -212,7 +212,7 @@ function Cambiasize(idmenu)
  *    para cambiar de mayusculas a minusculas y viceversa ya que el onchange no funciona
  *    cuando se cambia varias veces en la misma session de mayusculas a minusculas
  */  
-function mayusculas(objeto,evento)    
+window.mayusculas = function(objeto,evento)    
 {
 	if (evento.keyCode=='37' || evento.keyCode=='36' || evento.keyCode=='8' || evento.keyCode=='46' || evento.keyCode=='39')
 	{ }
@@ -220,7 +220,7 @@ function mayusculas(objeto,evento)
 	{   objeto.value=objeto.value.toUpperCase();  return false; }
 }
 
-function minusculas(objeto,evento)    
+window.minusculas = function(objeto,evento)    
 {
 	if (evento.keyCode=='37' || evento.keyCode=='36' || evento.keyCode=='8' || evento.keyCode=='46' || evento.keyCode=='39')
 	{ }
@@ -611,7 +611,7 @@ try {
                 dapi=document.getElementById("altaautomatica_");
                 aa.change = function () { des=aa.valor(); 
 		                          if (des!='' && des!=null && des!='TECLEE AQUI UNA NUEVA OPCION' && des.trim()!='Teclee aqui una nueva opcion') { 
-        	                            wlurl='xmlhttp.php'
+        	                            wlurl='src/php/xmlhttp.php'
         	                            passData='&opcion=altaautomatico&idmenu='+idmenu+'&attnum='+attnum+"&dato="+dato+"&fuente="+fuente+"&fuente_campodes="+
         	                                    fuente_campodes+"&des="+des+"&fuente_nspname="+fuente_nspname+"&fuente_campofil="+fuente_campofil+
                                                     "&valorfuente_campofil="+vfcf;        
@@ -631,7 +631,7 @@ try {
                       //iden=_aa_.regresa(url);
                       if (iden!='' && iden!=null)
                       {
-                         wlurl='xmlhttp.php'
+                         wlurl='src/php/xmlhttp.php'
                          passData='&opcion=buscaaltaautomatico&idmenu='+idmenu+'&attnum='+attnum+"&dato="+dato+"&fuente="+fuente+"&fuente_campodes="+fuente_campodes+"&iden="+iden+"&fuente_nspname="+fuente_nspname+"&fuente_campodep="+fuente_campodep;
                          CargaXMLDoc();
                       }
@@ -963,7 +963,7 @@ function pone_focus_forma(theFormName)
                         )
    		        {
 		   		ele.focus();
-		   		ele.className='foco';
+		   		//ele.className='foco';
 		   		return true;
    			}
 		}	
@@ -1590,7 +1590,7 @@ function pon_Select(wlselect,wlfiltropadre,wlfiltrohijo,fuentewhere,fuenteevento
 	  if (wlvarios!='')
 	  	{
                         wlvs=wlvs+' where '+wlvarios+(wlwhere.trim()=='' ? '' : ' and '+wlwhere);
-	  		wlurl='xmlhttp.php';//20071105
+	  		wlurl='src/php/xmlhttp.php';//20071105
 	  		passData='&opcion=pon_select&sql='+escape(wlvs)+'&wlfiltropadre='+escape(wlfiltropadre)+'&wlfiltrohijo='+escape(wlfiltrohijo)+'&fuenteevento='+escape(fuenteevento)+'&fuentewhere='+escape(fuentewhere);	  			  		
       		CargaXMLDoc();		  	
   		}
@@ -1598,7 +1598,7 @@ function pon_Select(wlselect,wlfiltropadre,wlfiltrohijo,fuentewhere,fuenteevento
 	  	if (wlvs!='')  	// 20070615 Tronaba cuando no traia filtro padre	
   		{ // 20070615 Tronaba cuando no traia filtro padre
 		  	wlvs=wlvs+(wlwhere!='' ? ' where '+wlwhere : '' );   		
-	  		wlurl='xmlhttp.php';//20071105
+	  		wlurl='src/php/xmlhttp.php';//20071105
 	  		passData='&opcion=pon_select&sql='+escape(wlvs)+'&wlfiltropadre='+escape(wlfiltropadre)+'&wlfiltrohijo='+escape(wlfiltrohijo)+'&fuenteevento='+escape(fuenteevento); // 20070615 Tronaba cuando no traia filtro padre	  			  		
       		CargaXMLDoc(); // 20070615 Tronaba cuando no traia filtro padre
   		} // 20070615 Tronaba cuando no traia filtro padre
@@ -1918,7 +1918,7 @@ window.mantto_tabla = function (wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,w
         	}
         	
             
-        		wlurl='xmlhttp.php';//20071105
+        		wlurl='src/php/xmlhttp.php';//20071105
         		passData='&opcion=mantto_tabla&idmenu='+wlmenu+'&movto='+wlmovto+buildQueryString('formpr')+"&wlllave="+escape(wlllave)+"&wlrenglon="+wlrenglon+"&wleventodespues="+escape(wleventodespues)+"&filtro="+escape(armaFiltro('formpr'))+"&noconfirmamovto="+escape(noconfirmamovto);
 	        	CargaXMLDoc();			
 	        	return;
@@ -2189,6 +2189,7 @@ function querespuesta()
              if (req.responseText.indexOf("<menus>") != -1) {
                 muestra_menus(req.responseXML.getElementsByTagName("menus"));
              }
+             pone_focus_forma('formpr')
              return;
            }
 
@@ -2261,7 +2262,7 @@ function querespuesta()
 	            var wlrenglon = desw[0].childNodes[0].nodeValue;
 	            var desw = req.responseXML.getElementsByTagName("wleventodespues");
 	            try { var wleventodespues = desw[0].childNodes[0].nodeValue; } catch(err) { var wleventodespues = ""; }
-	            wlurl='xmlhttp.php'; //20080131
+	            wlurl='src/php/xmlhttp.php'; //20080131
 	            passData='&opcion=mantto_tabla&idmenu='+wlmenu+'&movto='+wlmovto+buildQueryString('formpr')+"&wlllave="+escape(wlllave)+"&wlrenglon="+wlrenglon+"&wleventodespues="+wleventodespues;//20071105
         		CargaXMLDoc();			
         		return;
@@ -2405,13 +2406,14 @@ function querespuesta()
 						if (tablas[i].outerHTML.indexOf("tabdinamica")!=-1)
 						{ 
                                                      x=tablas[i]; 
+                                                     pn=x.parentNode;
                                                      x.parentNode.removeChild(x); 
                                                 }
 					}
                                         if (isIE)
-					{ document.body.insertAdjacentHTML('beforeEnd', items[0].childNodes[0].nodeValue); }  //  IE
+					{ pn.insertAdjacentHTML('beforeEnd', items[0].childNodes[0].nodeValue); }  //  IE
                                         else
-                                        { document.body.insertAdjacentHTML('beforeEnd', items[0].textContent); }  //ff
+                                        { pn.insertAdjacentHTML('beforeEnd', items[0].textContent); }  //ff
 					pone_sort_scroll();
 					hayunregistro();
 					sumatotales();	

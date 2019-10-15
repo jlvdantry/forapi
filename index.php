@@ -14,17 +14,25 @@
     echo "<div  id='div_titulos'  >\n";
     include('src/php/titulos.php');
     echo "</div>\n";
+
+    echo "<div class='pleca'>\n";
     echo "<div id=menus class=\"navbar navbar-expand-lg navbar-light bg-light\" >\n";
     echo "<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n";
     echo "     <ul class=\"navbar-nav mr-auto\" id=\"navbarSupportedContentul\">\n";
     echo "     </ul>";
     echo "</div>\n";
     echo "</div>\n";
+    echo "</div>\n";
+
+    echo "<section class='container'>\n";
     echo "<div >\n";
     echo "<div id=entrada class='div_menus' >\n";
-    echo "</id>";
+    echo "</div>";
     echo "</div>\n";
+    echo "</section>\n";
     echo "  <script>muestra_vista(".MENUS_BIENVENIDO.",'abre');</script> ";
+    echo "<footer class='footer' >\n";
+    echo "</footre>";
     echo "</body>\n";
     echo "</html>\n";
 ?>

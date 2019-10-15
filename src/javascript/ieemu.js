@@ -226,7 +226,6 @@ function emulateHTMLModel() {
 				break;
 				
 			case "beforeend":
-				//alert('entro en beforeend');
 				r.selectNodeContents(this);
 				r.collapse(false);
 				df = r.createContextualFragment(sHTML);

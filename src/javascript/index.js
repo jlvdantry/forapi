@@ -1,5 +1,5 @@
 import "bootstrap";
-import './scss/app.scss';
+import '../scss/app.scss';
 require('./captcha.js');
 require('./altaadjuntara.js');
 require('./altaautomatica.js');
