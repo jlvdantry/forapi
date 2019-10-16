@@ -523,6 +523,7 @@ class xmlhttp_class
 						{ echo '<altaokautomatica>Alta efectuada</altaokautomatica>';}						
                                                 if (strpos($me->camposm['noconfirmamovtos'],'i')===false && strpos($me->camposm['noconfirmamovtos'],'I')===false && strpos($me->camposm['noconfirmamovtos'],'cc')===false)
                                                 {   } else { echo '<noconfirma>true</noconfirma>'; }
+						echo '<idmenu>'.$this->argumentos['idmenu'].'</idmenu>';
 						echo '<renglon>'.htmlspecialchars($wlrenglon).'</renglon>';
 						echo '<wlrenglon>'.($this->argumentos['wlrenglon']+1).'</wlrenglon>';
 						if ($this->argumentos['wleventodespues']!='')
