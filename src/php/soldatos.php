@@ -1468,7 +1468,7 @@ class soldatos
     	if (strpos($this->movto_mantto,"u")!==false)     	  
         {
 	     	echo "<td id='cambio' class='botones' > ".
-	     	($this->menum['u']['idmovto']=='u' && $this->menum['u']["descripcion"]!="" ? "<input type='btn-01' class='hidden' id='iCambio' value='".$this->menum['u']["descripcion"]."' title='Cambio'  " : "<input type=image class='hidden' id='iCambio' src='img/icon_edit.gif' title='Cambio' value='Cambio' ").
+	     	($this->menum['u']['idmovto']=='u' && $this->menum['u']["descripcion"]!="" ? "<input type='button' class='hidden btn-01' id='iCambio' value='".$this->menum['u']["descripcion"]."' title='Cambio'  " : "<input type=button class='hidden btn-01' id='iCambio'  title='Cambio' value='Cambio' ").
         	  "onclick='alert(\"Primero debe selecionar un renglon\");return false'></input></td>\n";	        
         }    	
 	
