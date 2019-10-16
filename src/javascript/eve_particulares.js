@@ -11,7 +11,7 @@
   }
 
 
-function eve_particulares() 
+window.eve_particulares = function() 
 {
 
   this.wlrfc = ""; // rfc

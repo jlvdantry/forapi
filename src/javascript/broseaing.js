@@ -101,20 +101,18 @@ if(typeof HTMLElement!='undefined'&&!HTMLElement.prototype.click)  // por firefo
 	}
 }
 
-window.formReset = function(wlforma,limpiaralta)
+window.formReset = function(theForm,limpiaralta)
 {
 	if (limpiaralta=='t')
   		document.getElementById(wlforma).reset();
-  theForm = document.getElementById(wlforma);
   var qs = '';
   for (e=0;e<theForm.elements.length;e++) {
     if (theForm.elements[e].name!='' && theForm.elements[e].name.indexOf('nc_')>=0) {
-	   var str=theForm.elements[e].name;
+       var str=theForm.elements[e].name;
        var wl=str.replace(/nc_/,"wl_");		  		
-	   try { objwl=document.getElementByID(wl); objnc=document.getElementById(str); 
+       try { objwl=document.getElementByID(wl); objnc=document.getElementById(str); 
 	          objnc.readOnly=false; objwl.readOnly=false; objwl.disabled=false; objwl.className=''; 
-	       } catch (err) { };
-
+       } catch (err) { };
     }
   }
         var all = document.getElementsByTagName("a");
@@ -123,7 +121,6 @@ window.formReset = function(wlforma,limpiaralta)
              {    all[i].parentNode.removeChild(all[i]); i=-1; }
         }
   return qs
-
 }
 
 function siguienteregistro()
@@ -938,12 +935,18 @@ window.hayunregistro = function()
 }		
 
 //   pone el focus en el primer campo de la forma		
-function pone_focus_forma(theFormName)
+function pone_focus_forma(theForm='',dedonde)
 {
+  if (theForm=='') {
+     if ('window' in dedonde) {
+        return;
+     }
+     theForm=$(dedonde).closest('form');
+  }
   var ele='';
   try 
   {
-	  theForm = document.getElementById(theFormName);	
+	  //theForm = document.getElementById(theFormName);	
 	  for (e=0;e<theForm.elements.length;e++)
   		{
                         ele=theForm.elements[e];
@@ -1066,8 +1069,8 @@ catch (err)
 
 // esta funcion arma el querystring
 // la copie de utility.js
-function buildQueryString(theFormName) {
-  theForm = document.getElementById(theFormName);
+function buildQueryString(theForm) {
+  //theForm = document.getElementById(theFormName);
   var qs = '';
   for (e=0;e<theForm.elements.length;e++) {
     if (theForm.elements[e].name!='') {
@@ -1338,9 +1341,9 @@ function busca_DesOption(opciones,wlvalue)
 }
 
 // funcion que checa si hubo algun dato tecleado de los datos de busqueda
-function hayalgundatotecleadobus(theFormName) {
+function hayalgundatotecleadobus(theForm) {
 try {
-  theForm = document.getElementById(theFormName);
+  //theForm = document.getElementById(theFormName);
   var qs = '';
   for (e=0;e<theForm.elements.length;e++) {
     if (theForm.elements[e].name!='' && theForm.elements[e].name.indexOf('bu_')>=0) {
@@ -1359,8 +1362,8 @@ try {
 
 
 // funcion que checa si hubo algun dato tecleado
-window.hayalgundatotecleado = function(theFormName) {
-  theForm = document.getElementById(theFormName);
+window.hayalgundatotecleado = function(theForm) {
+  ////theForm = document.getElementById(theFormName);
   var qs = '';
   for (e=0;e<theForm.elements.length;e++) {
     if (theForm.elements[e].name!='') {
@@ -1373,20 +1376,15 @@ window.hayalgundatotecleado = function(theFormName) {
 }
 
 // funcion que checa que existan datos tecleados en los campos obligatorios
-window.checaobligatorios = function(theFormName) {
+window.checaobligatorios = function(theForm) {
 	try
 	{	
-  theForm = document.getElementById(theFormName);
   var qs = '';
     for (e=0;e<theForm.elements.length;e++) {
-    if (theForm.elements[e].name!='' && theForm.elements[e].name.indexOf('ob_')>=0) {
-	   var str=theForm.elements[e].name;
-	   var str1=str.replace(/ob_/,"wl_");
-	   var str2=str.replace(/ob_/,"wlt_");
-		x=document.getElementsByName(str1)[0];
-       if (trim(x.value)=='' && x.type!='button' && x.type!='hidden' && x.type!='reset' ) {
-		x2=document.getElementsByName(str2)[0];	
-          alert ('El dato "'+x2.abbr+'" es obligatorio ');
+    if ('obligatorio' in theForm.elements[e].dataset) {
+       x=theForm.elements[e];
+       if (trim(x.value)=='' ) {
+          alert ('El dato "'+theForm.elements[e].name+'" es obligatorio ');
           x.focus();
           return false;
        }
@@ -1399,8 +1397,8 @@ catch(err)
 }
 
 // funcion que checa que sean numericos los campos que deben ser numericos
-function checanumericos(theFormName) {
-  theForm = document.getElementById(theFormName);
+window.checanumericos = function(theForm) {
+  //theForm = document.getElementById(theFormName);
   var qs = '';
   for (e=0;e<theForm.elements.length;e++) {
     if (theForm.elements[e].name!='' && theForm.elements[e].name.indexOf('nu_')>=0) {
@@ -1417,10 +1415,10 @@ function checanumericos(theFormName) {
 }
 
 // funcion que checa las fechas de los campos 
-function checafechas(theFormName) {
+window.checafechas = function(theForm) {
 	try
 	{
-  theForm = document.getElementById(theFormName);
+  //theForm = document.getElementById(theFormName);
   var qs = '';
   for (e=0;e<theForm.elements.length;e++) {
     if (theForm.elements[e].name!='' && theForm.elements[e].name.indexOf('_da_')>=0) {
@@ -1448,7 +1446,7 @@ catch (err) { alert('error checafechas'+err.message); }
 // 20070804 Funcion que ejecuta un evento
 //          recibe el objeto que lo disparo 
 //          y la funcion a ejecutar
-function eventosparticulares(x,evento)
+window.eventosparticulares = function(x,evento)
 {
 	try
 	{
@@ -1465,10 +1463,10 @@ function eventosparticulares(x,evento)
 }
 
 // funcion que checa las fechas de los campos 
-function checaparticulares(theFormName) {
+function checaparticulares(theForm) {
 	try
 	{
-  theForm = document.getElementById(theFormName);
+  //theForm = document.getElementById(theFormName);
   var qs = '';
 
   for (e=0;e<theForm.elements.length;e++)
@@ -1761,16 +1759,16 @@ window.muestra_menus = function (menus,donde='navbarSupportedContentul') {
 //  la llave con la que va a dara de baja o cambio
 //  el renglon que va a dar de baja de la tabla
 //20071112   se incluyo los eventos a efectuar en el cliente   wleventoantescl, wleventodespuescl
-window.mantto_tabla = function (wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,wleventodespues,wleventoantescl,wleventodespuescl,noconfirmamovto)
+window.mantto_tabla = function (wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,wleventodespues,wleventoantescl,wleventodespuescl,noconfirmamovto,dedonde='')
 {
 	    if (wlmovto=='d' || wlmovto=='u' || wlmovto=='s' || wlmovto=='S' || wlmovto=='B' )
 	    {
 			wlllave=wlllave.replace(/"/g,"'");
 		}			
-
-        if (hayalgundatotecleado('formpr')!='si' && (wlmovto=='i' || wlmovto=='u' || wlmovto=='I'))
+        forma=$(dedonde).closest('form')[0];
+        if (hayalgundatotecleado(forma)!='si' && (wlmovto=='i' || wlmovto=='u' || wlmovto=='I'))
         {
-           alert ('no ha tecleado ningun dato'); pone_focus_forma('formpr'); return;
+           alert ('no ha tecleado ningun dato'); pone_focus_forma(forma); return;
         }
 
         if (wleventoantescl!="" && wleventoantescl!=undefined)
@@ -1782,7 +1780,7 @@ window.mantto_tabla = function (wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,w
                
         if (wlmovto=='i'|| wlmovto=='u' || wlmovto=='I')
         {
-        	if (checaobligatorios('formpr')==false)	
+        	if (checaobligatorios(forma)==false)	
         	{
            		return;
 			}           		
@@ -1790,7 +1788,7 @@ window.mantto_tabla = function (wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,w
 
         if (wlmovto=='i' || wlmovto=='u' || wlmovto=='I')
         {
-        	if (checanumericos('formpr')==false)	
+        	if (checanumericos(forma)==false)	
         	{
            		return;
 			}           		
@@ -1798,7 +1796,7 @@ window.mantto_tabla = function (wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,w
 
         if (wlmovto=='i' || wlmovto=='u' || wlmovto=='I')
         {
-        	if (checafechas('formpr')==false)	
+        	if (checafechas(forma)==false)	
         	{
            		return;
 			}           		
@@ -1806,7 +1804,7 @@ window.mantto_tabla = function (wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,w
 
         if (wlmovto=='i' || wlmovto=='u' || wlmovto=='I')
         {
-        	if (checaparticulares('formpr')==false)	
+        	if (checaparticulares(forma)==false)	
         	{
            		return;
 			}           		
@@ -1841,14 +1839,14 @@ window.mantto_tabla = function (wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,w
            if (noconfirmamovto.indexOf("u")!=-1)
            {
               if (checaSiCambioAlgo(wlmenu,wlmovto,wlllave,wlrenglon,0)==false)
-                 { alert('Usted no ha cambiado ningun dato'); pone_focus_forma('formpr'); return;}
+                 { alert('Usted no ha cambiado ningun dato'); pone_focus_forma(forma); return;}
            }
            else
            {
                 if (window.confirm("Desea modificar el registro"))
                 {
                         if (checaSiCambioAlgo(wlmenu,wlmovto,wlllave,wlrenglon,0)==false)
-                        { alert('Usted no ha cambiado ningun dato'); pone_focus_forma('formpr'); return;}
+                        { alert('Usted no ha cambiado ningun dato'); pone_focus_forma(forma); return;}
                 }
                 else
                 { return;};
@@ -1857,10 +1855,10 @@ window.mantto_tabla = function (wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,w
 
         if (wlmovto=='s' || wlmovto=='S' || wlmovto=='f' || wlmovto=='B')
         {        				
-		        if (hayalgundatotecleadobus('formpr')!='si')
+		        if (hayalgundatotecleadobus(forma)!='si')
         		{
            			alert ('No ha tecleado ningun dato permitido para buscar\n'+'Los datos con asterisco son los filtros para la busqueda');
-					pone_focus_forma('formpr');           			
+					pone_focus_forma(forma);           			
            			return;
         		}	
 		}        					
@@ -1882,18 +1880,11 @@ window.mantto_tabla = function (wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,w
 
                 }
 		
-	
-        //  20070831  lo cambien de posicion
-        //  20080207  lo regrese a su posicion el planteamiento es que los eventos a ejecutar antes en el servidor
-        //            se deben de ejecutar antes de una alta,baja,cambio, consulta ya que hubiese pasado todo el proceso
-        //            previo de validacion
-        //            por otro lado debe de regresar si continua con el moviento normal de o termina aqui, por default
-        //            continua
 		if (wleventoantes!="")
 		{
 			__eventocontinua=false;
-	        wlurl='eventos_servidor.php';//20071105
-	        passData='&opcion='+wleventoantes+'&wlmenu='+wlmenu+'&wlmovto='+wlmovto+buildQueryString('formpr')+"&wlllave="+escape(wlllave)+"&wlrenglon="+wlrenglon+"&wleventodespues="+wleventodespues;//20071105
+	        wlurl='src/php/eventos_servidor.php';//20071105
+	        passData='&opcion='+wleventoantes+'&wlmenu='+wlmenu+'&wlmovto='+wlmovto+buildQueryString(forma)+"&wlllave="+escape(wlllave)+"&wlrenglon="+wlrenglon+"&wleventodespues="+wleventodespues;//20071105
     	    CargaXMLDoc();		
     	    if 	( ! __eventocontinua )
 	    	    return;
@@ -1910,7 +1901,7 @@ window.mantto_tabla = function (wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,w
         	
             
         		wlurl='src/php/xmlhttp.php';//20071105
-        		passData='&opcion=mantto_tabla&idmenu='+wlmenu+'&movto='+wlmovto+buildQueryString('formpr')+"&wlllave="+escape(wlllave)+"&wlrenglon="+wlrenglon+"&wleventodespues="+escape(wleventodespues)+"&filtro="+escape(armaFiltro('formpr'))+"&noconfirmamovto="+escape(noconfirmamovto);
+        		passData='&opcion=mantto_tabla&idmenu='+wlmenu+'&movto='+wlmovto+buildQueryString(forma)+"&wlllave="+escape(wlllave)+"&wlrenglon="+wlrenglon+"&wleventodespues="+escape(wleventodespues)+"&filtro="+escape(armaFiltro('formpr'))+"&noconfirmamovto="+escape(noconfirmamovto);
 	        	CargaXMLDoc();			
 	        	return;
 }
@@ -2113,16 +2104,17 @@ function altatabla(wlrenglon)
 
 		
 }
+
 //  revisa si hay que ejecutar un evento en el servidor despues de haber ejecutado un movimiento+
 //  de mantenimiento de una tabla
-function checa_eventodespues(wlrespuesta)
+window.checa_eventodespues = function(wlrespuesta,idmenu=0)
 {
   try {
            if (req.responseText.indexOf("<wleventodespues>") != -1)
            {
-	          var iden="";  // iden contiene el numero de secuencia que le toco a un registro al dar de alta  20080216
+	      var iden="";  
               var items = req.responseXML.getElementsByTagName("iden");
-              if (items.length>0 && items[0].childNodes.length>0) // firefox
+              if (items.length>0 && items[0].childNodes.length>0) 
               { iden="&iden="+items[0].childNodes[0].nodeValue; }
               	           
               var items = req.responseXML.getElementsByTagName("wleventodespues");
@@ -2130,19 +2122,19 @@ function checa_eventodespues(wlrespuesta)
               { 
 	            if(items[0].childNodes[0].nodeValue!="")
 	            {
-        			wlurl='eventos_servidor.php';//20071105
-        			passData='&opcion='+items[0].childNodes[0].nodeValue+buildQueryString('formpr') + iden+"&filtro="+escape(armaFiltro('formpr'));
+        			wlurl='src/php/eventos_servidor.php';
+                                forma=$('#formpr_'+idmenu)[0];
+        			passData='&opcion='+items[0].childNodes[0].nodeValue+buildQueryString(forma) + iden+"&filtro="+escape(armaFiltro(forma));
         			CargaXMLDoc();	              
     			}
-	          }
-              else {
-                   }
+	      } else { }
               return;
            } 	
      } catch (err) { alert(" error checa_eventodespues="+err+"="+req.responseText); }
 }
+
 // funcion que maneja la respuesta que regresa el xmlhttp
-function querespuesta() 
+window.querespuesta = function() 
 {
 	try
 	{
@@ -2184,7 +2176,7 @@ function querespuesta()
              if (req.responseText.indexOf("<menus>") != -1) {
                 muestra_menus(req.responseXML.getElementsByTagName("menus"));
              }
-             pone_focus_forma('formpr')
+             pone_focus_forma('',this)
              return;
            }
 
@@ -2257,8 +2249,9 @@ function querespuesta()
 	            var wlrenglon = desw[0].childNodes[0].nodeValue;
 	            var desw = req.responseXML.getElementsByTagName("wleventodespues");
 	            try { var wleventodespues = desw[0].childNodes[0].nodeValue; } catch(err) { var wleventodespues = ""; }
-	            wlurl='src/php/xmlhttp.php'; //20080131
-	            passData='&opcion=mantto_tabla&idmenu='+wlmenu+'&movto='+wlmovto+buildQueryString('formpr')+"&wlllave="+escape(wlllave)+"&wlrenglon="+wlrenglon+"&wleventodespues="+wleventodespues;//20071105
+	            wlurl='src/php/xmlhttp.php'; 
+                    forma=$('#formpr_'+wlmenu)[0];
+	            passData='&opcion=mantto_tabla&idmenu='+wlmenu+'&movto='+wlmovto+buildQueryString(forma)+"&wlllave="+escape(wlllave)+"&wlrenglon="+wlrenglon+"&wleventodespues="+wleventodespues;//20071105
         		CargaXMLDoc();			
         		return;
            }            
@@ -2334,6 +2327,9 @@ function querespuesta()
                       
            if (req.responseText.indexOf("<altaok>") != -1)
            {
+              var items = req.responseXML.getElementsByTagName("idmenu");
+              try { var idmenu=items[0].childNodes[0].nodeValue } catch (err) { var idmenu=0; };
+
               var items = req.responseXML.getElementsByTagName("noconfirma");
               try { var noconfirma=items[0].childNodes[0].nodeValue } catch (err) { var noconfirma=false; };
               if (!noconfirma)
@@ -2346,17 +2342,19 @@ function querespuesta()
               var items = req.responseXML.getElementsByTagName("wlrenglon");              
               if (items.length>0)
               { var wlrenglon=items[0].childNodes[0].nodeValue; 
-              	altatabla(wlrenglon);}
+              	altatabla(wlrenglon,idmenu);}
               else {alert('no encontro el altaok '+req.responseText)}
               var limpiaralta=true;
               var items = req.responseXML.getElementsByTagName("limpiaralta");              
               if (items.length>0)
               { limpiaralta=items[0].childNodes[0].nodeValue; }              
-              checa_eventodespues(req.responseText);   
-              formReset("formpr",limpiaralta);
-	      pone_focus_forma("formpr");   // limpia la pantalla despues de una alta              
+              checa_eventodespues(req.responseText,idmenu);   
+              forma=$('#formpr_'+idmenu)[0];
+              formReset(forma,limpiaralta);
+	      pone_focus_forma(forma);   // limpia la pantalla despues de una alta              
               return;
            } 
+
            if (req.responseText.indexOf("<copiaok>") != -1)
            {
               var items = req.responseXML.getElementsByTagName("copiaok");

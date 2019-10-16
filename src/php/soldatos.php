@@ -430,9 +430,9 @@ class soldatos
   function inicio_form()
   {
      if ($this->accion!="")
-     { echo "  <form method=POST name='formpr' id='formpr' action=".$this->accion." target='".$this->destino."' >\n"; }
+     { echo "  <form method=POST name='formpr' id='formpr_".$this->idmenu."' action=".$this->accion." target='".$this->destino."' >\n"; }
      else
-     { echo "  <form method=POST name='formpr' id='formpr'  action=".$_SERVER['PHP_SELF']." >\n"; }     //20070306     
+     { echo "  <form method=POST name='formpr' id='formpr_".$this->idmenu."'  action=".$_SERVER['PHP_SELF']." >\n"; }     //20070306     
   }
 
   /**
@@ -451,9 +451,7 @@ class soldatos
     //echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"";
     //echo "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">";
     //echo "<html>\n";
-    echo "<div id='soldatos' class='container' onunload='this.Cierraforma()' onresize=\"this.Cambiasize('".$this->idmenu."');\" onClick='sumaclicks()' onLoad=\"try { inicia();inicioforma();\n pone_focus_forma('formpr');\n pone_sort_scroll(); \n sumatotales();\n } catch (e) { };ContextMenu.intializeContextMenu();\"  >\n";            
-    ##echo " <LINK id=estilo REL=StyleSheet HREF=\"".($this->menu["css"]=="" ? "pupan.css" : $this->menu["css"] )."\" TYPE=\"text/css\" MEDIA=screen>\n";
-    ##echo " <LINK id=estilo REL=StyleSheet HREF=\"".($this->menu["css"]=="" ? "pupan.css" : "print_".$this->menu["css"] )."\" TYPE=\"text/css\" MEDIA=print>\n";    
+    echo "<div id='soldatos' class='container' onunload='this.Cierraforma()' onresize=\"this.Cambiasize('".$this->idmenu."');\" onClick='sumaclicks()' onLoad=\"try { inicia();inicioforma();\n pone_focus_forma('',this);\n pone_sort_scroll(); \n sumatotales();\n } catch (e) { };ContextMenu.intializeContextMenu();\"  >\n";      
     echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"/dist/css/subModal.css\" />\n";
     echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"/dist/css/modal.css\" />\n";
     echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"/dist/css/dhtmlwindow.css\" />\n";
@@ -738,6 +736,7 @@ class soldatos
                         $wleshiden=($menuc["eshidden"]!='t' ? "" : " class='hidden' ");
                         $wlbusqueda=   (($busqueda=='t')    ? "<font color='black'>*</font>" : "");
                         $wlobligatorio=(($obligatorio=='t') ? "<font ".$wleshiden." color='red'  >*</font>" : "");
+                        $wlobligatorio_=(($obligatorio=='t') ? "data-obligatorio=1" : "");
                         $wlidcampo=$mecq["idcampo"];
    		    $vas="<td class='form-label-custom' ".$wleshiden."id='wlt_".$wlnombre."' name='wlt_".$wlnombre."' abbr=\"".$descripcion."\" value=\"".$descripcion."\" ".
    		    
@@ -752,7 +751,7 @@ class soldatos
 ##   			$vas=$vas."<td > ";
 	        $vas=$vas.($wltdf=="1" || $wltdf=="2" || $wltdf=="3" ? "" : "<td".$wleshiden.">");
 	 		$vas = ($menuc["autocomplete"]=='1' ? $vas." <input type=text ".$wleshiden." readonly=true class='leesinborder' name=au_".$wlnombre." ></input><br>\n" : $vas );
-   			$vas=$vas."<select class='form-control form-control-custom' ".$wleshiden."placeholder=\"prueba\" ".
+   			$vas=$vas."<select $wlobligatorio_ class='form-control form-control-custom' ".$wleshiden."placeholder=\"prueba\" ".
 	 		            ($menuc["autocomplete"]=='1' ? " ;restaura_autocomplete(this)" : "" ). 	      	 		   			               			
    			            (($menumce[1]["idevento"]=='1' && $menumce[1]["donde"]=='0' && $menumce[1]["descripcion"]!='') ? "return eventosparticulares(this,\"".$menumce[1]["descripcion"]."\");" : "").   			
    			          "' ";   			            
@@ -766,28 +765,10 @@ class soldatos
 ## 			$vas = $vas.$this->foco($readonly);	 		   			
 ##   			$vas.=" readonly=".$readonly."-";
    			($fuente_campofil!="") ?  $vas=$vas." onClick=\"si_Select('".$sql."','".$fuente_campofil."');\" " : $vas=$vas;
-   			/*  evento que se ejecuta cuando cambia el valor y hay que llenar un select con el nuevo valor */
-##20080209   lo cambie ya que el onchange esta con apostrofes esto lo cambie por eventos particulares en onchange   			
-##20080209   ejemplo onChange=' pon_Select('select  relname,relname from public.tablas','nspname','tabla','',0) ;'
-##20080209   			($esfiltrode!="" ) ?  $wlonchange=$wlonchange." pon_Select('".   //20071109
    			($esfiltrode!="" ) ?  $wlonchange=$wlonchange." pon_Select(\"".   //20071109   			
-//20071109   			($esfiltrode!="" ) ?  $vas=$vas." onChange=\"pon_Select('".   			
-//   	        		  $this->dame_sql_sel($esfiltrode,0)."','".$wlnombre."','".$esfiltrode."','".$fuentewhere."',0".");\" " : $vas=$vas; 
-##20080209  	        		  $this->dame_sql_sel($esfiltrode,0)."','".$filtroshijo."','".$esfiltrode."','".$fuentewhere."',0".") " : $vas=$vas;    	        		  
   	        		  $this->dame_sql_sel($esfiltrode,0)."\",\"".$filtroshijo."\",\"".$esfiltrode."\",\"".$fuentewhere."\",0".") " : $vas=$vas;
-//  la linea anterior la cambien porque no funcionaba el llenado de un campo select que dependia de mas de un campos
-//  ejemplo la entidad en responsabilidad que dependia de la estructura y la responsabilidad
-//  hay que ver si esto no pega en otra coas
-//  May 25, 2006 09:00:21 PM    	        		  
-
-//20070616  Lo cambie el onfocus por el onclick como que se metia en un loop   	        		     			
-//20070616   			($fuente_evento==2 || $fuente_evento==3 ) ?  $vas=$vas." onFocus=\"pon_Select('".
-//20070618  lo restaure el onfocus ya que el campofil no funcionaba
-##20080209   			($fuente_evento==2 || $fuente_evento==3 ) ?  $vas=$vas." onFocus=\"pon_Select('".   			   			
    			($fuente_evento==2 || $fuente_evento==3 ) ?  $wlonfocus=$wlonfocus."; pon_Select(\"".
-##20080209   	        		  $this->dame_sql_sel($wlnombre,0)."','".$fuente_campofil."','".$wlnombre."','".$fuentewhere."',".$fuente_evento.",0);\" " : $vas=$vas; 
    	        		  $this->dame_sql_sel($wlnombre,0)."\",\"".$fuente_campofil."\",\"".$wlnombre."\",\"".$fuentewhere."\",".$fuente_evento.",0) " : $vas=$vas;
-##   	        echo "wlonchange=".$wlonchange." esfiltrode=".$esfiltrode;
 			$wlonchange=$this->agregaevento('2',$wlonchange,$menumce); 		//20071109
 			$wlonfocus=$this->agregaevento('3',$wlonfocus,$menumce); 		//20071109
 			$wlonblur=$this->agregaevento('1',$wlonblur,$menumce); 		//20071109
@@ -797,11 +778,7 @@ class soldatos
 			$vas=$vas.($wlonfocus!="" ? " onFocus='".$wlonfocus.";'" : "");  //20071109
                         $vas=$vas.($wlondck !="" ? " ondblclick='".$wlondck.";'" : "" );
                         $vas=$vas.($wlonblur!="" ? " onblur='".$wlonblur.";'" : "");
-
-##firefox   	        		     			$vas=$vas." ".$this->armaid_cc($j)."name=wl_".$wlnombre." >\n";	   
    	        		     			$vas=$vas." ".$this->armaid_cc($j)."name=wl_".$wlnombre." >\n";	   
-   	        		     			   	        		     			
-//			if ($fuente_campofil=="")  // si tiene el campo padre este se debe de llenar cuando se seleeciona el campo padre
 			if ($fuente_evento==0)  // si tiene el campo padre este se debe de llenar cuando se seleeciona el campo padre
 			{   	       
                         $sql= $this->dame_sql_sel($wlnombre,1);
@@ -825,7 +802,7 @@ class soldatos
  			}
  			
 // 20070622     		$vas=$vas."  </select>";  //20070214   		
-			$vas=$vas.$DefaultSelect.$opciones."  </select>".$wlobligatorio;
+			$vas=$vas.$DefaultSelect.$opciones."  </select>";
 	 		$vas = ($altaautomatico=='t' ? $vas. //20070214 	           		
              	  " <button tabindex='-1' type=button class='btn-agregar'  title='Alta de un nuevo registro de: ".$descripcion."' value='Alta' id='aa_".$wlnombre."' name=matriz ". 
             	  "onclick='altaautomatico(\"".$idmenu."\",\"".$attnum."\",".   //20070214
@@ -848,7 +825,6 @@ class soldatos
                  	  "return false;\"></input>\n" : $vas ); //20070618
             	              	              	  
      		$vas=$vas."</td>  ";  //20070214   		     		
-	 		$vas = ($obligatorio=='t' ? $vas." <input type=hidden name=ob_".$wlnombre." value=1></input>\n" : $vas ); 	      
 	 		$vas = ((substr($tipodedato,0,3)==='int' || $tipodedato=='numeric') ? $vas." <input type=hidden name=nu_".$wlnombre." value=1></input>\n" : $vas ); 	      	
 	 		$vas = (($tipodedato=='date' || $tipodedato=='timestampz') ? $vas." <input type=hidden name=_da_".$wlnombre." value=1></input>\n" : $vas ); 	      	
 			($val_particulares!='') ? $vas=$vas." <input type=hidden name=_vp_".$wlnombre." value='".$val_particulares."'></input>\n" : $wli=$wli ; //20070725
@@ -1036,6 +1012,7 @@ class soldatos
     $wleshiden=($mecq["eshidden"]!='t' ? "" : " class='hidden' ");
     $wlbusqueda=   (($busqueda=='t')    ? "<font color='black'>*</font>" : "");
     $wlobligatorio=(($obligatorio=='t') ? "<font ".$wleshiden." color='red'>*</font>" : "");
+    $wlobligatorio_=(($obligatorio=='t') ? "data-obligatorio=1" : "");
     $wlidcampo=$mecq["idcampo"];
     $wltipodedato=((substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? " type='tel' " : "");
 		$wli="<td class='form-label-custom' ".$wleshiden." id='wlt_".$nombre."' name=wlt_".$nombre." title=\"".$descripcion."\" abbr=\"".$descripcion."\"".
@@ -1051,8 +1028,8 @@ class soldatos
 			  	(($wltdf=="1" || $wltdf=="2") ? "<br>" :(($wltdf=="3") ? "" : "</td>"));  // 20081015 grecar modifique esta linea para asignarles un valor las etiquetas td
 	    $wli=$wli.($wltdf=="1" || $wltdf=="2" || $wltdf=="3" ? ""  : "<td ".$wleshiden.">").
 	    				(($tipodedato != "text") 
-	    					? "<input class='form-control form-control-custom' ".$wleshiden." onKeydown='return quitaenter(this,event)' " 
-	    					: "<textarea class='form-control form-control-custom' ".$wleshiden.((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
+	    					? "<input $wlobligatorio_ class='form-control form-control-custom' ".$wleshiden." onKeydown='return quitaenter(this,event)' " 
+	    					: "<textarea $wlobligatorioi_ class='form-control form-control-custom' ".$wleshiden.((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
 	    									? "cols=".$mecq["colspantxt"] : "" )
 	    				).
 /**
@@ -1098,10 +1075,10 @@ class soldatos
                                                 $wli=$wli.($wlondck !="" ? " ondblclick='".$wlondck.";'" : "" );
 
 	    	            $wli=$wli.(($wltdf==3) ? " placeholder=\"".$wltdd."\"" : "").
-	    	            (($tipodedato != "text") ? " ></input>" : " >".$valordefault."</textarea>").$wlobligatorio.
-	    	            (($tipodedato == "timestamptz" || $tipodedato == "date") & $readonly!='t' ? " <input tabindex='-1' class='img' type=image id='fe_".$nombre."' name=fe_".$nombre." src='img/icon_datepicker_pink.gif' onclick='muestrafecha(this);return false' title='Selecciona la fecha del calendario'></input>" : " " ). 
-                            (($espassword=="3") ? " <input tabindex='-1' size=20 class='captcha' readonly='on' type=text id='wl_".$nombre."_img' name=wl_".$nombre."_img title='Imagen de la captcha' ></input>&nbsp<input tabindex='-1' class='img' type=image id='wl_".$nombre."_bot' name=wl_".$nombre."_bot src='img/refresh.png' onclick='ReDrawCaptcha(this);return false' title='Refresca la imagen del captcha'></input>" : " " ).
-	    	            (($tipodedato == "text") & $readonly!='t' ? " <input  tabindex='-1' type=image class='img' id='txt_".$nombre."' name=txt_".$nombre." src='img/nota.gif' onclick='muestratexto(this);return false' title='Amplia el panel de la captura'></input>" : " " );  // 20070301  modificacion para abrir un ventana auxiliar en textos largos
+	    	            (($tipodedato != "text") ? " ></input>" : " >".$valordefault."</textarea>").
+	    	            (($tipodedato == "timestamptz" || $tipodedato == "date") & $readonly!='t' ? " <input $wlobligatorio_ tabindex='-1' class='img' type=image id='fe_".$nombre."' name=fe_".$nombre." src='img/icon_datepicker_pink.gif' onclick='muestrafecha(this);return false' title='Selecciona la fecha del calendario'></input>" : " " ). 
+                            (($espassword=="3") ? " <input $wlobligatorio_ tabindex='-1' size=20 class='captcha' readonly='on' type=text id='wl_".$nombre."_img' name=wl_".$nombre."_img title='Imagen de la captcha' ></input>&nbsp<input tabindex='-1' class='img' type=image id='wl_".$nombre."_bot' name=wl_".$nombre."_bot src='img/refresh.png' onclick='ReDrawCaptcha(this);return false' title='Refresca la imagen del captcha'></input>" : " " ).
+	    	            (($tipodedato == "text") & $readonly!='t' ? " <input  $wlobligatorio_ tabindex='-1' type=image class='img' id='txt_".$nombre."' name=txt_".$nombre." src='img/nota.gif' onclick='muestratexto(this);return false' title='Amplia el panel de la captura'></input>" : " " );  // 20070301  modificacion para abrir un ventana auxiliar en textos largos
 						if ($mecq["upload_file"]=='t')
 						{ 
                                                   $wli.=" <input class='img' type=image abbr='' id='upl_".$nombre."' name=upl_".$nombre." src='/dist/img/carpeta.svg' onclick='subearchivo(this);return false' title='Adjunta archivo de explorador' />"; 
@@ -1109,15 +1086,12 @@ class soldatos
 						}
 	    	            $wli.="</td>\n";
 //    	     }
-			($obligatorio=='t') ? $wli=$wli." <input type=hidden id='ob_".$nombre."' name=ob_".$nombre." value=1></input>\n" : $wli=$wli ; 
 			(substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? $wli=$wli." <input type=hidden id='nu_".$nombre."' name=nu_".$nombre." value=1></input>\n" : $wli=$wli ; 
 	 		($tipodedato=='date' || $tipodedato=='timestampz') ? $wli=$wli." <input type=hidden id='_da_".$nombre."' name=_da_".$nombre." value=1></input>\n" : $wli=$wli ; 	      	
 			($busqueda=='t') ? $wli=$wli." <input type=hidden id='bu_".$nombre."' name=bu_".$nombre." value=1></input>\n" : $wli=$wli ; 
 			($mecq["imprime"]!='t') ? $wli=$wli." <input type=hidden id='_np_".$nombre."' name=_np_".$nombre." ></input>\n" : $wli=$wli ; 			
 			($val_particulares!='') ? $wli=$wli." <input type=hidden id='_vp_".$nombre."' name=_vp_".$nombre." value='".$val_particulares."'></input>\n" : $wli=$wli ; 			
-	 		$wli = ($mecq["cambiarencambios"]=='f' ? $wli." <input type=hidden id=nc_".$nombre." name=nc_".$nombre." value=1></input>\n" : $wli );			
-//20080123			($espassword=="3") ? $wli=$wli." <iframe name='iframe_'".$nombre." src='si.php' style='display:none' ></iframe>\n" : $wli=$wli ; 			
-##							<iframe name="iframe'.$uploaderId.'" src="imageupload.php" width="400" height="100" style="display:none"> </iframe>			
+	 		$wli = ($mecq["cambiarencambios"]=='f' ? $wli." <input type=hidden id=nc_".$nombre." name=nc_".$nombre." value=1></input>\n" : $wli );
 	}
     return $wli;
   }
@@ -1263,7 +1237,7 @@ class soldatos
           }
       	}
      	  echo "<td class='botones' > <input type=image class=img src='img/add.gif' title='Alta' value='Alta' name=matriz ".
-        	  "onclick='mantto_tabla(\"".$this->idmenu."\",\"i\",,,,,,);return false'></input></td>\n";//20071113
+        	  "onclick='mantto_tabla(\"".$this->idmenu."\",\"i\",,,,,,this);return false'></input></td>\n";//20071113
      	  echo "<td class='botones' > <input type=image class=img src='img/action_search_20.gif' title='Busca1' value='Buscar' name=busca ".
         	  "onclick='abre_consulta(\"".$this->idmenu."\");return false'></input></td>\n";     	      	
      	echo "</tr>";
@@ -1454,7 +1428,7 @@ class soldatos
         	                          (($this->menue[4][1]['donde']==0) ? $this->menue[4][1]['descripcion'] : "").   //20071112
                                           // confirma el movimiento a efectuar
                                           "\",\"".$this->menu["noconfirmamovtos"]."\"".
-                                          ");return false'></input></td>\n";
+                                          ",this);return false'></input></td>\n";
     	  }
         if (
         		strpos($this->movto_mantto,"s")!==false
@@ -1505,7 +1479,7 @@ class soldatos
         if (strpos($this->movto_mantto,"l")!==false)     	  
         {
      	    echo "<td id='Limpiar' class='botones' > <input type=button class='btn-01' id='iLimpiar' title='Limpia datos de la pantalla'  ".
-        	 "  onclick='pone_focus_forma(\"formpr\");formReset(\"formpr\",\"t\")' value='Limpiar' ></input></td>\n";	        
+        	 "  onclick='pone_focus_forma(\"\");formReset(\"formpr\",\"t\")' value='Limpiar' ></input></td>\n";	        
         }
 
         if (strpos($this->movto_mantto,"f")!==false)     	  

@@ -31,7 +31,7 @@ String.prototype.chunkString = function(len) {
     return _ret;
 };
 
-function SoloAlfanumerico(evt,busqueda)
+window.SoloAlfanumerico = function(evt,busqueda)
 //onKeyPress="return(SoloAlfanumerico(event))"
 {
 
@@ -43,7 +43,7 @@ function SoloAlfanumerico(evt,busqueda)
       return false;
 }
 
-function SoloNumerico(evt)
+window.SoloNumerico = function(evt)
 //onKeyPress="return(SoloNumerico(event))"
 {
       evt = (evt) ? evt : window.event;
@@ -54,7 +54,7 @@ function SoloNumerico(evt)
       return true;
 }
 
-function SoloMoneda(evt,valor)
+window.SoloMoneda = function(evt,valor)
 //onKeyPress="return(SoloNumerico(event))"
 {
 	try
@@ -71,7 +71,7 @@ function SoloMoneda(evt,valor)
 	} catch (err) { alert('error SoloMoneda '+err.description); }
 }
 
-function valcomunes() 
+window.valcomunes = function() 
 {
   this.wlfecha = "";
   this.wlfechaf = ""; // fecha final de un rango de fechas
