@@ -104,7 +104,7 @@ if(typeof HTMLElement!='undefined'&&!HTMLElement.prototype.click)  // por firefo
 window.formReset = function(theForm,limpiaralta)
 {
 	if (limpiaralta=='t')
-  		document.getElementById(wlforma).reset();
+  		theForm.reset();
   var qs = '';
   for (e=0;e<theForm.elements.length;e++) {
     if (theForm.elements[e].name!='' && theForm.elements[e].name.indexOf('nc_')>=0) {
@@ -823,7 +823,6 @@ window.abre_subvista = function(wlhoja,wlcampos,wleventoantes,wleventodespues,id
 	    		if (wldialogHeight!=0 || wldialogWidth!=0)
 	    	        {  
 		    	        wlurl=wlhoja+'?'+wlcampos;
-				//var x=showModalDialog(wlurl,wldialogWidth,wldialogHeight,'Subvista');
                                 _aa_=dhtmlmodal.open(idmenu, 'div', wlurl, wltitulo, 'width='+wldialogWidth+'px,height='+wldialogHeight+'px,center=1,resize=1,scrolling=1',"recal");
 	                }
 		        else
@@ -856,24 +855,27 @@ window.eventos_servidor = function (wlhoja,wlcampos,wleventoantes,wleventodespue
 //  ejecuta eventos en el servidor de funciones especificas de la aplicacion del usuario
 window.comandos_servidor = function(wlhoja,wlfuncion,idmenu)	
 {
+                if (typeof(idmenu)!="object") {
+                   forma=$("#formpr_"+idmenu)[0];
+                }
 
-        	if (checaobligatorios('formpr')==false)	
+        	if (checaobligatorios(forma)==false)	
         	{
            		return;
 			}           		
 
-        	if (checanumericos('formpr')==false)	
+        	if (checanumericos(forma)==false)	
         	{
            		return;
 			}           		
-        	if (checafechas('formpr')==false)	
+        	if (checafechas(forma)==false)	
         	{
            		return;
 			}           		
 
         wlurl=wlhoja  //20071105
         passData='&opcion='+wlfuncion+'&wlhoja='+
-        		wlhoja+buildQueryString('formpr')+"&filtro="+escape(armaFiltro('formpr'));
+        		wlhoja+buildQueryString(forma)+"&filtro="+escape(armaFiltro(forma));
         CargaXMLDoc();
 }
 	
@@ -935,7 +937,7 @@ window.hayunregistro = function()
 }		
 
 //   pone el focus en el primer campo de la forma		
-function pone_focus_forma(theForm='',dedonde)
+window.pone_focus_forma = function (theForm='',dedonde)
 {
   if (theForm=='') {
      if ('window' in dedonde) {
@@ -971,48 +973,30 @@ function pone_focus_forma(theForm='',dedonde)
 
 // esta funcion arma el querystring
 // la copie de utility.js
-function armaFiltro(theFormName) {
-try {
-  theForm = document.getElementById(theFormName);
+window.armaFiltro = function(theForm) {
+  try {
   var qs = '';
   var tipo = '' ;
-  for (e=0;e<theForm.elements.length;e++) {
-   if (theForm.elements[e].name!=''&& theForm.elements[e].name.indexOf('bu_')>=0) {
-	   var str=theForm.elements[e].name;
-	   var str1=str.replace(/bu_/,"wl_");
-	   var str2=str.replace(/bu_/,"nu_");	   
-
-		x=document.getElementsByName(str1)[0];
-		x1=document.getElementsByName(str2)[0];
-
+   for (e=0;e<theForm.elements.length;e++) {
+   if ('busqueda' in theForm.elements[e].dataset) {
+	var x=theForm.elements[e];
     	if (x.value!='') {     
-	    	try { tipo=x1.value; }
-	    	catch (err) { tipo=2; } 
-	    	if (tipo=2)
-
+           if ('numerico' in theForm.elements[e].dataset) { tipo=0 } else { tipo=2 }
+	    	if (tipo==2)
       		{ 
 	      		qs+=(qs=='')?' ':' and ';
-			if (x.value.indexOf('%')>=0)  // si el dato tiene un % quiere decier que es un like
-	    	{
-	      		qs+=x.name.substring(3)+' like \''+x.value+"'";	      		
-			}
-			else
+			if (x.value.indexOf('%')>=0) {
+	      		   qs+=x.name.substring(3)+' like \''+x.value+"'";	      		
+			} else
 			{
-	      		qs+=x.name.substring(3)+'=\''+x.value+"'"; //   20071107
+	      		    qs+=x.name.substring(3)+'=\''+x.value+"'"; //   20071107
 			}
 	      	}
-
-  		}
-      }
+       }
     }
-	filtro=document.createElement("input");    
-    filtro.type='hidden';   ///  firefox
-    filtro.value=qs;
-    filtro.id='_filtro_';
-    filtro.name='_filtro_';    
-    theForm.appendChild(filtro);
-  	return qs
-} catch (err) { alert('error armaFiltro='+err); }
+    }
+    return qs;
+    } catch (err) { alert('error armaFiltro='+err); }
 }	
 // funcion que pasa los datos de la forma padre a la forma hijo
 // siempre y cuando el nombre de los campos padre se igual a los nombre de los campos hijos
@@ -1699,6 +1683,12 @@ function clearSelect(wl) {
 
 
 window.muestra_vista = function (wlmenu,donde='entrada') {
+             try { $("#"+donde).children()[0].remove(); } catch(er) { };
+             //soldatos=document.getElementById('soldatos_'+wlmenu);
+             //if (soldatos) {  /*sustitute la vista principal */
+             //    entrada.removeChild(soldatos);
+            // }
+
                         wlurl='src/php/xmlhttp.php';//20071105
                         passData='&opcion=muestra_vista&idmenu='+wlmenu+'&donde='+donde;
                         CargaXMLDoc();
@@ -1761,11 +1751,11 @@ window.muestra_menus = function (menus,donde='navbarSupportedContentul') {
 //20071112   se incluyo los eventos a efectuar en el cliente   wleventoantescl, wleventodespuescl
 window.mantto_tabla = function (wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,wleventodespues,wleventoantescl,wleventodespuescl,noconfirmamovto,dedonde='')
 {
-	    if (wlmovto=='d' || wlmovto=='u' || wlmovto=='s' || wlmovto=='S' || wlmovto=='B' )
-	    {
+        if (wlmovto=='d' || wlmovto=='u' || wlmovto=='s' || wlmovto=='S' || wlmovto=='B' )
+        {
 			wlllave=wlllave.replace(/"/g,"'");
-		}			
-        forma=$(dedonde).closest('form')[0];
+	}			
+        forma=$('#formpr_'+wlmenu)[0];
         if (hayalgundatotecleado(forma)!='si' && (wlmovto=='i' || wlmovto=='u' || wlmovto=='I'))
         {
            alert ('no ha tecleado ningun dato'); pone_focus_forma(forma); return;
@@ -1901,7 +1891,7 @@ window.mantto_tabla = function (wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,w
         	
             
         		wlurl='src/php/xmlhttp.php';//20071105
-        		passData='&opcion=mantto_tabla&idmenu='+wlmenu+'&movto='+wlmovto+buildQueryString(forma)+"&wlllave="+escape(wlllave)+"&wlrenglon="+wlrenglon+"&wleventodespues="+escape(wleventodespues)+"&filtro="+escape(armaFiltro('formpr'))+"&noconfirmamovto="+escape(noconfirmamovto);
+        		passData='&opcion=mantto_tabla&idmenu='+wlmenu+'&movto='+wlmovto+buildQueryString(forma)+"&wlllave="+escape(wlllave)+"&wlrenglon="+wlrenglon+"&wleventodespues="+escape(wleventodespues)+"&filtro="+escape(armaFiltro(forma))+"&noconfirmamovto="+escape(noconfirmamovto);
 	        	CargaXMLDoc();			
 	        	return;
 }
@@ -2164,10 +2154,12 @@ window.querespuesta = function()
                 donde=req.responseXML.getElementsByTagName("donde")[0].innerHTML;
                 entrada=document.getElementById(donde);
              }
+/*
              soldatos=document.getElementById('soldatos');
-             if (entrada.id=="entrada" && (soldatos)) {
+             if (entrada.id=="entrada" && (soldatos)) {  
                  entrada.removeChild(soldatos);
              }
+*/
              html=req.responseXML.getElementsByTagName("muestra_vista")[0].innerHTML;
              html=htmlspecialchars_decode(html);
              parser = new DOMParser();

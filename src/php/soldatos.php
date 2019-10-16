@@ -451,7 +451,7 @@ class soldatos
     //echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"";
     //echo "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">";
     //echo "<html>\n";
-    echo "<div id='soldatos' class='container' onunload='this.Cierraforma()' onresize=\"this.Cambiasize('".$this->idmenu."');\" onClick='sumaclicks()' onLoad=\"try { inicia();inicioforma();\n pone_focus_forma('',this);\n pone_sort_scroll(); \n sumatotales();\n } catch (e) { };ContextMenu.intializeContextMenu();\"  >\n";      
+    echo "<div id='soldatos_".$this->idmenu."' class='container' onunload='this.Cierraforma()' onresize=\"this.Cambiasize('".$this->idmenu."');\" onClick='sumaclicks()' onLoad=\"try { inicia();inicioforma();\n pone_focus_forma('',this);\n pone_sort_scroll(); \n sumatotales();\n } catch (e) { };ContextMenu.intializeContextMenu();\"  >\n";      
     echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"/dist/css/subModal.css\" />\n";
     echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"/dist/css/modal.css\" />\n";
     echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"/dist/css/dhtmlwindow.css\" />\n";
@@ -735,8 +735,10 @@ class soldatos
 			$wltdd="Seleccionar opcion";
                         $wleshiden=($menuc["eshidden"]!='t' ? "" : " class='hidden' ");
                         $wlbusqueda=   (($busqueda=='t')    ? "<font color='black'>*</font>" : "");
+                        $wlbusqueda_=   (($busqueda=='t')    ? "data-busqueda=1" : "");
                         $wlobligatorio=(($obligatorio=='t') ? "<font ".$wleshiden." color='red'  >*</font>" : "");
                         $wlobligatorio_=(($obligatorio=='t') ? "data-obligatorio=1" : "");
+                        $tipodato_=((substr($tipodedato,0,3)==='int' || $tipodedato=='numeric') ? "data-numerico=1" : "" );
                         $wlidcampo=$mecq["idcampo"];
    		    $vas="<td class='form-label-custom' ".$wleshiden."id='wlt_".$wlnombre."' name='wlt_".$wlnombre."' abbr=\"".$descripcion."\" value=\"".$descripcion."\" ".
    		    
@@ -751,7 +753,7 @@ class soldatos
 ##   			$vas=$vas."<td > ";
 	        $vas=$vas.($wltdf=="1" || $wltdf=="2" || $wltdf=="3" ? "" : "<td".$wleshiden.">");
 	 		$vas = ($menuc["autocomplete"]=='1' ? $vas." <input type=text ".$wleshiden." readonly=true class='leesinborder' name=au_".$wlnombre." ></input><br>\n" : $vas );
-   			$vas=$vas."<select $wlobligatorio_ class='form-control form-control-custom' ".$wleshiden."placeholder=\"prueba\" ".
+   			$vas=$vas."<select $wlobligatorio_ $wlbusqueda_ $tipodato_ class='form-control form-control-custom' ".$wleshiden."placeholder=\"prueba\" ".
 	 		            ($menuc["autocomplete"]=='1' ? " ;restaura_autocomplete(this)" : "" ). 	      	 		   			               			
    			            (($menumce[1]["idevento"]=='1' && $menumce[1]["donde"]=='0' && $menumce[1]["descripcion"]!='') ? "return eventosparticulares(this,\"".$menumce[1]["descripcion"]."\");" : "").   			
    			          "' ";   			            
@@ -1013,6 +1015,8 @@ class soldatos
     $wlbusqueda=   (($busqueda=='t')    ? "<font color='black'>*</font>" : "");
     $wlobligatorio=(($obligatorio=='t') ? "<font ".$wleshiden." color='red'>*</font>" : "");
     $wlobligatorio_=(($obligatorio=='t') ? "data-obligatorio=1" : "");
+    $tipodato_=((substr($tipodedato,0,3)==='int' || $tipodedato=='numeric') ? "data-numerico=1" : "" );
+    $wlbusqueda_=   (($busqueda=='t')    ? "data-busqueda=1" : "");
     $wlidcampo=$mecq["idcampo"];
     $wltipodedato=((substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? " type='tel' " : "");
 		$wli="<td class='form-label-custom' ".$wleshiden." id='wlt_".$nombre."' name=wlt_".$nombre." title=\"".$descripcion."\" abbr=\"".$descripcion."\"".
@@ -1028,8 +1032,8 @@ class soldatos
 			  	(($wltdf=="1" || $wltdf=="2") ? "<br>" :(($wltdf=="3") ? "" : "</td>"));  // 20081015 grecar modifique esta linea para asignarles un valor las etiquetas td
 	    $wli=$wli.($wltdf=="1" || $wltdf=="2" || $wltdf=="3" ? ""  : "<td ".$wleshiden.">").
 	    				(($tipodedato != "text") 
-	    					? "<input $wlobligatorio_ class='form-control form-control-custom' ".$wleshiden." onKeydown='return quitaenter(this,event)' " 
-	    					: "<textarea $wlobligatorioi_ class='form-control form-control-custom' ".$wleshiden.((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
+	    					? "<input $wlobligatorio_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom' ".$wleshiden." onKeydown='return quitaenter(this,event)' " 
+	    					: "<textarea $wlobligatorio_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom' ".$wleshiden.((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
 	    									? "cols=".$mecq["colspantxt"] : "" )
 	    				).
 /**
@@ -1076,9 +1080,9 @@ class soldatos
 
 	    	            $wli=$wli.(($wltdf==3) ? " placeholder=\"".$wltdd."\"" : "").
 	    	            (($tipodedato != "text") ? " ></input>" : " >".$valordefault."</textarea>").
-	    	            (($tipodedato == "timestamptz" || $tipodedato == "date") & $readonly!='t' ? " <input $wlobligatorio_ tabindex='-1' class='img' type=image id='fe_".$nombre."' name=fe_".$nombre." src='img/icon_datepicker_pink.gif' onclick='muestrafecha(this);return false' title='Selecciona la fecha del calendario'></input>" : " " ). 
-                            (($espassword=="3") ? " <input $wlobligatorio_ tabindex='-1' size=20 class='captcha' readonly='on' type=text id='wl_".$nombre."_img' name=wl_".$nombre."_img title='Imagen de la captcha' ></input>&nbsp<input tabindex='-1' class='img' type=image id='wl_".$nombre."_bot' name=wl_".$nombre."_bot src='img/refresh.png' onclick='ReDrawCaptcha(this);return false' title='Refresca la imagen del captcha'></input>" : " " ).
-	    	            (($tipodedato == "text") & $readonly!='t' ? " <input  $wlobligatorio_ tabindex='-1' type=image class='img' id='txt_".$nombre."' name=txt_".$nombre." src='img/nota.gif' onclick='muestratexto(this);return false' title='Amplia el panel de la captura'></input>" : " " );  // 20070301  modificacion para abrir un ventana auxiliar en textos largos
+	    	            (($tipodedato == "timestamptz" || $tipodedato == "date") & $readonly!='t' ? " <input $wlobligatorio_ $tipodato_ $wlbusqueda_ tabindex='-1' class='img' type=image id='fe_".$nombre."' name=fe_".$nombre." src='img/icon_datepicker_pink.gif' onclick='muestrafecha(this);return false' title='Selecciona la fecha del calendario'></input>" : " " ). 
+                            (($espassword=="3") ? " <input $wlobligatorio_ $tipodato_ $wlbusqueda_ tabindex='-1' size=20 class='captcha' readonly='on' type=text id='wl_".$nombre."_img' name=wl_".$nombre."_img title='Imagen de la captcha' ></input>&nbsp<input tabindex='-1' class='img' type=image id='wl_".$nombre."_bot' name=wl_".$nombre."_bot src='img/refresh.png' onclick='ReDrawCaptcha(this);return false' title='Refresca la imagen del captcha'></input>" : " " ).
+	    	            (($tipodedato == "text") & $readonly!='t' ? " <input  $wlobligatorio_ $tipodato_ $wlbusqueda_ tabindex='-1' type=image class='img' id='txt_".$nombre."' name=txt_".$nombre." src='img/nota.gif' onclick='muestratexto(this);return false' title='Amplia el panel de la captura'></input>" : " " );  // 20070301  modificacion para abrir un ventana auxiliar en textos largos
 						if ($mecq["upload_file"]=='t')
 						{ 
                                                   $wli.=" <input class='img' type=image abbr='' id='upl_".$nombre."' name=upl_".$nombre." src='/dist/img/carpeta.svg' onclick='subearchivo(this);return false' title='Adjunta archivo de explorador' />"; 
@@ -1550,9 +1554,9 @@ class soldatos
         if ($meda->camposm["esadmon"]!="0" && $meda->camposm["esadmon"]!="")
         	{
 				echo "<td id='Autodiseno' class=botones ><input type=button class='btn-01' id='iAutoDiseno' title='Entra al diseno de la forma' ".
-									  " onclick='abre_subvista(\"src/php/man_menus.php\",\"idmenu=".MENU.
+									  " onclick='abre_subvista(\"src/php/man_menus.php\",\"idmenu=".$this->menu["idmenu"].
 						              " &filtro=idmenu=".$this->menu["idmenu"].
-						              "\",\"\",\"\",999,800,600,\"Diseno de form\"".	//20070526
+						              "\",\"\",\"\",".MENU.",800,600,\"Diseno de form\"".	//20070526
 						              ");return false;' value=AutoDiseno >".
 									  "</input>".
 						              "</td>\n"; 										
@@ -1866,15 +1870,6 @@ class soldatos
   {
 			return "<td name=noimprime class=botones >".
 				  (	$meda->camposmsv[$mm]['esboton']==1 ? "<input class='btn-01' type=button id='".$meda->camposmsv[$mm]['texto']."'" : "<a id='".$meda->camposmsv[$mm]['texto']."' href=## ").
-//20070630  lo modifique para que en vez de ejecutar muestra cambia se fuera como si lieramos un click a select							  
-//20070630			      " onclick='muestra_cambio(\"formpr\",".
-//20070630							          $z.",".$i.",\"".$wlllave."\",".$meda->camposm['idmenu'].
-//20070630        	                          ",\"".
-//20070630        	                          (($meda->camposme[7]['donde']==1) ? $meda->camposme[7]['descripcion'] : "").
-//20070630        	                          "\",\"".
-//20070630        	                          // evento despues de dar cambio
-//20070630        	                          (($meda->camposme[8]['donde']==1) ? $meda->camposme[8]['descripcion'] : "").
-//20070630						              "\",\"s\");abre_subvista(\"man_menus.php\",\"idmenu=".
                    			"onclick='daunClick(\"cam".$z."\");".
 						              "abre_subvista(\"src/php/man_menus.php\",\"idmenu=".
 						              $meda->camposmsv[$mm]['idsubvista'].
