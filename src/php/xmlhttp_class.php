@@ -323,6 +323,7 @@ class xmlhttp_class
       if (array_key_exists('donde',$this->argumentos)) {
       error_log($this->dame_tiempo()." se encontro el parametro donde \n",3,"/var/tmp/errores.log");
       echo '<donde>'.$this->argumentos['donde'].'</donde>';
+      echo '<idmenu>'.$this->argumentos['idmenu'].'</idmenu>';
       }
    }
 

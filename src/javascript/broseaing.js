@@ -1684,11 +1684,6 @@ function clearSelect(wl) {
 
 window.muestra_vista = function (wlmenu,donde='entrada') {
              try { $("#"+donde).children()[0].remove(); } catch(er) { };
-             //soldatos=document.getElementById('soldatos_'+wlmenu);
-             //if (soldatos) {  /*sustitute la vista principal */
-             //    entrada.removeChild(soldatos);
-            // }
-
                         wlurl='src/php/xmlhttp.php';//20071105
                         passData='&opcion=muestra_vista&idmenu='+wlmenu+'&donde='+donde;
                         CargaXMLDoc();
@@ -2154,12 +2149,6 @@ window.querespuesta = function()
                 donde=req.responseXML.getElementsByTagName("donde")[0].innerHTML;
                 entrada=document.getElementById(donde);
              }
-/*
-             soldatos=document.getElementById('soldatos');
-             if (entrada.id=="entrada" && (soldatos)) {  
-                 entrada.removeChild(soldatos);
-             }
-*/
              html=req.responseXML.getElementsByTagName("muestra_vista")[0].innerHTML;
              html=htmlspecialchars_decode(html);
              parser = new DOMParser();
@@ -2168,7 +2157,11 @@ window.querespuesta = function()
              if (req.responseText.indexOf("<menus>") != -1) {
                 muestra_menus(req.responseXML.getElementsByTagName("menus"));
              }
-             pone_focus_forma('',this)
+             if (req.responseText.indexOf("<idmenu>") != -1) {
+                idmenu=req.responseXML.getElementsByTagName("idmenu")[0].innerHTML;
+                forma=$('#formpr_'+idmenu)[0];
+                pone_focus_forma(forma,this)
+             }
              return;
            }
 
