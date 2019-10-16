@@ -1,5 +1,9 @@
-import "bootstrap";
-import '../scss/app.scss';
+//import 'bootstrap/dist/css/bootstrap.min.css';
+//
+window.$ = window.jQuery = require('jquery');
+import Popper from 'popper.js';
+import 'bootstrap'
+
 require('./captcha.js');
 require('./altaadjuntara.js');
 require('./altaautomatica.js');

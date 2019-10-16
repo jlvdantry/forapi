@@ -30,7 +30,7 @@ init:function(t){
 	domwindow.className="dhtmlwindow"
 	var domwindowdata=''
 	domwindowdata='<div class="drag-handle">'
-	domwindowdata+='DHTML Window <div class="drag-controls"><img src="'+this.imagefiles[0]+'" title="Minimize" /><button type="button" class="'+this.imagefiles[1]+'" title="Cerrar" /><span aria-hidden="true">&times;</span></button></div>'
+	domwindowdata+='DHTML Window <div class="drag-controls"><button /><button type="button" class="'+this.imagefiles[1]+'" title="Cerrar" ><span aria-hidden="true">&times;</span></button></div>'
 	domwindowdata+='</div>'
 	domwindowdata+='<div class="drag-contentarea"></div>'
 	domwindowdata+='<div class="drag-statusarea"><div class="drag-resizearea" style="background: transparent url('+this.imagefiles[3]+') top right no-repeat;">&nbsp;</div></div>'

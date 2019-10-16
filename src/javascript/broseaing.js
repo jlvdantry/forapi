@@ -15,9 +15,9 @@ window._aad_ ;  // variable para altaadjuntar
      { 
        if (!wlventana) { wlventana=0; }
        if (wlventana==0)
-       { return dhtmlmodal.open(titulo, 'iframe', url, titulo, 'width='+w+'px,height='+h+'px,center=1,resize=1,scrolling=1')  }
+       { return dhtmlmodal.open(titulo, 'div', url, titulo, 'width='+w+'px,height='+h+'px,center=1,resize=1,scrolling=1')  }
        if (wlventana==1)
-       { return dhtmlwindow.open(titulo, 'iframe', url, titulo, 'width='+w+'px,height='+h+'px,center=1,resize=1,scrolling=1')  }
+       { return dhtmlwindow.open(titulo, 'div', url, titulo, 'width='+w+'px,height='+h+'px,center=1,resize=1,scrolling=1')  }
        if (wlventana==2)
        { window.open(url, '_blank',  'width='+w+'px,height='+h+'px,center=1,resize=1,scrolling=1'); return true;  }
      }
@@ -827,16 +827,7 @@ window.abre_subvista = function(wlhoja,wlcampos,wleventoantes,wleventodespues,id
 	    	        {  
 		    	        wlurl=wlhoja+'?'+wlcampos;
 				//var x=showModalDialog(wlurl,wldialogWidth,wldialogHeight,'Subvista');
-                                _aa_=dhtmlmodal.open(idmenu, 'iframe', wlurl, wltitulo, 'width='+wldialogWidth+'px,height='+wldialogHeight+'px,center=1,resize=1,scrolling=1',"recal");
-                                if (wlcampos.indexOf("idmenu")!=-1)
-                                {   
-                                     _aa_.title=wlcampos.substr(wlcampos.indexOf("idmenu")+7);
-                                     if (_aa_.title.indexOf("&")!=1) { _aa_.title=_aa_.title.substr(0,_aa_.title.indexOf("&")); } 
-                                } else { _aa_.title=0; }
-                                _aa_.close=function() {
-                                       Cambiatamano(_aa_.title,_aa_.contentarea.clientHeight,_aa_.contentarea.clientWidth); 
-                                       return true;
-                                 }
+                                _aa_=dhtmlmodal.open(idmenu, 'div', wlurl, wltitulo, 'width='+wldialogWidth+'px,height='+wldialogHeight+'px,center=1,resize=1,scrolling=1',"recal");
 	                }
 		        else
 		        {
@@ -2177,8 +2168,12 @@ function querespuesta()
            if (req.responseText.indexOf("<muestra_vista>") != -1)
            {
              entrada=document.getElementById('entrada');
+             if (req.responseText.indexOf("<donde>") != -1) {
+                donde=req.responseXML.getElementsByTagName("donde")[0].innerHTML;
+                entrada=document.getElementById(donde);
+             }
              soldatos=document.getElementById('soldatos');
-             if (soldatos) {
+             if (entrada.id=="entrada" && (soldatos)) {
                  entrada.removeChild(soldatos);
              }
              html=req.responseXML.getElementsByTagName("muestra_vista")[0].innerHTML;

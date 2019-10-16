@@ -46,6 +46,11 @@ class xmlhttp_class
       echo "<channel>";
       echo "<respuesta>";
    }
+   function dame_tiempo()
+   {
+                            $t=getdate();
+                            return date('Y-m-d h:i:s',$t[0]);
+   }
 
    /**
     *   Captura de ingresos  tiende a desaparacer
@@ -305,6 +310,7 @@ class xmlhttp_class
      **/
    function muestra_vista()
    {
+      error_log($this->dame_tiempo()." src/php/xmlhttp_class.php muestra_vista".$parametro1." ".print_r($this->argumentos,true)."\n",3,"/var/tmp/errores.log");
       $soldatos = new soldatos();
       $soldatos->idmenu=$this->argumentos['idmenu'];
       $soldatos->connection=$this->connection;
@@ -314,6 +320,10 @@ class xmlhttp_class
       $wlrenglones=ob_get_contents();
       ob_end_clean();
       echo '<muestra_vista>'.htmlspecialchars($wlrenglones,ENT_IGNORE,UTF-8).'</muestra_vista>';
+      if (array_key_exists('donde',$this->argumentos)) {
+      error_log($this->dame_tiempo()." se encontro el parametro donde \n",3,"/var/tmp/errores.log");
+      echo '<donde>'.$this->argumentos['donde'].'</donde>';
+      }
    }
 
    /**

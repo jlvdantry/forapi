@@ -15,46 +15,8 @@ veilstack: 0,
 _doc: null,
 _fra: null,
 open:function(t, contenttype, contentsource, title, attr, recalonload){
-	var d=dhtmlwindow //reference dhtmlwindow object
-        var interVeil=document.createElement("div") //create dhtml window div
-        if (top.window.frames["pantallas"])
-        {
-                this._doc= top.window.frames["pantallas"].document ;
-                this._fra= top.window.frames["pantallas"] ;
-        } else
-        if (top.window.frames["menu"])
-        {
-                this._doc=top.window.frames["menu"].document ;
-                this._fra=top.window.frames["menu"] ;
-        }
-        else
-        {
-                this._doc = window.parent.document
-                if (!this._doc)  this._doc = document
-                this._fra = window.parent.document
-                if (!this._fra)  this._fra = document
-        }
-
-
-        interVeil.id="interVeil"+t
-        interVeil.className="interVeil"
-        this._doc.body.appendChild(interVeil)
-	this.interVeil=this._doc.getElementById("interVeil"+t) //Reference "veil" div
-	this.veilstack++ //var to keep track of how many modal windows are open right now
-	if (recalonload=="recal" && d.scroll_top==0)
-		d.addEvent(window, function(){dhtmlmodal.adjustveil()}, "load")
-	var t=d.open(t, contenttype, contentsource, title, attr, recalonload)
-	this.loadveil()
-	t.controls.firstChild.style.display="none" //Disable "minimize" button
-	t.controls.onclick=function(){ 
-                          //var dh=this._parent.getElementById("Subvista");
-                          //this._parent.close();  // ejecuta el close del dhtmlwindow
-                          dhtmlmodal.close(this._parent, true);
-                                     } //OVERWRITE default control action with new one
-
-	t.show=function(){dhtmlmodal.show(this)} //OVERWRITE default t.show() method with new one
-	t.hide=function(){dhtmlmodal.close(this)} //OVERWRITE default t.hide() method with new one
-        return t
+       muestra_vista(t,'modal-body');
+       $('#msgModal').modal();
 },
 
 
