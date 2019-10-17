@@ -240,12 +240,12 @@ window.daunClick = function (wlcampo)
     Da un click al boto de seleccionar para que muestre el renglon en los campos de captura
     recibe el nombre del campo
 */        
-function desplega(si)
+window.desplega = function(si)
 {
 	si.focus();
 }
 
-function sumatotales(theFormName) {
+window.sumatotales = function(theFormName) {
 	try
 	{
 	    var tfoot = '';
@@ -273,7 +273,7 @@ function sumatotales(theFormName) {
 	catch(err) { alert('error en sumatotales'+err.description); }
 }
 
-function dametotalcolumna(colu)
+window.dametotalcolumna = function(colu)
 {
 	try
 	{
@@ -289,7 +289,7 @@ function dametotalcolumna(colu)
 	catch (err) { alert('error dametotalcolumna'); return 0; }
 }
 
-function quecamponoimprime(theFormName,desplega) {
+window.quecamponoimprime = function(theFormName,desplega) {
 
  theForm = document.getElementById(theFormName);
   var qs = '';
@@ -347,7 +347,7 @@ function quecamponoimprime(theFormName,desplega) {
 /*  20070707
     Funcion que la impresion se ve en patalla
 */        
-function imprime()
+window.imprime = function()
 {
 try
 {
@@ -358,7 +358,7 @@ try
 	catch(e){alert("Fallo la impresion! " + e.message); 		top.document.getElementById('fs').cols=varcols;	}
 }
 
-function imprime_sinframes()
+window.imprime_sinframes = function()
 {
 var OLECMDID = 7; 
 try
@@ -380,7 +380,7 @@ try
 	catch(e){ alert("Fallo la impresion sinframes! " + e.description );			quecamponoimprime('formpr',''); oWebBrowser.outerHTML='';}	
 }
 
-function imprime_conframes()
+window.imprime_conframes = function()
 {
 var OLECMDID = 7; 
 /* OLECMDID values: 
@@ -420,7 +420,7 @@ try
 /*
 	Funcion que se ejecuta que acualiza el tano de la forma
 */    
-function Cambiatamano(idmenu,height,width)
+window.Cambiatamano = function(idmenu,height,width)
 {
 		eventos_servidor("cambio de size",0,"cambiotamano","",idmenu,width,height)		;
 }    
@@ -429,7 +429,7 @@ function Cambiatamano(idmenu,height,width)
 	Funcion que se ejecuta al cerrar la ventana y lo unico que hace es actualizar el size de la misma
 	si esta fue cambiada
 */    
-function Cierraforma()
+window.Cierraforma = function()
 {
 	if (Cambiosize!=0)
 	{
@@ -641,23 +641,23 @@ try {
 
 } //20070215
 
-function validafecha(wlcampos)
+window.validafecha = function(wlcampos)
 {
 		var v = new valcomunes();
 		v.valfecha(wlcampos);
 }
-function validaEmail(wlcampos)
+window.validaEmail = function(wlcampos)
 {
                 var v = new valcomunes();
                 return v.validarEmail(wlcampos);
 }
-function validahora(wlcampos)
+window.validahora = function(wlcampos)
 {
                 var v = new valcomunes();
                 v.valhora(wlcampos);
 }
 
-function despleid()
+window.despleid = function()
 {
 var str='';
 var listitems= document.getElementsByTagName("div")
@@ -799,11 +799,6 @@ window.subeclb= function(wlcampos)
 window.muestra_image= function(imagen)
 {
 	alert('debe de mostrar image'+imagen);
-}
-
-function vales()
-{
-	alert('vale');
 }
 
 // esta funcion abre una subvista
@@ -1000,7 +995,7 @@ window.armaFiltro = function(theForm) {
 }	
 // funcion que pasa los datos de la forma padre a la forma hijo
 // siempre y cuando el nombre de los campos padre se igual a los nombre de los campos hijos
-function fijos(theForm)
+window.fijos = function (theForm)
 {
 	try
 	{
@@ -1053,7 +1048,7 @@ catch (err)
 
 // esta funcion arma el querystring
 // la copie de utility.js
-function buildQueryString(theForm) {
+window.buildQueryString = function(theForm) {
   //theForm = document.getElementById(theFormName);
   var qs = '';
   for (e=0;e<theForm.elements.length;e++) {
@@ -1067,7 +1062,7 @@ function buildQueryString(theForm) {
 /* 20070710  funcion que regresa el onclick de un td 
 				esto para armar el oncontextmenu de un popup menu
 */
-function dame_onclick(wlonclick)
+window.dame_onclick = function(wlonclick)
 {
 	try {
 		var wltextoi=wlonclick.substring(wlonclick.indexOf('onclick')+9);
@@ -1080,7 +1075,7 @@ function dame_onclick(wlonclick)
 }
 ///**********************************   20061102
 ///  funcion que el camba el onclick
-function cambia_onclick(wlonclick)
+window.cambia_onclick = function(wlonclick)
 {
 
 	try {
@@ -1103,7 +1098,7 @@ function cambia_onclick(wlonclick)
 //   pone a las imagenes unchecked, excepto cuando fue seleccionado un renglon
 //   parametros pasados el nombre de la format
 //				wlrenglon el numero de renglon que fue seleccionado
-function pone_unchecked(wlrenglon)
+window.pone_unchecked=function(wlrenglon)
 {
   try 
   {
@@ -1140,7 +1135,7 @@ function pone_unchecked(wlrenglon)
 // movimiento que disparo el muestra_cambio u=update de registro,s=subvista,f=funcion,u1=no se (parace que es update)
 // 20071113  se agrego los eventos antes que hay que ejecutar antes de insertar, select,update o delete en el cliente
 // 20071113 function muestra_cambio(theFormName,r,ct,wlllave,menu,wleventoantes,wleventodespues,movto) {
-function muestra_cambio(theFormName,r,ct,wlllave,menu,wleventoantes,wleventodespues,wleventoantescl,wleventodespuescl,movto,noconfirmamovtos) {	
+window.muestra_cambio = function(theFormName,r,ct,wlllave,menu,wleventoantes,wleventodespues,wleventoantescl,wleventodespuescl,movto,noconfirmamovtos) {	
   // pone el dato de img listo para efectuar el cambio
 
   if (movto=='B')  //Opcion de busqueda para que funcione esto debe estar definido una campo llave
@@ -1163,10 +1158,10 @@ function muestra_cambio(theFormName,r,ct,wlllave,menu,wleventoantes,wleventodesp
 	  var el="r"+r+"c"+e; // renglon columna que se muestra en la pantalla de captura
 	  var elm="cc"+e;   //  campos de la pantalla de captura
 		try {
-                                var captu=document.getElementById(elm);
-                                var str=captu.name;
-                                var str1=str.replace(/wl_/,"nc_");
-                                try { nc=document.getElementById(str1); nc.readOnly=true; captu.readOnly=true; captu.disabled=true; captu.className='lee'; } catch (err) { };
+                        var captu=document.getElementById(elm);
+                        var str=captu.name;
+                        var str1=str.replace(/wl_/,"nc_");
+                        try { nc=document.getElementById(str1); nc.readOnly=true; captu.readOnly=true; captu.disabled=true; captu.className='lee'; } catch (err) { };
                         xelm=document.getElementById(elm);
                         xel=document.getElementById(el);
                         if (xelm.type=='text' || xelm.type=='textarea' || xelm.type=='number' || xelm.type=='email' || xelm.type=='tel')
@@ -1190,14 +1185,7 @@ function muestra_cambio(theFormName,r,ct,wlllave,menu,wleventoantes,wleventodesp
                                       captu.parentNode.appendChild(wlele);
                                    }
                                 }
-
                         }
-/*
-	  		if (xelm.type=='textarea')
-	  		{ 
-		  		document.getElementById(elm).value=document.getElementById(el).innerText.trim(); 
-		  	}		  	
-*/
 	  		if (xelm.type=='select-one')
 	  		{ 
 					document.getElementById(elm).value=busca_ValorOption(document.getElementById(elm),document.getElementById(el).innerText,1,document.getElementById(el).abbr); 
@@ -1215,7 +1203,10 @@ function muestra_cambio(theFormName,r,ct,wlllave,menu,wleventoantes,wleventodesp
   		{
   		}
     }
-    pone_focus_forma(theFormName);
+    forma=$('#'+theFormName+'_'+menu)[0];
+    console.log('antes de pone_focus_forma');
+    pone_focus_forma(forma);
+    console.log('despues de pone_focus_forma');
 
 	wlTR=document.getElementById('tr'+r);    
 	color_renglon(wlTR);
@@ -1223,7 +1214,7 @@ function muestra_cambio(theFormName,r,ct,wlllave,menu,wleventoantes,wleventodesp
 }
 /*  funcion que mueve el renglon seleccionado a el renglon 1 
      recib el numero de renglon*/
-function muevea1renglon(r)
+window.muevea1renglon = function(r)
 {
 	wlTR=document.getElementById('tr'+r);    	
 	var b = document.getElementById('tabdinamica').insertRow(1);
@@ -1248,7 +1239,7 @@ function muevea1renglon(r)
 }
 
 // de acuerdo al valor de la fila pone checked o unchecked el campo de captura
-function valor_checkbox_cap(el,elm)
+window.valor_checkbox_cap = function(el,elm)
 {
 	if(document.getElementById(el).innerText=='t') 
 	{   
@@ -1261,7 +1252,7 @@ function valor_checkbox_cap(el,elm)
 		}; 	
 }
 //   pone el valor de un combo box si checked le pone t si es unchecked le pone f
-function ponvalor_cb(cb)
+window.ponvalor_cb = function(cb)
 {
 	if (cb.checked==true)
 	{ cb.value='t'; }
@@ -1274,7 +1265,7 @@ function ponvalor_cb(cb)
 //   recibe wlalta que indica si no existe el texto en el objeto limpia el objeto y lo da de alta
 //           wlalta debe vale 1 para darlo de alta
 //   recib wlvalor , que es el valor del texto en el select
-function busca_ValorOption(opciones,wltexto,wlalta,wlvalor)
+window.busca_ValorOption = function(opciones,wltexto,wlalta,wlvalor)
 {
 	try 
 	{
@@ -1313,7 +1304,7 @@ function busca_ValorOption(opciones,wltexto,wlalta,wlvalor)
 }
 
 //   busca la descripcion  de una opcion de acuerdo al valor de la opcion
-function busca_DesOption(opciones,wlvalue)
+window.busca_DesOption = function(opciones,wlvalue)
 {
 	  for (ee=0;ee<opciones.length;ee++) {
 			if(opciones.options[ee].value==wlvalue)
@@ -1325,7 +1316,7 @@ function busca_DesOption(opciones,wlvalue)
 }
 
 // funcion que checa si hubo algun dato tecleado de los datos de busqueda
-function hayalgundatotecleadobus(theForm) {
+window.hayalgundatotecleadobus = function(theForm) {
 try {
   //theForm = document.getElementById(theFormName);
   var qs = '';
@@ -1447,7 +1438,7 @@ window.eventosparticulares = function(x,evento)
 }
 
 // funcion que checa las fechas de los campos 
-function checaparticulares(theForm) {
+window.checaparticulares = function(theForm) {
 	try
 	{
   //theForm = document.getElementById(theFormName);
@@ -1476,7 +1467,7 @@ function checaparticulares(theForm) {
 }
 
 
-function CargaXMLDoc() 
+window.CargaXMLDoc = function() 
 {
 	try
 	{
@@ -1518,7 +1509,7 @@ function CargaXMLDoc()
 //  fuenteevento, el evento donde se va a llenar el campo select 0=carga, 1=cambia el registro padre, 2=on focus, 3=on focus solo la primera vez
 //  20070616 sololimite,  0=indica que no  1= si  sololimite quiere decir que en las opciones solo mostro el limite para no   
 //  20070616               saturar el browser
-function pon_Select(wlselect,wlfiltropadre,wlfiltrohijo,fuentewhere,fuenteevento,sololimite)
+window.pon_Select = function(wlselect,wlfiltropadre,wlfiltrohijo,fuentewhere,fuenteevento,sololimite)
 {
 	// si ya esta lleno el select y el evento es 3 onfocus solo la primiera vez se sale
 	// para no volver a llenar el campo select
@@ -1586,7 +1577,7 @@ function pon_Select(wlselect,wlfiltropadre,wlfiltrohijo,fuentewhere,fuenteevento
   	}
   	
 }
-function reemplaza_where(fuentewhere,theFormName)
+window.reemplaza_where = function(fuentewhere,theFormName)
 {
   theForm = document.getElementById(theFormName);
   var qs = '';
@@ -1604,7 +1595,7 @@ function reemplaza_where(fuentewhere,theFormName)
 }
 
 //  funcion que checa si fue seleccionado previamente un dato
-function si_Select(wlselect,wlfiltro)
+window.si_Select = function(wlselect,wlfiltro)
 {
 	try
 	{
@@ -1630,7 +1621,7 @@ function si_Select(wlselect,wlfiltro)
 // elegant, but compatible way.
 //  wlselected si es 1 se pone la opcion selected y defaultselected   20070810
 //				si es 2 se pone la opcion defaultselected             20070810
-function appendToSelect(wlselect, value, content,wlselected)  //   20070808  se incluyo el wlselected
+window.appendToSelect= function(wlselect, value, content,wlselected)  //   20070808  se incluyo el wlselected
 {
 	try   // inclui el try el 20070808
 	{
@@ -1647,7 +1638,7 @@ function appendToSelect(wlselect, value, content,wlselected)  //   20070808  se 
   	}    	
 }
 
-function buildTopicList(wl,des,val) 
+window.buildTopicList=function(wl,des,val) 
 {
     var items = req.responseXML.getElementsByTagName("registro");
     for (var i = 0; i < items.length; i++) {
@@ -1663,14 +1654,14 @@ function buildTopicList(wl,des,val)
   *  ejecuta un submenu a nivel renglon
   *  lo que ejecuta viene el el value de la opcion
   **/
-function submenus(opcion)
+window.submenus = function(opcion)
 {
 	var quitareturn=opcion.options[opcion.selectedIndex].value.replace(/return/,"");
 	eval(quitareturn);
 }
 
 // empty Topics select list content
-function clearSelect(wl) {
+window.clearSelect = function(wl) {
 	try
 	{
 		wl.innerHTML="";
@@ -1693,7 +1684,8 @@ window.muestra_menus = function (menus,donde='navbarSupportedContentul') {
      console.log('menus'+menus[0]); 
      m=menus[0].getElementsByTagName('menu');
      nav=document.getElementByID(donde);
-     for ( var ren in m) {
+     /** interactual sobre los menus que no tiene padre */
+     for ( var ren in m) {  
          if (typeof(m[ren])=='object') {
             idpadre=m[ren].childNodes[3].innerHTML;
             des=m[ren].childNodes[0].innerHTML
@@ -1897,7 +1889,7 @@ window.mantto_tabla = function (wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,w
 //            valor del importe del ingresos que se quiere actualizar
 //            la atl que quiere actualizar
 //            la fecha de cobro que quiere actualizar
-function caping(wlrenglon,wlcolumna,wlobjeto,valor,wlatl,wlfcobro)
+window.caping = function(wlrenglon,wlcolumna,wlobjeto,valor,wlatl,wlfcobro)
 {
     var vd1 = new valcomunes();
     vd1.ponnumero(wlobjeto);
@@ -1919,7 +1911,7 @@ function caping(wlrenglon,wlcolumna,wlobjeto,valor,wlatl,wlfcobro)
 
 // funcion que pone el mensaje en la siguiente celda donde se capturo el dato
 // esto funciona exclusivamente para la captura de ingresos
-function mensajetabla(wlmensaje)
+window.mensajetabla = function(wlmensaje)
 {
    var x=document.getElementById('tabdinamica').rows; // obtiene los renglones de la tabla
    var y=x[glr].cells ; // obtiene las celdas del renglon a modificar
@@ -1935,13 +1927,13 @@ function mensajetabla(wlmensaje)
 }
 
 // funcion que pone el mensaje en la siguiente celda donde se capturo el dato
-function bajatabla()
+window.bajatabla = function()
 {
 	var wl=document.getElementById('tr'+glr).rowIndex;
       document.getElementById('tabdinamica').deleteRow(wl);
 }
 // funcion que da de baja todos los renglones de una tabla
-function bajatodatabla()
+window.bajatodatabla = function()
 {
 	try
 	{
@@ -1960,7 +1952,7 @@ function bajatodatabla()
 // funcion que cambia de color el row cuando cambian un registro
 //  recibe el menu, el moviento que va hacer, la llave del cambio y el renglon de la tabla
 //  cambiacolor, si es cero no cambia el color en el registro, si es 1 si cambia el color en el registor
-function checaSiCambioAlgo(wlmenu,wlmovto,wlllave,wlrenglon,cambiacolor)
+window.checaSiCambioAlgo = function(wlmenu,wlmovto,wlllave,wlrenglon,cambiacolor)
 {
 try {  // firefox
 
@@ -2019,7 +2011,7 @@ try {  // firefox
 }
 
 //  convierte un null a false
-function nullesfalse(wlvalor)
+window.nullesfalse = function(wlvalor)
 {
 	if (wlvalor=='')
 	{	return false; }
@@ -2036,7 +2028,7 @@ function mueveCambio(wlmenu,wlmovto,wlllave,wlrenglon)
 }
 
 // Funcion que da de alta un renglon en la tabla donde muestra el registro recien dado de alta
-function altatabla(wlrenglon)
+window.altatabla = function(wlrenglon)
 {
 	try
 	{

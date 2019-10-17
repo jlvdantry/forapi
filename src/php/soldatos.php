@@ -1719,7 +1719,7 @@ class soldatos
         	$wlini="<tr id=tr".($z)."  oncontextmenu='contextForTR(this);return false;' >"; //20070703       	        	
         	if (strpos($meda->camposm['movtos'],"d")!==false) 
         	{
-            	 $wlini=$wlini."<td name=noimprime ><input class='img' type=image title='Eliminar registro' src='img/delete.gif' ".
+            	 $wlini=$wlini."<td name=noimprime ><button class='btn-eliminar'  title='Eliminar registro'  ".
 //20070630  lo modifique para que antes de dar de baja los muestre en los campos de captura
 //20070630                   "onclick='mantto_tabla(\"".$meda->camposm['idmenu']."\",\"d\",\"".$wlllave."\",".($z).",\"".
                    "onclick='daunClick(\"cam".$z."\");mantto_tabla(\"".$meda->camposm['idmenu']."\",\"d\",\"".$wlllave."\",".($z).",\"".                   
@@ -1764,7 +1764,7 @@ class soldatos
 //20070611     if (strpos($meda->camposm['movtos'],"u")!==false) 
             if (strpos($meda->camposm['movtos'],"u")!==false || strpos($meda->camposm['movtos'],"s")!==false)      
         	{
-            	 $wlini=$wlini."<td name=noimprime ><input type=Image name='botcam' id=cam".$z." title='Seleccionar renglon' src='img/icon_enabled_checkbox_unchecked.gif' ".	        	
+            	 $wlini=$wlini."<td name=noimprime ><button class='btn-editar' name='botcam' id=cam".$z." title='Seleccionar renglon'  ".	        	
                 	  "onclick='muestra_cambio(\"formpr\",".$z.",".$i.",\"".$wlllave."\",".$meda->camposm['idmenu'].",\"".
         	                          // evento antes de dar cambio
         	                          (($meda->camposme[7][2]['donde']==1) ? $meda->camposme[7][2]['descripcion'] : "").

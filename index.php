@@ -28,6 +28,7 @@ echo '<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstr
     echo "</div>\n";
     echo "</div>\n";
     echo "</div>\n";
+    echo "  <script src='dist/bundle.js' type='text/javascript' language='javascript'></script> ";
 
     echo "<section class='container'>\n";
     echo "<div >\n";
@@ -55,6 +56,5 @@ echo '<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstr
     echo "</footer>";
     echo "</body>\n";
     echo "</html>\n";
-    echo "  <script src='dist/bundle.js' type='text/javascript' language='javascript'></script> ";
-    echo "  <script>muestra_vista(".MENUS_BIENVENIDO.");</script> ";
+    echo "  <script> $(document).ready(function() { muestra_vista(".MENUS_BIENVENIDO."); }) </script> ";
 ?>
