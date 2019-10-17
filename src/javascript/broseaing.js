@@ -2149,6 +2149,7 @@ window.querespuesta = function()
                 donde=req.responseXML.getElementsByTagName("donde")[0].innerHTML;
                 entrada=document.getElementById(donde);
              }
+             try { $(entrada).children()[0].remove(); } catch(er) { };
              html=req.responseXML.getElementsByTagName("muestra_vista")[0].innerHTML;
              html=htmlspecialchars_decode(html);
              parser = new DOMParser();
