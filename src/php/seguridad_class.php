@@ -64,16 +64,16 @@ class seguridad extends xmlhttp_class
 		function validausuario()
 		{
 			if ($this->argumentos["wl_password"]=="")
-    		{
-    		  	echo "<error>No esta definido el password</error>";
-    	  		return; 
-    		}				
+    			{
+    		  	    echo "<error>No esta definido el password</error>";
+    	  		    return; 
+    			}				
     	
 			if ($this->argumentos["wl_usename"]=="")
-    		{
-    	  		echo "<error>No esta definido el usuario</error>";
-    	  		return; 
-    		}
+    			{
+    	  		   echo "<error>No esta definido el usuario</error>";
+    	  		   return; 
+    			}
 
     		$parametro1p=$this->argumentos["wl_usename"];
     		$parametro2p=$this->argumentos["wl_password"];
@@ -109,16 +109,18 @@ class seguridad extends xmlhttp_class
 	   	  $sql_result = @pg_exec($this->connection,$sql);
        	  if (strlen(pg_last_error($this->connection))>0)
        	  {
-       			echo "<error>Error al validausuario</error>";
-                        $this->Enviaemail("error en validausuario usuario=".$parametro1p." sql=".$sql." error ".pg_last_error($this->connection));
-       			return;  
+       	       echo "<error>Error al validausuario</error>";
+               error_log($today."src/php/seguridad_class.php erro en validausuario sql=".$sql." error".pg_last_error($this->connection)."\n",3,"/var/tmp/errores.log");
+                        //$this->Enviaemail("error en validausuario usuario=".$parametro1p." sql=".$sql." error ".pg_last_error($this->connection));
+       	       return;  
        	  }                                          
     	  $Row = pg_fetch_array($sql_result, 0); 
-		  if ($Row[0]!="")       		
-		  {
+	  if (strlen($Row[0])>8)       		
+	  {
              	echo "<error>".$Row[0]."</error>";
              	return;			  
-		  }
+	  }
+          $menu=$Row[0];
 
           $sql ="SELECT forapi.debe_cambiarpwd('".$parametro1p."',210);";
 	   	  $sql_result = @pg_exec($this->connection,$sql);
@@ -146,7 +148,7 @@ class seguridad extends xmlhttp_class
 						echo "<wldialogHeight>400</wldialogHeight>";		    	  		
 		             		break;
 		             	default:
-		             		echo "<error>1".$Row[0]."</error>";		             	
+		             		echo "<error>".$Row[0]."</error>";		             	
 	             	}
 	             	return;
 		  }		  
@@ -156,8 +158,9 @@ class seguridad extends xmlhttp_class
           $_SESSION["servidor"]=$this->servidort; //20070822
           $_SESSION["bada"]=$this->badat; //20070822
           $_SESSION["puerto"]=$this->puerto; //20070822
-		        $this->argumentos["idmenu"] = 17;		##20071105
-                        //error_log($today."src/php/seguridad_class.php ".print_r($this,true)."\n",3,"/var/tmp/errores.log");
+                        if ($menu>0) {
+		           $this->argumentos["idmenu"] = $menu;		##20071105
+                        }
                         parent::muestra_vista();
                         parent::dame_menus();
 

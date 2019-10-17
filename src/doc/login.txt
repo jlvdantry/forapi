@@ -1,0 +1,10 @@
+1. al loguear es autenticado contra la base de datoos
+2. si no checa la contraseña se lleva un contador de inentos fallidos,si este pasa de tres intentos se bloquea el usuario
+3. checa el estatus el usuario solo los activos pasan
+4. checa la antiguedad del la ultima vez que cambio  la contaseña si se pasa [xdias] envia mensaje de que debe cambiar la contraseña
+
+
+"src/php/seguridad_class.php"  function utilizada  validausuario
+funciones de base de datos
+forapi.estatus_usuario
+forapi.debe_cambiarpwd
