@@ -421,7 +421,7 @@ class soldatos
     */
   function inicio_tab($s_table=0,$s_table_height=0)
   {
-    		return "<table id='tabdinamica' class='tabla seccion'  style='visibility:hidden' >\n";			
+    		return "<table id='tabdinamica' class='tabla seccion'  >\n";			
   }
   
   /**
@@ -2128,10 +2128,12 @@ class soldatos
          || strpos($this->movto_mantto,"B")!==false                      
          )          
          {
+            if ($num>0) {
      		echo $this->inicio_tab($this->menu["s_table"],$this->menu["s_table_height"]);	  	          		         		
      		echo $this->filas_ing($sql_result, $num, $this->metada);     		//20070623   
      		echo "</table>";  		
- 		 }
+            }
+ 	 }
   } 
 
   /**
