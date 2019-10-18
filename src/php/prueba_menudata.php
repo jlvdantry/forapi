@@ -2,7 +2,7 @@
 include("menudata.php");
 include "conneccion.php";
 $v = new menudata();
-$v->idmenu=1349;
+$v->idmenu=17;
 $v->filtro="nombre='NOMBRE'";
 $v->connection=$connection;
 $v->damemetadata();

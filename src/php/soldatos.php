@@ -1478,7 +1478,7 @@ class soldatos
         if (strpos($this->movto_mantto,"l")!==false)     	  
         {
      	    echo "<td id='Limpiar' class='botones' > <input type=button class='btn-01' id='iLimpiar' title='Limpia datos de la pantalla'  ".
-        	 "  onclick='pone_focus_forma(\"\");formReset(\"formpr\",\"t\")' value='Limpiar' ></input></td>\n";	        
+        	 "  onclick='pone_focus_formaID(\"".$this->idmenu."\");formResetID(\"".$this->idmenu."\",\"t\")' value='Limpiar' ></input></td>\n";	        
         }
 
         if (strpos($this->movto_mantto,"f")!==false)     	  
@@ -1560,8 +1560,8 @@ class soldatos
         if (strpos($meda->camposm['movtos'],"n")!==false) 
         	{
 	     	echo "<td id='navegacionar' class='botones' > ".
-	     	($this->menum['n']['idmovto']=='n' && $this->menum['n']["descripcion"]!="" ? "<input type=button id='iinicio' value='".$this->menum['n']["descripcion"]."' title='Registro Inicial'  " : "<input type=image id='iCambio' src='img/quitato2s.gif' title='RegistroInicial' value='RegistroInicial' ").
-        	  "onclick='registroinicial();return false'></input>  </td>\n";	                	  	        		        	
+	     	($this->menum['n']['idmovto']=='n' && $this->menum['n']["descripcion"]!="" ? "<input type=button id='iinicio' value='".$this->menum['n']["descripcion"]."' title='Registro Inicial'  " : "<button type=image id='iCambio' src='img/quitato2s.gif' title='RegistroInicial' value='RegistroInicial' ").
+        	  "onclick='registroinicial();return false'></button>  </td>\n";
 	     	echo "<td id='navegacionar' class='botones' > ".
 	     	($this->menum['n']['idmovto']=='n' && $this->menum['n']["descripcion"]!="" ? "<input type=button id='iAnterior' value='".$this->menum['n']["descripcion"]."' title='Siguiente Registro'  " : "<input type=image id='AnteriorRegistro' src='img/quita1.gif' title='AnteriorRegistro' value='AnteriorRegistro' ").
         	  "onclick='anteriorregistro();return false'></input>  </td>\n";	                	  	        	
@@ -1953,7 +1953,7 @@ class soldatos
 				$mm=$mm+1;
 			}			
 //			($wlinis!="") ? $wlinis="<td><select onfocus='desplega(this);return false;' onchange='submenus(this);return false' >".$wlinis."</select></td>" : $wlinis="" ;			
-			($wlinis!="") ? $wlinis="<td><select onchange='submenus(this);return false' >".$wlinis."</select></td>" : $wlinis="" ;			
+			($wlinis!="") ? $wlinis="<td><select class='form-control form-control-custom' onchange='submenus(this);return false' >".$wlinis."</select></td>" : $wlinis="" ;			
 			return $wlini.$wlinis;
   }
 ////////////////   20070629  se modifico para tener un menu de acuerdo a un campo select    

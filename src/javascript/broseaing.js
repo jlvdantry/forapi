@@ -101,18 +101,22 @@ if(typeof HTMLElement!='undefined'&&!HTMLElement.prototype.click)  // por firefo
 	}
 }
 
+window.formResetID = function(idmenu,limpiaralta) {
+        formReset($('#formpr_'+idmenu)[0],limpiaralta);
+}
+
 window.formReset = function(theForm,limpiaralta)
 {
 	if (limpiaralta=='t')
   		theForm.reset();
-  var qs = '';
-  for (e=0;e<theForm.elements.length;e++) {
-    if (theForm.elements[e].name!='' && theForm.elements[e].name.indexOf('nc_')>=0) {
-       var str=theForm.elements[e].name;
-       var wl=str.replace(/nc_/,"wl_");		  		
-       try { objwl=document.getElementByID(wl); objnc=document.getElementById(str); 
-	          objnc.readOnly=false; objwl.readOnly=false; objwl.disabled=false; objwl.className=''; 
-       } catch (err) { };
+        var qs = '';
+        for (e=0;e<theForm.elements.length;e++) {
+             if (theForm.elements[e].name!='' && ('cambiarencambios' in theForm.elements[e].dataset)) {
+                var str=theForm.elements[e].name;
+                var wl=str.replace(/nc_/,"wl_");		  		
+                try { objwl=theForm.elements[e];  
+	              objwl.readOnly=false; objwl.disabled=false;  
+                } catch (err) { };
     }
   }
         var all = document.getElementsByTagName("a");
@@ -931,6 +935,10 @@ window.hayunregistro = function()
 		}			
 }		
 
+window.pone_focus_formaID = function (idmenu) {
+   pone_focus_forma($("#formpr_"+idmenu)[0]);
+}
+
 //   pone el focus en el primer campo de la forma		
 window.pone_focus_forma = function (theForm='',dedonde)
 {
@@ -1079,16 +1087,8 @@ window.cambia_onclick = function(wlonclick)
 {
 
 	try {
-/*
-		wltexto=document.getElementById("cambio").innerHTML;		
-		var wltextoi=wltexto.substring(0,wltexto.indexOf('onclick')+9);
-		wltextof=wltexto.substring(wltexto.indexOf('onclick'));		
-		wltextof=wltextof.substring(wltextof.indexOf("'")+1);				
-		wltextof=wltextof.substring(wltextof.indexOf("'"));						
-		var obj=document.getElementById("cambio").innerHTML=wltextoi+' '+wlonclick+' '+wltextof;
-*/
 		var obj=document.getElementById("iCambio");
-                if (obj.className='hidden') { obj.className='visible'; } 
+                if (obj.className=='hidden') { obj.className='visible'; } 
                 str=' obj.onclick = function () { ' + wlonclick + ' }';
                 eval(str);
 	} catch (err) { 
