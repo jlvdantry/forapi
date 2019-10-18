@@ -313,6 +313,9 @@ class xmlhttp_class
       error_log($this->dame_tiempo()." src/php/xmlhttp_class.php muestra_vista".$parametro1." ".print_r($this->argumentos,true)."\n",3,"/var/tmp/errores.log");
       $soldatos = new soldatos();
       $soldatos->idmenu=$this->argumentos['idmenu'];
+      if ($this->argumentos['filtro']!="") {
+         $soldatos->filtro=$this->argumentos['filtro'];
+      }
       $soldatos->connection=$this->connection;
       $soldatos->datos=array('MTA');
       ob_start();

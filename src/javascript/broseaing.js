@@ -813,6 +813,7 @@ window.abre_subvista = function(wlhoja,wlcampos,wleventoantes,wleventodespues,id
 {
 	try
 	{
+                wlfiltro="";
 		if (wleventoantes!="")
 		{
 			eventos_servidor(wlhoja,wlcampos,wleventoantes,wleventodespues,idmenu,wldialogWidth,wldialogHeight)
@@ -821,8 +822,15 @@ window.abre_subvista = function(wlhoja,wlcampos,wleventoantes,wleventodespues,id
 		{
 	    		if (wldialogHeight!=0 || wldialogWidth!=0)
 	    	        {  
-		    	        wlurl=wlhoja+'?'+wlcampos;
-                                _aa_=dhtmlmodal.open(idmenu, 'div', wlurl, wltitulo, 'width='+wldialogWidth+'px,height='+wldialogHeight+'px,center=1,resize=1,scrolling=1',"recal");
+                                campos=wlcampos.split('&');
+                                for (var x in campos) {
+                                     //console.log('campos='+campos[x]);
+                                     if (campos[x].indexOf('filtro')>=0) {
+                                        wlfiltro='&'+campos[x];
+                                     }
+                                }
+                                muestra_vista(idmenu,'modal-body',wlfiltro,wltitulo);
+                                $('#msgModal').modal();
 	                }
 		        else
 		        {
@@ -1159,6 +1167,7 @@ window.muestra_cambio = function(theFormName,r,ct,wlllave,menu,wleventoantes,wle
 	  var elm="cc"+e;   //  campos de la pantalla de captura
 		try {
                         var captu=document.getElementById(elm);
+                        var captu=$('form[id="formpr_"'+menu+'][id="'+elm+'"]');
                         var str=captu.name;
                         if ("cambiarencambios" in captu.dataset) {
                             try { captu.readOnly=true; captu.readOnly=true; captu.disabled=true; } catch (err) { };
@@ -1674,10 +1683,10 @@ window.clearSelect = function(wl) {
 }
 
 
-window.muestra_vista = function (wlmenu,donde='entrada') {
+window.muestra_vista = function (wlmenu,donde='entrada',filtro='',titulo='') {
              try { $("#"+donde).children()[0].remove(); } catch(er) { };
                         wlurl='src/php/xmlhttp.php';//20071105
-                        passData='&opcion=muestra_vista&idmenu='+wlmenu+'&donde='+donde;
+                        passData='&opcion=muestra_vista&idmenu='+wlmenu+'&donde='+donde+filtro;
                         CargaXMLDoc();
                         return;
 }
