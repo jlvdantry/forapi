@@ -563,7 +563,9 @@ class xmlhttp_class
            if ($errorc!="") { echo '<error>Delete'.$errorc.'</error>'; return; }
            $Row = pg_cmdtuples($sql_result); 
            if($Row!=0)
-              {  echo '<bajaok>Baja efectuada</bajaok>'; }
+              {  echo '<bajaok>Baja efectuada</bajaok>'; 
+                 echo '<idmenu>'.$this->argumentos['idmenu'].'</idmenu>'; 
+              }
            else
               { echo '<error>No hizo la baja</error>'; }
         } 

@@ -1937,10 +1937,10 @@ window.mensajetabla = function(wlmensaje)
 }
 
 // funcion que pone el mensaje en la siguiente celda donde se capturo el dato
-window.bajatabla = function()
+window.bajatabla = function(idmenu)
 {
-	var wl=document.getElementById('tr'+glr).rowIndex;
-      document.getElementById('tabdinamica').deleteRow(wl);
+	var wl=document.getElementById('tr'+glr+'_'+idmenu).rowIndex;
+        document.getElementById('tabdinamica_'+idmenu).deleteRow(wl);
 }
 // funcion que da de baja todos los renglones de una tabla
 window.bajatodatabla = function()
@@ -2222,7 +2222,10 @@ window.querespuesta = function()
            {
               var items = req.responseXML.getElementsByTagName("bajaok");
               alert(items[0].childNodes[0].nodeValue);
-              bajatabla();
+              if (req.responseText.indexOf("<idmenu>") != -1) {
+                idmenu=req.responseXML.getElementsByTagName("idmenu")[0].innerHTML;
+                bajatabla(idmenu);
+              }
               return;
            } 
            

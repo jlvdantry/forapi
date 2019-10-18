@@ -38,7 +38,7 @@ echo '<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstr
     echo "</section>\n";
     echo '
             <div class="modal fade" id="msgModal" tabindex="-1" role="dialog" aria-hidden="true">
-              <div class="modal-dialog" role="document">
+              <div class="modal-dialog modal-lg" role="document" >
                 <div class="modal-content" id="modal-content">
                   <div class="modal-header pb-0">
                     <h1 class="modal-title" id="titleMsgModal"></h1>
