@@ -1160,8 +1160,9 @@ window.muestra_cambio = function(theFormName,r,ct,wlllave,menu,wleventoantes,wle
 		try {
                         var captu=document.getElementById(elm);
                         var str=captu.name;
-                        var str1=str.replace(/wl_/,"nc_");
-                        try { nc=document.getElementById(str1); nc.readOnly=true; captu.readOnly=true; captu.disabled=true; captu.className='lee'; } catch (err) { };
+                        if ("cambiarencambios" in captu.dataset) {
+                            try { captu.readOnly=true; captu.readOnly=true; captu.disabled=true; } catch (err) { };
+                        }
                         xelm=document.getElementById(elm);
                         xel=document.getElementById(el);
                         if (xelm.type=='text' || xelm.type=='textarea' || xelm.type=='number' || xelm.type=='email' || xelm.type=='tel')
@@ -1197,16 +1198,16 @@ window.muestra_cambio = function(theFormName,r,ct,wlllave,menu,wleventoantes,wle
 				var captu=document.getElementById(elm);		  	
 	   			var str=captu.name;
 	   			var str1=str.replace(/wl_/,"nc_");		  		
-	   			try { nc=document.getElementById(str1); nc.readOnly=true; captu.readOnly=true; captu.disabled=true; captu.className='lee'; } catch (err) { };		  		  		
+                                if ("cambiarencambios" in captu.dataset) {
+                                   try { captu.readOnly=true; captu.readOnly=true; captu.disabled=true; } catch (err) { };
+                                }
 	  	}
   		catch(err)
   		{
   		}
     }
     forma=$('#'+theFormName+'_'+menu)[0];
-    console.log('antes de pone_focus_forma');
     pone_focus_forma(forma);
-    console.log('despues de pone_focus_forma');
 
 	wlTR=document.getElementById('tr'+r);    
 	color_renglon(wlTR);

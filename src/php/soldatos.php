@@ -714,21 +714,16 @@ class soldatos
               ,$mecq
               )   //20070214
    {
-##	   echo " name=".$wlnombre." esfiltrode=".$esfiltrode."<br>";
-	   // checa si es un insert o consulta y el campo es una busqueda
 		if (strpos($movtos,"i")!==false
-//20060117		 || (strpos($this->movto_mantto,"s")!==false && $busqueda==t)
 		 || (strpos($movtos,"s")!==false )		 
 		 || strpos($movtos,"u")!==false
 		 || strpos($movtos,"e")!==false		 
 		 || strpos($movtos,"I")!==false		 		 // 20080115  altas automaticas de catalogo
-//20080119     	 || (strpos($movtos,"S")!==true & $busqueda=='t')		 // 20070214
-     	 || (strpos($movtos,"S")!==true )	//20080119	 // 20070214     	 
-     	 || (strpos($movtos,"B")!==true )
+     	         || (strpos($movtos,"S")!==true )	//20080119	 // 20070214     	 
+     	         || (strpos($movtos,"B")!==true )
 		 ) 
 		{
 			$wlonchange=""; // 20071109 maneje variables ya que un evento puede ejecutar varias funciones
-	                    // ejemplo el pon_select combinarse con una funcion particular
 			$wlonfocus="";	                    
 			$vas="";
 			$wltdf=$menuc["formato_td"];
@@ -738,6 +733,7 @@ class soldatos
                         $wlbusqueda_=   (($busqueda=='t')    ? "data-busqueda=1" : "");
                         $wlobligatorio=(($obligatorio=='t') ? "<font ".$wleshiden." color='red'  >*</font>" : "");
                         $wlobligatorio_=(($obligatorio=='t') ? "data-obligatorio=1" : "");
+                        $cambiarencambios_ = (($menuc["cambiarencambios"]=='f') ? "data-cambiarencambios=0" : "" );
                         $tipodato_=((substr($tipodedato,0,3)==='int' || $tipodedato=='numeric') ? "data-numerico=1" : "" );
                         $wlidcampo=$mecq["idcampo"];
    		    $vas="<td class='form-label-custom' ".$wleshiden."id='wlt_".$wlnombre."' name='wlt_".$wlnombre."' abbr=\"".$descripcion."\" value=\"".$descripcion."\" ".
@@ -753,7 +749,7 @@ class soldatos
 ##   			$vas=$vas."<td > ";
 	        $vas=$vas.($wltdf=="1" || $wltdf=="2" || $wltdf=="3" ? "" : "<td".$wleshiden.">");
 	 		$vas = ($menuc["autocomplete"]=='1' ? $vas." <input type=text ".$wleshiden." readonly=true class='leesinborder' name=au_".$wlnombre." ></input><br>\n" : $vas );
-   			$vas=$vas."<select $wlobligatorio_ $wlbusqueda_ $tipodato_ class='form-control form-control-custom' ".$wleshiden."placeholder=\"prueba\" ".
+   			$vas=$vas."<select $wlobligatorio_ $wlbusqueda_ $tipodato_ $cambiarencambios_ class='form-control form-control-custom' ".$wleshiden."placeholder=\"prueba\" ".
 	 		            ($menuc["autocomplete"]=='1' ? " ;restaura_autocomplete(this)" : "" ). 	      	 		   			               			
    			            (($menumce[1]["idevento"]=='1' && $menumce[1]["donde"]=='0' && $menumce[1]["descripcion"]!='') ? "return eventosparticulares(this,\"".$menumce[1]["descripcion"]."\");" : "").   			
    			          "' ";   			            
@@ -831,7 +827,6 @@ class soldatos
 	 		$vas = (($tipodedato=='date' || $tipodedato=='timestampz') ? $vas." <input type=hidden name=_da_".$wlnombre." value=1></input>\n" : $vas ); 	      	
 			($val_particulares!='') ? $vas=$vas." <input type=hidden name=_vp_".$wlnombre." value='".$val_particulares."'></input>\n" : $wli=$wli ; //20070725
 	 		$vas = ($busqueda=='t' ? $vas." <input type=hidden name=bu_".$wlnombre." value=1></input>\n" : $vas ); 	 
-	 		$vas = ($menuc["cambiarencambios"]=='f' ? $vas." <input type=hidden id=nc_".$wlnombre." name=nc_".$wlnombre." value=1></input>\n" : $vas );
  		}
 	 	return $vas;
    }   
@@ -1015,6 +1010,7 @@ class soldatos
     $wlbusqueda=   (($busqueda=='t')    ? "<font color='black'>*</font>" : "");
     $wlobligatorio=(($obligatorio=='t') ? "<font ".$wleshiden." color='red'>*</font>" : "");
     $wlobligatorio_=(($obligatorio=='t') ? "data-obligatorio=1" : "");
+    $cambiarencambios_ = (($mecq["cambiarencambios"]=='f') ? "data-cambiarencambios=0" : "" );
     $tipodato_=((substr($tipodedato,0,3)==='int' || $tipodedato=='numeric') ? "data-numerico=1" : "" );
     $wlbusqueda_=   (($busqueda=='t')    ? "data-busqueda=1" : "");
     $wlidcampo=$mecq["idcampo"];
@@ -1032,8 +1028,8 @@ class soldatos
 			  	(($wltdf=="1" || $wltdf=="2") ? "<br>" :(($wltdf=="3") ? "" : "</td>"));  // 20081015 grecar modifique esta linea para asignarles un valor las etiquetas td
 	    $wli=$wli.($wltdf=="1" || $wltdf=="2" || $wltdf=="3" ? ""  : "<td ".$wleshiden.">").
 	    				(($tipodedato != "text") 
-	    					? "<input $wlobligatorio_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom' ".$wleshiden." onKeydown='return quitaenter(this,event)' " 
-	    					: "<textarea $wlobligatorio_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom' ".$wleshiden.((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
+	    					? "<input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom' ".$wleshiden." onKeydown='return quitaenter(this,event)' " 
+	    					: "<textarea $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom' ".$wleshiden.((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
 	    									? "cols=".$mecq["colspantxt"] : "" )
 	    				).
 /**
@@ -1080,9 +1076,9 @@ class soldatos
 
 	    	            $wli=$wli.(($wltdf==3) ? " placeholder=\"".$wltdd."\"" : "").
 	    	            (($tipodedato != "text") ? " ></input>" : " >".$valordefault."</textarea>").
-	    	            (($tipodedato == "timestamptz" || $tipodedato == "date") & $readonly!='t' ? " <input $wlobligatorio_ $tipodato_ $wlbusqueda_ tabindex='-1' class='img' type=image id='fe_".$nombre."' name=fe_".$nombre." src='img/icon_datepicker_pink.gif' onclick='muestrafecha(this);return false' title='Selecciona la fecha del calendario'></input>" : " " ). 
-                            (($espassword=="3") ? " <input $wlobligatorio_ $tipodato_ $wlbusqueda_ tabindex='-1' size=20 class='captcha' readonly='on' type=text id='wl_".$nombre."_img' name=wl_".$nombre."_img title='Imagen de la captcha' ></input>&nbsp<input tabindex='-1' class='img' type=image id='wl_".$nombre."_bot' name=wl_".$nombre."_bot src='img/refresh.png' onclick='ReDrawCaptcha(this);return false' title='Refresca la imagen del captcha'></input>" : " " ).
-	    	            (($tipodedato == "text") & $readonly!='t' ? " <input  $wlobligatorio_ $tipodato_ $wlbusqueda_ tabindex='-1' type=image class='img' id='txt_".$nombre."' name=txt_".$nombre." src='img/nota.gif' onclick='muestratexto(this);return false' title='Amplia el panel de la captura'></input>" : " " );  // 20070301  modificacion para abrir un ventana auxiliar en textos largos
+	    	            (($tipodedato == "timestamptz" || $tipodedato == "date") & $readonly!='t' ? " <input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' class='img' type=image id='fe_".$nombre."' name=fe_".$nombre." src='img/icon_datepicker_pink.gif' onclick='muestrafecha(this);return false' title='Selecciona la fecha del calendario'></input>" : " " ). 
+                            (($espassword=="3") ? " <input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' size=20 class='captcha' readonly='on' type=text id='wl_".$nombre."_img' name=wl_".$nombre."_img title='Imagen de la captcha' ></input>&nbsp<input tabindex='-1' class='img' type=image id='wl_".$nombre."_bot' name=wl_".$nombre."_bot src='img/refresh.png' onclick='ReDrawCaptcha(this);return false' title='Refresca la imagen del captcha'></input>" : " " ).
+	    	            (($tipodedato == "text") & $readonly!='t' ? " <input  $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' type=image class='img' id='txt_".$nombre."' name=txt_".$nombre." src='img/nota.gif' onclick='muestratexto(this);return false' title='Amplia el panel de la captura'></input>" : " " );  // 20070301  modificacion para abrir un ventana auxiliar en textos largos
 						if ($mecq["upload_file"]=='t')
 						{ 
                                                   $wli.=" <input class='img' type=image abbr='' id='upl_".$nombre."' name=upl_".$nombre." src='/dist/img/carpeta.svg' onclick='subearchivo(this);return false' title='Adjunta archivo de explorador' />"; 
@@ -1095,7 +1091,6 @@ class soldatos
 			($busqueda=='t') ? $wli=$wli." <input type=hidden id='bu_".$nombre."' name=bu_".$nombre." value=1></input>\n" : $wli=$wli ; 
 			($mecq["imprime"]!='t') ? $wli=$wli." <input type=hidden id='_np_".$nombre."' name=_np_".$nombre." ></input>\n" : $wli=$wli ; 			
 			($val_particulares!='') ? $wli=$wli." <input type=hidden id='_vp_".$nombre."' name=_vp_".$nombre." value='".$val_particulares."'></input>\n" : $wli=$wli ; 			
-	 		$wli = ($mecq["cambiarencambios"]=='f' ? $wli." <input type=hidden id=nc_".$nombre." name=nc_".$nombre." value=1></input>\n" : $wli );
 	}
     return $wli;
   }
