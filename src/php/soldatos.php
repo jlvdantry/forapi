@@ -421,7 +421,7 @@ class soldatos
     */
   function inicio_tab($s_table=0,$s_table_height=0)
   {
-    		return "<table id='tabdinamica' class='tabla seccion'  >\n";			
+    		return "<table id='tabdinamica_".$this->idmenu."' class='tabla seccion table-responsive'  >\n";			
   }
   
   /**
@@ -840,7 +840,7 @@ class soldatos
   {
 	 $tt = "<script type=\"text/javascript\">\n";
 	 $tt .= "function pone_sort_scroll() {\n";
-	 $tt .= " initable( 'tabdinamica', [ ";
+	 $tt .= " initable( 'tabdinamica_".$this->idmenu."', [ ";
      $i = pg_numfields($sql_result);
         for ($j = 0; $j < $i; $j++) {
 	        $tt .= (($j==0) ? "null" : ",null");
@@ -1123,7 +1123,7 @@ class soldatos
     * @return string id armado
     */
   function armaid_cc($j)
-  { return " id=\"cc".$j."\" "; }
+  { return " id=\"cc".$j."_".$this->idmenu."\" "; }
 
   /**
     * Arma el focus, para cambiara el color cuando tenga el focus y lo reestablesca cuando pierda el foco
@@ -1711,7 +1711,7 @@ class soldatos
           	}
           
 //20070703        	$wlini="<tr id=tr".($z).">";
-        	$wlini="<tr id=tr".($z)."  oncontextmenu='contextForTR(this);return false;' >"; //20070703       	        	
+        	$wlini="<tr id=tr".($z)."_".$this->idmenu."  oncontextmenu='contextForTR(this);return false;' >"; //20070703       	        	
         	if (strpos($meda->camposm['movtos'],"d")!==false) 
         	{
             	 $wlini=$wlini."<td name=noimprime ><button class='btn-eliminar'  title='Eliminar registro'  ".
@@ -1759,7 +1759,7 @@ class soldatos
 //20070611     if (strpos($meda->camposm['movtos'],"u")!==false) 
             if (strpos($meda->camposm['movtos'],"u")!==false || strpos($meda->camposm['movtos'],"s")!==false)      
         	{
-            	 $wlini=$wlini."<td name=noimprime ><button class='btn-editar' name='botcam' id=cam".$z." title='Seleccionar renglon'  ".	        	
+            	 $wlini=$wlini."<td name=noimprime ><button class='btn-editar' name='botcam' id=cam".$z."_".$this->idmenu." title='Seleccionar renglon'  ".	        	
                 	  "onclick='muestra_cambio(\"formpr\",".$z.",".$i.",\"".$wlllave."\",".$meda->camposm['idmenu'].",\"".
         	                          // evento antes de dar cambio
         	                          (($meda->camposme[7][2]['donde']==1) ? $meda->camposme[7][2]['descripcion'] : "").
@@ -2037,7 +2037,7 @@ class soldatos
    *  @param int $j columna
    **/
   function armaid_td($z,$j)
-	{ return " id=r".$z."c".$j." ";	}
+	{ return " id=r".$z."c".$j."_".$this->idmenu." ";	}
 
   /**	
     *  20070818 lee los datos del menu este estaba en mantotab pero lo cambie 

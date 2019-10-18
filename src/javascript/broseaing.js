@@ -484,7 +484,7 @@ window.muestra_renglon = function (wlrenglon)
 window.color_renglon = function (wlrenglon)
 {
    	color_renglon.poneclase(wlrenglon,'todofoco');
-  	var wltabladinamica = document.getElementById('tabdinamica');
+  	var wltabladinamica = document.getElementById('tabdinamica_'+wlrenglon.id.split('_')[1]);
    	var wlTRs = wltabladinamica.getElementsByTagName('tr');
   	for (e=0;e<wlTRs.length;e++) {		
 		if (wlTRs[e].className=='todofoco' && wlTRs[e].id!=wlrenglon.id)
@@ -928,17 +928,18 @@ window.abre_consulta = function(idvista) {
 }	
 //  funcion que muestra el registro 2 de la tabla en los campos de pantalla
 //  cuando esto sea por medio de una subvista
-window.hayunregistro = function()
+window.hayunregistro = function(idmenu)
 {
-		if (document.getElementById('tabdinamica')!=undefined)
+                tabla=document.getElementById('tabdinamica_'+idmenu);
+		if (tabla!=undefined)
 		{
-                        if(document.getElementById('tabdinamica').rows.length>=2)
+                        if(tabla.rows.length>=2)
                         {
-                                try { document.getElementById('tabdinamica').style.visibility='visible';        } catch (err) { } ;
+                                try { tabla.style.visibility='visible';        } catch (err) { } ;
                         }
-			if(document.getElementById('tabdinamica').rows.length==2)
+			if(tabla.rows.length==2)
 			{
-				try { document.getElementById('cam0').click();	} catch (err) { } ;
+				try { document.getElementById('cam0_'+idmenu).click();	} catch (err) { } ;
 			}
 		}			
 }		
@@ -1166,31 +1167,30 @@ window.muestra_cambio = function(theFormName,r,ct,wlllave,menu,wleventoantes,wle
 	  var el="r"+r+"c"+e; // renglon columna que se muestra en la pantalla de captura
 	  var elm="cc"+e;   //  campos de la pantalla de captura
 		try {
-                        var captu=document.getElementById(elm);
-                        var captu=$('form[id="formpr_"'+menu+'][id="'+elm+'"]');
+                        var captu=document.getElementById(elm+'_'+menu);
                         var str=captu.name;
                         if ("cambiarencambios" in captu.dataset) {
                             try { captu.readOnly=true; captu.readOnly=true; captu.disabled=true; } catch (err) { };
                         }
-                        xelm=document.getElementById(elm);
-                        xel=document.getElementById(el);
+                        xelm=document.getElementById(elm+'_'+menu);
+                        xel=document.getElementById(el+'_'+menu);
                         if (xelm.type=='text' || xelm.type=='textarea' || xelm.type=='number' || xelm.type=='email' || xelm.type=='tel')
                         {
-                                var captu=document.getElementById(elm);
-                                captu.value=document.getElementById(el).innerText.trim();
-                                if(document.getElementById(el).firstChild.outerHTML.indexOf('<a')>=0 || document.getElementById(el).firstChild.outerHTML.indexOf('<A')>=0)
+                                var captu=document.getElementById(elm+'_'+menu);
+                                captu.value=document.getElementById(el+'_'+menu).innerText.trim();
+                                if(document.getElementById(el+'_'+menu).firstChild.outerHTML.indexOf('<a')>=0 || document.getElementById(el+'_'+menu).firstChild.outerHTML.indexOf('<A')>=0)
                                 {
-                                   if(document.getElementById(captu.name+"_borrar_"))
+                                   if(document.getElementById(captu.name+"_borrar_"+menu))
                                    {
-                                      var ab=document.getElementById(captu.name+"_borrar_");
+                                      var ab=document.getElementById(captu.name+"_borrar_"+menu);
                                       ab.parentNode.removeChild(ab);
                                    }
                                    if(captu.value!="")
                                    {
                                       wlele=document.createElement("a");
-                                      wlele.setAttribute("id", captu.name+"_borrar_");
-                                      wlele.setAttribute("name", captu.name+"_borrar_");
-                                      wlele.setAttribute("onclick", quitaf(document.getElementById(el).firstChild.onclick + "_"));
+                                      wlele.setAttribute("id", captu.name+"_borrar_"+menu);
+                                      wlele.setAttribute("name", captu.name+"_borrar_"+menu);
+                                      wlele.setAttribute("onclick", quitaf(document.getElementById(el+'_'+menu).firstChild.onclick + "_"));
                                       wlele.innerHTML="Ver documento";
                                       captu.parentNode.appendChild(wlele);
                                    }
@@ -1198,13 +1198,13 @@ window.muestra_cambio = function(theFormName,r,ct,wlllave,menu,wleventoantes,wle
                         }
 	  		if (xelm.type=='select-one')
 	  		{ 
-					document.getElementById(elm).value=busca_ValorOption(document.getElementById(elm),document.getElementById(el).innerText,1,document.getElementById(el).abbr); 
+					document.getElementById(elm+'_'+menu).value=busca_ValorOption(document.getElementById(elm+'_'+menu),document.getElementById(el+'_'+menu).innerText,1,document.getElementById(el+'_'+menu).abbr); 
 		  		}
 	  		if (xelm.type=='checkbox')
 	  		{ 
-		  		document.getElementById(elm).value=valor_checkbox_cap(el,elm); 
+		  		document.getElementById(elm+'_'+menu).value=valor_checkbox_cap(el,elm+'_'+menu); 
 		  	}	
-				var captu=document.getElementById(elm);		  	
+				var captu=document.getElementById(elm+'_'+menu);		  	
 	   			var str=captu.name;
 	   			var str1=str.replace(/wl_/,"nc_");		  		
                                 if ("cambiarencambios" in captu.dataset) {
@@ -1218,16 +1218,16 @@ window.muestra_cambio = function(theFormName,r,ct,wlllave,menu,wleventoantes,wle
     forma=$('#'+theFormName+'_'+menu)[0];
     pone_focus_forma(forma);
 
-	wlTR=document.getElementById('tr'+r);    
+	wlTR=document.getElementById('tr'+r+'_'+menu);    
 	color_renglon(wlTR);
-	muevea1renglon(r);   //20070808  checar porque parece que esta chafeando esta rutina
+	muevea1renglon(r,menu);   //20070808  checar porque parece que esta chafeando esta rutina
 }
 /*  funcion que mueve el renglon seleccionado a el renglon 1 
      recib el numero de renglon*/
-window.muevea1renglon = function(r)
+window.muevea1renglon = function(r,menu)
 {
-	wlTR=document.getElementById('tr'+r);    	
-	var b = document.getElementById('tabdinamica').insertRow(1);
+	wlTR=document.getElementById('tr'+r+'_'+menu);    	
+	var b = document.getElementById('tabdinamica_'+menu).insertRow(1);
    	var wlTDs = wlTR.getElementsByTagName('TD');  	
   	for (e=0;e<wlTDs.length;e++) {		
 					wlele=document.createElement("td");   //  al td le quite <td> ya que tronada ff
@@ -1242,8 +1242,8 @@ window.muevea1renglon = function(r)
 	b.ondblclick= wlTR.ondblclick;
 	b.oncontextmenu= wlTR.oncontextmenu;	
   	var rr=r+1;
-	var wl=document.getElementById('tr'+r).rowIndex;
-        document.getElementById('tabdinamica').deleteRow(wl);  	
+	var wl=document.getElementById('tr'+r+'_'+menu).rowIndex;
+        document.getElementById('tabdinamica_'+menu).deleteRow(wl);  	
         b.id=wlid;
 	b.className=wlclassName;	
 }
@@ -2162,6 +2162,7 @@ window.querespuesta = function()
              }
              if (req.responseText.indexOf("<idmenu>") != -1) {
                 idmenu=req.responseXML.getElementsByTagName("idmenu")[0].innerHTML;
+                hayunregistro(idmenu);
                 forma=$('#formpr_'+idmenu)[0];
                 pone_focus_forma(forma,this)
              }
