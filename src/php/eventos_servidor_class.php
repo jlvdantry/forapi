@@ -1184,9 +1184,9 @@ class eventos_servidor_class extends xmlhttp_class
     		$Row = pg_fetch_array($sql_result, 0); 	   		
        		if (strlen(pg_last_error($this->connection))>0)
        		{
-       				return "Error al desbloquear usuario".$sql." ".pg_last_error($this->connection);
+                      error_log($today." src/php/eventos_servidor_class.php error al desbloquear usuarios sql=".$sql." error".pg_last_error($this->connection)."\n",3,"/var/tmp/errores.log");
+       	              return "Error al desbloquear usuario";
        		}                               
-//       		echo "<salida>".$Row[0]."</salida>";
        		$this->salida($Row[0]);
        		return;
 		}
@@ -1580,13 +1580,13 @@ class eventos_servidor_class extends xmlhttp_class
      */            			
 	function validausuarioadesbloquear()
 	{
-		if ($this->argumentos["wl_usuario"]=="")
-    	{
-    	  echo "<error>No esta definido el usuario a autorizar</error>";
-    	  return; 
-    	}    				   		
-       		$sql=" select usuario_bloqueado('".$this->argumentos["wl_usuario"]."')";
-	   		$sql_result = @pg_exec($this->connection,$sql);
+	   if ($this->argumentos["wl_usuario"]=="")
+    	   {
+    	       echo "<error>No esta definido el usuario a autorizar</error>";
+    	       return; 
+    	   }    				   		
+       		$sql=" select forapi.usuario_bloqueado('".$this->argumentos["wl_usuario"]."')";
+	   	$sql_result = @pg_exec($this->connection,$sql);
        		if (strlen(pg_last_error($this->connection))>0)
        		{
        			return "Error al validarusuarioadesbloquear".$sql." error ".pg_last_error($this->connection);
@@ -1834,11 +1834,12 @@ class eventos_servidor_class extends xmlhttp_class
    */            
    function bloquea_usuario($usuario)
    {
-	   $sql=" select bloquea_usuario('".$usuario."')";
-	   $sql_result = @pg_exec($this->connection,$sql);
+       $sql=" select forapi.bloquea_usuario('".$usuario."')";
+       $sql_result = @pg_exec($this->connection,$sql);
        if (strlen(pg_last_error($this->connection))>0)
        {
-       		return "Error al bloquear usuario".$sql." ".pg_last_error($this->connection);
+                error_log($today." src/php/eventos_servidor_class.php bloquea_usuario sql=".$sql." error".pg_last_error($this->connection)."\n",3,"/var/tmp/errores.log");
+       		return "Error al bloquear usuario";
        } 
        $Row = pg_fetch_array($sql_result, 0);                               
        return $Row[0];
