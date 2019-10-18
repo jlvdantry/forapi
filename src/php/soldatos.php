@@ -1397,7 +1397,7 @@ class soldatos
 	    $this->fin_tab();	  	    
 	    echo "<div>";      	
 	    $this->inicio_tab_botones($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);
-     	echo "<tr>";	    
+     	echo "<tr class='row' >";	    
 ##     	echo "<td width=1% ><input width=1% type=image onclick='return false;'></input></td>";
         if (
         strpos($this->movto_mantto,"i")!==false
