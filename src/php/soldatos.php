@@ -752,7 +752,6 @@ class soldatos
 			$wlonfocus=$this->foco($readonly);   			          
 			$wlonblur=$this->blur($readonly);   			          
    			($tip!="") ?  $vas=$vas." title='".$tip."' " : $vas=$vas;   			   			 
-   			($size!="") ?  $vas=$vas." size=".$size." " : $vas=$vas;   			
    			($readonly=='t') ?  $vas.="  disabled=true readonly " :  $vas=$vas;
    			($fuente_campofil!="") ?  $vas=$vas." onClick=\"si_Select('".$sql."','".$fuente_campofil."');\" " : $vas=$vas;
    			($esfiltrode!="" ) ?  $wlonchange=$wlonchange." pon_Select(\"".   //20071109   			
