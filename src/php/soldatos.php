@@ -982,22 +982,15 @@ class soldatos
   { 
 	  $wltdf=$mecq["formato_td"];
 	  $wltdd="".$mecq["descripcion"];
-//	  echo "entro en arma_input";print_r($mecq);
      if (strpos($movtos,"i")!==false 
-//20060117     || ((strpos($this->movto_mantto,"s")!==false && $busqueda==t)) 
      || ((strpos($movtos,"s")!==false ))      // 20060117
      || strpos($movtos,"u")!==false
      || strpos($movtos,"e")!==false     
      || strpos($movtos,"I")!==false          // 20080115  altas automaticas de catalogo
-//20080119     se modifica para que contemple los movimientos con S mayuscaula
-//20080119     esto no desplegan la informacion en la pantalla regresan los registro o solamente el sql armado
-//20080119     esto es util para los campos select     
-//20080119     || (strpos($movtos,"S")===true & $busqueda=='t')  // 20070214
      || (strpos($movtos,"S")!==false )  //20080119   // 20070214     
      || (strpos($movtos,"B")!==false )  //20080119   // 20070214          
      ) 
      {
-//	     echo " vas=".$nombre."=".$mecq;
 	    $wlonchange=""; // 20071009 maneje variables ya que un evento puede ejecutar varias funciones
 	                    // ejemplo el touupercase combinarse con una funcion particular
 	    $wlfocus="";
@@ -1016,26 +1009,16 @@ class soldatos
     $wlbusqueda_=   (($busqueda=='t')    ? "data-busqueda=1" : "");
     $wlidcampo=$mecq["idcampo"];
     $wltipodedato=((substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? " type='tel' " : "");
-		$wli="<td class='form-label-custom' ".$wleshiden." id='wlt_".$nombre."' name=wlt_".$nombre." title=\"".$descripcion."\" abbr=\"".$descripcion."\"".
-			(($wltdf=="1")
-				?    " colSpan=2  "
-			  : (($wltdf=="2")
-			  	 ? " colSpan=4 "
-			  	 : (($wltdf=="3")
-			  	    ? " colSpan=100 "
-			  	    : "" )
-			  	 )
-			  ).">".(($wltdf=="3") ? "" : $descripcion.(($busqueda=='t') ? "*" : "")).
-			  	(($wltdf=="1" || $wltdf=="2") ? "<br>" :(($wltdf=="3") ? "" : "</td>"));  // 20081015 grecar modifique esta linea para asignarles un valor las etiquetas td
-	    $wli=$wli.($wltdf=="1" || $wltdf=="2" || $wltdf=="3" ? ""  : "<td ".$wleshiden.">").
-	    				(($tipodedato != "text") 
-	    					? "<input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom' ".$wleshiden." onKeydown='return quitaenter(this,event)' " 
-	    					: "<textarea $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom' ".$wleshiden.((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
-	    									? "cols=".$mecq["colspantxt"] : "" )
+            $wli="<td class='div'><label class='form-label-custom' ".$wleshiden." id='wlt_".$nombre."' name=wlt_".$nombre." title=\"".$descripcion."\" abbr=\"".$descripcion."\""
+			.">".(($wltdf=="3") ? "" : $descripcion.(($busqueda=='t') ? "*" : ""))
+			.(($wltdf=="1" || $wltdf=="2") ? "<br>" :(($wltdf=="3") ? "" : "</label>")); 
+	    //$wli=$wli.($wltdf=="1" || $wltdf=="2" || $wltdf=="3" ? ""  : "<td ".$wleshiden.">").
+	    $wli=$wli.
+	    	(($tipodedato != "text") 
+	    	? "<input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom' ".$wleshiden." onKeydown='return quitaenter(this,event)' " 
+	    	: "<textarea $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom' ".$wleshiden.((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
+	    						? "cols=".$mecq["colspantxt"] : "" )
 	    				).
-/**
-* fin - ajuste 20130118.grecar
-*/
 	    				(($tipodedato == "text") 
 	    					? ($mecq["rowspantxt"]=="" 
 	    						? "" 
@@ -1076,7 +1059,7 @@ class soldatos
                                                 $wli=$wli.($wlondck !="" ? " ondblclick='".$wlondck.";'" : "" );
 
 	    	            $wli=$wli.(($wltdf==3) ? " placeholder=\"".$wltdd."\"" : "").
-	    	            (($tipodedato != "text") ? " ></input>" : " >".$valordefault."</textarea>").
+	    	            (($tipodedato != "text") ? " ></input></td>" : " >".$valordefault."</textarea></td>").
 	    	            (($tipodedato == "timestamptz" || $tipodedato == "date") & $readonly!='t' ? " <input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' class='img' type=image id='fe_".$nombre."' name=fe_".$nombre." src='img/icon_datepicker_pink.gif' onclick='muestrafecha(this);return false' title='Selecciona la fecha del calendario'></input>" : " " ). 
                             (($espassword=="3") ? " <input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' size=20 class='captcha' readonly='on' type=text id='wl_".$nombre."_img' name=wl_".$nombre."_img title='Imagen de la captcha' ></input>&nbsp<input tabindex='-1' class='img' type=image id='wl_".$nombre."_bot' name=wl_".$nombre."_bot src='img/refresh.png' onclick='ReDrawCaptcha(this);return false' title='Refresca la imagen del captcha'></input>" : " " );
 						if ($mecq["upload_file"]=='t')
@@ -1245,9 +1228,8 @@ class soldatos
  	 // presentacion horizontal
      if ($this->menu["presentacion"]=="2")
      {
-	    $this->inicio_tabcaptura($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);	  	     
+	$this->inicio_tabcaptura($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);	  	     
      	$i = pg_numfields($sql_result);
-##     	echo "total de campos".$i;
         for ($j = 0; $j < $i; $j++)
         {
 	        $wllinea="";
@@ -1256,14 +1238,10 @@ class soldatos
 	        $wltdd=$this->menuc[pg_fieldname($sql_result, $j)]["descripcion"];
 	        while ($z < $this->menu["columnas"] && $j < $i )  /* arma la linea de acuerdo a las columnas */
 	        {
-##	          echo "campo".pg_fieldname($sql_result, $j);		
         	  $nomcampo=pg_fieldname($sql_result, $j);		
-        	  
-//   20070628        	  
         	  if ($j==0) {$htmltableanterior=$this->menuc[$nomcampo]["htmltable"];}//   20070628        	  
 			  if ($this->menuc[$nomcampo]["htmltable"]!=$htmltableanterior)//   20070628        	  
 			  {//   20070628        	  
-//				  $htmltableanterior=$this->menuc[$nomcampo]["htmltable"];//   20070628        	  
 				  $j--;
 				  break;//   20070628        	  
 			  }        	  //   20070628        	  
@@ -1271,8 +1249,6 @@ class soldatos
 	      	  $esFiltroDe=$md->dame_ultimo($this->menuc[$nomcampo]["esFiltroDe"]);
 	          if (strpos($this->movto_mantto,"i")!==false 
 	           	|| strpos($this->movto_mantto,"s")!==false
-// 20060117   force a que si es selecte muestre todos los campos sin importar si son busqueda	           	
-// 20060117	            	&& $this->menuc[pg_fieldname($sql_result, $j)]["busqueda"]==t)
 			       || strpos($this->movto_mantto,"u")!==false
 			       || strpos($this->movto_mantto,"e")!==false
 			       || strpos($this->movto_mantto,"I")!==false   // 20080115 altas automaticas de catalogo
@@ -1280,11 +1256,8 @@ class soldatos
      			   || (strpos($this->movto_mantto,"B")!==false)  
 			     )  
     		  {	  	
-##	    		  	echo "entro aqui";
 	          		if ($this->menuc[$nomcampo]["fuente"]!="") // si no es espacio es un campos select
 	          		{   
-##			          		$wllinea=$wllinea."<td>".$this->menuc[pg_fieldname($sql_result, $j)]["descripcion"]. //20070214
-##							($this->menuc[pg_fieldname($sql_result, $j)]["busqueda"]=='t' ? "*" : "" )."</td>\n". //20070214
 			          		$wllinea=$wllinea.     // 20070214
 		          		           $this->arma_selectn(
 		          		           						$this->dame_sql_sel($nomcampo,1)
