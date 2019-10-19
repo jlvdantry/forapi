@@ -379,7 +379,7 @@ class xmlhttp_class
                                                 if (strpos($me->camposm['noconfirmamovtos'],'s')===false && strpos($me->camposm['noconfirmamovtos'],'S')===false && strpos($me->camposm['noconfirmamovtos'],'B')===false)
                                                 {   } else { echo '<noconfirma>true</noconfirma>'; }
 						echo '<iden>'.$Reg.'</iden>';  // en caso de una secuencia esta es el no de registro de identificacion
-						$wlrenglones=$soldatos->inicio_tab($sql_result).$soldatos->filas_ing($sql_result,$Row,$me)."</table>";
+						$wlrenglones=$soldatos->inicio_tab($me->table_width,$me->table_height, $me->table_align).$soldatos->filas_ing($sql_result,$Row,$me)."</table>";
 						echo '<renglones>'.htmlspecialchars($wlrenglones,ENT_IGNORE,UTF-8).'</renglones>';
 						echo '<wleventodespues>'.$this->argumentos['wleventodespues'].'</wleventodespues>';
 						echo '<idmenu>'.$this->argumentos['idmenu'].'</idmenu>';
