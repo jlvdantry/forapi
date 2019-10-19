@@ -418,9 +418,9 @@ class soldatos
     */
   function inicio_tab($table_width,$table_height,$table_align)
   {
-    		return "<table id='tabdinamica_".$this->idmenu."' class='tabla'"
+    		return "<div class='table-responsive'> <table id='tabdinamica_".$this->idmenu."' class='tabla'"
                          .(strlen($table_align)>0 ? " align=".$table_align : "" )
-                         ."       style=\" ".  ((strlen($table_width)>0 && $table_width>0) ? " width:".$table_width : "  width:100" )."%;"
+                         ."       style=\" ".   "  width:100" ."%;"
                          .((strlen($table_height)>0 && $table_height>0) ? " height:".$table_height : " heigth:100" )."%;\""
                          ."  >\n";			
   }
@@ -2120,9 +2120,10 @@ class soldatos
          )          
          {
             if ($num>0) {
-     		echo $this->inicio_tab($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);	  	          		         		
+     		echo $this->inicio_tab($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);	  	  
      		echo $this->filas_ing($sql_result, $num, $this->metada);     		//20070623   
      		echo "</table>";  		
+     		echo "</div>";  		
             }
  	 }
   } 
