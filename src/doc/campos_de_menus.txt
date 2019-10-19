@@ -1,0 +1,7 @@
+
+
+formato_td, se define el formato de un td
+   0= "normal" label es un td y el input o select es otro td
+   1= "Etiqueta y texto junto"  label e input  solect en un solo td 
+   2= "Etiqueta y texto junto todo el renglons" label e input o select en un solo td en un tr
+   3= "place holder"
