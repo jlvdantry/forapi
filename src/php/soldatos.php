@@ -1374,7 +1374,7 @@ class soldatos
 			}				
 
 			
-				$wllinea="<tr>".$wllinea."</tr>";//20070628
+				$wllinea="<tr class='d-flex justify-content-between'>".$wllinea."</tr>";//20070628
 				echo $wllinea;//20070628
 				if ($this->menuc[$nomcampo]["htmltable"]!=$htmltableanterior)
 				{
@@ -1396,7 +1396,7 @@ class soldatos
 	    $this->fin_tab();	  	    
 	    echo "<div>";      	
 	    $this->inicio_tab_botones($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);
-     	echo "<tr class='row' >";	    
+     	echo "<tr class='d-flex justify-content-between' >";	    
 ##     	echo "<td width=1% ><input width=1% type=image onclick='return false;'></input></td>";
         if (
         strpos($this->movto_mantto,"i")!==false
