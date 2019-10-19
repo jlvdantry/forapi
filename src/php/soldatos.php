@@ -1045,7 +1045,7 @@ class soldatos
                                                 $wli=$wli.($wlondck !="" ? " ondblclick='".$wlondck.";'" : "" );
 
 	    	            $wli=$wli.(($wltdf==3) ? " placeholder=\"".$wltdd."\"" : "").
-	    	            (($tipodedato != "text") ? " ></input></td>" : " >".$valordefault."</textarea></td>").
+	    	            (($tipodedato != "text") ? " ></input>" : " >".$valordefault."</textarea>").
 	    	            (($tipodedato == "timestamptz" || $tipodedato == "date") & $readonly!='t' ? " <input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' class='img' type=image id='fe_".$nombre."' name=fe_".$nombre." src='img/icon_datepicker_pink.gif' onclick='muestrafecha(this);return false' title='Selecciona la fecha del calendario'></input>" : " " ). 
                             (($espassword=="3") ? " <input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' size=20 class='captcha' readonly='on' type=text id='wl_".$nombre."_img' name=wl_".$nombre."_img title='Imagen de la captcha' ></input>&nbsp<input tabindex='-1' class='img' type=image id='wl_".$nombre."_bot' name=wl_".$nombre."_bot src='img/refresh.png' onclick='ReDrawCaptcha(this);return false' title='Refresca la imagen del captcha'></input>" : " " );
 						if ($mecq["upload_file"]=='t')
@@ -1113,107 +1113,6 @@ class soldatos
   {
 
      $md = new menudata();	  
-	  // presentacion vertical
-     if ($this->menu["presentacion"]=="1")
-     {
-	    echo $this->inicio_tab($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);	  	     
-	    echo $this->titulos_tab($sql_result);	  
-     	echo "<tr>";
-
-     	$i = pg_numfields($sql_result);
-        for ($j = 0; $j < $i; $j++)
-        {
-	      $nomcampo=pg_fieldname($sql_result, $j);
-	      $esFiltroDe=$this->menuc[$nomcampo]["esFiltroDe"];
-	      //echo "fuente_campofil".$fuente_campofil;
-          if ($j == 0)   //  porque el primer campos es la llave 
-          {
-				//  preguna si es insert o es una consulta para mostra el titulo del campos
-	          if (strpos($this->movto_mantto,"i")!==false
-	           	|| strpos($this->movto_mantto,"s")!==false
-	           	|| strpos($this->movto_mantto,"B")!==false	           	
-// 20060117   force a que si es selecte muestre todos los campos sin importar si son busqueda	           	
-// 20060117	            	&& $this->menuc[pg_fieldname($sql_result, $j)]["busqueda"]==t)
-	            || strpos($this->movto_mantto,"u")!==false
-	            || strpos($this->movto_mantto,"e")!==false	            
-	            || strpos($this->movto_mantto,"I")!==false	 //20080115  altas automaticas de catalogo
-	            || strpos($this->movto_mantto,"S")!==false	 //20080115  altas automaticas de catalogo	            
-	            || strpos($this->movto_mantto,"B")!==false		            	            
-	            ) 
-     			{	  
-	           		echo "<th> <input type=hidden name=wl_".pg_fieldname($sql_result, $j)."></input></th>\n"; 
-           		}
-          }
-          else
-          { 
-	         if ($this->menuc[$nomcampo]["fuente"]!="") // si no es espacio es un campos select
-	         {
-	            echo $this->arma_selectn($this->dame_sql_sel($nomcampo,1),
-	                                            $nomcampo
-	                                            ,$this->menuc[$nomcampo]["fuente_campofil"],
-	                                            $this->menuc[$nomcampo]["esFiltroDe"],
-	                                            $this->menuc[$nomcampo]["obligatorio"],
-	                                            $this->menuc[$nomcampo]["tipayuda"],
-	                                            $this->menuc[$nomcampo]["typname"],
-	                                            $this->menuc[$nomcampo]["busqueda"],
-	                                            $j
-	                                            ,$this->menuc[$esFiltroDe]["fuente_campofil"]
-	                                            ,$this->menuc[$nomcampo]["size"]
-	                                            // 20071002 cambie la siguiente linea ya que fuente_where no se sabe
-	                                            // de quien es el filtro $esfiltrode
-	                                            // segun yo tambien no funciona el evento, al cargar forma, solo funciona
-	                                            // al tomar el foco
-	                                            // 20071002 ,$this->menuc[$esFiltroDe]["fuente_where"]
-	                                            ,$this->menuc[$nomcampo]["fuente_where"]	                                            
-	                							,$this->menuc[$nomcampo]["readonly"]	                					
-	                							,$this->menuc[$nomcampo]["valordefault"]
-												,$this->menuc[$nomcampo]["fuente_evento"]
-												,$this->movto_mantto   //  20070214
-											    ,$this->menuc[$nomcampo]["descripcion"]  // 20070214												
-											    ,$this->menuc[$nomcampo]["altaautomatico"]  // 20070214											    
-											    ,$this->menuc[$nomcampo]["idmenu"]  // 20070214												
-											    ,$this->menuc[$nomcampo]["attnum"]  // 20070214											    											    
-											    ,$this->menuc[$nomcampo]  // 20070214											    											    											    
-											    ,$this->menuc[$nomcampo]["fuente_busqueda"]  // 20070618
-											    ,$this->menuc[$nomcampo]["val_particulares"]  // 20070725
-											    ,$this->menumce[$nomcampo]  // 20070804
-											    ,$this->menuc[$nomcampo]  // 20070804
-	                                           	                                     );
-	         }
-	         else
-	         {
-	            echo $this->arma_input( pg_fieldname($sql_result, $j)
-	            						,$this->menuc[pg_fieldname($sql_result, $j)]["size"]
-	            						,$this->menuc[pg_fieldname($sql_result, $j)]["male"]
-	                					,$this->menuc[pg_fieldname($sql_result, $j)]["obligatorio"]
-	                					,$this->menuc[pg_fieldname($sql_result, $j)]["tipayuda"]
-	             	    			    ,$this->menuc[pg_fieldname($sql_result, $j)]["typname"]
-	                					,$this->menuc[pg_fieldname($sql_result, $j)]["busqueda"]
-	                					,$this->menuc[pg_fieldname($sql_result, $j)]["tcase"]
-	                					,$j
-	                					,$this->menuc[pg_fieldname($sql_result, $j)]["readonly"]	                					
-	                					,$this->menuc[pg_fieldname($sql_result, $j)]["valordefault"]
-	                					,$this->menuc[pg_fieldname($sql_result, $j)]["espassword"]	                					
-										,$this->movto_mantto   //  20070214	                					
-									    ,$this->menuc[pg_fieldname($sql_result, $j)]["descripcion"]  // 20070214																						
-									    ,$this->menuc[pg_fieldname($sql_result, $j)]["val_particulares"] // 20070622
-									    //  20071009  se incluyo los eventos a nivel campo el los campos input
-									    ,$this->menumce[$nomcampo]  // 20071009
-									    ,$this->menuc[$nomcampo]  //  20080123
-	                					);
-        	}
-          }
-      	}
-     	  echo "<td class='botones' > <input type=image class=img src='img/add.gif' title='Alta' value='Alta' name=matriz ".
-        	  "onclick='mantto_tabla(\"".$this->idmenu."\",\"i\",,,,,,this);return false'></input></td>\n";//20071113
-     	  echo "<td class='botones' > <input type=image class=img src='img/action_search_20.gif' title='Busca1' value='Buscar' name=busca ".
-        	  "onclick='abre_consulta(\"".$this->idmenu."\");return false'></input></td>\n";     	      	
-     	echo "</tr>";
- 	}
- 	
- 	 // presentacion horizontal
-     if ($this->menu["presentacion"]=="2")
-     {
 	$this->inicio_tabcaptura($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);	  	     
      	$i = pg_numfields($sql_result);
         for ($j = 0; $j < $i; $j++)
@@ -1531,8 +1430,6 @@ class soldatos
         	}        	            	    	  
      	echo "</tr>";
 	    $this->fin_tab();     	
-
- 	} 	
   }
 
   /**
