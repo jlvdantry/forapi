@@ -389,6 +389,7 @@ class xmlhttp_class
 						$wlrenglones=$soldatos->inicio_tab($sql_result).$soldatos->filas_ing($sql_result,$Row,$me)."</table>";
 						echo '<renglones>'.htmlspecialchars($wlrenglones,ENT_IGNORE,UTF-8).'</renglones>';
 						echo '<wleventodespues>'.$this->argumentos['wleventodespues'].'</wleventodespues>';
+						echo '<idmenu>'.$this->argumentos['idmenu'].'</idmenu>';
 					}
 					else { 
                                                 if (strpos($me->camposm['noconfirmamovtos'],'s')===false && strpos($me->camposm['noconfirmamovtos'],'S')===false && strpos($me->camposm['noconfirmamovtos'],'B')===false)
@@ -586,18 +587,12 @@ class xmlhttp_class
                		" where ".$this->argumentos['wlllave'];
 
            		$sql_result = @pg_exec($this->connection,$sql);
-//                	    or die("Couldn't make query. ".$sql );
-//                        $wlerror=pg_last_error($this->connection) ;  // esto lo inclui para controlar errores por trigger
 			$this->hayerrorsql($this->connection,'Cambio x1',$sql);
-//			if ($wlerror!="") 
-//			{ echo '<error>'.$wlerror.'</error>'; }
-//			else
-//                        {
            		   $Row = pg_cmdtuples($sql_result); 
            		   if($Row!=0)
               	           {  
 	               echo '<cambiook>Cambio efectuado</cambiook>'; 
-			       echo "<wlmenu>".$this->argumentos['wlmenu']."</wlmenu>";
+			       echo "<wlmenu>".$this->argumentos['idmenu']."</wlmenu>";
 			       echo "<wlmovto>".htmlspecialchars($this->argumentos['wlmovto'])."</wlmovto>";		
 			       echo "<wlllave>".htmlspecialchars($this->argumentos['wlllave'])."</wlllave>";
 			       echo "<wlrenglon>".htmlspecialchars($this->argumentos['wlrenglon'])."</wlrenglon>";

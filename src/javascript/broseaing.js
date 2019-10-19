@@ -249,15 +249,15 @@ window.desplega = function(si)
 	si.focus();
 }
 
-window.sumatotales = function(theFormName) {
+window.sumatotales = function(idmenu) {
 	try
 	{
 	    var tfoot = '';
-		var tabla=document.getElementById('tabdinamica');
+		var tabla=document.getElementById('tabdinamica_'+idmenu);
 		if (tabla.rows.length>1)
 		{
 			var renglon=tabla.insertRow(-1);  // firefox
-			header=document.getElementById('tabdinamica').rows[0];
+			header=document.getElementById('tabdinamica_'+idmenu).rows[0];
 			for( var i=0; i<header.cells.length ; ++i ) {
 				if (header.cells[i].id=='totales')
 				{
@@ -1092,11 +1092,11 @@ window.dame_onclick = function(wlonclick)
 }
 ///**********************************   20061102
 ///  funcion que el camba el onclick
-window.cambia_onclick = function(wlonclick)
+window.cambia_onclick = function(wlonclick,idmenu)
 {
 
 	try {
-		var obj=document.getElementById("iCambio");
+		var obj=document.getElementById("iCambio_"+idmenu);
                 if (obj.className=='hidden') { obj.className='visible'; } 
                 str=' obj.onclick = function () { ' + wlonclick + ' }';
                 eval(str);
@@ -1160,7 +1160,7 @@ window.muestra_cambio = function(theFormName,r,ct,wlllave,menu,wleventoantes,wle
   
   pone_unchecked(r);
   wlonclick="mantto_tabla(\""+menu+"\",\"u\",\""+wlllave+"\","+(r)+",\""+wleventoantes+"\",\""+wleventodespues+"\",\""+wleventoantescl+"\",\""+wleventodespuescl+"\",\""+noconfirmamovtos+"\");return false;";
-  cambia_onclick(wlonclick);
+  cambia_onclick(wlonclick,menu);
 
 
   for (e=0;e<ct;e++) {
@@ -1202,7 +1202,7 @@ window.muestra_cambio = function(theFormName,r,ct,wlllave,menu,wleventoantes,wle
 		  		}
 	  		if (xelm.type=='checkbox')
 	  		{ 
-		  		document.getElementById(elm+'_'+menu).value=valor_checkbox_cap(el,elm+'_'+menu); 
+		  		document.getElementById(elm+'_'+menu).value=valor_checkbox_cap(el+'_'+menu,elm+'_'+menu); 
 		  	}	
 				var captu=document.getElementById(elm+'_'+menu);		  	
 	   			var str=captu.name;
@@ -1386,14 +1386,12 @@ window.checanumericos = function(theForm) {
   //theForm = document.getElementById(theFormName);
   var qs = '';
   for (e=0;e<theForm.elements.length;e++) {
-    if (theForm.elements[e].name!='' && theForm.elements[e].name.indexOf('nu_')>=0) {
-	   var str=theForm.elements[e].name;
-	   var str1=str.replace(/nu_/,"wl_");
-		x=document.getElementsByName(str1)[0];	    
+    if (theForm.elements[e].name!='' && ('numerico' in theForm.elements[e].dataset)) {
+	    x=theForm.elements[e];	    
 	    var vd = new valcomunes();
 	    vd.ponnumero(x)
 	    if (vd.esnumerico()==false)
-	    {   return false; }
+	    {   x.focus(); return false; }
     }
   }
   return true
@@ -1967,46 +1965,48 @@ window.checaSiCambioAlgo = function(wlmenu,wlmovto,wlllave,wlrenglon,cambiacolor
 try {  // firefox
 
 		var regresa=false;	
-		var ct=document.getElementById("tr"+wlrenglon).cells.length;
+		var ct=document.getElementById("tr"+wlrenglon+"_"+wlmenu).cells.length;
 		for (e=0;e<ct;e++)
 		{
 	  		var el="r"+wlrenglon+"c"+e;
 	  		var elm="cc"+e;
 	  		try
 	  		{
-	  			if (document.getElementById(elm).type=='text' || document.getElementById(elm).type=='password' || document.getElementById(elm).type=='textarea')
+                                cc_elm=document.getElementById(elm+"_"+wlmenu);
+                                cc_el=document.getElementById(el+"_"+wlmenu);
+	  			if (cc_elm.type=='text' || cc_elm.type=='password' || cc_elm.type=='textarea')
                 {  // 20070630 este inicio de { estaba a partir del siguiente if, esto hacia que no acutalizara bien
-                   try { var valorren=document.getElementById(el).innerText.trim(); } catch (err) { var valorren=null; }
-	  			 if (document.getElementById(elm).value.trim()!=valorren)
+                   try { var valorren=cc_el.innerText.trim(); } catch (err) { var valorren=null; }
+	  			 if (cc_elm.value.trim()!=valorren)
 	  				{	
 		  				if (cambiacolor==1)
 		  				{
-		  					document.getElementById(el).innerText=document.getElementById(elm).value;
-		  					document.getElementById(el).className="cambiado";
+		  					cc_el.innerText=cc_elm.value;
+		  					cc_el.className="bg-success text-white";
 						}		  				
 		  				regresa=true; 
 		  			}
 	  			}
-	  			if (document.getElementById(elm).type=='select-one')
+	  			if (cc_elm.type=='select-one')
 	  			{ 
-		  			if (document.getElementById(elm).value!=busca_ValorOption(document.getElementById(elm),document.getElementById(el).innerText,0,document.getElementById(el).abbr))
+		  			if (cc_elm.value!=busca_ValorOption(cc_elm,cc_el.innerText,0,cc_el.abbr))
 	  				{ 	
 		  				if (cambiacolor==1)
 		  				{		  			
-		  					document.getElementById(el).innerText=busca_DesOption(document.getElementById(elm),document.getElementById(elm).value);
-		  					document.getElementById(el).className="cambiado";		  			
+		  					cc_el.innerText=busca_DesOption(cc_elm,cc_elm.value);
+		  					cc_el.className="cambiado";		  			
 	  					}
 		  				regresa=true; 
 	  				}
 	  			}
-	  			if (document.getElementById(elm).type=='checkbox')
+	  			if (cc_elm.type=='checkbox')
 	  			{ 
-		  			if (document.getElementById(elm).checked!=nullesfalse(document.getElementById(el).innerText))
+		  			if (cc_elm.checked!=nullesfalse(cc_el.innerText))
 	  				{	
 		  				if (cambiacolor==1)
 		  				{
-		  					document.getElementById(el).innerText=document.getElementById(elm).value;
-		  					document.getElementById(el).className="cambiado";
+		  					cc_el.innerText=cc_elm.value;
+		  					cc_el.className="cambiado";
 						}		  				
 		  				regresa=true; 
 		  			}
@@ -2369,6 +2369,8 @@ window.querespuesta = function()
 
            if (req.responseText.indexOf("<consulta>") != -1)
            {
+              var items = req.responseXML.getElementsByTagName("idmenu");
+              try { var idmenu=items[0].childNodes[0].nodeValue } catch (err) { var idmenu=0; };
 	      var x = req.responseXML;
               var items = req.responseXML.getElementsByTagName("noconfirma");
               try { var noconfirma=items[0].childNodes[0].nodeValue } catch (err) { var noconfirma=false; };
@@ -2383,27 +2385,21 @@ window.querespuesta = function()
 	              return;
 	              }
               }
+
               var items = req.responseXML.getElementsByTagName("renglones");              
               if (items.length>0)
               { 
-					tablas=document.body.getElementsByTagName('table');
-					for( var i=0; i<tablas.length ; ++i ) {					
-						if (tablas[i].outerHTML.indexOf("tabdinamica")!=-1)
-						{ 
-                                                     x=tablas[i]; 
-                                                     pn=x.parentNode;
-                                                     x.parentNode.removeChild(x); 
-                                                }
-					}
+                                        try { tb=$("#tabdinamica_"+idmenu)[0]; tb.parentNode.removeChild(tb); } catch (er) { };
+                                        entrada=document.getElementById('formpr_'+idmenu);
                                         if (isIE)
-					{ pn.insertAdjacentHTML('beforeEnd', items[0].childNodes[0].nodeValue); }  //  IE
+					{ entrada.insertAdjacentHTML('beforeEnd', items[0].childNodes[0].nodeValue); }  //  IE
                                         else
-                                        { pn.insertAdjacentHTML('beforeEnd', items[0].textContent); }  //ff
-					pone_sort_scroll();
-					hayunregistro();
-					sumatotales();	
+                                        { entrada.insertAdjacentHTML('beforeEnd', items[0].textContent); }  //ff
+					hayunregistro(idmenu);
+					sumatotales(idmenu);	
               }
               else {alert('no encontro renglones '+req.responseText)}
+
               checa_eventodespues(req.responseText);              
               try { var tadi=document.getElementById("menerror");  tadi.parentNode.removeChild(tadi); } catch (err) { }              
               return;
@@ -2463,9 +2459,9 @@ window.querespuesta = function()
 	            var desw = req.responseXML.getElementsByTagName("wlrenglon");
                     if (desw[0].childNodes.length>0) //firefox
 	                wlrenglon = desw[0].childNodes[0].nodeValue;	           	            	            	           	       	            
-				checaSiCambioAlgo(wlmenu,wlmovto,wlllave,wlrenglon,1);
-              	checa_eventodespues(req.responseText);              
-    	        return;
+		    checaSiCambioAlgo(wlmenu,wlmovto,wlllave,wlrenglon,1);
+              	    checa_eventodespues(req.responseText);              
+    	            return;
            }            
            
            if (req.responseText.indexOf("<mensajetabla>") != -1)

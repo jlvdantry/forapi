@@ -748,7 +748,7 @@ class soldatos
    		                 
 ##   			$vas=$vas."<td > ";
 	        $vas=$vas.($wltdf=="1" || $wltdf=="2" || $wltdf=="3" ? "" : "<td".$wleshiden.">");
-	 		$vas = ($menuc["autocomplete"]=='1' ? $vas." <input type=text ".$wleshiden." readonly=true class='leesinborder' name=au_".$wlnombre." ></input><br>\n" : $vas );
+	 		$vas = ($menuc["autocomplete"]=='1' ? $vas." <input type=text ".$wleshiden." readonly=true class='form-control form-control-custom' name=au_".$wlnombre." ></input><br>\n" : $vas );
    			$vas=$vas."<select $wlobligatorio_ $wlbusqueda_ $tipodato_ $cambiarencambios_ class='form-control form-control-custom' ".$wleshiden."placeholder=\"prueba\" ".
 	 		            ($menuc["autocomplete"]=='1' ? " ;restaura_autocomplete(this)" : "" ). 	      	 		   			               			
    			            (($menumce[1]["idevento"]=='1' && $menumce[1]["donde"]=='0' && $menumce[1]["descripcion"]!='') ? "return eventosparticulares(this,\"".$menumce[1]["descripcion"]."\");" : "").   			
@@ -759,7 +759,7 @@ class soldatos
 			$wlonblur=$this->blur($readonly);   			          
    			($tip!="") ?  $vas=$vas." title='".$tip."' " : $vas=$vas;   			   			 
    			($size!="") ?  $vas=$vas." size=".$size." " : $vas=$vas;   			
-   			($readonly=='t') ?  $vas.="  disabled=true class='lee' " :  $vas=$vas;
+   			($readonly=='t') ?  $vas.="  disabled=true readonly " :  $vas=$vas;
 ## 			$vas = $vas.$this->foco($readonly);	 		   			
 ##   			$vas.=" readonly=".$readonly."-";
    			($fuente_campofil!="") ?  $vas=$vas." onClick=\"si_Select('".$sql."','".$fuente_campofil."');\" " : $vas=$vas;
@@ -1041,7 +1041,7 @@ class soldatos
 	    						: " rows=".$mecq["rowspantxt"]." " ) 
 	    						: " ").
 	                    (($male!="" && $male!="0") ? " maxlength=".$male : ($espassword=="3" ? " maxlength=14 " : "") ).
-                                (($readonly=='t') ? (($tipodedato == 'bool') ? " disabled=true " : " readonly=true ")."class='lee' " : " ").
+                                (($readonly=='t') ? (($tipodedato == 'bool') ? " disabled=true " : " readonly=true ")." readonly " : " ").
                             $wlvalordefault.
 	    	            ($tip!="" ? " title='".$tip."'" : " ").
 	    	            ($tipodedato == "bool" ? " type=checkbox onclick='ponvalor_cb(this)' value=f " 
@@ -1077,8 +1077,7 @@ class soldatos
 	    	            $wli=$wli.(($wltdf==3) ? " placeholder=\"".$wltdd."\"" : "").
 	    	            (($tipodedato != "text") ? " ></input>" : " >".$valordefault."</textarea>").
 	    	            (($tipodedato == "timestamptz" || $tipodedato == "date") & $readonly!='t' ? " <input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' class='img' type=image id='fe_".$nombre."' name=fe_".$nombre." src='img/icon_datepicker_pink.gif' onclick='muestrafecha(this);return false' title='Selecciona la fecha del calendario'></input>" : " " ). 
-                            (($espassword=="3") ? " <input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' size=20 class='captcha' readonly='on' type=text id='wl_".$nombre."_img' name=wl_".$nombre."_img title='Imagen de la captcha' ></input>&nbsp<input tabindex='-1' class='img' type=image id='wl_".$nombre."_bot' name=wl_".$nombre."_bot src='img/refresh.png' onclick='ReDrawCaptcha(this);return false' title='Refresca la imagen del captcha'></input>" : " " ).
-	    	            (($tipodedato == "text") & $readonly!='t' ? " <input  $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' type=image class='img' id='txt_".$nombre."' name=txt_".$nombre." src='img/nota.gif' onclick='muestratexto(this);return false' title='Amplia el panel de la captura'></input>" : " " );  // 20070301  modificacion para abrir un ventana auxiliar en textos largos
+                            (($espassword=="3") ? " <input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' size=20 class='captcha' readonly='on' type=text id='wl_".$nombre."_img' name=wl_".$nombre."_img title='Imagen de la captcha' ></input>&nbsp<input tabindex='-1' class='img' type=image id='wl_".$nombre."_bot' name=wl_".$nombre."_bot src='img/refresh.png' onclick='ReDrawCaptcha(this);return false' title='Refresca la imagen del captcha'></input>" : " " );
 						if ($mecq["upload_file"]=='t')
 						{ 
                                                   $wli.=" <input class='img' type=image abbr='' id='upl_".$nombre."' name=upl_".$nombre." src='/dist/img/carpeta.svg' onclick='subearchivo(this);return false' title='Adjunta archivo de explorador' />"; 
@@ -1133,7 +1132,7 @@ class soldatos
   function foco($readonly)
   { return " \"\""; }
   function blur($readonly)  
-  { return $readonly=='t' ? " this.className=\"lee\" " : " \"\"" ; }
+  { return $readonly=='t' ? " class='form-control form-control-custom' " : " \"\"" ; }
     	  
   /**
     * desplega los campos para capturar en una tabla
@@ -1337,7 +1336,7 @@ class soldatos
 			          			? " <br><input  ".$wleshiden : (($wltdf==3) ? " <input  ".$wleshiden : "</td><td><input ".$wleshiden)  
 			          		).
 	            		  	(($this->menuc[$nomcampo]["size"]!="" && $this->menuc[$nomcampo]["size"]!="0") ? " size=".$this->menuc[$nomcampo]["size"] : "" ).
-	            		  	$this->armaid_cc($j)." type=text readonly=true class='lee' name=wl_".pg_fieldname($sql_result, $j)." ".
+	            		  	$this->armaid_cc($j)." type=text class='form-control form-control-custom' readonly=true name=wl_".pg_fieldname($sql_result, $j)." ".
 	            		  	(($wltdf==3) ? "placeholder=\"".$wltdd : "" )."\"></input>".$wlbusqueda."</td>\n";
             		  	}
 		          		else
@@ -1463,11 +1462,9 @@ class soldatos
     	if (strpos($this->movto_mantto,"u")!==false)     	  
         {
 	     	echo "<td id='cambio' class='botones' > ".
-	     	($this->menum['u']['idmovto']=='u' && $this->menum['u']["descripcion"]!="" ? "<input type='button' class='hidden btn-01' id='iCambio' value='".$this->menum['u']["descripcion"]."' title='Cambio'  " : "<input type=button class='hidden btn-01' id='iCambio'  title='Cambio' value='Cambio' ").
+	     	($this->menum['u']['idmovto']=='u' && $this->menum['u']["descripcion"]!="" ? "<input type='button' class='hidden btn-01' id='iCambio_".$this->idmenu."' value='".$this->menum['u']["descripcion"]."' title='Cambio'  " : "<input type=button class='hidden btn-01' id='iCambio_".$this->idmenu."'  title='Cambio' value='Cambio' ").
         	  "onclick='alert(\"Primero debe selecionar un renglon\");return false'></input></td>\n";	        
         }    	
-	
-        	      	  
 		echo $this->arma_subvistas($sql_result,$Row,$z,$meda,1);        	      	    
 		
         if (strpos($this->movto_mantto,"p")!==false)     	  
@@ -1715,8 +1712,6 @@ class soldatos
         	if (strpos($meda->camposm['movtos'],"d")!==false) 
         	{
             	 $wlini=$wlini."<td name=noimprime ><button class='btn-eliminar'  title='Eliminar registro'  ".
-//20070630  lo modifique para que antes de dar de baja los muestre en los campos de captura
-//20070630                   "onclick='mantto_tabla(\"".$meda->camposm['idmenu']."\",\"d\",\"".$wlllave."\",".($z).",\"".
                    "onclick='daunClick(\"cam".$z."\");mantto_tabla(\"".$meda->camposm['idmenu']."\",\"d\",\"".$wlllave."\",".($z).",\"".                   
         	                          // evento antes de dar de baja
         	                          (($meda->camposme[5][2]['donde']==1) ? $meda->camposme[5][2]['descripcion'] : "").
