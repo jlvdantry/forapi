@@ -363,13 +363,6 @@ class xmlhttp_class
       // Consulta
       if($this->argumentos['movto']=='s' || $this->argumentos['movto']=='S' || $this->argumentos['movto']=='B')
       { 
-	      // Escribe en archivo txt el sql por ejecutar
-	      $handle = fopen ("ficheros/sql.sql", "w");
-	      if (!fwrite ($handle,$me->camposm["fuente"])) { echo "no pudo escribir archivo1"; }
-	      fclose($handle);
-
-//	      echo "<error>entro en consulta".$this->argumentos['filtro']."</error>";
-//				return;
 					$sql=$me->filtro;
 	        		$sql_result = @pg_exec($this->connection,$me->camposm["fuente"]);
 	        		
