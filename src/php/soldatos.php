@@ -737,32 +737,23 @@ class soldatos
                         $cambiarencambios_ = (($menuc["cambiarencambios"]=='f') ? "data-cambiarencambios=0" : "" );
                         $tipodato_=((substr($tipodedato,0,3)==='int' || $tipodedato=='numeric') ? "data-numerico=1" : "" );
                         $wlidcampo=$mecq["idcampo"];
-   		    $vas="<td class='form-label-custom' ".$wleshiden."id='wlt_".$wlnombre."' name='wlt_".$wlnombre."' abbr=\"".$descripcion."\" value=\"".$descripcion."\" ".
-   		    
-   		    	(	($wltdf=="1")
-   		    		? " colSpan=2  "
-   		 			   : (($wltdf=="2")
-   		 				 ? " colSpan=99  "
-   		 				 : (($wltdf=="3") ? " colSpan=99" : "" ))
-   		 				).">".(($wltdf=="3") ? $descripcion." " : $descripcion.(($busqueda=='t') ? "* " : " ")).
-   		                 (($wltdf=="1" || $wltdf=="2") ? "<br>" : (($wltdf=="3") ? "" : "</td>"));  // 20070214							
-   		                 
-##   			$vas=$vas."<td > ";
-	        $vas=$vas.($wltdf=="1" || $wltdf=="2" || $wltdf=="3" ? "" : "<td".$wleshiden.">");
-	 		$vas = ($menuc["autocomplete"]=='1' ? $vas." <input type=text ".$wleshiden." readonly=true class='form-control form-control-custom' name=au_".$wlnombre." ></input><br>\n" : $vas );
-   			$vas=$vas."<select $wlobligatorio_ $wlbusqueda_ $tipodato_ $cambiarencambios_ class='form-control form-control-custom' ".$wleshiden."placeholder=\"prueba\" ".
-	 		            ($menuc["autocomplete"]=='1' ? " ;restaura_autocomplete(this)" : "" ). 	      	 		   			               			
-   			            (($menumce[1]["idevento"]=='1' && $menumce[1]["donde"]=='0' && $menumce[1]["descripcion"]!='') ? "return eventosparticulares(this,\"".$menumce[1]["descripcion"]."\");" : "").   			
-   			          "' ";   			            
-   			$vas=$vas.($menuc["autocomplete"]=='1' ? " onkeyup='autollenado(this,event,\"".$this->dame_sql_sel($wlnombre,0)."\",\"".$menuc["fuente_campodes"]."\");'" : "" );
-
+   		        $vas="<td class='divs' ><label class='form-label-custom' ".$wleshiden."id='wlt_".$wlnombre."' name='wlt_".$wlnombre
+                                ."' abbr=\"".$descripcion."\" value=\"".$descripcion."\" "
+   		 		.">".$descripcion.(($busqueda=='t') ? "* " : " ")
+   		                ."</label>"; 
+	        //$vas=$vas.($wltdf=="1" || $wltdf=="2" || $wltdf=="3" ? "" : "<td".$wleshiden.">");
+   			$vas=$vas."<select $wlobligatorio_ $wlbusqueda_ $tipodato_ $cambiarencambios_ class='form-control form-control-custom' "
+                                    .$wleshiden."placeholder=\"prueba\" "
+	 		            .($menuc["autocomplete"]=='1' ? " ;restaura_autocomplete(this)" : "" )
+   			            .(($menumce[1]["idevento"]=='1' && $menumce[1]["donde"]=='0' && $menumce[1]["descripcion"]!='') 
+                                       ? "return eventosparticulares(this,\"".$menumce[1]["descripcion"]."\");" : "")."' ";   			            
+   			$vas=$vas.($menuc["autocomplete"]=='1' ? " onkeyup='autollenado(this,event,\"".$this->dame_sql_sel($wlnombre,0)
+                                    ."\",\"".$menuc["fuente_campodes"]."\");'" : "" );
 			$wlonfocus=$this->foco($readonly);   			          
 			$wlonblur=$this->blur($readonly);   			          
    			($tip!="") ?  $vas=$vas." title='".$tip."' " : $vas=$vas;   			   			 
    			($size!="") ?  $vas=$vas." size=".$size." " : $vas=$vas;   			
    			($readonly=='t') ?  $vas.="  disabled=true readonly " :  $vas=$vas;
-## 			$vas = $vas.$this->foco($readonly);	 		   			
-##   			$vas.=" readonly=".$readonly."-";
    			($fuente_campofil!="") ?  $vas=$vas." onClick=\"si_Select('".$sql."','".$fuente_campofil."');\" " : $vas=$vas;
    			($esfiltrode!="" ) ?  $wlonchange=$wlonchange." pon_Select(\"".   //20071109   			
   	        		  $this->dame_sql_sel($esfiltrode,0)."\",\"".$filtroshijo."\",\"".$esfiltrode."\",\"".$fuentewhere."\",0".") " : $vas=$vas;
@@ -780,11 +771,10 @@ class soldatos
    	        		     			$vas=$vas." ".$this->armaid_cc($j)."name=wl_".$wlnombre." >\n";	   
 			if ($fuente_evento==0)  // si tiene el campo padre este se debe de llenar cuando se seleeciona el campo padre
 			{   	       
-                        $sql= $this->dame_sql_sel($wlnombre,1);
-    			$sql_result = pg_exec($this->connection,$sql)
+                            $sql= $this->dame_sql_sel($wlnombre,1);
+    			    $sql_result = pg_exec($this->connection,$sql)
         	    		       or die("Problemas al hacer sql. arma_selectn ".$sql );
-     			$num = pg_numrows($sql_result);
-				// 20070622 lo modifique para que cuando venga valor default de un campo select este lo muestre
+     			    $num = pg_numrows($sql_result);
 				if ($num!=1 || ($obligatorio!=='t'))
 	   			 $DefaultSelect="<option selected value >".(($wltdf==3) ? $wltdd : utf8_encode("Selecciona una Opción") )."</option>\n"; // 20070622
      			for ($i=0; $i < $num ;$i++)
@@ -795,7 +785,7 @@ class soldatos
          			if (($a==$valorDefault & $valorDefault!="") )// 20070622
          			{ $DefaultSelect="<option selected value=".$valorDefault." >".$b."</option>\n";        			}// 20070622
          			if ($num==1 & $obligatorio=='t' & $DefaultSelect=="")// 20070622         			
-         			{ $DefaultSelect="<option selected value=".$a." >".$b."</option>\n";        			}// 20070622         			         			
+         			{ $DefaultSelect="<option selected value=".$a." >".$b."</option>\n";        			}// 20070622 
            			$opciones=$opciones."<option value=$a>$b</option>\n";
      			}
  			}
@@ -817,17 +807,15 @@ class soldatos
 	 		$vas = ($fuente_busqueda=='t' ? $vas. //20070618
              	  "<input class=img type=image src='img/action_search_20.gif' title='Buscar opciones' value='Buscar' name=matriz value='Buscar' ". //20070618
    			          " onClick=\"pidebusqueda('". //20070618
-//20080117   	        		  $this->dame_sql_sel($wlnombre,0)."','".$fuente_campofil."','".$wlnombre."','".$fuentewhere."',0"."); ". //20070618
    	        		  $this->dame_sql_sel($wlnombre,0)."','".$fuente_campofil."','".$wlnombre."','".$fuentewhere."','".$fuente_evento."',0".   //20080117
             	  	  ",'".$menuc["fuente_busqueda_idmenu"]."'".       //20080117 numero de menu que va a abrir para consultar informacion
    	        		  				"); ". //20080117
-                 	  "return false;\"></input>\n" : $vas ); //20070618
-            	              	              	  
+                 	  "return false;\"></input>\n" : $vas ); 
      		$vas=$vas."</td>  ";  //20070214   		     		
-	 		$vas = ((substr($tipodedato,0,3)==='int' || $tipodedato=='numeric') ? $vas." <input type=hidden name=nu_".$wlnombre." value=1></input>\n" : $vas ); 	      	
-	 		$vas = (($tipodedato=='date' || $tipodedato=='timestampz') ? $vas." <input type=hidden name=_da_".$wlnombre." value=1></input>\n" : $vas ); 	      	
-			($val_particulares!='') ? $vas=$vas." <input type=hidden name=_vp_".$wlnombre." value='".$val_particulares."'></input>\n" : $wli=$wli ; //20070725
-	 		$vas = ($busqueda=='t' ? $vas." <input type=hidden name=bu_".$wlnombre." value=1></input>\n" : $vas ); 	 
+	 	$vas = ((substr($tipodedato,0,3)==='int' || $tipodedato=='numeric') ? $vas." <input type=hidden name=nu_".$wlnombre." value=1></input>\n" : $vas ); 
+	 	$vas = (($tipodedato=='date' || $tipodedato=='timestampz') ? $vas." <input type=hidden name=_da_".$wlnombre." value=1></input>\n" : $vas ); 	 
+	        ($val_particulares!='') ? $vas=$vas." <input type=hidden name=_vp_".$wlnombre." value='".$val_particulares."'></input>\n" : $wli=$wli ; 
+	 	$vas = ($busqueda=='t' ? $vas." <input type=hidden name=bu_".$wlnombre." value=1></input>\n" : $vas ); 	 
  		}
 	 	return $vas;
    }   
@@ -1012,7 +1000,6 @@ class soldatos
             $wli="<td class='div'><label class='form-label-custom' ".$wleshiden." id='wlt_".$nombre."' name=wlt_".$nombre." title=\"".$descripcion."\" abbr=\"".$descripcion."\""
 			.">".(($wltdf=="3") ? "" : $descripcion.(($busqueda=='t') ? "*" : ""))
 			.(($wltdf=="1" || $wltdf=="2") ? "<br>" :(($wltdf=="3") ? "" : "</label>")); 
-	    //$wli=$wli.($wltdf=="1" || $wltdf=="2" || $wltdf=="3" ? ""  : "<td ".$wleshiden.">").
 	    $wli=$wli.
 	    	(($tipodedato != "text") 
 	    	? "<input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom' ".$wleshiden." onKeydown='return quitaenter(this,event)' " 
