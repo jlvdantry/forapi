@@ -740,7 +740,7 @@ class soldatos
    		        $vas="<td class='".$menuc["clase"]."' ><label class='form-label-custom' ".$wleshiden."id='wlt_".$wlnombre."' name='wlt_".$wlnombre
                                 ."' abbr=\"".$descripcion."\" value=\"".$descripcion."\" "
    		 		.">".$descripcion.(($busqueda=='t') ? "* " : " ")
-   		                ."</label>"; 
+   		                ."</label>".$wlobligatorio; 
 	        //$vas=$vas.($wltdf=="1" || $wltdf=="2" || $wltdf=="3" ? "" : "<td".$wleshiden.">");
    			$vas=$vas."<select $wlobligatorio_ $wlbusqueda_ $tipodato_ $cambiarencambios_ class='form-control form-control-custom' "
                                     .$wleshiden."placeholder=\"prueba\" "
@@ -998,7 +998,7 @@ class soldatos
     $wltipodedato=((substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? " type='tel' " : "");
             $wli="<td class='".$mecq["clase"]."'><label class='form-label-custom' ".$wleshiden." id='wlt_".$nombre."' name=wlt_".$nombre." title=\"".$descripcion."\" abbr=\"".$descripcion."\""
 			.">".(($wltdf=="3") ? "" : $descripcion.(($busqueda=='t') ? "*" : ""))
-			."</label>"; 
+			."</label>".$wlobligatorio; 
 	    $wli=$wli.
 	    	(($tipodedato != "text") 
 	    	? "<input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom' ".$wleshiden." onKeydown='return quitaenter(this,event)' " 

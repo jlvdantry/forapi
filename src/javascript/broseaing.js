@@ -1862,7 +1862,7 @@ window.mantto_tabla = function (wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,w
                    {
                         if (window.confirm("Desea dar de alta el registro"))
                         {
-                        wlrenglon=document.getElementById('tabdinamica_'+wlmenu).rows.length;
+                        try { wlrenglon=document.getElementById('tabdinamica_'+wlmenu).rows.length; } catch (er) { wlrenglon=0 };
                         }
                         else
                         { return;}
@@ -2047,9 +2047,10 @@ window.altatabla = function(wlrenglon,idmenu)
 {
 	try
 	{
-        var xx = req.responseXML.getElementsByTagName("renglon");              	
-        var tr=xx[0].childNodes[0].nodeValue.split(">");        
-        var z=xx[0].childNodes[0].nodeValue.split("</td>");
+	    if (document.getElementById('tabdinamica_'+idmenu))  {  /* si existe la tabla dinamica crea el renglon */
+                var xx = req.responseXML.getElementsByTagName("renglon");              	
+                var tr=xx[0].childNodes[0].nodeValue.split(">");        
+                var z=xx[0].childNodes[0].nodeValue.split("</td>");
 		var b = document.getElementById('tabdinamica_'+idmenu).insertRow(1);			
                 try { document.getElementById('tabdinamica_'+idmenu).style.visibility='visible';        } catch (err) { } ;
 		var p=0;
@@ -2091,6 +2092,7 @@ window.altatabla = function(wlrenglon,idmenu)
 						
 		b.id='tr'+wlrenglon;		
 		color_renglon(b);
+            }
 	} catch(err) { alert('error altatabla '+err.message) }	
 	
 
