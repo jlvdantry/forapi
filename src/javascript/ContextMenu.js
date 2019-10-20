@@ -2,12 +2,12 @@
      window.WebFX_PopUp="";
      window.WebFX_PopUpcss="";
 window.ContextMenu = function(){}
-ContextMenu.intializeContextMenu=function()
+ContextMenu.intializeContextMenu=function(idmenu)
 {
 try {  // firefox
-	document.body.insertAdjacentHTML("BeforeEnd", '<iframe scrolling="no" class="WebFX-ContextMenu" marginwidth="0" marginheight="0" frameborder="1" style="position:absolute;display:none;z-index:50000000;" name="WebFX_PopUp" id="WebFX_PopUp" ></iframe>');
-        WebFX_PopUp    = document.getElementById("WebFX_PopUp").contentWindow;
-	WebFX_PopUpcss = document.getElementById("WebFX_PopUp");
+	document.body.insertAdjacentHTML("BeforeEnd", '<iframe scrolling="no" class="dropdown-menu" marginwidth="0" marginheight="0" frameborder="1" style="position:absolute;display:none;z-index:50000000;" name="WebFX_PopUp_'+idmenu+'" id="WebFX_PopUp_'+idmenu+'" ></iframe>');
+        WebFX_PopUp    = document.getElementById("WebFX_PopUp_"+idmenu).contentWindow;
+	WebFX_PopUpcss = document.getElementById("WebFX_PopUp_"+idmenu);
 	document.body.attachEvent("onmousedown",function(){WebFX_PopUpcss.style.display="none"});
 	WebFX_PopUpcss.onfocus  = function(){WebFX_PopUpcss.style.display="inline";;};
 	WebFX_PopUpcss.onblur  = function(){WebFX_PopUpcss.style.display="none";;};
@@ -25,11 +25,8 @@ ContextMenu.showPopup=function(x,y)
 
 ContextMenu.display=function(popupoptions)
 	{
-//        alert('entro showpoup');
 	    var eobj,cmdx,cmdy;
     	eobj = window.event;
-//firefox	x    = eobj.x;
-//firefox	y    = eobj.y
         if (!e) var e = window.event;
 	if (e.pageX || e.pageY) 	{
 		posx = e.pageX;
@@ -41,17 +38,6 @@ ContextMenu.display=function(popupoptions)
 		posy = e.clientY + document.body.scrollTop
 			+ document.documentElement.scrollTop;
 	}
-       //posx = eobj.clientX;
-       //posy = eobj.clientY;
-
-	
-
-/*
-	not really sure why I had to pass window here
-	it appears that an iframe inside a frames page
-	will think that its parent is the frameset as
-	opposed to the page it was created in...
-	*/
         ContextMenu.showPopup(posx,posy);
 	ContextMenu.populatePopup(popupoptions,window)
 	ContextMenu.fixSize();
@@ -127,7 +113,7 @@ ContextMenu.populatePopup=function(arr,win)
 		doc.body.innerHTML  = "";
 		if (doc.getElementsByTagName("LINK").length == 0) {
 			doc.open();
-			doc.write('<html><head><link rel="StyleSheet" type="text/css" href="WebFX-ContextMenu.css"></head><body></body></html>');
+			doc.write('<html><head><link rel="StyleSheet" type="text/css" href="dist/css/WebFX-ContextMenu.css"></head><body></body></html>');
 			doc.close();
 		}
 		doc.body.className  = "WebFX-ContextMenu-Body" ;
@@ -167,9 +153,6 @@ ContextMenu.populatePopup=function(arr,win)
 				doc.body.appendChild(doc.createElement("div")).className = "WebFX-ContextMenu-Separator";
 			}
 		}
-//		alert('doc.body.innerHTML='+doc.body.innerHTML);
-//firefox		doc.body.className  = "WebFX-ContextMenu-Body" ;
-//firefox hay que checar este punto		doc.body.onselectstart = function(){return false;}
 	} 
 catch (err) { alert('error =ContextMenu.populatePopup'+err) }
 }
@@ -180,4 +163,3 @@ window.ContextItem = function(str,fnc,disabled)
 	this.action   = fnc; 
 	this.disabled = disabled || false;
 }
-

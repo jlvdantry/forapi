@@ -198,6 +198,7 @@ class soldatos
     echo "}\n";
     echo "</script>";
     echo "<script>";
+    echo "  ContextMenu.intializeContextMenu(".$this->idmenu.");";
     echo "function valdatos() {\n";  // funcion para validar los datos en el cliente 
     echo "    var vd = new valcomunes();\n";
     reset($this->datos);
@@ -449,13 +450,7 @@ class soldatos
     */   
   function inicio_html()
   {
-    //echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"";
-    //echo "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">";
-    //echo "<html>\n";
     echo "<div id='soldatos_".$this->idmenu."' class='container' onunload='this.Cierraforma()' onresize=\"this.Cambiasize('".$this->idmenu."');\" onClick='sumaclicks()' onLoad=\"try { inicia();inicioforma();\n pone_focus_forma('',this);\n pone_sort_scroll(); \n sumatotales();\n } catch (e) { };ContextMenu.intializeContextMenu();\"  >\n";      
-    echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"/dist/css/subModal.css\" />\n";
-    echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"/dist/css/modal.css\" />\n";
-    echo " <link type=\"text/css\" rel=\"StyleSheet\" href=\"/dist/css/dhtmlwindow.css\" />\n";
   }
   /**
     *  Arma el boton

@@ -335,6 +335,7 @@ class xmlhttp_class
      **/
    function mantto_tabla()
    {
+      $sql="";
       if($this->argumentos['idmenu']=='')
       {  echo '<error>menu o vista no definida'.$this->argumentos['idmenu'].'</error>'; return; }
       if($this->argumentos['movto']!='I' && $this->argumentos['movto']!='i'
@@ -884,13 +885,13 @@ class xmlhttp_class
     function generaTexto($sql_result,$num,$parametro1,$me)
     {
 		$hoy=date(Y)."-".date(m)."-".date(d).", ".date(H).":".date(i).":".date(s);
-		$nombreArchivo="ficheros/consulta".$me->camposm["idmenu"]."_".$parametro1.".txt";
-		$nombreArchivogz="ficheros/consulta".$me->camposm["idmenu"]."_".$parametro1.".txt.gz";
+		$nombreArchivo=$_SERVER['DOCUMENT_ROOT']."/ficheros/consulta".$me->camposm["idmenu"]."_".$parametro1.".txt";
+		$nombreArchivogz=$_SERVER['DOCUMENT_ROOT']."/ficheros/consulta".$me->camposm["idmenu"]."_".$parametro1.".txt.gz";
 		// Borra  archivos txt y gz
 		if(file_exists($nombreArchivo)) {unlink($nombreArchivo);}
 		if(file_exists($nombreArchivogz)) {unlink($nombreArchivogz);}
 		// genera el encabezado del archivo
-		$ff = fopen ($nombreArchivo, w);
+		$ff = fopen ($nombreArchivo, "w");
 		$rowe = pg_fetch_array($sql_result, 0);
 		foreach ($rowe as $value )
 		{	if (Key($rowe)<"100")
@@ -916,11 +917,11 @@ class xmlhttp_class
 		if (!fwrite ($ff,"\narchivo generado: ".$hoy.", usuario: ".$parametro1)) { echo "no pudo escribir archivo7"; }
 		fclose($ff);
 		// Abrir en modo binario(lectura), acceder a los datos y cerrar
-		$fp = fopen ($nombreArchivo, rb);
+		$fp = fopen ($nombreArchivo, "rb");
 		$data = fread ($fp, filesize($nombreArchivo));
 		fclose ($fp);
 		// Abrir en modo binario (escritura), comprimir , escribir y cerrar
-		$fd = fopen ($nombreArchivogz, wb);
+		$fd = fopen ($nombreArchivogz, "wb");
 		$gzdata = gzencode($data,9);
 		fwrite($fd, $gzdata);
 		fclose($fd);
@@ -941,13 +942,13 @@ class xmlhttp_class
                 $objPHPExcel = new PHPExcel();
                 $objPHPExcel->setActiveSheetIndex(0);
                 $hoy=date(Y)."-".date(m)."-".date(d).", ".date(H).":".date(i).":".date(s);
-                $nombreArchivo="ficheros/consulta_".$parametro1.".xls";
-                $nombreArchivogz="ficheros/consulta_".$parametro1.".xls.gz";
+                $nombreArchivo= $_SERVER['DOCUMENT_ROOT']."/ficheros/consulta_".$parametro1.".xls";
+                $nombreArchivogz= $_SERVER['DOCUMENT_ROOT']."/ficheros/consulta_".$parametro1.".xls.gz";
                 // Borra  archivos xls y gz
                 if(file_exists($nombreArchivo)) {unlink($nombreArchivo);}
                 if(file_exists($nombreArchivogz)) {unlink($nombreArchivogz);}
                 // genera el encabezado del archivo
-                $ff = fopen ($nombreArchivo, w);
+                $ff = fopen ($nombreArchivo, "w");
                 if (!fwrite ($ff,"<table border=\"1\">")) { echo "no pudo escribir archivo8"; }
                 if (!fwrite ($ff,"<tr>")) { echo "no pudo escribir archivo9"; }
                 $rowe = pg_fetch_array($sql_result, 0);
@@ -1044,7 +1045,7 @@ class xmlhttp_class
                 if (!fwrite ($ff,"</table>")) { echo "no pudo escribir archivo"; }
                 fclose($ff);
                 // Abrir en modo binario(lectura), acceder a los datos y cerrar
-                $fp = fopen ($nombreArchivo, rb);
+                $fp = fopen ($nombreArchivo, "rb");
                 $data = fread ($fp, filesize($nombreArchivo));
                 fclose ($fp);
                 $objPHPExcel->setActiveSheetIndex(0);
@@ -1086,13 +1087,13 @@ class xmlhttp_class
     function generaExcel($sql_result,$num,$parametro1,$me)
     {
 		$hoy=date(Y)."-".date(m)."-".date(d).", ".date(H).":".date(i).":".date(s);
-		$nombreArchivo="ficheros/consulta_".$parametro1.".xls";
-		$nombreArchivogz="ficheros/consulta_".$parametro1.".xls.gz";
+		$nombreArchivo=$_SERVER['DOCUMENT_ROOT']."/ficheros/consulta_".$parametro1.".xls";
+		$nombreArchivogz=$_SERVER['DOCUMENT_ROOT']."/ficheros/consulta_".$parametro1.".xls.gz";
 		// Borra  archivos xls y gz
 		if(file_exists($nombreArchivo)) {unlink($nombreArchivo);}
 		if(file_exists($nombreArchivogz)) {unlink($nombreArchivogz);}
 		// genera el encabezado del archivo
-		$ff = fopen ($nombreArchivo, w);
+		$ff = fopen ($nombreArchivo, "w");
 		if (!fwrite ($ff,"<table border=\"1\">")) { echo "no pudo escribir archivo8"; }
 		if (!fwrite ($ff,"<tr>")) { echo "no pudo escribir archivo9"; }
 		$rowe = pg_fetch_array($sql_result, 0);
@@ -1126,11 +1127,11 @@ class xmlhttp_class
 		if (!fwrite ($ff,"</table>")) { echo "no pudo escribir archivo"; }
 		fclose($ff);
 		// Abrir en modo binario(lectura), acceder a los datos y cerrar
-		$fp = fopen ($nombreArchivo, rb);
+		$fp = fopen ($nombreArchivo, "rb");
 		$data = fread ($fp, filesize($nombreArchivo));
 		fclose ($fp);
 		// Abrir en modo binario (escritura), comprimir , escribir y cerrar
-		$fd = fopen ($nombreArchivogz, wb);
+		$fd = fopen ($nombreArchivogz, "wb");
 		$gzdata = gzencode($data,9);
 		fwrite($fd, $gzdata);
 		fclose($fd);
