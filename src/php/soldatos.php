@@ -737,7 +737,7 @@ class soldatos
                         $cambiarencambios_ = (($menuc["cambiarencambios"]=='f') ? "data-cambiarencambios=0" : "" );
                         $tipodato_=((substr($tipodedato,0,3)==='int' || $tipodedato=='numeric') ? "data-numerico=1" : "" );
                         $wlidcampo=$mecq["idcampo"];
-   		        $vas="<td class='divs' ><label class='form-label-custom' ".$wleshiden."id='wlt_".$wlnombre."' name='wlt_".$wlnombre
+   		        $vas="<td class='".$menuc["clase"]."' ><label class='form-label-custom' ".$wleshiden."id='wlt_".$wlnombre."' name='wlt_".$wlnombre
                                 ."' abbr=\"".$descripcion."\" value=\"".$descripcion."\" "
    		 		.">".$descripcion.(($busqueda=='t') ? "* " : " ")
    		                ."</label>"; 
@@ -996,9 +996,9 @@ class soldatos
     $wlbusqueda_=   (($busqueda=='t')    ? "data-busqueda=1" : "");
     $wlidcampo=$mecq["idcampo"];
     $wltipodedato=((substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? " type='tel' " : "");
-            $wli="<td class='div'><label class='form-label-custom' ".$wleshiden." id='wlt_".$nombre."' name=wlt_".$nombre." title=\"".$descripcion."\" abbr=\"".$descripcion."\""
+            $wli="<td class='".$mecq["clase"]."'><label class='form-label-custom' ".$wleshiden." id='wlt_".$nombre."' name=wlt_".$nombre." title=\"".$descripcion."\" abbr=\"".$descripcion."\""
 			.">".(($wltdf=="3") ? "" : $descripcion.(($busqueda=='t') ? "*" : ""))
-			.(($wltdf=="1" || $wltdf=="2") ? "<br>" :(($wltdf=="3") ? "" : "</label>")); 
+			."</label>"; 
 	    $wli=$wli.
 	    	(($tipodedato != "text") 
 	    	? "<input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom' ".$wleshiden." onKeydown='return quitaenter(this,event)' " 
@@ -1115,21 +1115,31 @@ class soldatos
      $md = new menudata();	  
 	$this->inicio_tabcaptura($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);	  	     
      	$i = pg_numfields($sql_result);
+	$wllinea="";
         for ($j = 0; $j < $i; $j++)
         {
-	        $wllinea="";
 	        $z=0;
 	        $wltdf=$this->menuc[pg_fieldname($sql_result, $j)]["formato_td"];
 	        $wltdd=$this->menuc[pg_fieldname($sql_result, $j)]["descripcion"];
-	        while ($z < $this->menu["columnas"] && $j < $i )  /* arma la linea de acuerdo a las columnas */
-	        {
+
         	  $nomcampo=pg_fieldname($sql_result, $j);		
-        	  if ($j==0) {$htmltableanterior=$this->menuc[$nomcampo]["htmltable"];}//   20070628        	  
-			  if ($this->menuc[$nomcampo]["htmltable"]!=$htmltableanterior)//   20070628        	  
-			  {//   20070628        	  
-				  $j--;
-				  break;//   20070628        	  
-			  }        	  //   20070628        	  
+        	  if ($j==0) {
+                      $htmltableanterior=$this->menuc[$nomcampo]["htmltable"];
+                      $filaanterior=$this->menuc[$nomcampo]["fila"];
+                  }
+                                if ($this->menuc[$nomcampo]["fila"]!=$filaanterior)
+                                {
+                                   $wllinea="<tr id=".$filaanterior." class='d-flex justify-content-between flex-wrap'>".$wllinea."</tr>";//20070628
+                                   echo $wllinea;//20070628
+                                   $filaanterior=$this->menuc[$nomcampo]["fila"];
+                                   $wllinea="";
+                                }
+
+		  if ($this->menuc[$nomcampo]["htmltable"]!=$htmltableanterior)
+		  {        	  
+			  $j--;
+			  break;
+		  }   
         	  
 	      	  $esFiltroDe=$md->dame_ultimo($this->menuc[$nomcampo]["esFiltroDe"]);
 	          if (strpos($this->movto_mantto,"i")!==false 
@@ -1155,15 +1165,9 @@ class soldatos
 		          		                               ,$this->menuc[$nomcampo]["busqueda"]
 		          		                               ,$j
 		          		                               ,
-###   si esfiltrode tiene una , quiere decir que del campo padre depende que se llene mas de un hijo, esto implica que el campo hijo solo puede tener un padre
-###   si esfiltrode no tiene una, quiere decir que del campo padre depende qe se llene un solo hijo
-##    , pero se llena de acuerdo a fuente_campofil que puede tener mas de un campo
 		          		                               (strpos($this->menuc[$nomcampo]["esFiltroDe"],",")!==false ? $nomcampo :
 		          		                               		$this->menuc[$this->menuc[$nomcampo]["esFiltroDe"]]["fuente_campofil"])
-##														,$nomcampo    // ups error duplicado, de acuerdo a la linea anterior debo apuntar a nomcampo
 		          		                               ,$this->menuc[$nomcampo]["size"]
-														// 20071002 ver descripcion de modificacion
-	                                       			   // 20071002 ,$this->menuc[$this->menuc[$nomcampo]["esFiltroDe"]]["fuente_where"]
 	                                       			   ,$this->menuc[$nomcampo]["fuente_where"]	                                       			   
 	                								   ,$this->menuc[$nomcampo]["readonly"]	                					
 	                								   ,$this->menuc[$nomcampo]["valordefault"]
@@ -1194,9 +1198,9 @@ class soldatos
 			          		(	($wltdf==1 || $wltdf==2)
 			          			? " <br><input  ".$wleshiden : (($wltdf==3) ? " <input  ".$wleshiden : "</td><td><input ".$wleshiden)  
 			          		).
-	            		  	(($this->menuc[$nomcampo]["size"]!="" && $this->menuc[$nomcampo]["size"]!="0") ? " size=".$this->menuc[$nomcampo]["size"] : "" ).
-	            		  	$this->armaid_cc($j)." type=text class='form-control form-control-custom' readonly=true name=wl_".pg_fieldname($sql_result, $j)." ".
-	            		  	(($wltdf==3) ? "placeholder=\"".$wltdd : "" )."\"></input>".$wlbusqueda."</td>\n";
+            		  	(($this->menuc[$nomcampo]["size"]!="" && $this->menuc[$nomcampo]["size"]!="0") ? " size=".$this->menuc[$nomcampo]["size"] : "" ).
+            		  	$this->armaid_cc($j)." type=text class='form-control form-control-custom' readonly=true name=wl_".pg_fieldname($sql_result, $j)." ".
+            		  	(($wltdf==3) ? "placeholder=\"".$wltdd : "" )."\"></input>".$wlbusqueda."</td>\n";
             		  	}
 		          		else
 		          		{
@@ -1222,19 +1226,9 @@ class soldatos
 						}	             			
         			}	          		
 			  }
-				$this->menuc[$nomcampo]["formato_td"]=="2" ? $z=100 : $z++;
-//				$z++;
-				if ($z < $this->menu["columnas"])
-				{ 	$j++; 
-					if ($j < $i &&  $this->menuc[pg_fieldname($sql_result, $j)]["formato_td"]=="2")
-					{ $j--; $z=100; }
-				}
-			   
-			}				
 
 			
-				$wllinea="<tr class='d-flex justify-content-between'>".$wllinea."</tr>";//20070628
-				echo $wllinea;//20070628
+
 				if ($this->menuc[$nomcampo]["htmltable"]!=$htmltableanterior)
 				{
 	    			        $this->fin_tab();	  	    				
@@ -1249,13 +1243,15 @@ class soldatos
 	    		                $this->inicio_tabcaptura_t($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);	
 	    			        $htmltableanterior=$this->menuc[$nomcampo]["htmltable"];
 				}
-
-				
         };
+                                if ($wllinea!="") {
+                                   $wllinea="<tr id=".$filaanterior." class='d-flex justify-content-between flex-wrap'>".$wllinea."</tr>";
+                                   echo $wllinea;
+                                }
 	    $this->fin_tab();	  	    
 	    echo "<div>";      	
 	    $this->inicio_tab_botones($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);
-     	echo "<tr class='d-flex justify-content-between' >";	    
+     	echo "<tr class='d-flex justify-content-between flex-wrap' >";	    
 ##     	echo "<td width=1% ><input width=1% type=image onclick='return false;'></input></td>";
         if (
         strpos($this->movto_mantto,"i")!==false
@@ -1928,11 +1924,11 @@ class soldatos
     **/
   function mantotab()
   {
-	 $sql=$this->menu["fuente"];   // 20070818
+     $sql=$this->menu["fuente"];   // 20070818
      $sql_result = @pg_exec($this->connection,$sql);
      if (pg_last_error($this->connection)!="")
      {
-                   $this->Enviaemail("Opcion: ".$this->titulos."<br>Error: ".pg_last_error($this->connection)."<br>Query: ".$sql."<br>"."Usuario=".$_SESSION["parametro1"]);
+          $this->Enviaemail("Opcion: ".$this->titulos."<br>Error: ".pg_last_error($this->connection)."<br>Query: ".$sql."<br>"."Usuario=".$_SESSION["parametro1"]);
                    die("Error al leer la base de datos reportar a sistemas");
      }
      $num = pg_numrows($sql_result);

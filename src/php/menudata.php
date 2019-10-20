@@ -120,7 +120,7 @@ class menudata
            " order by htmltable,orden ) as a".           ##20070627
            " left outer join pg_attribute as pga on (a.oid = pga.attrelid and pga.attnum = cast(a.attnum as smallint))".
            " left outer join forapi.menus_htmltable as mh on (a.htmltable = mh.idhtmltable)".
-           " order by ordengrupo ,a.orden "; ## 20080210
+           " order by ordengrupo ,a.fila,a.orden "; ## 20080210
            
       $sql_result = pg_exec($this->connection,$sql)
                     or die("Couldn't make query damemetadata2. ".$sql );
