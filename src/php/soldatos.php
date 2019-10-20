@@ -737,7 +737,8 @@ class soldatos
                         $cambiarencambios_ = (($menuc["cambiarencambios"]=='f') ? "data-cambiarencambios=0" : "" );
                         $tipodato_=((substr($tipodedato,0,3)==='int' || $tipodedato=='numeric') ? "data-numerico=1" : "" );
                         $wlidcampo=$mecq["idcampo"];
-   		        $vas="<td class='".$menuc["clase"]."' ><label class='form-label-custom' ".$wleshiden."id='wlt_".$wlnombre."' name='wlt_".$wlnombre
+   		        $vas="<td class='".$menuc["clase"]."' ><label class='form-label-custom' "
+                                .$wleshiden."id='wlt_".$wlnombre."__".$this->idmenu."' name='wlt_".$wlnombre."__".$this->idmenu
                                 ."' abbr=\"".$descripcion."\" value=\"".$descripcion."\" "
    		 		.">".$descripcion.(($busqueda=='t') ? "* " : " ")
    		                ."</label>".$wlobligatorio; 
@@ -767,7 +768,7 @@ class soldatos
 			$vas=$vas.($wlonfocus!="" ? " onFocus='".$wlonfocus.";'" : "");  //20071109
                         $vas=$vas.($wlondck !="" ? " ondblclick='".$wlondck.";'" : "" );
                         $vas=$vas.($wlonblur!="" ? " onblur='".$wlonblur.";'" : "");
-   	        		     			$vas=$vas." ".$this->armaid_cc($j)."name=wl_".$wlnombre." >\n";	   
+   	        		     			$vas=$vas." ".$this->armaid_cc($j)."name=wl_".$wlnombre."__".$this->idmenu." >\n";	   
 			if ($fuente_evento==0)  // si tiene el campo padre este se debe de llenar cuando se seleeciona el campo padre
 			{   	       
                             $sql= $this->dame_sql_sel($wlnombre,1);
@@ -996,7 +997,7 @@ class soldatos
     $wlbusqueda_=   (($busqueda=='t')    ? "data-busqueda=1" : "");
     $wlidcampo=$mecq["idcampo"];
     $wltipodedato=((substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? " type='tel' " : "");
-            $wli="<td class='".$mecq["clase"]."'><label class='form-label-custom' ".$wleshiden." id='wlt_".$nombre."' name=wlt_".$nombre." title=\"".$descripcion."\" abbr=\"".$descripcion."\""
+            $wli="<td class='".$mecq["clase"]."'><label class='form-label-custom' ".$wleshiden." id='wlt_".$nombre."__".$this->idmenu."' name=wlt_".$nombre."__".$this->idmenu." title=\"".$descripcion."\" abbr=\"".$descripcion."\""
 			.">".(($wltdf=="3") ? "" : $descripcion.(($busqueda=='t') ? "*" : ""))
 			."</label>".$wlobligatorio; 
 	    $wli=$wli.
@@ -1019,7 +1020,7 @@ class soldatos
 	    	            : "")).	//20070305 //20080123
 	    	            ##(($tipodedato == "timestamptz" || $tipodedato=='date') ? " type=date format='aaaaa-mm-dd' onChange='validafecha(this)' " : " " ).
 	    	            (($tipodedato == "timestamptz" || $tipodedato=='date') ? " onChange='validafecha(this)' " : " " ).
-	    	            $this->armaid_cc($j)." name=wl_".$nombre.
+	    	            $this->armaid_cc($j)." name=wl_".$nombre."__".$this->idmenu.
 						( $size!="" ? " size=".$size : ($espassword=="3" ? " size=14 " : ""));
 						($tcase==1) ? $wli=$wli." onkeyup='mayusculas(this,event);'" : "";  ##20071029
 						($tcase==2) ? $wli=$wli." onkeyup='minusculas(this,event);'" : "";  ##20071029
@@ -1047,7 +1048,7 @@ class soldatos
 	    	            $wli=$wli.(($wltdf==3) ? " placeholder=\"".$wltdd."\"" : "").
 	    	            (($tipodedato != "text") ? " ></input>" : " >".$valordefault."</textarea>").
 	    	            (($tipodedato == "timestamptz" || $tipodedato == "date") & $readonly!='t' ? " <input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' class='img' type=image id='fe_".$nombre."' name=fe_".$nombre." src='img/icon_datepicker_pink.gif' onclick='muestrafecha(this);return false' title='Selecciona la fecha del calendario'></input>" : " " ). 
-                            (($espassword=="3") ? " <input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' size=20 class='captcha' readonly='on' type=text id='wl_".$nombre."_img' name=wl_".$nombre."_img title='Imagen de la captcha' ></input>&nbsp<input tabindex='-1' class='img' type=image id='wl_".$nombre."_bot' name=wl_".$nombre."_bot src='img/refresh.png' onclick='ReDrawCaptcha(this);return false' title='Refresca la imagen del captcha'></input>" : " " );
+                            (($espassword=="3") ? " <input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' size=20 class='captcha' readonly='on' type=text id='wl_".$nombre."_img"."__".$this->idmenu."' name=wl_".$nombre."_img__".$this->idmenu." title='Imagen de la captcha' ></input>&nbsp<input tabindex='-1' class='img' type=image id='wl_".$nombre."_bot__".$this->idmenu."' name=wl_".$nombre."_bot__".$this->idmenu." src='img/refresh.png' onclick='ReDrawCaptcha(this);return false' title='Refresca la imagen del captcha'></input>" : " " );
 						if ($mecq["upload_file"]=='t')
 						{ 
                                                   $wli.=" <input class='img' type=image abbr='' id='upl_".$nombre."' name=upl_".$nombre." src='/dist/img/carpeta.svg' onclick='subearchivo(this);return false' title='Adjunta archivo de explorador' />"; 
@@ -1199,7 +1200,8 @@ class soldatos
 			          			? " <br><input  ".$wleshiden : (($wltdf==3) ? " <input  ".$wleshiden : "</td><td><input ".$wleshiden)  
 			          		).
             		  	(($this->menuc[$nomcampo]["size"]!="" && $this->menuc[$nomcampo]["size"]!="0") ? " size=".$this->menuc[$nomcampo]["size"] : "" ).
-            		  	$this->armaid_cc($j)." type=text class='form-control form-control-custom' readonly=true name=wl_".pg_fieldname($sql_result, $j)." ".
+            		  	$this->armaid_cc($j)." type=text class='form-control form-control-custom' readonly=true name=wl_"
+                                                  .pg_fieldname($sql_result, $j)."__".$this->idmenu." ".
             		  	(($wltdf==3) ? "placeholder=\"".$wltdd : "" )."\"></input>".$wlbusqueda."</td>\n";
             		  	}
 		          		else

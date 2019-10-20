@@ -1003,10 +1003,10 @@ window.armaFiltro = function(theForm) {
       		{ 
 	      		qs+=(qs=='')?' ':' and ';
 			if (x.value.indexOf('%')>=0) {
-	      		   qs+=x.name.substring(3)+' like \''+x.value+"'";	      		
+	      		   qs+=x.name.split('__')[0].substring(3)+' like \''+x.value+"'";	      		
 			} else
 			{
-	      		    qs+=x.name.substring(3)+'=\''+x.value+"'"; //   20071107
+	      		    qs+=x.name.split('__')[0].substring(3)+'=\''+x.value+"'"; //   20071107
 			}
 	      	}
        }
@@ -1071,12 +1071,12 @@ catch (err)
 // esta funcion arma el querystring
 // la copie de utility.js
 window.buildQueryString = function(theForm) {
-  //theForm = document.getElementById(theFormName);
   var qs = '';
   for (e=0;e<theForm.elements.length;e++) {
     if (theForm.elements[e].name!='') {
       qs+=(qs=='')?'&':'&'
-      qs+=escape(theForm.elements[e].name)+'='+escape(theForm.elements[e].value)
+      /* se hace el split por __ ya que despues de estos caracteres esta el numero de menu */
+      qs+=escape(theForm.elements[e].name.split('__')[0])+'='+escape(theForm.elements[e].value)
       }
     }
   return qs
@@ -1374,7 +1374,8 @@ window.checaobligatorios = function(theForm) {
     if ('obligatorio' in theForm.elements[e].dataset) {
        x=theForm.elements[e];
        if (trim(x.value)=='' ) {
-          alert ('El dato "'+theForm.elements[e].name+'" es obligatorio ');
+          var str1=x.name.replace(/wl_/,"wlt_");
+          alert ('El dato "'+$('#'+str1)[0].innerHTML+'" es obligatorio ');
           x.focus();
           return false;
        }
