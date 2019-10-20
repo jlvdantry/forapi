@@ -831,6 +831,11 @@ window.abre_subvista = function(wlhoja,wlcampos,wleventoantes,wleventodespues,id
                                 }
                                 muestra_vista(idmenu,'modal-body',wlfiltro,wltitulo);
                                 $('#msgModal').modal();
+                                setTimeout(function (){
+                                       forma = $('#formpr_' + idmenu)[0];
+                                       pone_focus_forma(forma);
+                                }, 1000);
+
 	                }
 		        else
 		        {
@@ -1852,12 +1857,12 @@ window.mantto_tabla = function (wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,w
 		if (wlmovto=='i')
                 {
                    if (noconfirmamovto.indexOf("i")!=-1)
-                   {    wlrenglon=document.getElementById('tabdinamica').rows.length; }
+                   {    wlrenglon=document.getElementById('tabdinamica_'+wlmenu).rows.length; }
                    else
                    {
                         if (window.confirm("Desea dar de alta el registro"))
                         {
-                        wlrenglon=document.getElementById('tabdinamica').rows.length;
+                        wlrenglon=document.getElementById('tabdinamica_'+wlmenu).rows.length;
                         }
                         else
                         { return;}
@@ -2038,15 +2043,15 @@ function mueveCambio(wlmenu,wlmovto,wlllave,wlrenglon)
 }
 
 // Funcion que da de alta un renglon en la tabla donde muestra el registro recien dado de alta
-window.altatabla = function(wlrenglon)
+window.altatabla = function(wlrenglon,idmenu)
 {
 	try
 	{
         var xx = req.responseXML.getElementsByTagName("renglon");              	
         var tr=xx[0].childNodes[0].nodeValue.split(">");        
         var z=xx[0].childNodes[0].nodeValue.split("</td>");
-		var b = document.getElementById('tabdinamica').insertRow(1);			
-                try { document.getElementById('tabdinamica').style.visibility='visible';        } catch (err) { } ;
+		var b = document.getElementById('tabdinamica_'+idmenu).insertRow(1);			
+                try { document.getElementById('tabdinamica_'+idmenu).style.visibility='visible';        } catch (err) { } ;
 		var p=0;
 
 			
@@ -2165,6 +2170,7 @@ window.querespuesta = function()
                 hayunregistro(idmenu);
                 forma=$('#formpr_'+idmenu)[0];
                 pone_focus_forma(forma,this)
+                console.log('paso pone focus');
              }
              return;
            }
@@ -2349,6 +2355,8 @@ window.querespuesta = function()
 
            if (req.responseText.indexOf("<copiaok>") != -1)
            {
+              var items = req.responseXML.getElementsByTagName("idmenu");
+              try { var idmenu=items[0].childNodes[0].nodeValue } catch (err) { var idmenu=0; };
               var items = req.responseXML.getElementsByTagName("copiaok");
               if (items.length>0)
               { alert(items[0].childNodes[0].nodeValue); }
@@ -2356,7 +2364,7 @@ window.querespuesta = function()
               var items = req.responseXML.getElementsByTagName("wlrenglon");              
               if (items.length>0)
               { var wlrenglon=items[0].childNodes[0].nodeValue; 
-              	altatabla(wlrenglon);}
+              	altatabla(wlrenglon,idmenu);}
               else {alert('no encontro el altaok '+req.responseText)}
               var limpiaralta=true;
               var items = req.responseXML.getElementsByTagName("limpiaralta");              
