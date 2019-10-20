@@ -79,19 +79,18 @@ function arma_inicio_close($mensaje,$wlid_adjuntara,$wlext,$nombre)
 echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
 echo " try {\n";
 echo " parent.document.getElementById('_avance_').value='".$mensaje."';\n";
-##echo " parent.document.getElementById('_idar_').focus();\n";
 echo " parent.document.getElementById('_idar_').value='".$wlid_adjuntara.".".$wlext.";".$nombre."';\n";
-##echo " parent.document.getElementById('_avance_').focus();\n";
 if ($wlid_adjuntara!='')
 {  echo " parent.document.getElementById('_idar_').click(); \n"; }
 echo " } catch (err) { alert('error en altaadjuntan.php ' + err.description); }\n";
 echo "</script>";
 }
+      $error="";
       if(sizeof($_FILES))
       {
         if($_FILES['ficheroin']['size'] < 1)
         {
-                $error="_El tamaño de archivo esta en ceros ".$_FILES['ficheroin']['size'] ;
+                $error="El tamaño de archivo esta en ceros ".$_FILES['ficheroin']['size'] ;
         }
         if($_FILES['ficheroin']['size'] > 2000000)
         {
@@ -108,8 +107,9 @@ echo "</script>";
         if ($error=="")
         {
                 $wlid_adjuntara=altaadjuntara($connection,$_FILES['ficheroin']['name']);
-                $dest = dirname(__FILE__)."/upload_ficheros/".$wlid_adjuntara.".".$wlext;
-                if(!move_uploaded_file($ficheroin, $dest))
+                $dest = $_SERVER['DOCUMENT_ROOT']."/upload_ficheros/".$wlid_adjuntara.".".$wlext;
+                error_log(dame_tiempo()."src/php/altaadjuntaran.php archivo a generar ".$dest."\n",3,"/var/tmp/errores.log");
+                if(!move_uploaded_file($_FILES['ficheroin']['tmp_name'], $dest))
                 {
                         $error="Error Hubo problemas al subir el archivo";
                 }
@@ -126,6 +126,12 @@ echo "</script>";
       }
       if ($error=="") $error="Transmitio el archivo";
       arma_inicio_close($error,$wlid_adjuntara,$wlext,$_FILES['ficheroin']['name']);
-      echo "entro".print_r($_FILES)." no de archivo".$wlid_adjuntara;
+      echo "entro".print_r($_FILES,true)." no de archivo".$wlid_adjuntara;
+   function dame_tiempo()
+   {
+                            $t=getdate();
+                            return date('Y-m-d h:i:s',$t[0]);
+   }
+
 ?>
 

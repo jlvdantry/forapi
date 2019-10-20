@@ -765,15 +765,14 @@ window.subearchivo = function(obj)
                 obj.parentNode.appendChild(aa.create());
                 dapi=document.getElementById("altaadjuntara_");
                 aa.change = function () { des=aa.valor();
-	                            	  if (des!='' && des!=null && des!=undefined)
+	                            	  if (aa.avance().indexOf('Transmitio')>=0)
 		                          {	
                                                x=des.split(';');
 			                       alert('El archivo se adjunto de forma exitosa con el nombre: '+x[1]); 
 			                       obj.abbr=x[0];
 			                       document.getElementsByName(wlnombre)[0].value=x[0];
 			                       document.getElementsByName(wlnombreh)[0].value=x[1];
-			                       //document.getElementsByName(wlnombre)[0].onchange(des);				
-		                          }
+		                          } else { document.getElementsByName(wlnombre)[0].value=aa.avance(); }
                                           obj.parentNode.removeChild(dapi) ;
                                         }
                 aa.dclick();

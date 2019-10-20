@@ -1,6 +1,7 @@
-function altaadjuntara ( ) { this._tt_=null; }
+window.altaadjuntara = function ( ) { this._tt_=null; }
 altaadjuntara.prototype.change = function () { }
 altaadjuntara.prototype.valor  = function () { return document.getElementById("_idar_").value; }
+altaadjuntara.prototype.avance  = function () { return document.getElementById("_avance_").value; }
 altaadjuntara.prototype.dclick  = function () { 
                   if (isIE==false)
                      { 
@@ -39,6 +40,7 @@ altaadjuntara.prototype.create = function ( doc ) {
         this._el.className = "pupan";
         this._el.setAttribute('id', 'altaadjuntara_');
         this._el.setAttribute('name', 'altaadjuntara_');
+        this._el.setAttribute('hidden', true);
 
         // header
         var div = doc.createElement( "div" );
@@ -52,7 +54,7 @@ altaadjuntara.prototype.create = function ( doc ) {
         this.hF.setAttribute("enctype","multipart/form-data");
         this.hF.setAttribute("name","_subearchivo_");
         this.hF.setAttribute("id","_subearchivo_");
-        this.hF.setAttribute("action","altaadjuntaran.php");
+        this.hF.setAttribute("action","src/php/altaadjuntaran.php");
         this.hF.setAttribute("method","post");
         this.hF.setAttribute("accept-charset","utf-8");
         if (isIE==true)
