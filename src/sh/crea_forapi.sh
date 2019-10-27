@@ -44,10 +44,10 @@ select 'define(MENU,''' || idmenu || ''');' from forapi.menus where descripcion=
 union all
 select 'define(MENUS_CAMPOS,''' || idmenu || ''');' from forapi.menus where descripcion='Campos de menus'
 union all
+select 'define(MENUS_BIENVENIDO,''' || idmenu || ''');' from forapi.menus where descripcion='Bienvenido'
+union all
 select '?>'
 fin
-tar -xzf forapi_php.tar.gz
-echo "desempaco archivo"
 psql -t $1 -U $2 -h localhost  < $0.sql  > src/php/idmenus.php
 echo "creo constantes"
 sed -i -e "s/ //g" src/php/idmenus.php
