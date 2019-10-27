@@ -88,6 +88,13 @@ SELECT pg_catalog.setval('cat_preguntas_idpregunta_seq', 1, false);
 
 
 --
+-- Name: cat_preguntas_seq; Type: SEQUENCE SET; Schema: forapi; Owner: inicio
+--
+
+SELECT pg_catalog.setval('cat_preguntas_seq', 100, false);
+
+
+--
 -- Data for Name: cat_usuarios; Type: TABLE DATA; Schema: forapi; Owner: postgres
 --
 
@@ -111,8 +118,11 @@ inicio78       	JOSE	LUIS	\N	\N	\N	\N	\N	2019-10-20 14:02:34-06	2019-10-20 14:02
 --
 
 COPY cat_usuarios_pg_group (usename, grosysid, fecha_alta, fecha_modifico, usuario_alta, usuario_modifico, groname) FROM stdin;
-Temporal1      	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	temporalg
 inicio         	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	admon
+temporal1      	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	temporalg
+forapi         	\N	2019-10-27 15:35:24-06	2019-10-27 15:35:24-06	inicio	inicio	accesosistema
+forapi         	\N	2019-10-27 15:35:53-06	2019-10-27 15:35:53-06	inicio	inicio	accesosistema
+forapi         	\N	2019-10-27 15:36:50-06	2019-10-27 15:36:50-06	inicio	inicio	accesosistema
 \.
 
 
@@ -236,6 +246,9 @@ SELECT pg_catalog.setval('his_cat_usuarios_idcambio_seq', 72, true);
 COPY his_cat_usuarios_pg_group (idcambio, usename, grosysid, fecha_alta, usuario_alta, cve_movto) FROM stdin;
 1	Temporal1      	\N	2019-10-12 14:53:07-06	inicio	a
 2	inicio         	\N	2019-10-12 14:53:07-06	inicio	a
+3	forapi         	\N	2019-10-27 15:35:24-06	inicio	a
+4	forapi         	\N	2019-10-27 15:35:53-06	inicio	a
+5	forapi         	\N	2019-10-27 15:36:50-06	inicio	a
 \.
 
 
@@ -243,7 +256,7 @@ COPY his_cat_usuarios_pg_group (idcambio, usename, grosysid, fecha_alta, usuario
 -- Name: his_cat_usuarios_pg_group_idcambio_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('his_cat_usuarios_pg_group_idcambio_seq', 2, true);
+SELECT pg_catalog.setval('his_cat_usuarios_pg_group_idcambio_seq', 5, true);
 
 
 --
@@ -354,6 +367,7 @@ COPY his_menus_pg_group (idcambio, idmenu, grosysid, fecha_alta, usuario_alta, c
 31	32	\N	2019-10-27 07:50:24-06	inicio	a
 32	32	\N	2019-10-27 07:50:24-06	inicio	a
 33	32	\N	2019-10-27 07:52:09-06	inicio	b
+34	8	\N	2019-10-27 15:39:33-06	inicio	a
 \.
 
 
@@ -361,7 +375,7 @@ COPY his_menus_pg_group (idcambio, idmenu, grosysid, fecha_alta, usuario_alta, c
 -- Name: his_menus_pg_group_idcambio_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('his_menus_pg_group_idcambio_seq', 33, true);
+SELECT pg_catalog.setval('his_menus_pg_group_idcambio_seq', 34, true);
 
 
 --
@@ -506,6 +520,8 @@ COPY his_menus_pg_tables (idcambio, idmenu, tablename, tselect, tinsert, tupdate
 144	22	menus	1	0	0	0	0	b	2019-10-12 15:04:31-06	inicio	 
 145	22	menus_mensajes	1	0	0	0	0	b	2019-10-12 15:04:31-06	inicio	 
 146	17	cat_usuarios	1	0	1	1	1	c	2019-10-19 08:34:03-06	inicio	 
+147	19	cat_preguntas_seq	1	 	 	 	 	c	2019-10-27 15:26:35-06	inicio	 
+148	4	cat_preguntas_seq	1	 	 	 	 	c	2019-10-27 15:26:35-06	inicio	 
 \.
 
 
@@ -513,7 +529,7 @@ COPY his_menus_pg_tables (idcambio, idmenu, tablename, tselect, tinsert, tupdate
 -- Name: his_menus_pg_tables_idcambio_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('his_menus_pg_tables_idcambio_seq', 146, true);
+SELECT pg_catalog.setval('his_menus_pg_tables_idcambio_seq', 148, true);
 
 
 --
@@ -1014,10 +1030,8 @@ COPY menus_pg_group (idmenu, grosysid, fecha_alta, fecha_modifico, usuario_alta,
 10	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
 14	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
 16	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N	admon	0	\N
-19	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N	usosistema	0	\N
 25	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
 13	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
-2	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N	usosistema	0	\N
 8	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N	admon	0	\N
 17	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N	admon	0	\N
 12	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
@@ -1029,11 +1043,14 @@ COPY menus_pg_group (idmenu, grosysid, fecha_alta, fecha_modifico, usuario_alta,
 8	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
 17	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
 10	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N	admon	0	\N
-9	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N	usosistema	0	\N
 13	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N	admon	0	\N
 31	\N	2019-10-20 19:38:33-06	2019-10-20 19:38:33-06	inicio	inicio	\N		0	\N
 31	\N	2019-10-20 19:38:33-06	2019-10-20 19:38:33-06	inicio	inicio	\N	admon	0	\N
 32	\N	2019-10-27 07:50:24-06	2019-10-27 07:50:24-06	inicio	inicio	\N	admon	0	\N
+19	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N	temporalg	0	\N
+2	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N	temporalg	0	\N
+9	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N	temporalg	0	\N
+8	\N	2019-10-27 15:39:33-06	2019-10-27 15:39:33-06	inicio	inicio	\N	temporalg	0	\N
 \.
 
 
@@ -1131,12 +1148,10 @@ COPY menus_pg_tables (idmenu, tablename, tselect, tinsert, tupdate, tdelete, tal
 8	campos	1	 	 	 	 	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 20	menus	1	0	0	0	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	forapi
 20	menus_htmltable	1	1	0	0	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	forapi
-19	cat_preguntas_seq	1	 	 	 	 	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	public
 14	tablas	1	 	 	 	 	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 19	his_cat_usuarios	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 4	his_cat_usuarios_seq	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 8	tablas	1	 	 	 	 	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
-4	cat_preguntas_seq	1	 	 	 	 	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	public
 14	menus_campos_eventos	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 21	his_menus_pg_group	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 14	menus_movtos	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
@@ -1147,6 +1162,8 @@ COPY menus_pg_tables (idmenu, tablename, tselect, tinsert, tupdate, tdelete, tal
 8	menus_log	 	1	 	 	 	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 14	menus_campos_idcampo_seq	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 14	menus_campos	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
+19	cat_preguntas_seq	1	 	 	 	 	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
+4	cat_preguntas_seq	1	 	 	 	 	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 8	menus_log_idlog_seq	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 20	tcases	1	0	0	0	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	forapi
 19	his_cat_usuarios_seq	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi

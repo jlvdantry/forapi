@@ -1329,6 +1329,20 @@ CREATE SEQUENCE cat_preguntas_idpregunta_seq
 ALTER TABLE forapi.cat_preguntas_idpregunta_seq OWNER TO postgres;
 
 --
+-- Name: cat_preguntas_seq; Type: SEQUENCE; Schema: forapi; Owner: inicio
+--
+
+CREATE SEQUENCE cat_preguntas_seq
+    START WITH 100
+    INCREMENT BY 1
+    NO MINVALUE
+    MAXVALUE 2147483647
+    CACHE 1;
+
+
+ALTER TABLE forapi.cat_preguntas_seq OWNER TO inicio;
+
+--
 -- Name: cat_usuarios; Type: TABLE; Schema: forapi; Owner: postgres; Tablespace: 
 --
 

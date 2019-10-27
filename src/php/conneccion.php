@@ -16,7 +16,7 @@ else
     {	$connection = pg_connect("host=$wlhost dbname=BD user='jlv' password='888aDantryR' port=$wlport") or die("Error en el cron");	}
     else
     {	
-        $connection = pg_connect("host=$wlhost	dbname=".BD." user=tmp_".BD." password=".PWD_USER_TMP." port=$wlport") or die("Error con clave temporal1");
+        $connection = pg_connect("host=$wlhost	dbname=".BD." user=temporal1 password=inicio port=$wlport") or die("Error con clave temporal1");
     }
 }
 ?>
