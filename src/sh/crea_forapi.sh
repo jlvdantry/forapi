@@ -48,13 +48,17 @@ select 'define(MENUS_CAMPOS,''' || idmenu || ''');' from forapi.menus where desc
 union all
 select 'define(MENUS_BIENVENIDO,''' || idmenu || ''');' from forapi.menus where descripcion='Bienvenido'
 union all
+select 'define(BD,''$1'');' 
+union all
+select 'define(PWD_USER_TMP,''$3'');' 
+union all
 select '?>'
 fin
 psql -t $1 -U $2 -h localhost  < $0.sql  > ./src/php/idmenus.php
 echo "creo constantes"
 sed -i -e "s/ //g" ./src/php/idmenus.php
 tail -n 1 "./src/php/idmenus.php" | wc -c | xargs -I {} truncate "./src/php/idmenus.php" -s -{}
-sed -i -e "s/wldbname='forapi1.1'/wldbname='$1'/g" -e "s/password='Temporal_forapi'/password='$3'/g" ./src/php/conneccion.php
+##sed -i -e "s/wldbname='forapi1.1'/wldbname='$1'/g" -e "s/password='Temporal_forapi'/password='$3'/g" ./src/php/conneccion.php
 echo "cambio variales de la base"
 ##mkdir upload_ficheros
 ##chown -R ec2-user:www upload_ficheros
