@@ -322,7 +322,7 @@ class xmlhttp_class
       $soldatos->despledatos();
       $wlrenglones=ob_get_contents();
       ob_end_clean();
-      echo '<muestra_vista>'.htmlspecialchars($wlrenglones,ENT_IGNORE,UTF-8).'</muestra_vista>';
+      echo '<muestra_vista>'.htmlspecialchars($wlrenglones,ENT_IGNORE,'UTF-8').'</muestra_vista>';
       if (array_key_exists('donde',$this->argumentos)) {
       error_log($this->dame_tiempo()." se encontro el parametro donde \n",3,"/var/tmp/errores.log");
       echo '<donde>'.$this->argumentos['donde'].'</donde>';
