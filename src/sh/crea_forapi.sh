@@ -7,7 +7,7 @@ fi
 ##sudo mkdir /var/lib/pgsql9/$1
 ##sudo chown postgres /var/lib/pgsql9/$1
 ##sudo initdb -D /var/lib/pgsql9/$1
-cp ../csjl_nvo/forapi_* .
+##cp ../csjl_nvo/forapi_* .
 export PGPASSWORD=$3
 cat > $0.sql << fin
 drop database $1;

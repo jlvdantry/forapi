@@ -2,8 +2,8 @@
 include("menudata.php");
 include "conneccion.php";
 $v = new menudata();
-$v->idmenu=17;
-$v->filtro="nombre='NOMBRE'";
+$v->idmenu=20;
+//$v->filtro="descripcion='Campos de menus'";
 $v->connection=$connection;
 $v->damemetadata();
 echo "<pre>";
