@@ -27,7 +27,19 @@ create schema forapi;
 fin
 psql -U postgres < $0.sql > tmp/$mn.log
 psql $1 -U $2 -h localhost  < src/bd/forapi_esquema.sql >> tmp/$mn.log
+cat > $0.sql << fin
+alter table forapi.menus_campos disable trigger ti_menus_campos;
+alter table forapi.menus disable trigger ti_menus;
+alter table forapi.menus disable trigger tu_menus;
+fin
+psql $1 -U $2 -h localhost  < $0.sql >> tmp/$mn.log
 psql $1 -U $2 -h localhost  < src/bd/forapi_insert.sql >> tmp/$mn.log
+cat > $0.sql << fin
+alter table forapi.menus_campos enable trigger ti_menus_campos;
+alter table forapi.menus enable  trigger ti_menus;
+alter table forapi.menus enable  trigger tu_menus;
+fin
+psql $1 -U $2 -h localhost  < $0.sql >> tmp/$mn.log
 cat > $0.sql << fin
 insert into forapi.cat_usuarios (usename,nombre,id_tipomenu,password,estatus) values ('tmp_$1','temporal',1,'$3',1);
 insert into forapi.cat_usuarios (usename,nombre,id_tipomenu,password,menu,estatus) values ('$2','$2',1,'$3',
