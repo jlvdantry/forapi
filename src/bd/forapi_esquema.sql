@@ -38,85 +38,6 @@ ALTER TYPE forapi.menus_sql OWNER TO postgres;
 COMMENT ON TYPE menus_sql IS 'type para generar los menus';
 
 
-SET default_tablespace = '';
-
-SET default_with_oids = false;
-
---
--- Name: cat_usuarios; Type: TABLE; Schema: forapi; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE cat_usuarios (
-    usename character(15) NOT NULL,
-    nombre character varying(30),
-    apepat character varying(30),
-    apemat character varying(30),
-    puesto character varying(50),
-    depto character varying(50),
-    correoe character varying(50),
-    direccion_ip numeric(20,0),
-    fecha_alta timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    fecha_modifico timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
-    usuario_modifico character varying(20) DEFAULT getpgusername(),
-    idpregunta smallint DEFAULT 0,
-    respuesta character varying(100),
-    estatus smallint DEFAULT 0,
-    telefono character varying(30),
-    direccion character varying(50),
-    atl smallint,
-    id_direccion smallint,
-    id_persona integer,
-    password character varying(20),
-    id_puesto integer,
-    id_tipomenu smallint DEFAULT 1,
-    menu integer,
-    id_modulo integer DEFAULT 0,
-    rfc character varying(13) DEFAULT ''::character varying,
-    llaveprivada character varying(120) DEFAULT ''::character varying,
-    llavepublica character varying(120) DEFAULT ''::character varying,
-    numerotel numeric(10,0),
-    imagen bytea
-);
-
-
-ALTER TABLE forapi.cat_usuarios OWNER TO postgres;
-
---
--- Name: COLUMN cat_usuarios.rfc; Type: COMMENT; Schema: forapi; Owner: postgres
---
-
-COMMENT ON COLUMN cat_usuarios.rfc IS 'RFC del usuario';
-
-
---
--- Name: COLUMN cat_usuarios.llaveprivada; Type: COMMENT; Schema: forapi; Owner: postgres
---
-
-COMMENT ON COLUMN cat_usuarios.llaveprivada IS 'Ubicacion de la llave privada';
-
-
---
--- Name: COLUMN cat_usuarios.llavepublica; Type: COMMENT; Schema: forapi; Owner: postgres
---
-
-COMMENT ON COLUMN cat_usuarios.llavepublica IS 'Ubicacion de la llave publica';
-
-
---
--- Name: COLUMN cat_usuarios.numerotel; Type: COMMENT; Schema: forapi; Owner: postgres
---
-
-COMMENT ON COLUMN cat_usuarios.numerotel IS 'Numero telefonico';
-
-
---
--- Name: COLUMN cat_usuarios.imagen; Type: COMMENT; Schema: forapi; Owner: postgres
---
-
-COMMENT ON COLUMN cat_usuarios.imagen IS 'Foto del usuario';
-
-
 --
 -- Name: alta_cat_usuarios(); Type: FUNCTION; Schema: forapi; Owner: postgres
 --
@@ -514,16 +435,12 @@ CREATE FUNCTION baja_cat_usuarios() RETURNS trigger
       existe   numeric;
     BEGIN
         existe=0;
-        insert into his_cat_usuarios (usename,nombre,apepat,apemat,puesto,depto,correoe,direccion_ip,
+        insert into forapi.his_cat_usuarios (usename,nombre,apepat,apemat,puesto,depto,correoe,direccion_ip,
                idpregunta,respuesta,estatus,telefono,cve_movto)
                values (old.usename,old.nombre,old.apepat,old.apemat,old.puesto,old.depto,old.correoe,old.direccion_ip,
                old.idpregunta,old.respuesta,old.estatus,old.telefono,'b');
-        delete from contra.cat_personas where usename=cast(old.usename as name); 
-        select count(*) into existe from pg_authid where rolname=old.usename;
-        if existe>=1 then
            sql='drop user ' || old.usename;
-           execute sql into new.folio;
-        end if;
+           execute sql ;
      return old;
     END;$$;
 
@@ -830,6 +747,92 @@ CREATE FUNCTION cambio_cat_usuarios() RETURNS trigger
 ALTER FUNCTION forapi.cambio_cat_usuarios() OWNER TO postgres;
 
 --
+-- Name: cambio_menus(); Type: FUNCTION; Schema: forapi; Owner: postgres
+--
+
+CREATE FUNCTION cambio_menus() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+    DECLARE
+      wlestado numeric;
+      wlfila    numeric;
+      lleva    numeric;
+      mireg record;
+    BEGIN
+     if old.columnas!=new.columnas then
+        wlfila=20;
+        lleva=0;
+        for mireg in select * from menus_campos where idmenu=old.idmenu
+                   order by htmltable,fila,orden
+                loop
+            update menus_campos set fila=wlfila where idcampo=mireg.idcampo;
+            lleva=lleva+1;
+            if lleva=new.columnas then
+               lleva=0;
+               wlfila=wlfila+20;
+            end if;
+        end loop;
+     end if;
+     return new;
+    END;$$;
+
+
+ALTER FUNCTION forapi.cambio_menus() OWNER TO postgres;
+
+--
+-- Name: cambio_menus_columnas(); Type: FUNCTION; Schema: forapi; Owner: postgres
+--
+
+CREATE FUNCTION cambio_menus_columnas() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+    DECLARE
+      wlestado numeric;
+      wlfila    numeric;
+      lleva    numeric;
+      mireg record;
+      wlclase   varchar(100);
+    BEGIN
+     if old.columnas!=new.columnas then
+        if new.columnas=1 then 
+           wlclase='col-md-12';
+        end if;
+        if new.columnas=2 then 
+           wlclase='col-md-6';
+        end if;
+        if new.columnas=3 then 
+           wlclase='col-md-4';
+        end if;
+        if new.columnas=4 then 
+           wlclase='col-md-3';
+        end if; 
+        if new.columnas=5 then 
+           wlclase='col-md-2';
+        end if; 
+        if new.columnas=6 then 
+           wlclase='col-md-2';
+        end if; 
+        wlfila=20;
+        lleva=0;
+        for mireg in select * from forapi.menus_campos where idmenu=old.idmenu
+                   order by htmltable,fila,orden
+                loop
+            update forapi.menus_campos set fila=wlfila,clase=wlclase where idcampo=mireg.idcampo;
+            lleva=lleva+1;
+            --raise notice ' descripcion % , fila % lleva % ', mireg.descripcion, wlfila, lleva;
+            if lleva=new.columnas then
+               lleva=0;
+               wlfila=wlfila+20;
+            end if;
+        end loop;
+     end if;
+     return new;
+    END;$$;
+
+
+ALTER FUNCTION forapi.cambio_menus_columnas() OWNER TO postgres;
+
+--
 -- Name: cambio_menus_pg_tables(); Type: FUNCTION; Schema: forapi; Owner: postgres
 --
 
@@ -861,6 +864,7 @@ BEGIN
 --  menus
      v_cnt := 0;
 
+    SET search_path = forapi, pg_catalog;
     create temp table menu_tmp as
     select *  from menus
     where idmenu=$1;
@@ -984,21 +988,22 @@ CREATE FUNCTION estatus_usuario(text) RETURNS character varying
     LANGUAGE plpgsql
     AS $_$DECLARE
   wlestatus smallint;  
+  wlmenu    smallint;  
   begin
-          SELECT cu.estatus into wlestatus from pg_shadow pgs, forapi.cat_usuarios cu where pgs.usename=cast($1 as name)
+          SELECT cu.estatus,cu.menu into wlestatus,wlmenu from pg_shadow pgs, forapi.cat_usuarios cu where pgs.usename=cast($1 as name)
                  and pgs.usename =cast(cu.usename as name);
           if wlestatus=0 then
-          		return 'Tu usuario no esta autorizado';
+                        return 'Tu usuario no esta autorizado';
           end if;
           
           if wlestatus=2 then
-          		return 'Tu usuario esta bloqueado';
-          end if;          		
+                        return 'Tu usuario esta bloqueado';
+          end if;                       
 
           if wlestatus=3 then
-          		return 'Tu usuario esta inhabilitado definitivamente';
-          end if;          		                    
-          return '';
+                        return 'Tu usuario esta inhabilitado definitivamente';
+          end if;                                           
+          return wlmenu::varchar;
 end;$_$;
 
 
@@ -1230,23 +1235,6 @@ end;$_$;
 ALTER FUNCTION forapi.valida_res_des(text, text) OWNER TO postgres;
 
 --
--- Name: cat_usuarios_pg_group; Type: TABLE; Schema: forapi; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE cat_usuarios_pg_group (
-    usename character(15),
-    grosysid integer,
-    fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    fecha_modifico timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
-    usuario_modifico character varying(20) DEFAULT getpgusername(),
-    groname name
-);
-
-
-ALTER TABLE forapi.cat_usuarios_pg_group OWNER TO postgres;
-
---
 -- Name: campos; Type: VIEW; Schema: forapi; Owner: postgres
 --
 
@@ -1255,6 +1243,10 @@ CREATE VIEW campos AS
 
 
 ALTER TABLE forapi.campos OWNER TO postgres;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
 
 --
 -- Name: cat_bitacora; Type: TABLE; Schema: forapi; Owner: postgres; Tablespace: 
@@ -1335,6 +1327,98 @@ CREATE SEQUENCE cat_preguntas_idpregunta_seq
 
 
 ALTER TABLE forapi.cat_preguntas_idpregunta_seq OWNER TO postgres;
+
+--
+-- Name: cat_usuarios; Type: TABLE; Schema: forapi; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cat_usuarios (
+    usename character(15) NOT NULL,
+    nombre character varying(30),
+    apepat character varying(30),
+    apemat character varying(30),
+    puesto character varying(50),
+    depto character varying(50),
+    correoe character varying(50),
+    direccion_ip numeric(20,0),
+    fecha_alta timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
+    fecha_modifico timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
+    usuario_alta character varying(20) DEFAULT getpgusername(),
+    usuario_modifico character varying(20) DEFAULT getpgusername(),
+    idpregunta smallint DEFAULT 0,
+    respuesta character varying(100),
+    estatus smallint DEFAULT 0,
+    telefono character varying(30),
+    direccion character varying(50),
+    atl smallint,
+    id_direccion smallint,
+    id_persona integer,
+    password character varying(20),
+    id_puesto integer,
+    id_tipomenu smallint DEFAULT 1,
+    menu integer,
+    id_modulo integer DEFAULT 0,
+    rfc character varying(13) DEFAULT ''::character varying,
+    llaveprivada character varying(120) DEFAULT ''::character varying,
+    llavepublica character varying(120) DEFAULT ''::character varying,
+    numerotel numeric(10,0),
+    imagen bytea
+);
+
+
+ALTER TABLE forapi.cat_usuarios OWNER TO postgres;
+
+--
+-- Name: COLUMN cat_usuarios.rfc; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON COLUMN cat_usuarios.rfc IS 'RFC del usuario';
+
+
+--
+-- Name: COLUMN cat_usuarios.llaveprivada; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON COLUMN cat_usuarios.llaveprivada IS 'Ubicacion de la llave privada';
+
+
+--
+-- Name: COLUMN cat_usuarios.llavepublica; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON COLUMN cat_usuarios.llavepublica IS 'Ubicacion de la llave publica';
+
+
+--
+-- Name: COLUMN cat_usuarios.numerotel; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON COLUMN cat_usuarios.numerotel IS 'Numero telefonico';
+
+
+--
+-- Name: COLUMN cat_usuarios.imagen; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON COLUMN cat_usuarios.imagen IS 'Foto del usuario';
+
+
+--
+-- Name: cat_usuarios_pg_group; Type: TABLE; Schema: forapi; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cat_usuarios_pg_group (
+    usename character(15),
+    grosysid integer,
+    fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
+    fecha_modifico timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
+    usuario_alta character varying(20) DEFAULT getpgusername(),
+    usuario_modifico character varying(20) DEFAULT getpgusername(),
+    groname name
+);
+
+
+ALTER TABLE forapi.cat_usuarios_pg_group OWNER TO postgres;
 
 --
 -- Name: estados_usuarios; Type: TABLE; Schema: forapi; Owner: postgres; Tablespace: 
@@ -1815,7 +1899,9 @@ CREATE TABLE menus_campos (
     fuente_info_idmenu integer DEFAULT 0,
     fuente_actu boolean DEFAULT false,
     fuente_actu_idmenu integer DEFAULT 0,
-    eshidden boolean DEFAULT false
+    eshidden boolean DEFAULT false,
+    fila integer DEFAULT nextval(('forapi.menus_campos_fila_seq'::text)::regclass),
+    clase character varying(100) DEFAULT ''::character varying
 );
 
 
@@ -1913,6 +1999,20 @@ COMMENT ON COLUMN menus_campos.cambiarencambios IS 'Con este campo se control qu
 
 
 --
+-- Name: COLUMN menus_campos.fila; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON COLUMN menus_campos.fila IS 'campo para controlar cuantas columnas va a contener una fila, si dos columnas contienen las misma fila, esta fila tendra dos columnas';
+
+
+--
+-- Name: COLUMN menus_campos.clase; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON COLUMN menus_campos.clase IS 'aqui apunta a la clase de bootstra a nivel de label e input o select';
+
+
+--
 -- Name: menus_campos_eventos; Type: TABLE; Schema: forapi; Owner: postgres; Tablespace: 
 --
 
@@ -1952,6 +2052,20 @@ ALTER TABLE forapi.menus_campos_eventos_icv_seq OWNER TO postgres;
 
 ALTER SEQUENCE menus_campos_eventos_icv_seq OWNED BY menus_campos_eventos.icv;
 
+
+--
+-- Name: menus_campos_fila_seq; Type: SEQUENCE; Schema: forapi; Owner: inicio
+--
+
+CREATE SEQUENCE menus_campos_fila_seq
+    START WITH 1
+    INCREMENT BY 20
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE forapi.menus_campos_fila_seq OWNER TO inicio;
 
 --
 -- Name: menus_campos_idcampo_seq; Type: SEQUENCE; Schema: forapi; Owner: postgres
@@ -3227,6 +3341,13 @@ CREATE TRIGGER tu_cat_usuarios BEFORE UPDATE ON cat_usuarios FOR EACH ROW EXECUT
 --
 
 CREATE TRIGGER tu_menus BEFORE UPDATE ON menus FOR EACH ROW EXECUTE PROCEDURE cambia_menus();
+
+
+--
+-- Name: tu_menus_columnas; Type: TRIGGER; Schema: forapi; Owner: postgres
+--
+
+CREATE TRIGGER tu_menus_columnas BEFORE UPDATE ON menus FOR EACH ROW EXECUTE PROCEDURE cambio_menus_columnas();
 
 
 --
