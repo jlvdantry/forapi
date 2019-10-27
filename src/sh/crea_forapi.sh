@@ -23,8 +23,8 @@ create role temporalg;
 create role admon;
 fin
 psql -U postgres < $0.sql
-psql $1 -U $2 -h localhost  < forapi_esquema.sql > $0.log
-psql $1 -U $2 -h localhost  < forapi_insert.sql >> $0.log
+psql $1 -U $2 -h localhost  < src/bd/forapi_esquema.sql > tmp/$0.log
+psql $1 -U $2 -h localhost  < src/bd/forapi_insert.sql >> tmp/$0.log
 cat > $0.sql << fin
 insert into forapi.cat_usuarios (usename,nombre,id_tipomenu,password,estatus) values ('Temporal1','temporal',1,'$3',1);
 insert into forapi.cat_usuarios (usename,nombre,id_tipomenu,password,menu,estatus) values ('$2','$2',1,'$3',
@@ -36,7 +36,7 @@ select forapi.autoriza_usuario('Temporal_forapi');
 select forapi.autoriza_usuario('$2');
 delete from pg_authid where rolcanlogin=false and rolname not in ('admon','temporalg');
 fin
-psql $1 -U $2 -h localhost  < $0.sql  >> $0.log
+psql $1 -U $2 -h localhost  < $0.sql  >> tmp/$0.log
 cat > $0.sql << fin
 select '<?php'
 union all
@@ -48,15 +48,14 @@ select '?>'
 fin
 tar -xzf forapi_php.tar.gz
 echo "desempaco archivo"
-psql -t $1 -U $2 -h localhost  < $0.sql  > idmenus.php
+psql -t $1 -U $2 -h localhost  < $0.sql  > src/php/idmenus.php
 echo "creo constantes"
-sed -i -e "s/ //g" idmenus.php
+sed -i -e "s/ //g" src/php/idmenus.php
 tail -n 1 "idmenus.php" | wc -c | xargs -I {} truncate "idmenus.php" -s -{}
-sed -i -e "s/wldbname='forapi1.1'/wldbname='$1'/g" -e "s/password='Temporal_forapi'/password='$3'/g" conneccion.php
+sed -i -e "s/wldbname='forapi1.1'/wldbname='$1'/g" -e "s/password='Temporal_forapi'/password='$3'/g" src/php/conneccion.php
 echo "cambio variales de la base"
 mkdir upload_ficheros
 chown -R ec2-user:www upload_ficheros
 mkdir ficheros
 chown -R ec2-user:www ficheros
 rm $0.sql
-rm $0.log
