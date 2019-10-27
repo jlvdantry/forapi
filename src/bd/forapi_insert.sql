@@ -522,6 +522,7 @@ COPY his_menus_pg_tables (idcambio, idmenu, tablename, tselect, tinsert, tupdate
 146	17	cat_usuarios	1	0	1	1	1	c	2019-10-19 08:34:03-06	inicio	 
 147	19	cat_preguntas_seq	1	 	 	 	 	c	2019-10-27 15:26:35-06	inicio	 
 148	4	cat_preguntas_seq	1	 	 	 	 	c	2019-10-27 15:26:35-06	inicio	 
+149	18	his_cat_usuarios_pg_group_idcambio_seq	1	0	1	 	 	c	2019-10-27 16:56:53-06	inicio	 
 \.
 
 
@@ -529,7 +530,7 @@ COPY his_menus_pg_tables (idcambio, idmenu, tablename, tselect, tinsert, tupdate
 -- Name: his_menus_pg_tables_idcambio_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('his_menus_pg_tables_idcambio_seq', 148, true);
+SELECT pg_catalog.setval('his_menus_pg_tables_idcambio_seq', 149, true);
 
 
 --
@@ -1124,12 +1125,12 @@ COPY menus_pg_tables (idmenu, tablename, tselect, tinsert, tupdate, tdelete, tal
 8	cat_preguntas	1	 	 	 	 	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 8	menus_movtos	1	 	 	 	 	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 14	menus_presentacion	1	0	0	0	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	forapi
-18	his_cat_usuarios_pg_group_idcambio_seq	1	1	 	 	 	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 8	menus_seguimiento_idseguimietno_seq	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 11	cat_usuarios_pg_group	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 8	cat_usuarios_pg_group	1	 	 	 	 	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 11	his_cat_usuarios	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 17	cat_usuarios	1	0	1	1	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
+18	his_cat_usuarios_pg_group_idcambio_seq	1	0	1	 	 	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 14	menus_idmenu_seq	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 20	menus_campos_idcampo_seq	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 8	menus_seguimiento	1	 	 	 	 	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
