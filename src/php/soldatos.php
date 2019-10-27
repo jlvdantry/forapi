@@ -419,7 +419,7 @@ class soldatos
     */
   function inicio_tab($table_width,$table_height,$table_align)
   {
-    		return "<div class='table-responsive'> <table id='tabdinamica_".$this->idmenu."' class='tabla'"
+    		return "<div class='table-responsive'> <table id='tabdinamica_".$this->idmenu."' class='tabla table-striped'"
                          .(strlen($table_align)>0 ? " align=".$table_align : "" )
                          ."       style=\" ".   "  width:100" ."%;"
                          .((strlen($table_height)>0 && $table_height>0) ? " height:".$table_height : " heigth:100" )."%;\""
@@ -751,9 +751,11 @@ class soldatos
    			($readonly=='t') ?  $vas.="  disabled=true readonly " :  $vas=$vas;
    			($fuente_campofil!="") ?  $vas=$vas." onClick=\"si_Select('".$sql."','".$fuente_campofil."');\" " : $vas=$vas;
    			($esfiltrode!="" ) ?  $wlonchange=$wlonchange." pon_Select(\"".   //20071109   			
-  	        		  $this->dame_sql_sel($esfiltrode,0)."\",\"".$filtroshijo."\",\"".$esfiltrode."\",\"".$fuentewhere."\",0".") " : $vas=$vas;
+  	        		  $this->dame_sql_sel($esfiltrode,0)."\",\"".$filtroshijo."\",\"".$esfiltrode."\",\"".$fuentewhere
+                                  ."\",".$fuente_evento.",0".",".$this->idmenu.") " : $vas=$vas;
    			($fuente_evento==2 || $fuente_evento==3 ) ?  $wlonfocus=$wlonfocus."; pon_Select(\"".
-   	        		  $this->dame_sql_sel($wlnombre,0)."\",\"".$fuente_campofil."\",\"".$wlnombre."\",\"".$fuentewhere."\",".$fuente_evento.",0) " : $vas=$vas;
+   	        		  $this->dame_sql_sel($wlnombre,0)."\",\"".$fuente_campofil."\",\"".$wlnombre."\",\"".$fuentewhere
+                                  ."\",".$fuente_evento.",0".",".$this->idmenu.") " : $vas=$vas;
 			$wlonchange=$this->agregaevento('2',$wlonchange,$menumce); 		//20071109
 			$wlonfocus=$this->agregaevento('3',$wlonfocus,$menumce); 		//20071109
 			$wlonblur=$this->agregaevento('1',$wlonblur,$menumce); 		//20071109
@@ -1131,11 +1133,13 @@ class soldatos
                                    $wllinea="";
                                 }
 
+/*
 		  if ($this->menuc[$nomcampo]["htmltable"]!=$htmltableanterior)
 		  {        	  
 			  $j--;
 			  break;
 		  }   
+*/
         	  
 	      	  $esFiltroDe=$md->dame_ultimo($this->menuc[$nomcampo]["esFiltroDe"]);
 	          if (strpos($this->movto_mantto,"i")!==false 
@@ -1232,10 +1236,10 @@ class soldatos
 					if ($htmltableanterior!="0") { echo "</div $htmltableanterior>"; }			    			
                                         echo "<div>";
 	    		                $this->inicio_tabcaptura_t($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);	
-                                        echo "<tr><td class=htmltable id='_t_".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."'colspan=".($this->menu["columnas"]*2).">";
+                                        echo "<tr><h1 class=htmltable id='_t_".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."'colspan=".($this->menu["columnas"]*2).">";
                                         echo "<button class='btn-mostrar'  tabindex='-1' align='left' type=button id='imostrar' ".
-                                             "onclick=\"return toggleDiv('".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."',this);\">";
-                                        echo "<label>".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."</label></td></tr></table></div>";
+                                             "onclick=\"return toggleDiv('".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."',this);\"></button>";
+                                        echo "<label>".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."</label></h1></tr></table></div>";
 					echo "<div id='".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."'>";
 	    		                $this->inicio_tabcaptura_t($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);	
 	    			        $htmltableanterior=$this->menuc[$nomcampo]["htmltable"];

@@ -1522,11 +1522,11 @@ window.CargaXMLDoc = function()
 //  fuenteevento, el evento donde se va a llenar el campo select 0=carga, 1=cambia el registro padre, 2=on focus, 3=on focus solo la primera vez
 //  20070616 sololimite,  0=indica que no  1= si  sololimite quiere decir que en las opciones solo mostro el limite para no   
 //  20070616               saturar el browser
-window.pon_Select = function(wlselect,wlfiltropadre,wlfiltrohijo,fuentewhere,fuenteevento,sololimite)
+window.pon_Select = function(wlselect,wlfiltropadre,wlfiltrohijo,fuentewhere,fuenteevento,sololimite,idmenu)
 {
 	// si ya esta lleno el select y el evento es 3 onfocus solo la primiera vez se sale
 	// para no volver a llenar el campo select
-	if (fuenteevento==3 && document.getElementsByName("wl_"+wlfiltrohijo)[0].length>=2 && sololimite==0)	
+	if (fuenteevento==3 && document.getElementsByName("wl_"+wlfiltrohijo+"__"+idmenu)[0].length>=2 && sololimite==0)	
 	{  return; }
 	var wlvarios="";
 	var wlwhere="";
@@ -1552,7 +1552,7 @@ window.pon_Select = function(wlselect,wlfiltropadre,wlfiltrohijo,fuentewhere,fue
 					{  wlvarios=wlvarios+" and "+a[m]+"="+wlcomi+valor+wlcomi; }
     			}	
     			else
-    			{   clearSelect(document.getElementsByName("wl_"+wlfiltrohijo)[0]);
+    			{   clearSelect(document.getElementsByName("wl_"+wlfiltrohijo+"__"+idmenu)[0]);
 	    			return;
     		    }
 			}
