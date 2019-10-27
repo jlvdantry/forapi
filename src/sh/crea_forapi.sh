@@ -24,8 +24,8 @@ create role temporalg;
 create role admon;
 create schema forapi;
 fin
-psql -U postgres < $0.sql
-psql $1 -U $2 -h localhost  < src/bd/forapi_esquema.sql > tmp/$mn.log
+psql -U postgres < $0.sql > tmp/$mn.log
+psql $1 -U $2 -h localhost  < src/bd/forapi_esquema.sql >> tmp/$mn.log
 psql $1 -U $2 -h localhost  < src/bd/forapi_insert.sql >> tmp/$mn.log
 cat > $0.sql << fin
 insert into forapi.cat_usuarios (usename,nombre,id_tipomenu,password,estatus) values ('Temporal1','temporal',1,'$3',1);
