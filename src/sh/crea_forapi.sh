@@ -4,6 +4,7 @@ if [ "$#" -eq  "0" ]
      echo "$0 $1=nombre de base de datos $2=usuario administrador  $3=pwd del administrador"
      exit 1
 fi
+mn=$(basename -- "$0")
 ##sudo mkdir /var/lib/pgsql9/$1
 ##sudo chown postgres /var/lib/pgsql9/$1
 ##sudo initdb -D /var/lib/pgsql9/$1
@@ -21,10 +22,11 @@ comment on database $1 is 'Formas rapidas';
 create user Temporal_forapi with password '$3' ;
 create role temporalg;
 create role admon;
+create schema forapi;
 fin
 psql -U postgres < $0.sql
-psql $1 -U $2 -h localhost  < src/bd/forapi_esquema.sql > tmp/$0.log
-psql $1 -U $2 -h localhost  < src/bd/forapi_insert.sql >> tmp/$0.log
+psql $1 -U $2 -h localhost  < src/bd/forapi_esquema.sql > tmp/$mn.log
+psql $1 -U $2 -h localhost  < src/bd/forapi_insert.sql >> tmp/$mn.log
 cat > $0.sql << fin
 insert into forapi.cat_usuarios (usename,nombre,id_tipomenu,password,estatus) values ('Temporal1','temporal',1,'$3',1);
 insert into forapi.cat_usuarios (usename,nombre,id_tipomenu,password,menu,estatus) values ('$2','$2',1,'$3',
@@ -36,7 +38,7 @@ select forapi.autoriza_usuario('Temporal_forapi');
 select forapi.autoriza_usuario('$2');
 delete from pg_authid where rolcanlogin=false and rolname not in ('admon','temporalg');
 fin
-psql $1 -U $2 -h localhost  < $0.sql  >> tmp/$0.log
+psql $1 -U $2 -h localhost  < $0.sql  >> tmp/$mn.log
 cat > $0.sql << fin
 select '<?php'
 union all
@@ -54,8 +56,8 @@ sed -i -e "s/ //g" src/php/idmenus.php
 tail -n 1 "idmenus.php" | wc -c | xargs -I {} truncate "idmenus.php" -s -{}
 sed -i -e "s/wldbname='forapi1.1'/wldbname='$1'/g" -e "s/password='Temporal_forapi'/password='$3'/g" src/php/conneccion.php
 echo "cambio variales de la base"
-mkdir upload_ficheros
-chown -R ec2-user:www upload_ficheros
-mkdir ficheros
-chown -R ec2-user:www ficheros
-rm $0.sql
+##mkdir upload_ficheros
+##chown -R ec2-user:www upload_ficheros
+##mkdir ficheros
+##chown -R ec2-user:www ficheros
+##rm $0.sql
