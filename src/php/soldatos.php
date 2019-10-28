@@ -985,7 +985,7 @@ class soldatos
     $descripcion=($espassword=="3" ? $tip : $descripcion);
     $wlvalordefault=" value=\"$valordefault\" ";
     $wlvalordefault=($valordefault=='hoy' ? " value=\"".date("Y")."-".date('m')."-".date("d")."\" " : ($valordefault=='hora' ? " value=\"".date("H").":".date('i').":".date('s')."\" " : ($valordefault=='hoyyhora' ? " value=\"".date("Y")."-".date('m')."-".date("d")." ".date("H").":".date('i').":".date('s')."\" " :$wlvalordefault)));
-    $wleshiden=($mecq["eshidden"]!='t' ? "" : " class='hidden' ");
+    $wleshiden=($mecq["eshidden"]!='t' ? "" : " d-none ");
     $wlbusqueda=   (($busqueda=='t')    ? "<font color='black'>*</font>" : "");
     $wlobligatorio=(($obligatorio=='t') ? "<font ".$wleshiden." color='red'>*</font>" : "");
     $wlobligatorio_=(($obligatorio=='t') ? "data-obligatorio=1" : "");
@@ -994,13 +994,13 @@ class soldatos
     $wlbusqueda_=   (($busqueda=='t')    ? "data-busqueda=1" : "");
     $wlidcampo=$mecq["idcampo"];
     $wltipodedato=((substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? " type='tel' " : "");
-            $wli="<td class='".$mecq["clase"]."'><label class='form-label-custom' ".$wleshiden." id='wlt_".$nombre."__".$this->idmenu."' name=wlt_".$nombre."__".$this->idmenu." title=\"".$descripcion."\" abbr=\"".$descripcion."\""
+            $wli="<td class='".$mecq["clase"]."'><label class='form-label-custom $wleshiden'  id='wlt_".$nombre."__".$this->idmenu."' name=wlt_".$nombre."__".$this->idmenu." title=\"".$descripcion."\" abbr=\"".$descripcion."\""
 			.">".(($wltdf=="3") ? "" : $descripcion.(($busqueda=='t') ? "*" : ""))
 			."</label>".$wlobligatorio; 
 	    $wli=$wli.
 	    	(($tipodedato != "text") 
-	    	? "<input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom' ".$wleshiden." onKeydown='return quitaenter(this,event)' " 
-	    	: "<textarea $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom' ".$wleshiden.((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
+	    	? "<input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom $wleshiden'  onKeydown='return quitaenter(this,event)' " 
+	    	: "<textarea $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom $wleshiden' ".((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
 	    						? "cols=".$mecq["colspantxt"] : "" )
 	    				).
 	    				(($tipodedato == "text") 

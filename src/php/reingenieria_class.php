@@ -31,8 +31,8 @@ class reingenieria extends xmlhttp_class
       $men = new class_men();
 	  $this->tabla=$this->argumentos['wl_relname'];      
 	  $this->nspname=$this->argumentos['wl_nspname'];      	  
-      $sql=" insert into forapi.menus(descripcion,tabla,reltype,php,nspname) ".
-		   " select relname,relname,reltype,'man_menus.php',nspname".
+      $sql=" insert into forapi.menus(descripcion,tabla,reltype,php,nspname,table_height) ".
+		   " select relname,relname,reltype,'man_menus.php',nspname,0".
            " from forapi.tablas ".
            " where relname = '".$this->tabla."' ".
            " and nspname = '".$this->nspname."'";
@@ -57,7 +57,7 @@ class reingenieria extends xmlhttp_class
 	  for ($z=0; $z < $num ;$z++)
       {
 			$row=pg_fetch_array($sql_result, $z);      
-			$sql="insert into forapi.menus_campos(idmenu ,descripcion,attnum,orden,obligatorio,readonly,esindex,tipayuda,size,tabla,nspname,male) values (\n".
+			$sql="insert into forapi.menus_campos(idmenu ,descripcion,attnum,orden,obligatorio,readonly,esindex,tipayuda,size,tabla,nspname,male,eshidden) values (\n".
                   $wlidmenu.
                   ",'".$row["attname"]."'".
                   ",'".$row["attnum"]."'".                  
@@ -70,6 +70,7 @@ class reingenieria extends xmlhttp_class
                   ",'".$this->tabla."'".                  
                   ",'".$row["nspname"]."'".                  
                   ",'".$row["atttypmod"]."'".                  
+                  ",".(($row["attname"]=='fecha_alta' || $row["attname"]=='usuario_alta' || $row["attname"]=='fecha_modifico' || $row["attname"]=='usuario_modifico' ) ? 'true' : 'false' ).
                   ");\n";
       		$sql_resulti = pg_exec($this->connection,$sql)
             		        //or die("No se pudo ejecutar el sql4 en menus");
