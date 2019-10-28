@@ -1566,7 +1566,7 @@ class soldatos
         	if (strpos($meda->camposm['movtos'],"d")!==false) 
         	{
             	 $wlini=$wlini."<td name=noimprime ><button class='btn-eliminar'  title='Eliminar registro'  ".
-                   "onclick='daunClick(\"cam".$z."\");mantto_tabla(\"".$meda->camposm['idmenu']."\",\"d\",\"".$wlllave."\",".($z).",\"".                   
+                   "onclick='daunClick(\"cam".$z."\",".$this->idmenu.");mantto_tabla(\"".$meda->camposm['idmenu']."\",\"d\",\"".$wlllave."\",".($z).",\"".                   
         	                          // evento antes de dar de baja
         	                          (($meda->camposme[5][2]['donde']==1) ? $meda->camposme[5][2]['descripcion'] : "").
         	                          "\",\"".
@@ -1662,7 +1662,7 @@ class soldatos
   function arma_subvistasbotonligasel($sql_result,$Row,$z,$meda,$posicion,$mm,$i)
   {
 			return "<option ".
-                   			"value='daunClick(\"cam".$z."\");".
+                   			"value='daunClick(\"cam".$z."\",".$this->idmenu.");".
 						              "abre_subvista(\"src/php/man_menus.php\",\"idmenu=".
 						              $meda->camposmsv[$mm]['idsubvista'].
 						              "&filtro=".$this->pon_filtro($meda->camposmsv[$mm],$Row,$meda->camposmc)."\",\"".
@@ -1693,7 +1693,7 @@ class soldatos
   function arma_subvistasbotonligacomandosel($sql_result,$Row,$z,$meda,$posicion,$mm,$i)
   {
 			return "<option ".
-               			"value='daunClick(\"cam".$z."\");".
+               			"value='daunClick(\"cam".$z."\",".$this->idmenu.");".
                                 "comandos_servidor(\"".$meda->camposmsv[$mm]['clase']."\",\"".$meda->camposmsv[$mm]['funcion']."\",".$meda->camposm['idmenu'].
                                     ");return false;'".
 			          "> ".$meda->camposmsv[$mm]['texto'].						              
@@ -1714,7 +1714,7 @@ class soldatos
   {
 			return "<td name=noimprime class=botones >".
 				  (	$meda->camposmsv[$mm]['esboton']==1 ? "<input class='btn-02' type=button id='".$meda->camposmsv[$mm]['texto']."'" : "<a id='".$meda->camposmsv[$mm]['texto']."' href=## ").
-                   			"onclick='daunClick(\"cam".$z."\");".
+                   			"onclick='daunClick(\"cam".$z."\",".$this->idmenu.");".
 						              "abre_subvista(\"src/php/man_menus.php\",\"idmenu=".
 						              $meda->camposmsv[$mm]['idsubvista'].
 						              "&filtro=".$this->pon_filtro($meda->camposmsv[$mm],$Row,$meda->camposmc)."\",\"".
@@ -1746,7 +1746,7 @@ class soldatos
   {
 	 return "<td class='botones' name=noimprime >".
 	  (	$meda->camposmsv[$mm]['esboton']==1 ? "<input type=button id='".$meda->camposmsv[$mm]['texto']."' class='btn-02' " : "<a href=## ").
-        		"onclick='daunClick(\"cam".$z."\");".
+        		"onclick='daunClick(\"cam".$z."\",".$this->idmenu.");".
 	              "comandos_servidor(\"".$meda->camposmsv[$mm]['clase']."\",\"".$meda->camposmsv[$mm]['funcion']."\",".$meda->camposm['idmenu'].
 	              ");return false;'".
 	  (	$meda->camposmsv[$mm]['esboton']==1 ? " value='".$meda->camposmsv[$mm]['texto']."'> " : " >".$meda->camposmsv[$mm]['texto']).

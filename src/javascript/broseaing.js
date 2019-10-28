@@ -233,10 +233,10 @@ window.minusculas = function(objeto,evento)
     Da un click al boto de seleccionar para que muestre el renglon en los campos de captura
     recibe el nombre del campo
 */        
-window.daunClick = function (wlcampo)
+window.daunClick = function (wlcampo,idmenu)
 {
 	try
-	{	document.getElementById(wlcampo).click(); }
+	{	document.getElementById(wlcampo+"_"+idmenu).click(); }
 	catch (err) { return false; };
 }
 
