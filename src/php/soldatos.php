@@ -1186,25 +1186,22 @@ class soldatos
 		          	}
 	          		else
 	          		{
-		          		if ($this->menu["tiene_pk_serial"]==$nomcampo)  // si se cumple el campo es un serial
-		          		{
-                                                $nombre=pg_fieldname($sql_result, $j);
-                                                $busqueda=$this->menuc[$nomcampo]["busqueda"];
-                                                $wlbusqueda=($busqueda=='t' ? " <input type=hidden id='bu_".$nombre."' name=bu_".$nombre." value=1></input>\n" : "") ;
-                                                $wleshiden=($this->menuc[$nomcampo]["eshidden"]!='t' ? "" : " class='hidden' ");
-			          		$wllinea=$wllinea."<td ".$wleshiden.
-			          		(	($wltdf==1) ? " colSpan=2 " :	(($wltdf==2 || $wltdf==3) ? " colSpan=100 " : ""))
-			          		.">".(($wltdf==3) ? "" : $wltdd ).	
-			          		(	($wltdf==1 || $wltdf==2)
-			          			? " <br><input  ".$wleshiden : (($wltdf==3) ? " <input  ".$wleshiden : "</td><td><input ".$wleshiden)  
-			          		).
-            		  	(($this->menuc[$nomcampo]["size"]!="" && $this->menuc[$nomcampo]["size"]!="0") ? " size=".$this->menuc[$nomcampo]["size"] : "" ).
-            		  	$this->armaid_cc($j)." type=text class='form-control form-control-custom' readonly=true name=wl_"
+		                   if ($this->menu["tiene_pk_serial"]==$nomcampo)  // si se cumple el campo es un serial
+		          	   {
+                                       $nombre=pg_fieldname($sql_result, $j);
+                                       $busqueda=$this->menuc[$nomcampo]["busqueda"];
+                                       $wlbusqueda=($busqueda=='t' ? " <input type=hidden id='bu_".$nombre."' name=bu_".$nombre." value=1></input>\n" : "") ;
+                                       $wleshiden=($this->menuc[$nomcampo]["eshidden"]!='t' ? "" : " class='hidden' ");
+			               $wllinea=$wllinea."<td><label class='form-label-custom' ".$wleshiden.">".$wltdd."</label>".
+			          			 " <br><input  ".$wleshiden.
+            		  	                (($this->menuc[$nomcampo]["size"]!="" && $this->menuc[$nomcampo]["size"]!="0") ? " size="
+                                                             .$this->menuc[$nomcampo]["size"] : "" ).
+            		  	       $this->armaid_cc($j)." type=text class='form-control form-control-custom' readonly=true name=wl_"
                                                   .pg_fieldname($sql_result, $j)."__".$this->idmenu." ".
-            		  	(($wltdf==3) ? "placeholder=\"".$wltdd : "" )."\"></input>".$wlbusqueda."</td>\n";
-            		  	}
-		          		else
-		          		{
+            		  	                   "\"></input>".$wlbusqueda."</td>\n";
+            		  	    }
+		          	    else
+		          	    {
 	            				$wllinea=$wllinea.$this->arma_input(
 	            				pg_fieldname($sql_result, $j)
 	            				,$this->menuc[pg_fieldname($sql_result, $j)]["size"]
