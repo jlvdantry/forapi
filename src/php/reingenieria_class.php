@@ -75,7 +75,7 @@ class reingenieria extends xmlhttp_class
             		        //or die("No se pudo ejecutar el sql4 en menus");
             		        or die("No se pudo ejecutar el sql4 en menus: ".$sql." ".pg_last_error($this->connection));
 	  }	
-	  $sql="insert into forapi.menus_pg_group(idmenu ,grosysid) select ".$wlidmenu.",grosysid from pg_group where groname='admon'";
+	  $sql="insert into forapi.menus_pg_group(idmenu ,groname) select ".$wlidmenu.",groname from pg_group where groname='admon'";
       $sql_resulti = pg_exec($this->connection,$sql)
       				//or die("No se pudo ejecutar el sql5 en menus");
                                 or die("No se pudo ejecutar el sql5 en menus: ".$sql." ".pg_last_error($this->connection));
