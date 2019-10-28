@@ -1541,7 +1541,7 @@ window.pon_Select = function(wlselect,wlfiltropadre,wlfiltrohijo,fuentewhere,fue
 	  		{	
 		  		var valor="";
 		  		try { valor=document.getElementsByName("au_"+a[m])[0].value } catch (err) { valor=""; }
-		  		if (valor=="") { try { valor=document.getElementsByName("wl_"+a[m])[0].value } catch (err) { valor=""; } }	  		
+		  		if (valor=="") { try { valor=document.getElementsByName("wl_"+a[m]+'__'+idmenu)[0].value } catch (err) { valor=""; } }	  		
 				if(valor!='')
 				{
 					//  si existe un elemento que sea nu_ es numerico en caso es un string y debe de llevar comillas
@@ -1568,7 +1568,7 @@ window.pon_Select = function(wlselect,wlfiltropadre,wlfiltrohijo,fuentewhere,fue
 	  	{
                         wlvs=wlvs+' where '+wlvarios+(wlwhere.trim()=='' ? '' : ' and '+wlwhere);
 	  		wlurl='src/php/xmlhttp.php';//20071105
-	  		passData='&opcion=pon_select&sql='+escape(wlvs)+'&wlfiltropadre='+escape(wlfiltropadre)+'&wlfiltrohijo='+escape(wlfiltrohijo)+'&fuenteevento='+escape(fuenteevento)+'&fuentewhere='+escape(fuentewhere);	  			  		
+	  		passData='&opcion=pon_select&sql='+escape(wlvs)+'&wlfiltropadre='+escape(wlfiltropadre)+'&wlfiltrohijo='+escape(wlfiltrohijo)+'&fuenteevento='+escape(fuenteevento)+'&fuentewhere='+escape(fuentewhere)+'&idmenu='+idmenu;
       		CargaXMLDoc();		  	
   		}
   		else
@@ -1608,23 +1608,23 @@ window.reemplaza_where = function(fuentewhere,theFormName)
 }
 
 //  funcion que checa si fue seleccionado previamente un dato
-window.si_Select = function(wlselect,wlfiltro)
+window.si_Select = function(wlselect,wlfiltro,idmenu)
 {
 	try
 	{
 	  var a = wlfiltro.split(',');
 	  for (m=0;m<a.length;m++)
 	  {	
-		if(document.getElementsByName("wl_"+a[m])[0].value=='')
+		if(document.getElementsByName("wl_"+a[m]+"__"+idmenu)[0].value=='')
 		{
-			alert('Primero debe teclear o seleccionar el dato "'+document.getElementById("wlt_"+a[m]).value+'"');
+			alert('Primero debe teclear o seleccionar el dato "'+document.getElementById("wlt_"+a[m]+"__"+idmenu).value+'"');
 			return false;
     	}	
 	  }
   	}
   	catch(err)
   	{
-	  	alert('error en si_select '+wlselect+ ' filtro '+wlfiltro); return false;
+	  	alert('error en si_select '); return false;
   	}
 
 
@@ -2310,6 +2310,8 @@ window.querespuesta = function()
 */           
            if (req.responseText.indexOf("<ponselect>") != -1)
            {
+              var items = req.responseXML.getElementsByTagName("idmenu");
+              try { var idmenu=items[0].childNodes[0].nodeValue } catch (err) { var idmenu=0; };
 	           var desw = req.responseXML.getElementsByTagName("s_descripcion");	           
 	           var des = desw[0].childNodes[0].nodeValue
 	           var valw = req.responseXML.getElementsByTagName("s_value");	           
@@ -2318,7 +2320,7 @@ window.querespuesta = function()
 			   var wlhijos=items[0].childNodes[0].nodeValue.split(',');
 		       for (m=0;m<wlhijos.length;m++)
 	  			{	
-            		var wl=document.getElementsByName('wl_'+wlhijos[m])[0];   //firefox
+            		var wl=document.getElementsByName('wl_'+wlhijos[m]+'__'+idmenu)[0];   //firefox
             		clearSelect(wl);
 	           		buildTopicList(wl,des,val);
 				}	           		

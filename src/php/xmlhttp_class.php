@@ -244,6 +244,7 @@ class xmlhttp_class
     {  echo "<error>No esta definido el fuente evento</error>"; return ;}
     
     echo "<fuenteevento>".$this->argumentos['fuenteevento']."</fuenteevento>";    
+    echo "<idmenu>".$this->argumentos['idmenu']."</idmenu>";    
     
     
     echo "<ponselect>";

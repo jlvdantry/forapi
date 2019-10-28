@@ -749,7 +749,7 @@ class soldatos
 			$wlonblur=$this->blur($readonly);   			          
    			($tip!="") ?  $vas=$vas." title='".$tip."' " : $vas=$vas;   			   			 
    			($readonly=='t') ?  $vas.="  disabled=true readonly " :  $vas=$vas;
-   			($fuente_campofil!="") ?  $vas=$vas." onClick=\"si_Select('".$sql."','".$fuente_campofil."');\" " : $vas=$vas;
+   			($fuente_campofil!="") ?  $vas=$vas." onClick=\"si_Select('".$sql."','".$fuente_campofil."',".$this->idmenu.");\" " : $vas=$vas;
    			($esfiltrode!="" ) ?  $wlonchange=$wlonchange." pon_Select(\"".   //20071109   			
   	        		  $this->dame_sql_sel($esfiltrode,0)."\",\"".$filtroshijo."\",\"".$esfiltrode."\",\"".$fuentewhere
                                   ."\",".$fuente_evento.",0".",".$this->idmenu.") " : $vas=$vas;
