@@ -1701,26 +1701,33 @@ window.muestra_menus = function (menus,donde='navbarSupportedContentul') {
      for ( var ren in m) {  
          if (typeof(m[ren])=='object') {
             idpadre=m[ren].childNodes[3].innerHTML;
+            hijos=m[ren].childNodes[1].innerHTML;
             des=m[ren].childNodes[0].innerHTML
             idmenu=m[ren].childNodes[4].innerHTML
-            if (idpadre==0) { /* si el idpadre es creo es un menu padre o se ejecutar una acciones */
+            if (idpadre==0) { /* si el idpadre es cero es un menu padre o se ejecutar una acciones */
                lid=document.createElement('li');
                lid.setAttribute('class','nav-item dropdown');
                ad=document.createElement('a');
-               ad.setAttribute('class','nav-link dropdown-toggle');
                ad.setAttribute('id','navbarDropdown_'+idmenu);
                ad.setAttribute('role','button');
                ad.setAttribute('href','#');
-               ad.setAttribute('data-toggle','dropdown');
-               ad.setAttribute('aria-haspopup',true);
-               ad.setAttribute('aria-expanded',false);
-               div=document.createElement('div');
-               div.setAttribute('class','dropdown-menu');
-               div.setAttribute('aria-labelledby','navbarDropdown_'+idmenu);
-               div.setAttribute('id','navbarDropdown_id_'+idmenu);
                adt = document.createTextNode(des)
+               if (hijos==0) {
+                 ad.setAttribute('class','nav-link');
+                 ad.setAttribute('onclick',"muestra_vista("+idmenu+");return false;");
+               } else {
+                 ad.setAttribute('class','nav-link dropdown-toggle');
+                 ad.setAttribute('data-toggle','dropdown');
+                 ad.setAttribute('aria-haspopup',true);
+                 ad.setAttribute('aria-expanded',false);
+                 div=document.createElement('div');
+                 div.setAttribute('class','dropdown-menu');
+                 div.setAttribute('aria-labelledby','navbarDropdown_'+idmenu);
+                 div.setAttribute('id','navbarDropdown_id_'+idmenu);
+                 ad.appendChild(div) 
+                 ad.appendChild(adt) 
+               }
                ad.appendChild(adt) 
-               ad.appendChild(div) 
                lid.appendChild(ad) 
                nav.appendChild(lid);
             }
