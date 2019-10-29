@@ -1559,7 +1559,7 @@ class soldatos
           	}
           
 //20070703        	$wlini="<tr id=tr".($z).">";
-        	$wlini="<tr id=tr".($z)."_".$this->idmenu."  oncontextmenu='contextForTR(this);return false;' >"; //20070703       	        	
+        	$wlini="<tr id=tr".($z)."_".$this->idmenu."  oncontextmenu='contextForTR(this,".$this->idmenu.");return false;' >"; //20070703       	        	
         	if (strpos($meda->camposm['movtos'],"d")!==false) 
         	{
             	 $wlini=$wlini."<td name=noimprime ><button class='btn-eliminar'  title='Eliminar registro'  ".
