@@ -828,7 +828,7 @@ class xmlhttp_class
 //     	echo "campo".$wlcampo." default ".$camposs[$wlcampo]["default"]."posicion".strpos($camposs[$wlcampo]["default"],"nextval");        
         	if ($pos===0 && strpos($camposs[$wlcampo]["default"],"nextval")===false && $val!="") /* si el valor por default tiene nextval es una secuencia */
         	{   
-            	 $val2 = strlen($val2)==0 ? "'".trim($val)."'" : $val2.",'".trim($val)."'" ;
+            	 $val2 = strlen($val2)==0 ? "'".trim(utf8_encode($val))."'" : $val2.",'".trim(utf8_encode($val))."'" ;
         	}
 		}        	
       }

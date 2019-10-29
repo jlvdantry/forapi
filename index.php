@@ -1,5 +1,6 @@
 <?php
-    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Origin: *; Content-Type: text/html; charset=iso-8859-1");
+    //header("Content-Type: text/html; charset=iso-8859-1”);
     session_start();
     $_SESSION = array();
     include("src/php/idmenus.php");
