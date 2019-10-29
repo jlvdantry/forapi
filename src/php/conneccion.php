@@ -8,7 +8,7 @@ $wldbname=BD;
 $wlport='5432';
 if(isset($_SESSION['parametro1']) || isset($_SESSION['parametro2']) || isset($_SESSION['bada']) || isset($_SESSION['servidor']))
 {	$connection = pg_connect("host=".$_SESSION['servidor']." dbname=".$_SESSION['bada']." user=".$_SESSION['parametro1']." password=".$_SESSION['parametro2']." port=$wlport") or die("Finalizo la session tienes que volver a ingresar");	
-##        pg_exec($connection,"set client_encoding to 'latin1'");
+        pg_exec($connection,"set client_encoding to 'latin1'");
 }
 else
 {
