@@ -1,1 +1,1 @@
-pg_dump inicio -h localhost -U inicio -Fc -s | pg_restore -P 'copiamenu(integer)' > src/bd/copiamenu.sql
+pg_dump jc9 -h localhost -U jc9 -Fc -s | pg_restore -P 'cambio_menus_columnas()' > src/bd/cambio_menus_columnas.sql
