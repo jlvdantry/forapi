@@ -481,10 +481,10 @@ window.muestra_renglon = function (wlrenglon)
 
 /* funcion que cambia el color del renglon seleccionado
 */
-window.color_renglon = function (wlrenglon)
+window.color_renglon = function (wlrenglon,idmenu)
 {
    	color_renglon.poneclase(wlrenglon,'todofoco');
-  	var wltabladinamica = document.getElementById('tabdinamica_'+wlrenglon.id.split('_')[1]);
+  	var wltabladinamica = document.getElementById('tabdinamica_'+idmenu);
    	var wlTRs = wltabladinamica.getElementsByTagName('tr');
   	for (e=0;e<wlTRs.length;e++) {		
 		if (wlTRs[e].className=='todofoco' && wlTRs[e].id!=wlrenglon.id)
@@ -535,7 +535,7 @@ window.contextForTABLE = function(objtabla)
 /*
    muestra el conextmenu en la tabla de los reglones 
   */
-window.contextForTR = function (objtr)
+window.contextForTR = function (objtr,idmenu)
 {
 	var wlTR=document.getElementById(objtr.id);
 	var siSelect = wlTR.getElementsByTagName('SELECT');
@@ -564,7 +564,7 @@ window.contextForTR = function (objtr)
         wlstr='popupoptions = ['+wlstr+']';
         wlstr=wlstr.replace(/\&quot\;/g,'\'');
         eval(wlstr);
-        color_renglon(wlTR);
+        color_renglon(wlTR,idmenu);
         ContextMenu.display(popupoptions)		
         var siTD = objtr.getElementsByTagName('TD');
 	return false;
@@ -1149,8 +1149,8 @@ window.pone_unchecked=function(wlrenglon)
 // 20071113  se agrego los eventos antes que hay que ejecutar antes de insertar, select,update o delete en el cliente
 // 20071113 function muestra_cambio(theFormName,r,ct,wlllave,menu,wleventoantes,wleventodespues,movto) {
 window.muestra_cambio = function(theFormName,r,ct,wlllave,menu,wleventoantes,wleventodespues,wleventoantescl,wleventodespuescl,movto,noconfirmamovtos) {	
-  // pone el dato de img listo para efectuar el cambio
 
+try {
   if (movto=='B')  //Opcion de busqueda para que funcione esto debe estar definido una campo llave
 	{
            var docx=window.parent.document;
@@ -1223,8 +1223,9 @@ window.muestra_cambio = function(theFormName,r,ct,wlllave,menu,wleventoantes,wle
     pone_focus_forma(forma);
 
 	wlTR=document.getElementById('tr'+r+'_'+menu);    
-	color_renglon(wlTR);
-	muevea1renglon(r,menu);   //20070808  checar porque parece que esta chafeando esta rutina
+	color_renglon(wlTR,menu);
+	muevea1renglon(r,menu);  
+   } catch (err) { alert('error muestra_cambio '+err.description); }
 }
 /*  funcion que mueve el renglon seleccionado a el renglon 1 
      recib el numero de renglon*/
@@ -2077,7 +2078,7 @@ window.altatabla = function(wlrenglon,idmenu)
 					//  sirve para save si el campo tiene un id si es asi incrementa p que el numero de columna						
 					if (str.substring(str.indexOf("<td")).indexOf("id=r")!=-1)
 					{
-						wlele.id='r'+wlrenglon+'c'+p;
+						wlele.id='r'+wlrenglon+'c'+p+'_'+idmenu;
 						p=p+1;
 					}    	 				
 			}
@@ -2094,11 +2095,11 @@ window.altatabla = function(wlrenglon,idmenu)
 			{   
 				var pas=tr[0].substring(tr[0].indexOf("oncontextmenu")+15);
 				var pas=pas.substring(0,pas.indexOf("'"));
-				b.oncontextmenu= function() { contextForTR(this); return false; } ;
+				b.oncontextmenu= function() { contextForTR(this,idmenu); return false; } ;
 			}
 						
-		b.id='tr'+wlrenglon;		
-		color_renglon(b);
+		b.id='tr'+wlrenglon+'_'+idmenu;		
+		color_renglon(b,idmenu);
             }
 	} catch(err) { alert('error altatabla '+err.message) }	
 	

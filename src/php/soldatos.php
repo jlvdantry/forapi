@@ -434,7 +434,7 @@ class soldatos
      if ($this->accion!="")
      { echo "  <form method=POST name='formpr' id='formpr_".$this->idmenu."' action=".$this->accion." target='".$this->destino."' >\n"; }
      else
-     { echo "  <form method=POST name='formpr' id='formpr_".$this->idmenu."'  action='".$_SERVER['PHP_SELF']."' >\n"; }     //20070306     
+     { echo "  <form method=POST name='formpr' id='formpr_".$this->idmenu."'  action='' >\n"; }     //20070306     
   }
 
   /**
@@ -839,11 +839,11 @@ class soldatos
      $tt .= "<tr>";
      if (strpos($md->camposm["movtos"],"d")!==false) 
      {
-             $tt .= "<th id='baja' name=noimprime >Baja</th>\n";             
+             $tt .= "<th id='baja_$this->idmenu' name=noimprime >Baja</th>\n";             
      }
      if (strpos($md->camposm["movtos"],"cc")!==false) 
      {
-             $tt .= "<th id='copia' name=noimprime >Copia</th>\n";             
+             $tt .= "<th id='copia_$this->idmenu' name=noimprime >Copia</th>\n";             
      }
 
 //20070611   lo modifique para que cuando sea solo select "s" se pudiese tambien seleccionar el registro
@@ -851,7 +851,7 @@ class soldatos
 //20070611     if (strpos($md->camposm["movtos"],"u")!==false) 
      if (strpos($md->camposm["movtos"],"u")!==false || strpos($md->camposm["movtos"],"s")!==false || strpos($md->camposm["movtos"],"B")!==false)      
      {
-             $tt .= "<th id='cambiotxt' name=noimprime >Sel</th>\n";                          
+             $tt .= "<th id='cambiotxt_$this->idmenu' name=noimprime >Sel</th>\n";                          
      }     
 
 	$tt .= $this->titulos_subvistas($md->camposmsv,0);
@@ -1287,7 +1287,7 @@ class soldatos
         		|| strpos($this->movto_mantto,"B")!==false        		        		
            )     	  
         {
-     	echo "<td class='botones'> <input type=button class='btn-02' id='iBusca' src='img/action_search_20.gif' title='Buscat'  name=busca value=Buscar ".
+     	echo "<td class='botones'> <input type=button class='btn-02' id='iBusca_$this->idmenu' src='img/action_search_20.gif' title='Buscat'  name=busca value=Buscar ".
         	"onclick='mantto_tabla(\"".$this->idmenu.
         	                          "\",\"".
         	                          (strpos($this->movto_mantto,"s")!==false ? "s" : "")
@@ -1322,18 +1322,18 @@ class soldatos
 		
         if (strpos($this->movto_mantto,"p")!==false)     	  
         {
-			echo "<TD id='imprime' class=botones > <input onclick='imprime(\"\");return false' id='iimprime'  value=Imprime type=button class='btn-02' ></input> </TD>";
+			echo "<TD id='imprime' class=botones > <input onclick='imprime(\"\");return false' id='iimprime_$this->idmenu'  value=Imprime type=button class='btn-02' ></input> </TD>";
         }
         		
         if (strpos($this->movto_mantto,"l")!==false)     	  
         {
-     	    echo "<td id='Limpiar' class='botones' > <input type=button class='btn-02' id='iLimpiar' title='Limpia datos de la pantalla'  ".
+     	    echo "<td id='Limpiar' class='botones' > <input type=button class='btn-02' id='iLimpiar_$this->idmenu' title='Limpia datos de la pantalla'  ".
         	 "  onclick='pone_focus_formaID(\"".$this->idmenu."\");formResetID(\"".$this->idmenu."\",\"t\")' value='Limpiar' ></input></td>\n";	        
         }
 
         if (strpos($this->movto_mantto,"f")!==false)     	  
         {
-     	    echo "<td id='Archvio' class='botones' > <input type=button class='btn-02' id='iArchvio' title='Genera archvio en txt'  ".
+     	    echo "<td id='Archvio' class='botones' > <input type=button class='btn-02' id='iArchvio_$this->idmenu' title='Genera archvio en txt'  ".
         	"onclick='mantto_tabla(\"".$this->idmenu.
         	                          "\",\"f\",\"\",\"\",\"".
         	                          // evento antes 
@@ -1354,7 +1354,7 @@ class soldatos
 
         if (strpos($this->movto_mantto,"ex")!==false)
         {
-            echo "<td id=Excel class='botones' > <input type=button class='btn-02' id='iExcel' title='Genera archvio en Excel'  ".
+            echo "<td id=Excel class='botones' > <input type=button class='btn-02' id='iExcel_$this->idmenu' title='Genera archvio en Excel'  ".
                 "onclick='mantto_tabla(\"".$this->idmenu.
                                           "\",\"ex\",\"\",\"\",\"".
                                           // evento antes
@@ -1375,7 +1375,7 @@ class soldatos
 
         if (strpos($this->movto_mantto,"ea")!==false)
         {
-            echo "<td id=ExcelA class='botones' > <input type=button class='btn-02' id='iExcelA' title='Genera archivo en Excel con documentos escaneados'  ".
+            echo "<td id=ExcelA class='botones' > <input type=button class='btn-02' id='iExcelA_$this->idmenu' title='Genera archivo en Excel con documentos escaneados'  ".
                 "onclick='mantto_tabla(\"".$this->idmenu.
                                           "\",\"ea\",\"\",\"\",\"".
                                           // evento antes
@@ -1398,7 +1398,7 @@ class soldatos
 
         if ($meda->camposm["esadmon"]!="0" && $meda->camposm["esadmon"]!="")
         	{
-				echo "<td id='Autodiseno' class=botones ><input type=button class='btn-02' id='iAutoDiseno' title='Entra al diseno de la forma' ".
+				echo "<td id='Autodiseno' class=botones ><input type=button class='btn-02' id='iAutoDiseno_$this->idmenu' title='Entra al diseno de la forma' ".
 									  " onclick='abre_subvista(\"src/php/man_menus.php\",\"idmenu=".$this->menu["idmenu"].
 						              " &filtro=idmenu=".$this->menu["idmenu"].
 						              "\",\"\",\"\",".MENU.",800,600,\"Diseno de form\"".	//20070526
@@ -1410,7 +1410,7 @@ class soldatos
         if (strpos($meda->camposm['movtos'],"n")!==false) 
         	{
 	     	echo "<td id='navegacionar' class='botones' > ".
-	     	($this->menum['n']['idmovto']=='n' && $this->menum['n']["descripcion"]!="" ? "<input type=button id='iinicio' value='".$this->menum['n']["descripcion"]."' title='Registro Inicial'  " : "<button type=image id='iCambio' src='img/quitato2s.gif' title='RegistroInicial' value='RegistroInicial' ").
+	     	($this->menum['n']['idmovto']=='n' && $this->menum['n']["descripcion"]!="" ? "<input type=button id='iinicio' value='".$this->menum['n']["descripcion"]."' title='Registro Inicial'  " : "<button type=image id='iCambio_$this->idmenu' src='img/quitato2s.gif' title='RegistroInicial' value='RegistroInicial' ").
         	  "onclick='registroinicial();return false'></button>  </td>\n";
 	     	echo "<td id='navegacionar' class='botones' > ".
 	     	($this->menum['n']['idmovto']=='n' && $this->menum['n']["descripcion"]!="" ? "<input type=button id='iAnterior' value='".$this->menum['n']["descripcion"]."' title='Siguiente Registro'  " : "<input type=image id='AnteriorRegistro' src='img/quita1.gif' title='AnteriorRegistro' value='AnteriorRegistro' ").
@@ -1971,12 +1971,10 @@ class soldatos
          || strpos($this->movto_mantto,"B")!==false                      
          )          
          {
-            if ($num>0) {
      		echo $this->inicio_tab($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);	  	  
      		echo $this->filas_ing($sql_result, $num, $this->metada);     		//20070623   
      		echo "</table>";  		
      		echo "</div>";  		
-            }
  	 }
   } 
 
