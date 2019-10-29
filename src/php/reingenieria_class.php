@@ -70,11 +70,11 @@ class reingenieria extends xmlhttp_class
                   ",'".$this->tabla."'".                  
                   ",'".$row["nspname"]."'".                  
                   ",'".$row["atttypmod"]."'".                  
-                  ",".(($row["attname"]=='fecha_alta' || $row["attname"]=='usuario_alta' || $row["attname"]=='fecha_modifico' || $row["attname"]=='usuario_modifico' ) ? 'true' : 'false' ).
+                  ",".(($row["attname"]=='fecha_alta' || $row["attname"]=='usuario_alta' || $row["attname"]=='fecha_modifico' || $row["attname"]=='usuario_modifico' || ($row["indice"]==true && strpos($row["valor_default"],"nextval")!==false)) ? 'true' : 'false' ).
                   ");\n";
       		$sql_resulti = pg_exec($this->connection,$sql)
-            		        //or die("No se pudo ejecutar el sql4 en menus");
             		        or die("No se pudo ejecutar el sql4 en menus: ".$sql." ".pg_last_error($this->connection));
+                //error_log(parent::dame_tiempo()." src/php/reingenieria_class.php ".print_r($row,true)."\n",3,"/var/tmp/errores.log");
 	  }	
 	  $sql="insert into forapi.menus_pg_group(idmenu ,groname) select ".$wlidmenu.",groname from pg_group where groname='admon'";
       $sql_resulti = pg_exec($this->connection,$sql)

@@ -1191,8 +1191,8 @@ class soldatos
                                        $nombre=pg_fieldname($sql_result, $j);
                                        $busqueda=$this->menuc[$nomcampo]["busqueda"];
                                        $wlbusqueda=($busqueda=='t' ? " <input type=hidden id='bu_".$nombre."' name=bu_".$nombre." value=1></input>\n" : "") ;
-                                       $wleshiden=($this->menuc[$nomcampo]["eshidden"]!='t' ? "" : " class='hidden' ");
-			               $wllinea=$wllinea."<td><label class='form-label-custom' ".$wleshiden.">".$wltdd."</label>".
+                                       $wleshiden=($this->menuc[$nomcampo]["eshidden"]!='t' ? "" : " d-none ");
+			               $wllinea=$wllinea."<td class='$wleshiden' ><label class='form-label-custom ' >".$wltdd."</label>".
 			          			 " <br><input  ".$wleshiden.
             		  	                (($this->menuc[$nomcampo]["size"]!="" && $this->menuc[$nomcampo]["size"]!="0") ? " size="
                                                              .$this->menuc[$nomcampo]["size"] : "" ).
