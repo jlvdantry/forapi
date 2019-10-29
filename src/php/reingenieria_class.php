@@ -54,8 +54,8 @@ class reingenieria extends xmlhttp_class
       $men = new class_men();
 	  $this->tabla=$this->argumentos['wl_relname'];      
 	  $this->nspname=$this->argumentos['wl_nspname'];      	  
-      $sql=" insert into forapi.menus(descripcion,tabla,reltype,php,nspname,table_height,table_width,table_align) ".
-		   " select relname,relname,reltype,'man_menus.php',nspname,0,80,'center'".
+      $sql=" insert into forapi.menus(descripcion,tabla,reltype,php,nspname,table_height,table_width,table_align,columnas) ".
+		   " select relname,relname,reltype,'man_menus.php',nspname,0,80,'center',1".
            " from forapi.tablas ".
            " where relname = '".$this->tabla."' ".
            " and nspname = '".$this->nspname."'";
@@ -80,7 +80,7 @@ class reingenieria extends xmlhttp_class
 			$row=pg_fetch_array($sql_result, $z);      
 			$sql="insert into forapi.menus_campos(idmenu ,descripcion,attnum,orden,obligatorio,readonly,esindex,tipayuda,size,tabla,nspname,male,eshidden) values (\n".
                   $wlidmenu.
-                  ",'".$row["attname"]."'".
+                  ",'".($row["descripcion"]!="" ? $row["descripcion"] : $row["attname"])."'".
                   ",'".$row["attnum"]."'".                  
                   ",'".($row["attnum"]*10)."'".                                    
                   ",".($row["attnotnull"]=='t' ? 'true' : 'false').
@@ -101,6 +101,13 @@ class reingenieria extends xmlhttp_class
       $sql_resulti = pg_exec($this->connection,$sql)
       				//or die("No se pudo ejecutar el sql5 en menus");
                                 or die("No se pudo ejecutar el sql5 en menus: ".$sql." ".pg_last_error($this->connection));
+
+      $sql=" update forapi.menus set columnas=2 ".
+           " where tabla = '".$this->tabla."' ".
+           " and nspname = '".$this->nspname."'";
+      $sql_result = pg_exec($this->connection,$sql)
+                    or die("No se pudo ejecutar el sql1 en menus");
+
        		        
       echo "<error>Inserto en la base la tabla ".$this->tabla."</error>";	  
    }
