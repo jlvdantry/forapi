@@ -20,29 +20,50 @@ class reingenieria extends xmlhttp_class
        $sql=" select forapi.copiamenu(".$this->argumentos["wl_idmenu"].");";
 
        $sql_result = pg_exec($this->connection,$sql);
-       if (strlen(pg_last_error($this->connection))>0) { echo "<error>Error al ejecutar qry ".$sql." ".pg_last_error($this->connection)."</error>"; }
+       if (strlen(pg_last_error($this->connection))>0) { echo "<error>Error al ejecutar ".pg_last_error($this->connection)."</error>"; }
                     //or die("No se pudo ejecutar el sql de insertar en menus".$sql);               	
      	echo "<error>Se copio todo el menu ".$wlidmenu."</error>";                                
        	    	
    }   
+/* ejecuta un script desde forappi */
+   function ejecuta()
+   {
+        if ($this->argumentos["wl_idscript"]=="")
+        {
+          echo "<error>No esta definido el id del script</error>";
+          return;
+        }
+        if ($this->argumentos["wl_sql"]=="")
+        {
+          echo "<error>No esta definido el sql del script</error>";
+          return;
+        }
+        $sql=$this->argumentos["wl_sql"];
+        $sql_result = @pg_exec($this->connection,$sql);
+       if (strlen(pg_last_error($this->connection))>0) { 
+             echo "<error>hubo error al ejecutar el script</error>"; 
+             error_log(parent::dame_tiempo()." src/php/reingenieria_class.php error al ejecutar el script \n".pg_last_error($this->connection)."\n",3,"/var/tmp/errores.log");
+             return;
+       }
+        echo "<error>Se ejecuto el script </error>";
+   }
+
    function crea_menusbase()
    {
 
       $men = new class_men();
 	  $this->tabla=$this->argumentos['wl_relname'];      
 	  $this->nspname=$this->argumentos['wl_nspname'];      	  
-      $sql=" insert into forapi.menus(descripcion,tabla,reltype,php,nspname,table_height) ".
-		   " select relname,relname,reltype,'man_menus.php',nspname,0".
+      $sql=" insert into forapi.menus(descripcion,tabla,reltype,php,nspname,table_height,table_width,table_align) ".
+		   " select relname,relname,reltype,'man_menus.php',nspname,0,80,'center'".
            " from forapi.tablas ".
            " where relname = '".$this->tabla."' ".
            " and nspname = '".$this->nspname."'";
       $sql_result = pg_exec($this->connection,$sql)
                     or die("No se pudo ejecutar el sql1 en menus");
-                    //or die("No se pudo ejecutar el sql1 en menus: ".$sql." ".pg_last_error($this->connection));
       $sql=" select currval('forapi.menus_idmenu_seq');";
       $sql_result = pg_exec($this->connection,$sql)
                     or die("No se pudo ejecutar el sql2 en menus");
-                    //or die("No se pudo ejecutar el sql2 en menus: ".$sql." ".pg_last_error($this->connection));
 	  $row=pg_fetch_array($sql_result, 0);                    
       $wlidmenu=$row["currval"];
       $sql= "select * ".

@@ -21,7 +21,7 @@ SET default_with_oids = false;
 drop TABLE menus_scripts ;
 CREATE TABLE menus_scripts (
     idscript integer NOT NULL,
-    descripcion varchar(100) default '',
+    descripcion varchar(100) ,
     sql text,
     fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
     usuario_alta character varying(20) DEFAULT getpgusername(),

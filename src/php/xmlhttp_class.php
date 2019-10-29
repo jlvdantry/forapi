@@ -311,19 +311,25 @@ class xmlhttp_class
      **/
    function muestra_vista()
    {
-      error_log($this->dame_tiempo()." src/php/xmlhttp_class.php muestra_vista".$parametro1." ".print_r($this->argumentos,true)."\n",3,"/var/tmp/errores.log");
+      error_log($this->dame_tiempo()." src/php/xmlhttp_class.php muestra_vista".$parametro1."\n",3,"/var/tmp/errores.log");
       $soldatos = new soldatos();
       $soldatos->idmenu=$this->argumentos['idmenu'];
       if ($this->argumentos['filtro']!="") {
          $soldatos->filtro=$this->argumentos['filtro'];
       }
+      error_log($this->dame_tiempo()." src/php/xmlhttp_class.php despues de new soldatos".$parametro1."\n",3,"/var/tmp/errores.log");
       $soldatos->connection=$this->connection;
       $soldatos->datos=array('MTA');
       ob_start();
+      error_log($this->dame_tiempo()." src/php/xmlhttp_class.php antes de despledatos".$parametro1."\n",3,"/var/tmp/errores.log");
       $soldatos->despledatos();
+      error_log($this->dame_tiempo()." src/php/xmlhttp_class.php despues de new despledatos".$parametro1."\n",3,"/var/tmp/errores.log");
       $wlrenglones=ob_get_contents();
       ob_end_clean();
+      error_log($this->dame_tiempo()." src/php/xmlhttp_class.php despues de ob_end_clear".$parametro1."\n",3,"/var/tmp/errores.log");
       echo '<muestra_vista>'.htmlspecialchars($wlrenglones,ENT_IGNORE,'UTF-8').'</muestra_vista>';
+      //echo '<muestra_vista>'.htmlspecialchars($wlrenglones).'</muestra_vista>';
+      //echo '<muestra_vista>paso</muestra_vista>';
       if (array_key_exists('donde',$this->argumentos)) {
       error_log($this->dame_tiempo()." se encontro el parametro donde \n",3,"/var/tmp/errores.log");
       echo '<donde>'.$this->argumentos['donde'].'</donde>';
@@ -382,7 +388,7 @@ class xmlhttp_class
                                                 {   } else { echo '<noconfirma>true</noconfirma>'; }
 						echo '<iden>'.$Reg.'</iden>';  // en caso de una secuencia esta es el no de registro de identificacion
 						$wlrenglones=$soldatos->inicio_tab($me->table_width,$me->table_height, $me->table_align).$soldatos->filas_ing($sql_result,$Row,$me)."</table>";
-						echo '<renglones>'.htmlspecialchars($wlrenglones,ENT_IGNORE,UTF-8).'</renglones>';
+						echo '<renglones>'.htmlspecialchars($wlrenglones,ENT_IGNORE,'UTF-8').'</renglones>';
 						echo '<wleventodespues>'.$this->argumentos['wleventodespues'].'</wleventodespues>';
 						echo '<idmenu>'.$this->argumentos['idmenu'].'</idmenu>';
 					}
@@ -464,8 +470,6 @@ class xmlhttp_class
 		   {
 			    if ($me->camposm["tiene_pk_serial"]!="")  // si la tabla tiene una pk y es serial investiga que secuencia le asigno
 			    {
-//20080114    Se modifico para manejar esquemas				    
-//20080114	    	$sql = "insert into ".$me->camposm['tabla']."(".$this->array_to_stringk($this->argumentos,$me->camposmc).
 			    	$sql = "insert into ".($me->camposm["nspname"]!="" ? $me->camposm["nspname"]."." : "").  //20080114
 			    			$me->camposm['tabla']."(".$this->array_to_stringk($this->argumentos,$me->camposmc).  //20080114	    	
 			        	   ") values (".
@@ -644,15 +648,13 @@ class xmlhttp_class
         		$wlmensaje=$mensaje." ".$error."\nArgumentos:".print_r($this->argumentos)."\n".
         		           "sql=".$sql.
         		           "usuario=".$_SESSION['parametro1'];
-        		error_log($wlmensaje,1,"jlvdantry@hotmail.com","Subject: Error forapi\nFrom: jlvdantry@hotnail.com\n");
-				$t=getdate();
-			    $today=date('Y-m-d h:i:s',$t[0]);
         		error_log($today." ".$parametro1." ".$wlmensaje."\n",3,"/var/tmp/errores.log");
+                        error_log($this->dame_tiempo()." src/php/xmlhttp_class.php ".$wlmensaje."\n",3,"/var/tmp/errores.log");
                         if (strpos($error,'permission')===true || strpos($error,'violates')===true)
                         {
                            $this->Enviaemail($wlmensaje);
                         }
-        		return;
+        		die();
         	}		
 	}   
 

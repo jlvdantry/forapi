@@ -434,7 +434,7 @@ class soldatos
      if ($this->accion!="")
      { echo "  <form method=POST name='formpr' id='formpr_".$this->idmenu."' action=".$this->accion." target='".$this->destino."' >\n"; }
      else
-     { echo "  <form method=POST name='formpr' id='formpr_".$this->idmenu."'  action=".$_SERVER['PHP_SELF']." >\n"; }     //20070306     
+     { echo "  <form method=POST name='formpr' id='formpr_".$this->idmenu."'  action='".$_SERVER['PHP_SELF']."' >\n"; }     //20070306     
   }
 
   /**
@@ -1926,7 +1926,9 @@ class soldatos
      $sql_result = @pg_exec($this->connection,$sql);
      if (pg_last_error($this->connection)!="")
      {
+          error_log($this->dame_tiempo()." src/php/soldatos.php error al leer la fuente\r".pg_last_error($this->connection),3,"/var/tmp/errores.log");
           $this->Enviaemail("Opcion: ".$this->titulos."<br>Error: ".pg_last_error($this->connection)."<br>Query: ".$sql."<br>"."Usuario=".$_SESSION["parametro1"]);
+                   echo "Error al leer la base de datos reportar a sistemas";
                    die("Error al leer la base de datos reportar a sistemas");
      }
      $num = pg_numrows($sql_result);
@@ -2015,20 +2017,16 @@ class soldatos
     function Enviaemail($error)
     {
    $wlemail='jlvdantry@hotmail.com';
-   $wlemailk='kevin.solis@outlook.com';
-   $wlemaila='alfredoguerrero@hotmail.com';
    $mail = new PHPMailer;
-   ##echo "paso new";
    $mail->IsSMTP();                                      // Set mailer to use SMTP
    $mail->Host = 'smtp.live.com';  // Specify main and backup server
-   ##$mail->Host = 'smtp.mail.yahoo.com';  // Specify main and backup server
    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-   ##$mail->SMTPDebug = true;
    $mail->Username = 'jlvdantry@hotmail.com';                            // SMTP username
    $mail->Password = '888aDantryR';                           // SMTP password
    $mail->Port = '25';                           // SMTP password
    $mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
    $mail->From = $wlemail;
+  // $mail->SMTPDebug  = 1;
    $mail->FromName = 'Jose Luis Vasquez Barbosa';
    $mail->AddAddress($wlemail);               // Name is optional
    $mail->AddAddress($wlemailk);               // Name is optional
@@ -2042,6 +2040,12 @@ class soldatos
       exit;
                       }
     }
+   function dame_tiempo()
+   {
+                            $t=getdate();
+                            return date('Y-m-d h:i:s',$t[0]);
+   }
+
 
 }
 
