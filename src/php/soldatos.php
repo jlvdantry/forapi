@@ -341,6 +341,14 @@ class soldatos
     }
 	echo "</tr>	";
   }
+  function inicio_card($ini)
+  { 
+        echo    "<card data-$ini>";
+  }
+  function fin_card()
+  { 
+        echo    "</card>";
+  }
   /**
      *  funcion que arma el inicio de la tabla de captura
      */
@@ -363,20 +371,16 @@ class soldatos
 		"			<button class='btn-mostrar' type=button  tabindex='-1' id='imostrar' onclick=\"return toggleDiv('".$this->titulos."',this);\" /></input>".
 		"		</td>"
         :	"" ).
-			"	</div>".
-			"</tr>".
-			"</table>".
-        	"<div id='".$this->titulos."'>".
+		"	</div>".
+		"</tr>".
+		"</table>".
+        	"<quepasa id='".$this->titulos."'>".
         	"	<table ".(strlen($table_align)>0 ? " align=".$table_align : "" ).
         			" style=\" ".
                 		   ((strlen($table_width)>0 && $table_width>0) ? " width:".$table_width : "  width:100" )."%;".
                 		   ((strlen($table_height)>0 && $table_height>0) ? " height:".$table_height : " heigth:100" )."%;".
 				"\" id='tabcaptura' oncontextmenu='contextForTABLE(this);return false;'".
-            	($this->menu["imprime"]=="2" ? " name=noimprime " : "").">\n".
-            "</div>";
-/**
-* fin ajuste 20130118.grecar
-*/
+            	                ($this->menu["imprime"]=="2" ? " name=noimprime " : "").">\n";
   }
   function inicio_tabcaptura_t($table_width,$table_height,$table_align)
   {
@@ -479,10 +483,9 @@ class soldatos
   /**
     *  arma fin de la tabla
     */
-  function fin_tab()
+  function fin_tabcaptura()
   {
     echo "</table>";
-    echo "</div>";
   }
 
   /**
@@ -1119,41 +1122,32 @@ class soldatos
 	        $z=0;
 	        $wltdf=$this->menuc[pg_fieldname($sql_result, $j)]["formato_td"];
 	        $wltdd=$this->menuc[pg_fieldname($sql_result, $j)]["descripcion"];
-
         	  $nomcampo=pg_fieldname($sql_result, $j);		
         	  if ($j==0) {
                       $htmltableanterior=$this->menuc[$nomcampo]["htmltable"];
                       $filaanterior=$this->menuc[$nomcampo]["fila"];
+	              $this->inicio_card($htmltableanterior);	  	     
                   }
-                                if ($this->menuc[$nomcampo]["fila"]!=$filaanterior)
-                                {
-                                   $wllinea="<tr id=".$filaanterior." class='d-flex justify-content-between flex-wrap'>".$wllinea."</tr>";//20070628
-                                   echo $wllinea;//20070628
-                                   $filaanterior=$this->menuc[$nomcampo]["fila"];
-                                   $wllinea="";
-                                }
+                  if ($this->menuc[$nomcampo]["fila"]!=$filaanterior) {
+                      $wllinea="<tr id=".$filaanterior." class='d-flex justify-content-between flex-wrap'>".$wllinea."</tr>";
+                      echo $wllinea;
+                      $filaanterior=$this->menuc[$nomcampo]["fila"];
+                      $wllinea="";
+                  }
 
-/*
-		  if ($this->menuc[$nomcampo]["htmltable"]!=$htmltableanterior)
-		  {        	  
-			  $j--;
-			  break;
-		  }   
-*/
-        	  
 	      	  $esFiltroDe=$md->dame_ultimo($this->menuc[$nomcampo]["esFiltroDe"]);
 	          if (strpos($this->movto_mantto,"i")!==false 
-	           	|| strpos($this->movto_mantto,"s")!==false
-			       || strpos($this->movto_mantto,"u")!==false
-			       || strpos($this->movto_mantto,"e")!==false
-			       || strpos($this->movto_mantto,"I")!==false   // 20080115 altas automaticas de catalogo
-     			   || (strpos($this->movto_mantto,"S")!==false)  // 20070214			       
-     			   || (strpos($this->movto_mantto,"B")!==false)  
+	             || strpos($this->movto_mantto,"s")!==false
+		     || strpos($this->movto_mantto,"u")!==false
+		   || strpos($this->movto_mantto,"e")!==false
+		   || strpos($this->movto_mantto,"I")!==false   // 20080115 altas automaticas de catalogo
+     		   || (strpos($this->movto_mantto,"S")!==false)  // 20070214			       
+     		   || (strpos($this->movto_mantto,"B")!==false)  
 			     )  
     		  {	  	
 	          		if ($this->menuc[$nomcampo]["fuente"]!="") // si no es espacio es un campos select
 	          		{   
-			          		$wllinea=$wllinea.     // 20070214
+			         	$wllinea=$wllinea.     // 20070214
 		          		           $this->arma_selectn(
 		          		           						$this->dame_sql_sel($nomcampo,1)
 		          		                               ,$nomcampo
@@ -1227,37 +1221,35 @@ class soldatos
 
 			
 
-				if ($this->menuc[$nomcampo]["htmltable"]!=$htmltableanterior)
+				if ($this->menuc[$nomcampo]["htmltable"]!==$htmltableanterior)
 				{
-	    			        $this->fin_tab();	  	    				
-					if ($htmltableanterior!="0") { echo "</div $htmltableanterior>"; }			    			
-                                        echo "<div>";
-	    		                $this->inicio_tabcaptura_t($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);	
+                                        error_log($this->dame_tiempo()." src/php/soldatos.php detecto cambio htmltable=".$htmltableanterior." de campos=".$this->menuc[$nomcampo]["htmltable"]." j=".$j."\n",3,"/var/tmp/errores.log");
+	    			        $this->fin_card();	  	    				
+	    		                $this->inicio_card($this->menuc[$nomcampo]["htmltable"]);	
+/*
                                         echo "<tr><h1 class=htmltable id='_t_".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."'colspan=".($this->menu["columnas"]*2).">";
                                         echo "<button class='btn-mostrar'  tabindex='-1' align='left' type=button id='imostrar' ".
                                              "onclick=\"return toggleDiv('".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."',this);\"></button>";
-                                        echo "<label>".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."</label></h1></tr></table></div>";
-					echo "<div id='".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."'>";
-	    		                $this->inicio_tabcaptura_t($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);	
+                                        echo "<label>".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."</label></h1></tr>";
+					echo "<div id='".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."'></div>";
+*/
 	    			        $htmltableanterior=$this->menuc[$nomcampo]["htmltable"];
-				}
+				} else {
+                                        error_log($this->dame_tiempo()." src/php/soldatos.php no detecto cambio j=".$j."\n",3,"/var/tmp/errores.log");
+                                }
         };
-                                if ($wllinea!="") {
+            if ($wllinea!="") {
                                    $wllinea="<tr id=".$filaanterior." class='d-flex justify-content-between flex-wrap'>".$wllinea."</tr>";
                                    echo $wllinea;
-                                }
-	    $this->fin_tab();	  	    
-	    echo "<div>";      	
+            }
+	    $this->fin_card();	  	    
+	    $this->fin_tabcaptura();	  	    
+	    echo "</quepasa>";      	
 	    $this->inicio_tab_botones($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);
      	echo "<tr class='d-flex justify-content-between flex-wrap' >";	    
-##     	echo "<td width=1% ><input width=1% type=image onclick='return false;'></input></td>";
-        if (
-        strpos($this->movto_mantto,"i")!==false
-        ||         strpos($this->movto_mantto,"I")!==false   // 20080115 altas automaticas de catalogo
+        if ( strpos($this->movto_mantto,"i")!==false ||  strpos($this->movto_mantto,"I")!==false  
         ) 
         {
-//    20070920  se modifico para que en las alta se pueda poner la descripcion de una opcion	        
-//20070920     		echo "<td  class='botones' > <input type=image id='iAlta' src='img/add.gif' title='alta' value='Alta' name=matriz ".
      		echo "<td  class='botones' > ".  //20070920
             ($this->menum['i']['idmovto']=='i' && $this->menum['i']["descripcion"]!="" ? "<input type=button class='btn-02' id='iAlta' value='".$this->menum['i']["descripcion"]."' title='Alta'  " : "<input type=button class='btn-02' id='iAlta' src='img/add.gif' title='Alta' value='Alta' name=matriz ").  //20070920
         	"onclick='mantto_tabla(\"".$this->idmenu.
@@ -1423,7 +1415,7 @@ class soldatos
         	  "onclick='registrofinal();return false'></input>  </td>\n";	                	  	        		        	        	  
         	}        	            	    	  
      	echo "</tr>";
-	    $this->fin_tab();     	
+	    $this->fin_tabcaptura();     	
   }
 
   /**
