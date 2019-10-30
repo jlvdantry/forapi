@@ -343,18 +343,14 @@ class soldatos
   }
   function inicio_card($ini)
   { 
-        echo    "<card data-$ini>";
-  }
-  function fin_card()
-  { 
-        echo    "</card>";
+        echo    "<table data-tr-$ini>";
   }
   /**
      *  funcion que arma el inicio de la tabla de captura
      */
   function inicio_tabcaptura($table_width,$table_height,$table_align)
   { 
-        echo    " <table ".(strlen($table_align)>0 ? " align=".$table_align : "" ).
+        echo    " <div class='container' ".(strlen($table_align)>0 ? " align=".$table_align : "" ).
         		"	style=\" ".
                 		   ((strlen($table_width)>0 && $table_width>0) ? " width:".$table_width : "  width:100" )."%;".
                 		   ((strlen($table_height)>0 && $table_height>0) ? " height:".$table_height : " heigth:100" )."%;".
@@ -373,18 +369,18 @@ class soldatos
         :	"" ).
 		"	</div>".
 		"</tr>".
-		"</table>".
+		"</div>".
         	"<quepasa id='".$this->titulos."'>".
-        	"	<table ".(strlen($table_align)>0 ? " align=".$table_align : "" ).
+        	"	<div class='container' ".(strlen($table_align)>0 ? " align=".$table_align : "" ).
         			" style=\" ".
                 		   ((strlen($table_width)>0 && $table_width>0) ? " width:".$table_width : "  width:100" )."%;".
                 		   ((strlen($table_height)>0 && $table_height>0) ? " height:".$table_height : " heigth:100" )."%;".
 				"\" id='tabcaptura' oncontextmenu='contextForTABLE(this);return false;'".
             	                ($this->menu["imprime"]=="2" ? " name=noimprime " : "").">\n";
   }
-  function inicio_tabcaptura_t($table_width,$table_height,$table_align)
+  function inicio_tabcaptura_t($table_width,$table_height,$table_align,$id)
   {
-        echo    "       <table align=\"".(($table_align!='') ? $table_align : "center")."\" style=\" width:".(($table_width>0) ? $table_width : "100" )."% height:".(($table_height!="") ? $table_height : "100" )."%;\" id='tabcaptura'  oncontextmenu='contextForTABLE(this);return false;'".
+        echo    "       <div id='".$id."' class='container' align=\"".(($table_align!='') ? $table_align : "center")."\" style=\" width:".(($table_width>0) ? $table_width : "100" )."% height:".(($table_height!="") ? $table_height : "100" )."%;\" oncontextmenu='contextForTABLE(this);return false;'".
         ">\n";
   }
   
@@ -394,7 +390,7 @@ class soldatos
     */
   function inicio_tab_botones($table_width,$table_height,$table_align)
   {
-        echo "<table align=\"".$table_align."\" style=\" width:".(($table_width>0) ? $table_width : "100" )."%; height:".(($table_height!="") ? $table_height : "100" )."%\" id='tabbotones' align=center name=tabbotones >\n";
+        echo "<div class='container' align=\"".$table_align."\" style=\" width:".(($table_width>0) ? $table_width : "100" )."%;\" id='tabbotones' align=center name=tabbotones >\n";
   }
 
   //grecar 20070831
@@ -485,7 +481,7 @@ class soldatos
     */
   function fin_tabcaptura()
   {
-    echo "</table>";
+    echo "</div>";
   }
 
   /**
@@ -735,12 +731,11 @@ class soldatos
                         $cambiarencambios_ = (($menuc["cambiarencambios"]=='f') ? "data-cambiarencambios=0" : "" );
                         $tipodato_=((substr($tipodedato,0,3)==='int' || $tipodedato=='numeric') ? "data-numerico=1" : "" );
                         $wlidcampo=$mecq["idcampo"];
-   		        $vas="<td class='".$menuc["clase"]."' ><label class='form-label-custom' "
+   		        $vas="<div class='".$menuc["clase"]."' ><label class='form-label-custom' "
                                 .$wleshiden."id='wlt_".$wlnombre."__".$this->idmenu."' name='wlt_".$wlnombre."__".$this->idmenu
                                 ."' abbr=\"".$descripcion."\" value=\"".$descripcion."\" "
    		 		.">".$descripcion.(($busqueda=='t') ? "* " : " ")
    		                ."</label>".$wlobligatorio; 
-	        //$vas=$vas.($wltdf=="1" || $wltdf=="2" || $wltdf=="3" ? "" : "<td".$wleshiden.">");
    			$vas=$vas."<select $wlobligatorio_ $wlbusqueda_ $tipodato_ $cambiarencambios_ class='form-control form-control-custom' "
                                     .$wleshiden."placeholder=\"prueba\" "
 	 		            .($menuc["autocomplete"]=='1' ? " ;restaura_autocomplete(this)" : "" )
@@ -811,7 +806,7 @@ class soldatos
             	  	  ",'".$menuc["fuente_busqueda_idmenu"]."'".       //20080117 numero de menu que va a abrir para consultar informacion
    	        		  				"); ". //20080117
                  	  "return false;\"></input>\n" : $vas ); 
-     		$vas=$vas."</td>  ";  //20070214   		     		
+     		$vas=$vas."</div>  ";  //20070214   		     		
 	 	$vas = ((substr($tipodedato,0,3)==='int' || $tipodedato=='numeric') ? $vas." <input type=hidden name=nu_".$wlnombre." value=1></input>\n" : $vas ); 
 	 	$vas = (($tipodedato=='date' || $tipodedato=='timestampz') ? $vas." <input type=hidden name=_da_".$wlnombre." value=1></input>\n" : $vas ); 	 
 	        ($val_particulares!='') ? $vas=$vas." <input type=hidden name=_vp_".$wlnombre." value='".$val_particulares."'></input>\n" : $wli=$wli ; 
@@ -997,7 +992,7 @@ class soldatos
     $wlbusqueda_=   (($busqueda=='t')    ? "data-busqueda=1" : "");
     $wlidcampo=$mecq["idcampo"];
     $wltipodedato=((substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? " type='tel' " : "");
-            $wli="<td class='".$mecq["clase"]."'><label class='form-label-custom $wleshiden'  id='wlt_".$nombre."__".$this->idmenu."' name=wlt_".$nombre."__".$this->idmenu." title=\"".$descripcion."\" abbr=\"".$descripcion."\""
+            $wli="<div class='".$mecq["clase"]."'><label class='form-label-custom $wleshiden'  id='wlt_".$nombre."__".$this->idmenu."' name=wlt_".$nombre."__".$this->idmenu." title=\"".$descripcion."\" abbr=\"".$descripcion."\""
 			.">".(($wltdf=="3") ? "" : $descripcion.(($busqueda=='t') ? "*" : ""))
 			."</label>".$wlobligatorio; 
 	    $wli=$wli.
@@ -1054,7 +1049,7 @@ class soldatos
                                                   $wli.=" <input class='img' type=image abbr='' id='upl_".$nombre."__".$this->idmenu."' name=upl_".$nombre."__".$this->idmenu." src='/dist/img/carpeta.svg' onclick='subearchivo(this);return false' title='Adjunta archivo de explorador' />"; 
                                                   $wli.=" <input class='img' type=hidden abbr='' id='uplh_".$nombre."__".$this->idmenu."' name=uplh_".$nombre."__".$this->idmenu."  />"; 
 						}
-	    	            $wli.="</td>\n";
+	    	            $wli.="</div>\n";
 //    	     }
 			(substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? $wli=$wli." <input type=hidden id='nu_".$nombre."' name=nu_".$nombre." value=1></input>\n" : $wli=$wli ; 
 	 		($tipodedato=='date' || $tipodedato=='timestampz') ? $wli=$wli." <input type=hidden id='_da_".$nombre."' name=_da_".$nombre." value=1></input>\n" : $wli=$wli ; 	      	
@@ -1126,10 +1121,10 @@ class soldatos
         	  if ($j==0) {
                       $htmltableanterior=$this->menuc[$nomcampo]["htmltable"];
                       $filaanterior=$this->menuc[$nomcampo]["fila"];
-	              $this->inicio_card($htmltableanterior);	  	     
+	              $this->inicio_tabcaptura_t($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"],$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]);	  	     
                   }
                   if ($this->menuc[$nomcampo]["fila"]!=$filaanterior) {
-                      $wllinea="<tr id=".$filaanterior." class='d-flex justify-content-between flex-wrap'>".$wllinea."</tr>";
+                      $wllinea="<div id=".$filaanterior." class='d-flex justify-content-between flex-wrap'>".$wllinea."</div>";
                       echo $wllinea;
                       $filaanterior=$this->menuc[$nomcampo]["fila"];
                       $wllinea="";
@@ -1186,13 +1181,13 @@ class soldatos
                                        $busqueda=$this->menuc[$nomcampo]["busqueda"];
                                        $wlbusqueda=($busqueda=='t' ? " <input type=hidden id='bu_".$nombre."' name=bu_".$nombre." value=1></input>\n" : "") ;
                                        $wleshiden=($this->menuc[$nomcampo]["eshidden"]!='t' ? "" : " d-none ");
-			               $wllinea=$wllinea."<td class='$wleshiden' ><label class='form-label-custom ' >".$wltdd."</label>".
+			               $wllinea=$wllinea."<div class='$wleshiden' ><label class='form-label-custom ' >".$wltdd."</label>".
 			          			 " <br><input  ".$wleshiden.
             		  	                (($this->menuc[$nomcampo]["size"]!="" && $this->menuc[$nomcampo]["size"]!="0") ? " size="
                                                              .$this->menuc[$nomcampo]["size"] : "" ).
             		  	       $this->armaid_cc($j)." type=text class='form-control form-control-custom' readonly=true name=wl_"
                                                   .pg_fieldname($sql_result, $j)."__".$this->idmenu." ".
-            		  	                   "\"></input>".$wlbusqueda."</td>\n";
+            		  	                   "\"></input>".$wlbusqueda."</div>\n";
             		  	    }
 		          	    else
 		          	    {
@@ -1224,25 +1219,21 @@ class soldatos
 				if ($this->menuc[$nomcampo]["htmltable"]!==$htmltableanterior)
 				{
                                         error_log($this->dame_tiempo()." src/php/soldatos.php detecto cambio htmltable=".$htmltableanterior." de campos=".$this->menuc[$nomcampo]["htmltable"]." j=".$j."\n",3,"/var/tmp/errores.log");
-	    			        $this->fin_card();	  	    				
-	    		                $this->inicio_card($this->menuc[$nomcampo]["htmltable"]);	
-/*
-                                        echo "<tr><h1 class=htmltable id='_t_".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."'colspan=".($this->menu["columnas"]*2).">";
-                                        echo "<button class='btn-mostrar'  tabindex='-1' align='left' type=button id='imostrar' ".
-                                             "onclick=\"return toggleDiv('".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."',this);\"></button>";
-                                        echo "<label>".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."</label></h1></tr>";
-					echo "<div id='".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."'></div>";
-*/
+	    			        $this->fin_tabcaptura();	  	    				
+                                    echo "<div class='btn-registro' ><tr><td><button class='btn-mostrar'  tabindex='-1' align='left' type=button id='imostrar' ".
+                                        "onclick=\"return toggleDiv('".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."',this);\"></button></td>";
+                                    echo "<td><label>".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."</label></td></tr></div>";
+	    		                $this->inicio_tabcaptura_t($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"],$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]);	
 	    			        $htmltableanterior=$this->menuc[$nomcampo]["htmltable"];
 				} else {
                                         error_log($this->dame_tiempo()." src/php/soldatos.php no detecto cambio j=".$j."\n",3,"/var/tmp/errores.log");
                                 }
         };
             if ($wllinea!="") {
-                                   $wllinea="<tr id=".$filaanterior." class='d-flex justify-content-between flex-wrap'>".$wllinea."</tr>";
+                                   $wllinea="<div id=".$filaanterior." class='d-flex justify-content-between flex-wrap'>".$wllinea."</div>";
                                    echo $wllinea;
             }
-	    $this->fin_card();	  	    
+	    $this->fin_tabcaptura();	  	    
 	    $this->fin_tabcaptura();	  	    
 	    echo "</quepasa>";      	
 	    $this->inicio_tab_botones($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);
