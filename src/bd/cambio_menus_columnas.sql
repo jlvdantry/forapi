@@ -1,20 +1,4 @@
---
--- PostgreSQL database dump
---
-
-SET statement_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SET check_function_bodies = false;
-SET client_min_messages = warning;
-
-SET search_path = forapi, pg_catalog;
-
---
--- Name: cambio_menus_columnas(); Type: FUNCTION; Schema: forapi; Owner: postgres
---
-
-CREATE or replace FUNCTION cambio_menus_columnas() RETURNS trigger
+CREATE or replace FUNCTION forapi.cambio_menus_columnas() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
     DECLARE
@@ -23,6 +7,8 @@ CREATE or replace FUNCTION cambio_menus_columnas() RETURNS trigger
       lleva    numeric;
       mireg record;
       wlclase   varchar(100);
+      registros numeric;
+      htmltableant numeric;
     BEGIN
      if old.columnas!=new.columnas then
         if new.columnas=1 then 
@@ -45,17 +31,27 @@ CREATE or replace FUNCTION cambio_menus_columnas() RETURNS trigger
         end if; 
         wlfila=20;
         lleva=0;
+        registros=0;
         for mireg in select * from forapi.menus_campos where idmenu=old.idmenu and eshidden=false
                    order by htmltable,orden
-                loop
-            update forapi.menus_campos set fila=wlfila,clase=wlclase where idcampo=mireg.idcampo;
-            lleva=lleva+1;
-            raise notice ' descripcion % , fila % lleva % ', mireg.descripcion, wlfila, lleva;
+          loop
+            if registros=0 then
+               htmltableant=mireg.htmltable;
+            end if;
+            if htmltableant<>mireg.htmltable then
+               lleva=0;
+               wlfila=wlfila+20;
+               htmltableant=mireg.htmltable;
+            end if;
             if lleva=new.columnas then
                lleva=0;
                wlfila=wlfila+20;
             end if;
-        end loop;
+            update forapi.menus_campos set fila=wlfila,clase=wlclase where idcampo=mireg.idcampo;
+            lleva=lleva+1;
+            registros=registros+1;
+            raise notice ' descripcion % , fila % lleva % ', mireg.descripcion, wlfila, lleva;
+          end loop;
      end if;
      return new;
     END;$$;

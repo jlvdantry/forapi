@@ -1123,6 +1123,24 @@ class soldatos
                       $filaanterior=$this->menuc[$nomcampo]["fila"];
 	              $this->inicio_tabcaptura_t($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"],$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]);	  	     
                   }
+				if ($this->menuc[$nomcampo]["htmltable"]!==$htmltableanterior)
+				{
+                                        error_log($this->dame_tiempo()." src/php/soldatos.php detecto cambio htmltable=".$htmltableanterior
+                                          ." de campos=".$this->menuc[$nomcampo]["htmltable"]." j=".$j."\n",3,"/var/tmp/errores.log");
+                                        $wllinea="<div id=".$filaanterior." class='d-flex justify-content-between flex-wrap'>".$wllinea."</div>";
+                                        echo $wllinea;
+                                        $filaanterior=$this->menuc[$nomcampo]["fila"];
+                                        $wllinea="";
+	    			        $this->fin_tabcaptura();	  	    				
+                                        echo "<div class='btn-registro' ><tr><td><button class='btn-mostrar'  tabindex='-1' align='left' type=button id='imostrar' ".
+                                        "onclick=\"return toggleDiv('".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."',this);\"></button></td>";
+                                        echo "<td><label>".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."</label></td></tr></div>";
+	    		                $this->inicio_tabcaptura_t($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"],
+                                          $this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]);	
+	    			        $htmltableanterior=$this->menuc[$nomcampo]["htmltable"];
+				} else {
+                                        error_log($this->dame_tiempo()." src/php/soldatos.php no detecto cambio j=".$j."\n",3,"/var/tmp/errores.log");
+                                }
                   if ($this->menuc[$nomcampo]["fila"]!=$filaanterior) {
                       $wllinea="<div id=".$filaanterior." class='d-flex justify-content-between flex-wrap'>".$wllinea."</div>";
                       echo $wllinea;
@@ -1216,18 +1234,6 @@ class soldatos
 
 			
 
-				if ($this->menuc[$nomcampo]["htmltable"]!==$htmltableanterior)
-				{
-                                        error_log($this->dame_tiempo()." src/php/soldatos.php detecto cambio htmltable=".$htmltableanterior." de campos=".$this->menuc[$nomcampo]["htmltable"]." j=".$j."\n",3,"/var/tmp/errores.log");
-	    			        $this->fin_tabcaptura();	  	    				
-                                    echo "<div class='btn-registro' ><tr><td><button class='btn-mostrar'  tabindex='-1' align='left' type=button id='imostrar' ".
-                                        "onclick=\"return toggleDiv('".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."',this);\"></button></td>";
-                                    echo "<td><label>".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."</label></td></tr></div>";
-	    		                $this->inicio_tabcaptura_t($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"],$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]);	
-	    			        $htmltableanterior=$this->menuc[$nomcampo]["htmltable"];
-				} else {
-                                        error_log($this->dame_tiempo()." src/php/soldatos.php no detecto cambio j=".$j."\n",3,"/var/tmp/errores.log");
-                                }
         };
             if ($wllinea!="") {
                                    $wllinea="<div id=".$filaanterior." class='d-flex justify-content-between flex-wrap'>".$wllinea."</div>";
