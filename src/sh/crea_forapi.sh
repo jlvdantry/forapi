@@ -20,7 +20,7 @@ create user $2 with password '$3' superuser;
 create database $1 owner $2;
 comment on database $1 is 'Formas rapidas';
 drop user tmp_$2 ;
-create user Temporal_$1 with password '$3' ;
+create user Temporal_$1 with password '$3' CREATEUSER;
 create role temporalg;
 create role admon;
 create schema forapi;
