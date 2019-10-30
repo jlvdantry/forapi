@@ -380,7 +380,7 @@ class soldatos
   }
   function inicio_tabcaptura_t($table_width,$table_height,$table_align,$id)
   {
-        echo    "       <div id='".$id."' class='container' align=\"".(($table_align!='') ? $table_align : "center")."\" style=\" width:".(($table_width>0) ? $table_width : "100" )."% height:".(($table_height!="") ? $table_height : "100" )."%;\" oncontextmenu='contextForTABLE(this);return false;'".
+        echo    "       <div id='".$id."' class='container grupo' align=\"".(($table_align!='') ? $table_align : "center")."\" style=\" width:".(($table_width>0) ? $table_width : "100" )."% height:".(($table_height!="") ? $table_height : "100" )."%;\" oncontextmenu='contextForTABLE(this);return false;'".
         ">\n";
   }
   
@@ -993,8 +993,8 @@ class soldatos
     $wlidcampo=$mecq["idcampo"];
     $wltipodedato=((substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? " type='tel' " : "");
             $wli="<div class='".$mecq["clase"]."'><label class='form-label-custom $wleshiden'  id='wlt_".$nombre."__".$this->idmenu."' name=wlt_".$nombre."__".$this->idmenu." title=\"".$descripcion."\" abbr=\"".$descripcion."\""
-			.">".(($wltdf=="3") ? "" : $descripcion.(($busqueda=='t') ? "*" : ""))
-			."</label>".$wlobligatorio; 
+			.">".$descripcion
+			."</label>".$wlobligatorio.$wlbusqueda; 
 	    $wli=$wli.
 	    	(($tipodedato != "text") 
 	    	? "<input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom $wleshiden'  onKeydown='return quitaenter(this,event)' " 

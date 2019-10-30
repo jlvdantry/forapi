@@ -26,22 +26,22 @@ CREATE or replace FUNCTION cambio_menus_columnas() RETURNS trigger
     BEGIN
      if old.columnas!=new.columnas then
         if new.columnas=1 then 
-           wlclase='col-md-12';
+           wlclase='col-md-12 row';
         end if;
         if new.columnas=2 then 
-           wlclase='col-md-6';
+           wlclase='col-md-6 row';
         end if;
         if new.columnas=3 then 
-           wlclase='col-md-4';
+           wlclase='col-md-4 row';
         end if;
         if new.columnas=4 then 
-           wlclase='col-md-3';
+           wlclase='col-md-3 row';
         end if; 
         if new.columnas=5 then 
-           wlclase='col-md-2';
+           wlclase='col-md-2 row';
         end if; 
         if new.columnas=6 then 
-           wlclase='col-md-2';
+           wlclase='col-md-2 row';
         end if; 
         wlfila=20;
         lleva=0;
