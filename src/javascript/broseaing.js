@@ -512,23 +512,21 @@ color_renglon.poneclase= function(wlrenglon,wlclase)
 window.contextForTABLE = function(objtabla)
 {
 	var wlTABLE=document.getElementById("tabbotones");
-	var siSelect = wlTABLE.getElementsByTagName('TD');
+	var siSelect = wlTABLE.getElementsByTagName('input');
 	var wlstr='';
-	if (siSelect.length>0)
-	{
-  		for (e=0;e<siSelect.length;e++) {		
-			wlinput=siSelect[e].getElementsByTagName('INPUT');
-			if (wlstr!='') { wlstr=wlstr+','; }
-                        var ecode=eval(wlinput[0].onclick) + "_";
-			wlstr=wlstr+'new ContextItem("'+wlinput[0].value+'",function(){'+quitaf(ecode)+'})';			
-  		}
+  	for (e=0;e<siSelect.length;e++) {		
+		wlinput=siSelect[e];
+		if (wlstr!='') { wlstr=wlstr+','; }
+                var ecode=eval(wlinput.onclick) + "_";
+                wlstr=wlstr+'new ContextItem("'+wlinput.value+'",function(){'+quitaf(ecode)+'})';			
+  	}
+	if (siSelect.length>0) {
 	        if (wlstr!='') { wlstr=wlstr+','; }
                 wlstr=wlstr+'new ContextItem("Salir",function() { salir(); })';
   		wlstr=' window.popupoptions = ['+wlstr+']';
                 wlstr=wlstr.replace(/\&quot\;/g,'\'');
 		eval(wlstr);
-   		ContextMenu.display(popupoptions)		
-
+   		ContextMenu.display(popupoptions);
 	}
 	return false;
 }
