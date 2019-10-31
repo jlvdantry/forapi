@@ -72,8 +72,8 @@ inicio78       	JOSE	LUIS	\N	\N	\N	\N	\N	2019-10-20 14:02:34-06	2019-10-20 14:02
 tmp_jc9        	temporal	\N	\N	\N	\N	\N	\N	2019-10-27 17:02:44-06	2019-10-27 17:02:43.784708-06	jc9	jc9	0	\N	1	\N	\N	\N	\N	\N	jc9	\N	1	\N	0				\N	\N
 jc9            	jc9	\N	\N	\N	\N	\N	\N	2019-10-27 17:02:44-06	2019-10-27 17:02:43.833875-06	jc9	jc9	0	\N	1	\N	\N	\N	\N	\N	jc9	\N	1	17	0				\N	\N
 juez1          	NOMBRE	PATERNO	\N	\N	\N	\N	\N	2019-10-30 17:18:25-06	2019-10-30 17:23:57.288473-06	tmp_jc9	jc9	0	\N	1	\N	\N	\N	\N	\N	juez11	\N	1	61	0				5556572416	\N
-tmp_jc81       	temporal	\N	\N	\N	\N	\N	\N	2019-10-31 16:33:35-06	2019-10-31 16:33:34.700869-06	jc81	jc81	0	\N	1	\N	\N	\N	\N	\N	jc81	\N	1	\N	0				\N	\N
-jc81           	jc81	\N	\N	\N	\N	\N	\N	2019-10-31 16:33:35-06	2019-10-31 16:33:34.738876-06	jc81	jc81	0	\N	1	\N	\N	\N	\N	\N	jc81	\N	1	17	0				\N	\N
+tmp_jc101      	temporal	\N	\N	\N	\N	\N	\N	2019-10-31 16:51:33-06	2019-10-31 16:51:32.744554-06	jc101	jc101	0	\N	1	\N	\N	\N	\N	\N	jc101	\N	1	\N	0				\N	\N
+jc101          	jc101	\N	\N	\N	\N	\N	\N	2019-10-31 16:51:33-06	2019-10-31 16:51:32.784103-06	jc101	jc101	0	\N	1	\N	\N	\N	\N	\N	jc101	\N	1	17	0				\N	\N
 \.
 
 
@@ -90,8 +90,8 @@ forapi         	\N	2019-10-27 15:36:50-06	2019-10-27 15:36:50-06	inicio	inicio	a
 tmp_jc9        	\N	2019-10-27 17:02:44-06	2019-10-27 17:02:44-06	jc9	jc9	temporalg
 jc9            	\N	2019-10-27 17:02:44-06	2019-10-27 17:02:44-06	jc9	jc9	admon
 juez1          	\N	2019-10-30 17:19:30-06	2019-10-30 17:19:30-06	jc9	jc9	juez
-tmp_jc81       	\N	2019-10-31 16:33:35-06	2019-10-31 16:33:35-06	jc81	jc81	temporalg
-jc81           	\N	2019-10-31 16:33:35-06	2019-10-31 16:33:35-06	jc81	jc81	admon
+tmp_jc101      	\N	2019-10-31 16:51:33-06	2019-10-31 16:51:33-06	jc101	jc101	temporalg
+jc101          	\N	2019-10-31 16:51:33-06	2019-10-31 16:51:33-06	jc101	jc101	admon
 \.
 
 
@@ -183,7 +183,7 @@ COPY his_menus_pg_group (idcambio, idmenu, grosysid, fecha_alta, usuario_alta, c
 -- Name: his_menus_pg_group_idcambio_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('his_menus_pg_group_idcambio_seq', 170, true);
+SELECT pg_catalog.setval('his_menus_pg_group_idcambio_seq', 163, true);
 
 
 --
@@ -205,7 +205,7 @@ COPY his_menus_pg_tables (idcambio, idmenu, tablename, tselect, tinsert, tupdate
 -- Name: his_menus_pg_tables_idcambio_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('his_menus_pg_tables_idcambio_seq', 473, true);
+SELECT pg_catalog.setval('his_menus_pg_tables_idcambio_seq', 466, true);
 
 
 --
@@ -247,6 +247,7 @@ COPY menus (idmenu, descripcion, objeto, fecha_alta, usuario_alta, fecha_modific
 30	Subvistas		2019-10-12 14:53:07-06	inicio	2019-10-28 19:41:15-06	jc9		0	0	0	i,d,u,s,l,a,cc		2	3	menus_subvistas	126370		100	orden	0	0	0	0	300	f	forapi	pupanint.css	0	t	0.00	0.00					
 12	Mtto a grupo de campos		2019-10-12 14:53:07-06	inicio	2019-10-29 14:01:00-06	jc9	man_menus.php	0	10	0	i,d,u,s,l,a		2	2	menus_htmltable	126283		100		0	0	0	0	300	t	forapi	pupanint.css	0	t	0.00	0.00					
 13	Reingenieria		2019-10-12 14:53:07-06	inicio	2019-10-29 05:35:23-06	jc9	man_menus.php	0	10	0	s,i,a,l		2	1	tablas	126401		100	relname	0	0	0	0	300	f	forapi	pupanint.css	0	t	30.00	0.00	center				
+16	Mtto a grupos		2019-10-12 14:53:07-06	inicio	2019-10-30 16:30:20-06	jc9	man_menus.php	0	10	0	i,d,u,s,a,l		2	1	pg_authid	2842	rolcanlogin=false	100	rolname	0	0	0	0	300	t	pg_catalog	pupanint.css	0	t	80.00	0.00	center				
 17	Mtto a usuarios		2019-10-12 14:53:07-06	inicio	2019-10-31 11:28:59-06	jc9	man_menus.php	0	10	0	u,s,l,d,a,ex		2	2	cat_usuarios	126000		50	nombre	0	60	0	0	300	t	forapi	pupanint.css	0	t	60.00	0.00	center				
 14	Mtto a menus		2019-10-12 14:53:07-06	inicio	2019-10-19 18:46:23-06	inicio	man_menus.php	0	10	0	i,d,u,s,l,cc,ex,a	select id_voluntario,no_cred_elect, nombre, apepat, apemat, domicilio, no_ext, id_entidad from cat_voluntarios 	2	2	menus	126182		100	fecha_alta desc	0	0	0	0	300	f	forapi	pupanint.css	1	t	80.00	0.00	center				
 31	Importa desde Excel		2019-10-20 19:38:33-06	inicio	2019-10-28 11:58:19-06	jc9	man_menus.php	0	10	0	a,l,s		2	1	tablas	126401		100	relname	0	0	0	0	300	f	forapi	pupanint.css	0	t	30.00	0.00	center				
@@ -279,8 +280,6 @@ COPY menus_archivos (idarchivo, descripcion, fecha_alta, usuario_alta, fecha_mod
 16	DEJC CATALOGOS-ADIP.xlsx	2019-10-20 18:24:11-06	temporal	2019-10-20 18:24:11-06	temporal	\N	0	0	\N
 17	AnalisisDeFiltrosEnProteccionCivil.xlsx	2019-10-31 10:58:36-06	jc9	2019-10-31 10:58:36-06	jc9	\N	0	0	\N
 18	AnalisisDeFiltrosEnProteccionCivil.xlsx	2019-10-31 11:08:31-06	jc9	2019-10-31 11:08:31-06	jc9	\N	0	0	\N
-19	AnalisisDeFiltrosEnProteccionCivil.xlsx	2019-10-31 12:13:07-06	jc9	2019-10-31 12:13:07-06	jc9	\N	0	0	\N
-20	AnalisisDeFiltrosEnProteccionCivil.xlsx	2019-10-31 13:07:55-06	tmp_jc9	2019-10-31 13:07:55-06	tmp_jc9	\N	0	0	\N
 \.
 
 
@@ -288,7 +287,7 @@ COPY menus_archivos (idarchivo, descripcion, fecha_alta, usuario_alta, fecha_mod
 -- Name: menus_archivos_idarchivo_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('menus_archivos_idarchivo_seq', 20, true);
+SELECT pg_catalog.setval('menus_archivos_idarchivo_seq', 18, true);
 
 
 --
@@ -338,6 +337,7 @@ COPY menus_campos (idcampo, idmenu, reltype, attnum, descripcion, size, male, fu
 59	7	126274	2	idmenu	8	0						0	20	0	40	30	f	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N
 38	12	126283	1	idhtmltable	8	-1						0	10	0	40	30	t	f	f	0	f	t		t	Numero de identificacion de la tabla	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_htmltable	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6
 31	13	126401	1	Tabla	0	0						0	11	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	tablas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-12
+39	16	2842	1	Grupo	20	30						0	0	0	0	0	t	t	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	pg_authid	pg_catalog	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-12 row
 29	17	126000	1	Usuario	20	15						0	10	0	40	30	t	t	f	2	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	f	f	f	0	f	0	f	20	col-md-6 row
 60	4	126000	3	Apellido Paterno	20	30						0	30	0	40	30	f	f	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N
 61	5	126104	3	nombre	30	0						0	30	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N
@@ -388,6 +388,7 @@ COPY menus_campos (idcampo, idmenu, reltype, attnum, descripcion, size, male, fu
 115	7	126274	6	fecha_alta	18	0						0	60	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	\N
 117	1	126341	6	tdelete	1	1						0	16	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	16	\N
 121	7	126274	7	usuario_alta	24	0						0	70	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	70	\N
+126	16	2842	7	canlogin	0	0						0	0	0	40	30	f	f	f	0	f	t	0	f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	pg_authid	pg_catalog	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	t	0	\N
 127	11	126000	7	Mail	20	0						0	70	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	70	\N
 119	18	126000	6	Depto	20	50						0	60	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6
 108	20	126222	5	Descripcion	30	0						0	140	0	40	30	t	f	f	0	f	f		f	Descripcion del campo en la vista	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6
@@ -537,6 +538,7 @@ COPY menus_campos (idcampo, idmenu, reltype, attnum, descripcion, size, male, fu
 249	14	126182	27	Esquema	1	0	pg_namespace	nspname	nspname			0	52	0	0	0	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0	pg_catalog	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6
 244	14	126182	24	Pone Scroll	20	1						0	150	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	160	col-md-6
 245	14	126182	25	Altura de Scroll	20	10						0	160	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	180	col-md-6
+600	16	2842	2	Superusuario	\N	\N					\N	0	900	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:33:08-06	jc9	2019-10-30 16:33:08-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6261	
 380	46	134741	1	idscript	8	-1					\N	0	10	\N	40	30	t	f	f	0	\N	t	\N	t	id del script	2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	20	col-md-4
 383	46	134741	4	fecha_alta	18	0					\N	0	40	\N	40	30	f	f	f	0	\N	t	\N	f	Fecha en que hizo el movimiento el usuario	2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	40	col-md-4
 384	46	134741	5	usuario_alta	24	24					\N	0	50	\N	40	30	f	f	f	0	\N	t	\N	f	Usuario hizo el alta 	2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	40	col-md-4
@@ -566,6 +568,10 @@ COPY menus_campos (idcampo, idmenu, reltype, attnum, descripcion, size, male, fu
 214	30	126370	16	usuario_alta	0	0						0	160	0	40	30	f	f	f	0	f	t		f	Usuario que dio de alta el registro	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-4
 216	30	126370	17	fecha_modifico	0	0						0	170	0	40	30	f	f	f	0	f	t		f	Fecha en que el usuario modifico el registro	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-4
 219	30	126370	18	usuario_modifico	0	0						0	180	0	40	30	f	f	f	0	f	t		f	Usuario que modifico el registro	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	160	col-md-4
+601	16	2842	3	Heredable	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:36:28-06	jc9	2019-10-30 16:36:28-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6281	
+602	16	2842	4	Crea un rol	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:38:35-06	jc9	2019-10-30 16:38:35-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6301	
+603	16	2842	5	Puede crear una BD	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:39:04-06	jc9	2019-10-30 16:39:04-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6321	
+604	16	2842	6	Actualiza	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:42:28-06	jc9	2019-10-30 16:42:28-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6341	
 590	62	134448	1	Numero de identificacion de la tabla	8	-1					\N	0	10	\N	40	30	t	f	f	0	\N	t	\N	t	Numero de identificacion de la tabla	2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6061	
 594	62	134448	5	fecha_alta	18	-1					\N	0	50	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6141	
 595	62	134448	6	usuario_alta	24	24					\N	0	60	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6161	
@@ -581,6 +587,8 @@ COPY menus_campos (idcampo, idmenu, reltype, attnum, descripcion, size, male, fu
 593	62	134448	4	Numero de columnas en la tabla si es cero pone las columnas de la tabla maestra	4	-1					\N	0	40	\N	40	30	f	f	f	0	\N	f	\N	f	Numero de columnas en la tabla si es cero pone las columnas de la tabla maestra	2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6
 598	62	134448	9	Id del menu a la que pertenece el grupo de campos	8	-1					\N	0	90	\N	40	30	f	f	f	0	\N	f	\N	f	Id del menu a la que pertenece el grupo de campos	2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6
 599	62	134448	10	orden del grupo de campos	8	-1					\N	0	100	\N	40	30	f	f	f	0	\N	f	\N	f	orden del grupo de campos	2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6
+605	16	2842	8	Puede Replicar	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:45:14-06	jc9	2019-10-30 16:45:14-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6361	
+606	16	2842	9	Limite de conexión	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:47:57-06	jc9	2019-10-30 16:47:57-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6381	
 55	17	126000	2	Nombre	20	30						0	20	0	40	30	t	t	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6 row
 197	17	126000	14	Respuesta	20	100						0	140	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6 row
 237	17	126000	23	Tipo menu	20	5						0	145	0	0	0	f	f	f	0	f	f		f	0=normal 1=vertical 2=horizontal	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6 row
@@ -611,14 +619,14 @@ SELECT pg_catalog.setval('menus_campos_eventos_icv_seq', 2, true);
 -- Name: menus_campos_fila_seq; Type: SEQUENCE SET; Schema: forapi; Owner: inicio
 --
 
-SELECT pg_catalog.setval('menus_campos_fila_seq', 7881, true);
+SELECT pg_catalog.setval('menus_campos_fila_seq', 6381, true);
 
 
 --
 -- Name: menus_campos_idcampo_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('menus_campos_idcampo_seq', 681, true);
+SELECT pg_catalog.setval('menus_campos_idcampo_seq', 606, true);
 
 
 --
@@ -671,7 +679,7 @@ SELECT pg_catalog.setval('menus_htmltable_idhtmltable_seq', 2029, true);
 -- Name: menus_idmenu_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('menus_idmenu_seq', 66, true);
+SELECT pg_catalog.setval('menus_idmenu_seq', 62, true);
 
 
 --
@@ -724,10 +732,12 @@ COPY menus_pg_group (idmenu, grosysid, fecha_alta, fecha_modifico, usuario_alta,
 11	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
 15	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N	admres	0	\N
 18	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
+16	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
 15	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
 21	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
 10	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
 14	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
+16	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N	admon	0	\N
 25	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
 13	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
 8	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N	admon	0	\N
@@ -775,6 +785,7 @@ COPY menus_pg_tables (idmenu, tablename, tselect, tinsert, tupdate, tdelete, tal
 12	menus_htmltable	1	1	1	1	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	forapi
 13	tablas	1	1	0	0	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	forapi
 14	menus	1	1	1	1	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	forapi
+16	pg_authid	1	1	1	1	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	pg_catalog
 20	menus_campos	1	1	1	1	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	forapi
 21	menus_pg_group	1	1	1	1	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	forapi
 27	menus_movtos	1	1	1	1	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	forapi
@@ -836,6 +847,7 @@ COPY menus_pg_tables (idmenu, tablename, tselect, tinsert, tupdate, tdelete, tal
 14	pg_namespace	1	0	0	0	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	pg_catalog
 11	pg_shadow	1	 	 	 	 	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	pg_catalog
 11	his_cat_usuarios_seq	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
+16	menus_pg_group	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 19	cat_preguntas	1	0	0	0	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	forapi
 7	eventos	1	0	0	0	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	forapi
 4	cat_usuarios	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
@@ -946,6 +958,7 @@ COPY menus_subvistas (idmenus_subvistas, idmenu, texto, imagen, idsubvista, func
 6	17	Log		26		976	602	2	0			usuario_alta	usename	2019-10-12 00:00:00-06	inicio	\N	\N		0	0	0
 7	11	Accesos Usuario		0		843	479	2	1			usuario_alta	usename	2019-10-12 00:00:00-06	inicio	\N	\N		0	0	0
 10	14	Log		26		976	602	2	0			idmenu	idmenu	2019-10-12 00:00:00-06	inicio	\N	\N		0	950	0
+12	16	Menus		21		1108	714	1	1			groname	rolname	2019-10-12 00:00:00-06	inicio	\N	\N		0	0	0
 13	14	Subvistas		30		1052	560	2	1			idmenu	idmenu	2019-10-12 00:00:00-06	inicio	\N	\N		0	0	0
 14	14	Seguimiento		28		555	476	2	0			idmenu	idmenu	2019-10-12 00:00:00-06	inicio	\N	\N		0	800	0
 17	17	Grupos		3		1135	568	2	1			usename	usename	2019-10-12 00:00:00-06	inicio	\N	\N		0	0	0
@@ -961,11 +974,13 @@ COPY menus_subvistas (idmenus_subvistas, idmenu, texto, imagen, idsubvista, func
 32	14	Eventos		7		1020	463	2	1			idmenu	idmenu	2019-10-12 00:00:00-06	inicio	\N	\N		0	0	0
 35	11	Log		26		976	602	2	0			usuario_alta	usename	2019-10-12 00:00:00-06	inicio	\N	\N		0	0	0
 36	17	Cambio de Password		0		845	448	2	1			usename	usename	2019-10-12 00:00:00-06	inicio	\N	\N		0	0	0
+38	16	Usuarios		3		1135	568	1	1			groname	rolname	2019-10-12 00:00:00-06	inicio	\N	\N		0	0	0
 15	13	Archivo		0	crea_sqlarchivo	40	30	1	1					2019-10-12 00:00:00-06	inicio	\N	\N	src/php/reingenieria_class.php	0	0	0
 16	13	Baja Admon		0	baja_admon	0	0	1	1					2019-10-12 00:00:00-06	inicio	\N	\N	src/php/reingenieria_class.php	1	10	0
 23	17	Permisos		0	permisos	50	30	1	1			usename	usename	2019-10-12 00:00:00-06	inicio	\N	\N	src/php/seguridad_class.php	0	0	0
 25	14	Copia Opcion		0	copiaopcion	40	30	1	0					2019-10-12 00:00:00-06	inicio	\N	\N	src/php/reingenieria_class.php	0	0	0
 28	13	Base		0	crea_menusbase	40	30	1	1					2019-10-12 00:00:00-06	inicio	\N	\N	src/php/reingenieria_class.php	0	0	0
+34	16	PermisosGrupo		0	permisosgrupo	0	0	1	0					2019-10-12 00:00:00-06	inicio	\N	\N	src/php/seguridad_class.php	0	0	0
 37	23	Validar FIEL	entrar.gif	0	validafiel	0	0	1	1					2019-10-12 00:00:00-06	inicio	\N	\N	src/php/firma_digital.php	1	10	0
 9	20	Eventos		7		879	433	1	0			idmenu;attnum	idmenu;attnum	2019-10-12 00:00:00-06	inicio	\N	\N		0	10	0
 8	14	Campos		20		800	600	2	0			idmenu	idmenu	2019-10-12 00:00:00-06	inicio	\N	\N		0	0	0

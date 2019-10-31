@@ -6,8 +6,8 @@ select 'define(MENUS_CAMPOS,''' || idmenu || ''');' from forapi.menus where desc
 union all
 select 'define(MENUS_BIENVENIDO,''' || idmenu || ''');' from forapi.menus where descripcion='Bienvenido'
 union all
-select 'define(BD,''jc84'');' 
+select 'define(BD,''jc101'');' 
 union all
-select 'define(PWD_USER_TMP,''jc84'');' 
+select 'define(PWD_USER_TMP,''jc101'');' 
 union all
 select '?>'
