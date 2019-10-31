@@ -4,9 +4,10 @@ delete from forapi.cat_bitacora;
 delete from forapi.his_cambios_pwd;
 delete from forapi.his_cat_usuarios;
 delete from forapi.his_cat_usuarios_pg_group;
-delete frin forpai.his_menus;
-delete frin forpai.his_menus_pg_group;
-delete frin forpai.his_menus_pg_tables;
+delete from forapi.his_menus;
+delete from forapi.his_menus_pg_group;
+delete from forapi.his_menus_pg_tables;
+delete from forapi.menus where nspname!='forapi';
 fin
 psql jc9 -U jc9  -h localhost < $0.sql
 pg_dump jc9 -U jc9  -h localhost  -s -n forapi -x  > src/bd/forapi_esquema.sql

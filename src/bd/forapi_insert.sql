@@ -3043,19 +3043,6 @@ SELECT pg_catalog.setval('his_cat_usuarios_idcambio_seq', 86, true);
 --
 
 COPY his_cat_usuarios_pg_group (idcambio, usename, grosysid, fecha_alta, usuario_alta, cve_movto) FROM stdin;
-1	inicio         	\N	2019-10-27 17:02:44-06	jc9	a
-2	temporal1      	\N	2019-10-27 17:02:44-06	jc9	a
-3	forapi         	\N	2019-10-27 17:02:44-06	jc9	a
-4	forapi         	\N	2019-10-27 17:02:44-06	jc9	a
-5	forapi         	\N	2019-10-27 17:02:44-06	jc9	a
-1	Temporal1      	\N	2019-10-12 14:53:07-06	inicio	a
-2	inicio         	\N	2019-10-12 14:53:07-06	inicio	a
-3	forapi         	\N	2019-10-27 15:35:24-06	inicio	a
-4	forapi         	\N	2019-10-27 15:35:53-06	inicio	a
-5	forapi         	\N	2019-10-27 15:36:50-06	inicio	a
-6	tmp_jc9        	\N	2019-10-27 17:02:44-06	jc9	a
-7	jc9            	\N	2019-10-27 17:02:44-06	jc9	a
-8	juez1          	\N	2019-10-30 17:19:30-06	jc9	a
 \.
 
 
@@ -3078,167 +3065,11 @@ SELECT pg_catalog.setval('his_cat_usuarios_seq', 1, false);
 --
 
 COPY his_menus (idmenu, descripcion, objeto, fecha_alta, usuario_alta, fecha_modifico, usuario_modifico, php, modoconsulta, idmenupadre, idmovtos, movtos, fuente, presentacion, columnas, tabla, reltype, filtro, limite, orden, menus_campos, dialogwidth, dialogheight, s_table, s_table_height, cvemovto, fecha_movto, usuario_movto, nspname) FROM stdin;
-22	AG 60 Consultas efectuadas por internet del estatus de trámites		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	man_menus.php	0	0	0	s,l,a,ex		2	1	menus_log	126296	idmenu=2396	50	fecha_alta desc	0	0	0	0	300	d	2019-10-12 15:04:31-06	inicio	\N
-17	Mtto a usuarios		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	man_menus.php	0	10	0	u,s,l,p,d,a,ex		2	1	cat_usuarios	126000		50	nombre	0	0	0	0	300	u	2019-10-17 10:32:05-06	inicio	forapi
-17	Mtto a usuarios		2019-10-12 14:53:07-06	inicio	2019-10-17 10:32:05-06	inicio	man_menus.php	0	10	0	u,s,l,p,d,a,ex		2	1	cat_usuarios	126000		50	nombre	0	0	0	0	300	u	2019-10-17 10:41:27-06	inicio	forapi
-17	Mtto a usuarios		2019-10-12 14:53:07-06	inicio	2019-10-17 10:41:27-06	inicio	man_menus.php	0	10	0	u,s,l,p,d,a,ex		2	1	cat_usuarios	126000		50	nombre	0	0	0	0	300	u	2019-10-19 08:34:03-06	inicio	forapi
-17	Mtto a usuarios		2019-10-12 14:53:07-06	inicio	2019-10-19 08:34:03-06	inicio	man_menus.php	0	10	0	u,s,l,d,a,ex		2	1	cat_usuarios	126000		50	nombre	0	0	0	0	300	u	2019-10-19 08:39:11-06	inicio	forapi
-9	Bienvenido		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio		0	0	0	l,e,A		2	1	cat_usuarios	126000	usuario_alta is null	100		0	500	0	0	300	u	2019-10-19 09:57:51-06	inicio	forapi
-9	Bienvenido		2019-10-12 14:53:07-06	inicio	2019-10-19 09:57:51-06	inicio		0	0	0	l,e,A		2	1	cat_usuarios	126000	usuario_alta is null	100		0	500	0	0	300	u	2019-10-19 09:59:55-06	inicio	forapi
-17	Mtto a usuarios		2019-10-12 14:53:07-06	inicio	2019-10-19 08:39:11-06	inicio	man_menus.php	0	10	0	u,s,l,d,a,ex		2	2	cat_usuarios	126000		50	nombre	0	0	0	0	300	u	2019-10-19 10:09:03-06	inicio	forapi
-17	Mtto a usuarios		2019-10-12 14:53:07-06	inicio	2019-10-19 10:09:03-06	inicio	man_menus.php	0	10	0	u,s,l,d,a,ex		2	2	cat_usuarios	126000		50	nombre	0	60	0	0	300	u	2019-10-19 10:11:26-06	inicio	forapi
-17	Mtto a usuarios		2019-10-12 14:53:07-06	inicio	2019-10-19 10:11:26-06	inicio	man_menus.php	0	10	0	u,s,l,d,a,ex		2	2	cat_usuarios	126000		50	nombre	0	60	0	0	300	u	2019-10-19 10:12:57-06	inicio	forapi
-14	Mtto a menus		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	man_menus.php	0	10	0	i,d,u,s,l,cc,ex,a	select id_voluntario,no_cred_elect, nombre, apepat, apemat, domicilio, no_ext, id_entidad from cat_voluntarios 	2	1	menus	126182		100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 10:26:52-06	inicio	forapi
-14	Mtto a menus		2019-10-12 14:53:07-06	inicio	2019-10-19 10:26:52-06	inicio	man_menus.php	0	10	0	i,d,u,s,l,cc,ex,a	select id_voluntario,no_cred_elect, nombre, apepat, apemat, domicilio, no_ext, id_entidad from cat_voluntarios 	2	1	menus	126182		100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 10:27:22-06	inicio	forapi
-14	Mtto a menus		2019-10-12 14:53:07-06	inicio	2019-10-19 10:27:22-06	inicio	man_menus.php	0	10	0	i,d,u,s,l,cc,ex,a	select id_voluntario,no_cred_elect, nombre, apepat, apemat, domicilio, no_ext, id_entidad from cat_voluntarios 	2	1	menus	126182		100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 10:27:41-06	inicio	forapi
-14	Mtto a menus		2019-10-12 14:53:07-06	inicio	2019-10-19 10:27:41-06	inicio	man_menus.php	0	10	0	i,d,u,s,l,cc,ex,a	select id_voluntario,no_cred_elect, nombre, apepat, apemat, domicilio, no_ext, id_entidad from cat_voluntarios 	2	2	menus	126182		100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 10:28:32-06	inicio	forapi
-9	Bienvenido		2019-10-12 14:53:07-06	inicio	2019-10-19 09:59:55-06	inicio		0	0	0	l,e,A		2	1	cat_usuarios	126000	usuario_alta is null	100		0	500	0	0	300	u	2019-10-19 10:43:10-06	inicio	forapi
-9	Bienvenido		2019-10-12 14:53:07-06	inicio	2019-10-19 10:43:10-06	inicio		0	0	0	l,e,A		2	1	cat_usuarios	126000	usuario_alta is null	100		0	500	0	0	300	u	2019-10-19 10:51:38-06	inicio	forapi
-18	Autorizacion de registro		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	man_menus.php	0	10	0	s,u,l,a		2	1	cat_usuarios	126000	estatus=0	100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 11:01:04-06	inicio	forapi
-16	Mtto a grupos Copia		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	man_menus.php	0	10	0	i,d,u,s,a,l		2	2	pg_authid	2842	rolcanlogin=false	100	rolname	0	0	0	0	300	u	2019-10-19 11:13:46-06	inicio	pg_catalog
-18	Autorizacion de registro		2019-10-12 14:53:07-06	inicio	2019-10-19 11:01:04-06	inicio	man_menus.php	0	10	0	s,u,l,a		2	1	cat_usuarios	126000	estatus=0	100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 14:06:47-06	inicio	forapi
-18	Autorizacion de registro		2019-10-12 14:53:07-06	inicio	2019-10-19 14:06:47-06	inicio	man_menus.php	0	10	0	s,u,l,a		2	2	cat_usuarios	126000	estatus=0	100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 14:07:51-06	inicio	forapi
-13	Reingenieria		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	man_menus.php	0	10	0	s,i,a,l		2	2	tablas	126401		100	relname	0	0	0	0	300	u	2019-10-19 15:03:10-06	inicio	forapi
-13	Reingenieria		2019-10-12 14:53:07-06	inicio	2019-10-19 15:03:10-06	inicio	man_menus.php	0	10	0	s,i,a,l		2	2	tablas	126401		100	relname	0	0	0	0	300	u	2019-10-19 15:03:30-06	inicio	forapi
-19	Registro Nuevo Usuario		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	man_menus.php	0	0	0	i,a		2	1	cat_usuarios	126000	usename is null	100	usename	0	0	0	0	300	u	2019-10-19 15:12:41-06	inicio	forapi
-19	Registro Nuevo Usuario		2019-10-12 14:53:07-06	inicio	2019-10-19 15:12:41-06	inicio	man_menus.php	0	0	0	i,a		2	1	cat_usuarios	126000	usename is null	100	usename	0	0	0	0	300	u	2019-10-19 15:13:37-06	inicio	forapi
-14	Mtto a menus		2019-10-12 14:53:07-06	inicio	2019-10-19 10:28:32-06	inicio	man_menus.php	0	10	0	i,d,u,s,l,cc,ex,a	select id_voluntario,no_cred_elect, nombre, apepat, apemat, domicilio, no_ext, id_entidad from cat_voluntarios 	2	2	menus	126182		100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 17:43:43-06	inicio	forapi
-14	Mtto a menus		2019-10-12 14:53:07-06	inicio	2019-10-19 17:43:43-06	inicio	man_menus.php	0	10	0	i,d,u,s,l,cc,ex,a	select id_voluntario,no_cred_elect, nombre, apepat, apemat, domicilio, no_ext, id_entidad from cat_voluntarios 	2	1	menus	126182		100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 17:47:01-06	inicio	forapi
-14	Mtto a menus		2019-10-12 14:53:07-06	inicio	2019-10-19 17:47:01-06	inicio	man_menus.php	0	10	0	i,d,u,s,l,cc,ex,a	select id_voluntario,no_cred_elect, nombre, apepat, apemat, domicilio, no_ext, id_entidad from cat_voluntarios 	2	2	menus	126182		100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 17:49:12-06	inicio	forapi
-14	Mtto a menus		2019-10-12 14:53:07-06	inicio	2019-10-19 17:49:12-06	inicio	man_menus.php	0	10	0	i,d,u,s,l,cc,ex,a	select id_voluntario,no_cred_elect, nombre, apepat, apemat, domicilio, no_ext, id_entidad from cat_voluntarios 	2	1	menus	126182		100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 17:49:45-06	inicio	forapi
-14	Mtto a menus		2019-10-12 14:53:07-06	inicio	2019-10-19 17:49:45-06	inicio	man_menus.php	0	10	0	i,d,u,s,l,cc,ex,a	select id_voluntario,no_cred_elect, nombre, apepat, apemat, domicilio, no_ext, id_entidad from cat_voluntarios 	2	3	menus	126182		100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 17:51:58-06	inicio	forapi
-14	Mtto a menus		2019-10-12 14:53:07-06	inicio	2019-10-19 17:51:58-06	inicio	man_menus.php	0	10	0	i,d,u,s,l,cc,ex,a	select id_voluntario,no_cred_elect, nombre, apepat, apemat, domicilio, no_ext, id_entidad from cat_voluntarios 	2	2	menus	126182		100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 17:52:27-06	inicio	forapi
-14	Mtto a menus		2019-10-12 14:53:07-06	inicio	2019-10-19 17:52:27-06	inicio	man_menus.php	0	10	0	i,d,u,s,l,cc,ex,a	select id_voluntario,no_cred_elect, nombre, apepat, apemat, domicilio, no_ext, id_entidad from cat_voluntarios 	2	3	menus	126182		100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 18:02:16-06	inicio	forapi
-14	Mtto a menus		2019-10-12 14:53:07-06	inicio	2019-10-19 18:02:16-06	inicio	man_menus.php	0	10	0	i,d,u,s,l,cc,ex,a	select id_voluntario,no_cred_elect, nombre, apepat, apemat, domicilio, no_ext, id_entidad from cat_voluntarios 	2	2	menus	126182		100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 18:04:18-06	inicio	forapi
-14	Mtto a menus		2019-10-12 14:53:07-06	inicio	2019-10-19 18:04:18-06	inicio	man_menus.php	0	10	0	i,d,u,s,l,cc,ex,a	select id_voluntario,no_cred_elect, nombre, apepat, apemat, domicilio, no_ext, id_entidad from cat_voluntarios 	2	3	menus	126182		100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 18:05:47-06	inicio	forapi
-14	Mtto a menus		2019-10-12 14:53:07-06	inicio	2019-10-19 18:05:47-06	inicio	man_menus.php	0	10	0	i,d,u,s,l,cc,ex,a	select id_voluntario,no_cred_elect, nombre, apepat, apemat, domicilio, no_ext, id_entidad from cat_voluntarios 	2	3	menus	126182		100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 18:06:10-06	inicio	forapi
-14	Mtto a menus		2019-10-12 14:53:07-06	inicio	2019-10-19 18:06:10-06	inicio	man_menus.php	0	10	0	i,d,u,s,l,cc,ex,a	select id_voluntario,no_cred_elect, nombre, apepat, apemat, domicilio, no_ext, id_entidad from cat_voluntarios 	2	2	menus	126182		100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 18:11:19-06	inicio	forapi
-14	Mtto a menus		2019-10-12 14:53:07-06	inicio	2019-10-19 18:11:19-06	inicio	man_menus.php	0	10	0	i,d,u,s,l,cc,ex,a	select id_voluntario,no_cred_elect, nombre, apepat, apemat, domicilio, no_ext, id_entidad from cat_voluntarios 	2	3	menus	126182		100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 18:16:00-06	inicio	forapi
-14	Mtto a menus		2019-10-12 14:53:07-06	inicio	2019-10-19 18:16:00-06	inicio	man_menus.php	0	10	0	i,d,u,s,l,cc,ex,a	select id_voluntario,no_cred_elect, nombre, apepat, apemat, domicilio, no_ext, id_entidad from cat_voluntarios 	2	3	menus	126182		100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 18:46:23-06	inicio	forapi
-17	Mtto a usuarios		2019-10-12 14:53:07-06	inicio	2019-10-19 10:12:57-06	inicio	man_menus.php	0	10	0	u,s,l,d,a,ex		2	2	cat_usuarios	126000		50	nombre	0	60	0	0	300	u	2019-10-19 19:02:14-06	inicio	forapi
-17	Mtto a usuarios		2019-10-12 14:53:07-06	inicio	2019-10-19 19:02:14-06	inicio	man_menus.php	0	10	0	u,s,l,d,a,ex		2	3	cat_usuarios	126000		50	nombre	0	60	0	0	300	u	2019-10-19 19:02:51-06	inicio	forapi
-13	Reingenieria		2019-10-12 14:53:07-06	inicio	2019-10-19 15:03:30-06	inicio	man_menus.php	0	10	0	s,i,a,l		2	2	tablas	126401		100	relname	0	0	0	0	300	u	2019-10-19 19:03:48-06	inicio	forapi
-9	Bienvenido		2019-10-12 14:53:07-06	inicio	2019-10-19 10:51:38-06	inicio		0	0	0	l,e,A		2	1	cat_usuarios	126000	usuario_alta is null	100		0	500	0	0	300	u	2019-10-19 19:04:41-06	inicio	forapi
-9	Bienvenido		2019-10-12 14:53:07-06	inicio	2019-10-19 19:04:41-06	inicio		0	0	0	l,e,A		2	2	cat_usuarios	126000	usuario_alta is null	100		0	500	0	0	300	u	2019-10-19 19:05:19-06	inicio	forapi
-9	Bienvenido		2019-10-12 14:53:07-06	inicio	2019-10-19 19:05:19-06	inicio		0	0	0	l,e,A		2	1	cat_usuarios	126000	usuario_alta is null	100		0	500	0	0	300	u	2019-10-19 19:06:09-06	inicio	forapi
-19	Registro Nuevo Usuario		2019-10-12 14:53:07-06	inicio	2019-10-19 15:13:37-06	inicio	man_menus.php	0	0	0	i,a		2	1	cat_usuarios	126000	usename is null	100	usename	0	0	0	0	300	u	2019-10-19 19:07:02-06	inicio	forapi
-19	Registro Nuevo Usuario		2019-10-12 14:53:07-06	inicio	2019-10-19 19:07:02-06	inicio	man_menus.php	0	0	0	i,a		2	2	cat_usuarios	126000	usename is null	100	usename	0	0	0	0	300	u	2019-10-19 19:07:54-06	inicio	forapi
-18	Autorizacion de registro		2019-10-12 14:53:07-06	inicio	2019-10-19 14:07:51-06	inicio	man_menus.php	0	10	0	s,u,l,a		2	3	cat_usuarios	126000	estatus=0	100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 19:17:47-06	inicio	forapi
-18	Autorizacion de registro		2019-10-12 14:53:07-06	inicio	2019-10-19 19:17:47-06	inicio	man_menus.php	0	10	0	s,u,l,a		2	2	cat_usuarios	126000	estatus=0	100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 19:18:18-06	inicio	forapi
-18	Autorizacion de registro		2019-10-12 14:53:07-06	inicio	2019-10-19 19:18:18-06	inicio	man_menus.php	0	10	0	s,u,l,a		2	3	cat_usuarios	126000	estatus=0	100	fecha_alta desc	0	0	0	0	300	u	2019-10-19 19:36:11-06	inicio	forapi
-31	Reingenieria Copia		2019-10-20 19:38:33-06	inicio	2019-10-20 19:38:33-06	inicio	man_menus.php	0	10	0	s,i,a,l		2	1	tablas	126401		100	relname	0	0	0	0	300	u	2019-10-20 19:39:50-06	inicio	forapi
-20	Campos de menus		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	man_menus.php	0	0	0	i,d,u,s,l,a,cc,f		2	1	menus_campos	126222		100	htmltable,orden	0	0	0	0	280	u	2019-10-20 19:41:22-06	inicio	forapi
-31	Reingenieria Excel		2019-10-20 19:38:33-06	inicio	2019-10-20 19:39:50-06	inicio	man_menus.php	0	10	0	s,i,a,l		2	1	tablas	126401		100	relname	0	0	0	0	300	u	2019-10-22 07:43:48-06	inicio	forapi
-31	Reingenieria Excel		2019-10-20 19:38:33-06	inicio	2019-10-22 07:43:48-06	inicio	man_menus.php	0	10	0	i,a,l		2	1	tablas	126401		100	relname	0	0	0	0	300	u	2019-10-22 07:56:19-06	inicio	forapi
-31	Reingenieria Excel		2019-10-20 19:38:33-06	inicio	2019-10-22 07:56:19-06	inicio	man_menus.php	0	10	0	a,l		2	1	tablas	126401		100	relname	0	0	0	0	300	u	2019-10-22 07:57:08-06	inicio	forapi
-16	Mtto a grupos Copia		2019-10-12 14:53:07-06	inicio	2019-10-19 11:13:46-06	inicio	man_menus.php	0	10	0	i,d,u,s,a,l		2	2	pg_authid	2842	rolcanlogin=false	100	rolname	0	0	0	0	300	u	2019-10-27 07:53:16-06	inicio	pg_catalog
-10	Administracion		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio		0	0	0	i,d,u,s		2	2		0		100		0	0	0	0	300	u	2019-10-27 07:57:17-06	inicio	forapi
-31	Reingenieria Excel		2019-10-20 19:38:33-06	inicio	2019-10-22 07:57:08-06	inicio	man_menus.php	0	10	0	a,l,s		2	1	tablas	126401		100	relname	0	0	0	0	300	u	2019-10-28 11:58:19-06	jc9	forapi
-33	menus_scripts	\N	2019-10-28 12:36:37-06	jc9	2019-10-28 12:36:37-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134721	\N	100	\N	0	0	0	0	300	d	2019-10-28 16:15:34-06	jc9	\N
-34	menus_scripts	\N	2019-10-28 12:37:57-06	jc9	2019-10-28 12:37:57-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134721	\N	100	\N	0	0	0	0	300	d	2019-10-28 16:15:39-06	jc9	\N
-35	menus_scripts	\N	2019-10-28 12:42:48-06	jc9	2019-10-28 12:42:48-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134721	\N	100	\N	0	0	0	0	300	d	2019-10-28 16:15:44-06	jc9	\N
-36	menus_scripts	\N	2019-10-28 12:45:45-06	jc9	2019-10-28 12:45:45-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134721	\N	100	\N	0	0	0	0	300	u	2019-10-28 16:26:37-06	jc9	forapi
-36	menus_scripts1	\N	2019-10-28 12:45:45-06	jc9	2019-10-28 16:26:37-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134721	\N	100	\N	0	0	0	0	300	u	2019-10-28 16:27:28-06	jc9	forapi
-36	Reingenieria desde scripts	\N	2019-10-28 12:45:45-06	jc9	2019-10-28 16:27:28-06	jc9	man_menus.php	\N	10	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134721	\N	100	\N	0	0	0	0	300	d	2019-10-28 16:32:08-06	jc9	\N
-37	menus_scripts	\N	2019-10-28 16:32:29-06	jc9	2019-10-28 16:32:29-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134721	\N	100	\N	0	0	0	0	300	d	2019-10-28 17:33:08-06	jc9	\N
-38	menus_scripts	\N	2019-10-28 17:33:52-06	jc9	2019-10-28 17:33:52-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134721	\N	100	\N	0	0	0	0	300	d	2019-10-28 17:44:58-06	jc9	\N
-39	menus_scripts	\N	2019-10-28 17:45:43-06	jc9	2019-10-28 17:45:43-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134721	\N	100	\N	0	0	0	0	300	u	2019-10-28 17:46:51-06	jc9	forapi
-39	menus_scripts	\N	2019-10-28 17:45:43-06	jc9	2019-10-28 17:46:51-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134721	\N	100	\N	0	0	0	0	300	d	2019-10-28 17:54:57-06	jc9	\N
-40	menus_scripts	\N	2019-10-28 17:55:26-06	jc9	2019-10-28 17:55:26-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134721	\N	100	\N	0	0	0	0	300	u	2019-10-28 17:56:13-06	jc9	forapi
-41	menus_scripts	\N	2019-10-28 18:12:26-06	jc9	2019-10-28 18:12:26-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134721	\N	100	\N	0	0	0	0	300	d	2019-10-28 18:13:45-06	jc9	\N
-40	menus_scripts	\N	2019-10-28 17:55:26-06	jc9	2019-10-28 17:56:13-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134721	\N	100	\N	0	0	0	0	300	d	2019-10-28 18:14:07-06	jc9	\N
-42	menus_scripts	\N	2019-10-28 18:14:33-06	jc9	2019-10-28 18:14:33-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134721	\N	100	\N	0	0	0	0	300	d	2019-10-28 18:34:32-06	jc9	\N
-43	menus_scripts	\N	2019-10-28 18:35:10-06	jc9	2019-10-28 18:35:10-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134721	\N	100	\N	0	0	0	0	300	d	2019-10-28 18:43:19-06	jc9	\N
-44	menus_scripts	\N	2019-10-28 18:40:59-06	jc9	2019-10-28 18:40:59-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134721	\N	100	\N	0	0	0	0	300	d	2019-10-28 18:44:07-06	jc9	\N
-45	menus_scripts	\N	2019-10-28 18:43:43-06	jc9	2019-10-28 18:43:43-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134721	\N	100	\N	0	0	0	0	300	d	2019-10-28 18:50:38-06	jc9	\N
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134741	\N	100	\N	0	0	0	0	300	u	2019-10-28 18:52:17-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 18:52:17-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134741	\N	100	\N	0	0	0	0	300	u	2019-10-28 18:52:48-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 18:52:48-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	1	menus_scripts	134741	\N	100	\N	0	0	0	0	300	u	2019-10-28 18:52:55-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 18:52:55-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134741	\N	100	\N	0	0	0	0	300	u	2019-10-28 18:53:34-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 18:53:34-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134741	\N	100	\N	0	0	0	0	300	u	2019-10-28 18:55:58-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 18:55:58-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 18:57:04-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 18:57:04-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 18:57:43-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 18:57:43-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	1	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 18:58:10-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 18:58:10-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 19:03:50-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 19:03:50-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	1	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 19:04:05-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 19:04:05-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 19:10:44-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 19:10:44-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	1	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 19:11:00-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 19:11:00-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 19:16:18-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 19:16:18-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	1	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 19:16:29-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 19:16:29-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 19:19:57-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 19:19:57-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	1	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 19:20:33-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 19:20:33-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 19:22:09-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 19:22:09-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	3	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 19:22:51-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 19:22:51-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 19:24:45-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 19:24:45-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	3	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 19:31:11-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 19:31:11-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 19:33:16-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 19:33:16-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	3	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 19:38:22-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 19:38:22-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	3	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 19:39:59-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 19:39:59-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	3	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 19:40:22-06	jc9	forapi
-30	Subvistas		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio		0	0	0	i,d,u,s,l,a,cc		2	2	menus_subvistas	126370		100	orden	0	0	0	0	300	u	2019-10-28 19:41:15-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 19:40:22-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 19:54:11-06	jc9	forapi
-46	menus_scripts	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 19:54:11-06	jc9	man_menus.php	\N	10	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-28 19:54:46-06	jc9	forapi
-13	Reingenieria		2019-10-12 14:53:07-06	inicio	2019-10-19 19:03:48-06	inicio	man_menus.php	0	10	0	s,i,a,l		2	1	tablas	126401		100	relname	0	0	0	0	300	u	2019-10-28 21:08:08-06	jc9	forapi
-47	juzgados	\N	2019-10-28 21:09:58-06	jc9	2019-10-28 21:09:58-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	juzgados	134768	\N	100	\N	0	0	0	0	300	u	2019-10-28 21:10:24-06	jc9	jc
-47	juzgados	\N	2019-10-28 21:09:58-06	jc9	2019-10-28 21:10:24-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	1	juzgados	134768	\N	100	\N	0	0	0	0	300	u	2019-10-28 21:10:30-06	jc9	jc
-47	juzgados	\N	2019-10-28 21:09:58-06	jc9	2019-10-28 21:10:30-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	juzgados	134768	\N	100	\N	0	0	0	0	300	u	2019-10-28 21:47:11-06	jc9	jc
-47	juzgados	\N	2019-10-28 21:09:58-06	jc9	2019-10-28 21:47:11-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	1	juzgados	134768	\N	100	\N	0	0	0	0	300	u	2019-10-28 21:48:34-06	jc9	jc
-47	juzgados	\N	2019-10-28 21:09:58-06	jc9	2019-10-28 21:48:34-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	juzgados	134768	\N	100	\N	0	0	0	0	300	u	2019-10-28 21:49:08-06	jc9	jc
-13	Reingenieria		2019-10-12 14:53:07-06	inicio	2019-10-28 21:08:08-06	jc9	man_menus.php	0	10	0	s,i,a,l		2	1	tablas	126401	strpos("_seq",relname)=0	100	relname	0	0	0	0	300	u	2019-10-28 22:20:44-06	jc9	forapi
-13	Reingenieria		2019-10-12 14:53:07-06	inicio	2019-10-28 22:20:44-06	jc9	man_menus.php	0	10	0	s,i,a,l		2	2	tablas	126401	strpos("_seq",relname)=0	100	relname	0	0	0	0	300	u	2019-10-29 05:34:48-06	jc9	forapi
-13	Reingenieria		2019-10-12 14:53:07-06	inicio	2019-10-29 05:34:48-06	jc9	man_menus.php	0	10	0	s,i,a,l		2	2	tablas	126401		100	relname	0	0	0	0	300	u	2019-10-29 05:35:23-06	jc9	forapi
-48	infracciones	\N	2019-10-29 05:35:51-06	jc9	2019-10-29 05:35:51-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	infracciones	134780	\N	100	\N	0	0	0	0	300	u	2019-10-29 05:36:40-06	jc9	jc
-48	infracciones	\N	2019-10-29 05:35:51-06	jc9	2019-10-29 05:36:40-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	1	infracciones	134780	\N	100	\N	0	0	0	0	300	u	2019-10-29 05:39:01-06	jc9	jc
-48	infracciones	\N	2019-10-29 05:35:51-06	jc9	2019-10-29 05:39:01-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	infracciones	134780	\N	100	\N	0	0	0	0	300	d	2019-10-29 05:42:44-06	jc9	\N
-50	juzgados	\N	2019-10-29 05:43:20-06	jc9	2019-10-29 05:43:20-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	juzgados	134768	\N	100	\N	0	0	0	0	300	d	2019-10-29 05:43:53-06	jc9	\N
-49	juzgados	\N	2019-10-29 05:43:15-06	jc9	2019-10-29 05:43:15-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	juzgados	134768	\N	100	\N	0	0	0	0	300	d	2019-10-29 05:44:07-06	jc9	\N
-51	infracciones	\N	2019-10-29 05:44:46-06	jc9	2019-10-29 05:44:46-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	infracciones	134780	\N	100	\N	0	0	0	0	300	d	2019-10-29 06:02:25-06	jc9	\N
-52	infracciones	\N	2019-10-29 06:02:52-06	jc9	2019-10-29 06:02:52-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	infracciones	134780	\N	100	\N	0	0	0	0	300	u	2019-10-29 06:04:53-06	jc9	jc
-53	infracciones	\N	2019-10-29 06:04:53-06	jc9	2019-10-29 06:04:53-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	infracciones	134780	\N	100	\N	0	0	0	0	300	u	2019-10-29 06:04:53-06	jc9	jc
-53	infracciones	\N	2019-10-29 06:04:53-06	jc9	2019-10-29 06:04:53-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	infracciones	134780	\N	100	\N	0	0	0	0	300	d	2019-10-29 06:05:28-06	jc9	\N
-52	infracciones	\N	2019-10-29 06:02:52-06	jc9	2019-10-29 06:04:53-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	infracciones	134780	\N	100	\N	0	0	0	0	300	d	2019-10-29 06:05:41-06	jc9	\N
-54	infracciones	\N	2019-10-29 06:06:47-06	jc9	2019-10-29 06:06:47-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	1	infracciones	134780	\N	100	\N	0	0	0	0	300	u	2019-10-29 06:06:47-06	jc9	jc
-54	infracciones	\N	2019-10-29 06:06:47-06	jc9	2019-10-29 06:06:47-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	infracciones	134780	\N	100	\N	0	0	0	0	300	d	2019-10-29 06:10:03-06	jc9	\N
-55	infracciones	\N	2019-10-29 06:10:22-06	jc9	2019-10-29 06:10:22-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	1	infracciones	134780	\N	100	\N	0	0	0	0	300	u	2019-10-29 06:10:22-06	jc9	jc
-55	infracciones	\N	2019-10-29 06:10:22-06	jc9	2019-10-29 06:10:22-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	infracciones	134780	\N	100	\N	0	0	0	0	300	d	2019-10-29 06:11:08-06	jc9	\N
-56	infracciones	\N	2019-10-29 06:11:22-06	jc9	2019-10-29 06:11:22-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	1	infracciones	134780	\N	100	\N	0	0	0	0	300	u	2019-10-29 06:11:22-06	jc9	jc
-56	infracciones	\N	2019-10-29 06:11:22-06	jc9	2019-10-29 06:11:22-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	infracciones	134780	\N	100	\N	0	0	0	0	300	d	2019-10-29 06:18:11-06	jc9	\N
-46	Importa desde script	\N	2019-10-28 18:51:03-06	jc9	2019-10-28 19:54:46-06	jc9	man_menus.php	\N	10	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134741	\N	100	\N	0	90	0	0	300	u	2019-10-29 06:20:30-06	jc9	forapi
-57	infracciones	\N	2019-10-29 07:04:41-06	jc9	2019-10-29 07:04:41-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	1	infracciones	134796	\N	100	\N	0	0	0	0	300	u	2019-10-29 07:04:41-06	jc9	jc
-57	infracciones	\N	2019-10-29 07:04:41-06	jc9	2019-10-29 07:04:41-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	infracciones	134796	\N	100	\N	0	0	0	0	300	d	2019-10-29 07:08:51-06	jc9	\N
-58	infracciones	\N	2019-10-29 07:09:14-06	jc9	2019-10-29 07:09:14-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	1	infracciones	134796	\N	100	\N	0	0	0	0	300	u	2019-10-29 07:09:14-06	jc9	jc
-58	infracciones	\N	2019-10-29 07:09:14-06	jc9	2019-10-29 07:09:14-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	infracciones	134796	\N	100	\N	0	0	0	0	300	d	2019-10-29 07:15:41-06	jc9	\N
-59	infracciones	\N	2019-10-29 07:19:43-06	jc9	2019-10-29 07:19:43-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	1	infracciones	134809	\N	100	\N	0	0	0	0	300	u	2019-10-29 07:19:43-06	jc9	jc
-59	infracciones	\N	2019-10-29 07:19:43-06	jc9	2019-10-29 07:19:43-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	infracciones	134809	\N	100	\N	0	0	0	0	300	u	2019-10-29 07:22:35-06	jc9	jc
-60	sanciones	\N	2019-10-29 07:40:21-06	jc9	2019-10-29 07:40:21-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	1	sanciones	134826	\N	100	\N	0	0	0	0	300	u	2019-10-29 07:40:21-06	jc9	jc
-60	sanciones	\N	2019-10-29 07:40:21-06	jc9	2019-10-29 07:40:21-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	sanciones	134826	\N	100	\N	0	0	0	0	300	u	2019-10-29 07:41:55-06	jc9	jc
-47	juzgados	\N	2019-10-28 21:09:58-06	jc9	2019-10-28 21:49:08-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	juzgados	134768	\N	100	\N	0	0	0	0	300	u	2019-10-29 08:41:37-06	jc9	jc
-47	juzgados	\N	2019-10-28 21:09:58-06	jc9	2019-10-29 08:41:37-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	juzgados	134768	\N	100	\N	0	0	0	0	300	u	2019-10-29 08:45:16-06	jc9	jc
-47	juzgados	\N	2019-10-28 21:09:58-06	jc9	2019-10-29 08:45:16-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	juzgados	134768	\N	100	\N	0	0	0	0	300	u	2019-10-29 08:46:48-06	jc9	jc
-47	juzgados	\N	2019-10-28 21:09:58-06	jc9	2019-10-29 08:46:48-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	juzgados	134768	\N	100	\N	0	0	0	0	300	u	2019-10-29 09:11:18-06	jc9	jc
-61	boletas	\N	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	1	boletas	134852	\N	100	\N	0	0	0	0	300	u	2019-10-29 13:27:15-06	jc9	jc
-12	Mtto a grupo de campos		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	man_menus.php	0	10	0	i,d,u,s,l,a		2	1	menus_htmltable	126283		100		0	0	0	0	300	u	2019-10-29 14:01:00-06	jc9	forapi
-62	menus_htmltable	\N	2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	1	menus_htmltable	134448	\N	100	\N	0	0	0	0	300	u	2019-10-29 14:01:00-06	jc9	forapi
-62	menus_htmltable	\N	2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_htmltable	134448	\N	100	\N	0	0	0	0	300	u	2019-10-29 14:02:36-06	jc9	forapi
-62	menus_htmltable	\N	2019-10-29 14:01:00-06	jc9	2019-10-29 14:02:36-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	menus_htmltable	134448	\N	100	\N	0	0	0	0	300	u	2019-10-29 14:03:03-06	jc9	forapi
-62	menus_htmltable	\N	2019-10-29 14:01:00-06	jc9	2019-10-29 14:03:03-06	jc9	man_menus.php	\N	10	\N	i,d,u,s,l,a	\N	2	2	menus_htmltable	134448	\N	100	\N	0	0	0	0	300	u	2019-10-29 14:04:13-06	jc9	forapi
-61	boletas	\N	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	boletas	134852	\N	100	\N	0	0	0	0	300	u	2019-10-30 09:10:35-06	jc9	jc
-61	boletas	\N	2019-10-29 13:27:15-06	jc9	2019-10-30 09:10:35-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	1	boletas	134852	\N	100	\N	0	0	0	0	300	u	2019-10-30 09:11:05-06	jc9	jc
-61	boletas	\N	2019-10-29 13:27:15-06	jc9	2019-10-30 09:11:05-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	boletas	134852	\N	100	\N	0	0	0	0	300	u	2019-10-30 09:11:43-06	jc9	jc
-61	boletas	\N	2019-10-29 13:27:15-06	jc9	2019-10-30 09:11:43-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	3	boletas	134852	\N	100	\N	0	0	0	0	300	u	2019-10-30 09:33:32-06	jc9	jc
-61	boletas	\N	2019-10-29 13:27:15-06	jc9	2019-10-30 09:33:32-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	boletas	134852	\N	100	\N	0	0	0	0	300	u	2019-10-30 09:57:56-06	jc9	jc
-61	boletas	\N	2019-10-29 13:27:15-06	jc9	2019-10-30 09:57:56-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	3	boletas	134852	\N	100	\N	0	0	0	0	300	u	2019-10-30 09:59:02-06	jc9	jc
-61	boletas	\N	2019-10-29 13:27:15-06	jc9	2019-10-30 09:59:02-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	boletas	134852	\N	100	\N	0	0	0	0	300	u	2019-10-30 09:59:34-06	jc9	jc
-61	boletas	\N	2019-10-29 13:27:15-06	jc9	2019-10-30 09:59:34-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	3	boletas	134852	\N	100	\N	0	0	0	0	300	u	2019-10-30 10:00:56-06	jc9	jc
-61	boletas	\N	2019-10-29 13:27:15-06	jc9	2019-10-30 10:00:56-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	boletas	134852	\N	100	\N	0	0	0	0	300	u	2019-10-30 16:12:46-06	jc9	jc
-32	Administracion Copia		2019-10-27 07:50:24-06	inicio	2019-10-27 07:50:24-06	inicio		0	0	0	i,d,u,s		2	2		0		100		0	0	0	0	300	u	2019-10-30 16:14:30-06	jc9	forapi
-59	infracciones	\N	2019-10-29 07:19:43-06	jc9	2019-10-29 07:22:35-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	infracciones	134809	\N	100	\N	0	0	0	0	300	u	2019-10-30 16:15:05-06	jc9	jc
-60	sanciones	\N	2019-10-29 07:40:21-06	jc9	2019-10-29 07:41:55-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	sanciones	134826	\N	100	\N	0	0	0	0	300	u	2019-10-30 16:15:25-06	jc9	jc
-47	juzgados	\N	2019-10-28 21:09:58-06	jc9	2019-10-29 09:11:18-06	jc9	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	juzgados	134768	\N	100	\N	0	0	0	0	300	u	2019-10-30 16:15:56-06	jc9	jc
-61	boletas	\N	2019-10-29 13:27:15-06	jc9	2019-10-30 16:12:46-06	jc9	man_menus.php	\N	32	\N	i,d,u,s,l,a	\N	2	2	boletas	134852	\N	100	\N	0	0	0	0	300	u	2019-10-30 16:21:40-06	jc9	jc
-16	Mtto a grupos		2019-10-12 14:53:07-06	inicio	2019-10-27 07:53:16-06	inicio	man_menus.php	0	10	0	i,d,u,s,a,l		2	2	pg_authid	2842	rolcanlogin=false	100	rolname	0	0	0	0	300	u	2019-10-30 16:30:20-06	jc9	pg_catalog
-17	Mtto a usuarios		2019-10-12 14:53:07-06	inicio	2019-10-19 19:02:51-06	inicio	man_menus.php	0	10	0	u,s,l,d,a,ex		2	2	cat_usuarios	126000		50	nombre	0	60	0	0	300	u	2019-10-31 11:27:51-06	jc9	forapi
-17	Mtto a usuarios		2019-10-12 14:53:07-06	inicio	2019-10-31 11:27:51-06	jc9	man_menus.php	0	10	0	u,s,l,d,a,ex		2	1	cat_usuarios	126000		50	nombre	0	60	0	0	300	u	2019-10-31 11:28:59-06	jc9	forapi
+16	Mtto a grupos		2019-10-12 14:53:07-06	inicio	2019-10-30 16:30:20-06	jc9	man_menus.php	0	10	0	i,d,u,s,a,l		2	1	pg_authid	2842	rolcanlogin=false	100	rolname	0	0	0	0	300	d	2019-10-31 12:53:33-06	jc9	\N
+59	infracciones	\N	2019-10-29 07:19:43-06	jc9	2019-10-30 16:15:05-06	jc9	man_menus.php	\N	32	\N	i,d,u,s,l,a	\N	2	2	infracciones	134809	\N	100	\N	0	0	0	0	300	d	2019-10-31 12:53:33-06	jc9	\N
+60	sanciones	\N	2019-10-29 07:40:21-06	jc9	2019-10-30 16:15:25-06	jc9	man_menus.php	\N	32	\N	i,d,u,s,l,a	\N	2	2	sanciones	134826	\N	100	\N	0	0	0	0	300	d	2019-10-31 12:53:33-06	jc9	\N
+47	juzgados	\N	2019-10-28 21:09:58-06	jc9	2019-10-30 16:15:56-06	jc9	man_menus.php	\N	32	\N	i,d,u,s,l,a	\N	2	2	juzgados	134768	\N	100	\N	0	0	0	0	300	d	2019-10-31 12:53:33-06	jc9	\N
+61	boletas	\N	2019-10-29 13:27:15-06	jc9	2019-10-30 16:21:40-06	jc9	man_menus.php	\N	0	\N	i,d,u,s,l,a	\N	2	2	boletas	134852	\N	100	\N	0	0	0	0	300	d	2019-10-31 12:53:33-06	jc9	\N
 \.
 
 
@@ -3247,126 +3078,13 @@ COPY his_menus (idmenu, descripcion, objeto, fecha_alta, usuario_alta, fecha_mod
 --
 
 COPY his_menus_pg_group (idcambio, idmenu, grosysid, fecha_alta, usuario_alta, cve_movto) FROM stdin;
-1	11	\N	2019-10-12 14:53:07-06	inicio	a
-2	15	\N	2019-10-12 14:53:07-06	inicio	a
-3	18	\N	2019-10-12 14:53:07-06	inicio	a
-4	16	\N	2019-10-12 14:53:07-06	inicio	a
-5	15	\N	2019-10-12 14:53:07-06	inicio	a
-6	21	\N	2019-10-12 14:53:07-06	inicio	a
-7	10	\N	2019-10-12 14:53:07-06	inicio	a
-8	14	\N	2019-10-12 14:53:07-06	inicio	a
-9	16	\N	2019-10-12 14:53:07-06	inicio	a
-10	19	\N	2019-10-12 14:53:07-06	inicio	a
-11	25	\N	2019-10-12 14:53:07-06	inicio	a
-12	13	\N	2019-10-12 14:53:07-06	inicio	a
-13	2	\N	2019-10-12 14:53:07-06	inicio	a
-14	8	\N	2019-10-12 14:53:07-06	inicio	a
-15	17	\N	2019-10-12 14:53:07-06	inicio	a
-16	12	\N	2019-10-12 14:53:07-06	inicio	a
-17	4	\N	2019-10-12 14:53:07-06	inicio	a
-18	23	\N	2019-10-12 14:53:07-06	inicio	a
-19	14	\N	2019-10-12 14:53:07-06	inicio	a
-20	24	\N	2019-10-12 14:53:07-06	inicio	a
-21	18	\N	2019-10-12 14:53:07-06	inicio	a
-22	8	\N	2019-10-12 14:53:07-06	inicio	a
-23	17	\N	2019-10-12 14:53:07-06	inicio	a
-24	10	\N	2019-10-12 14:53:07-06	inicio	a
-25	22	\N	2019-10-12 14:53:07-06	inicio	a
-26	9	\N	2019-10-12 14:53:07-06	inicio	a
-27	13	\N	2019-10-12 14:53:07-06	inicio	a
-28	22	\N	2019-10-12 15:04:31-06	inicio	b
-29	31	\N	2019-10-20 19:38:33-06	inicio	a
-30	31	\N	2019-10-20 19:38:33-06	inicio	a
-31	32	\N	2019-10-27 07:50:24-06	inicio	a
-32	32	\N	2019-10-27 07:50:24-06	inicio	a
-33	32	\N	2019-10-27 07:52:09-06	inicio	b
-34	8	\N	2019-10-27 15:39:33-06	inicio	a
-35	11	\N	2019-10-27 17:02:44-06	jc9	a
-36	15	\N	2019-10-27 17:02:44-06	jc9	a
-37	18	\N	2019-10-27 17:02:44-06	jc9	a
-38	16	\N	2019-10-27 17:02:44-06	jc9	a
-39	15	\N	2019-10-27 17:02:44-06	jc9	a
-40	21	\N	2019-10-27 17:02:44-06	jc9	a
-41	10	\N	2019-10-27 17:02:44-06	jc9	a
-42	14	\N	2019-10-27 17:02:44-06	jc9	a
-43	16	\N	2019-10-27 17:02:44-06	jc9	a
-44	25	\N	2019-10-27 17:02:44-06	jc9	a
-45	13	\N	2019-10-27 17:02:44-06	jc9	a
-46	8	\N	2019-10-27 17:02:44-06	jc9	a
-47	17	\N	2019-10-27 17:02:44-06	jc9	a
-48	12	\N	2019-10-27 17:02:44-06	jc9	a
-49	4	\N	2019-10-27 17:02:44-06	jc9	a
-50	23	\N	2019-10-27 17:02:44-06	jc9	a
-51	14	\N	2019-10-27 17:02:44-06	jc9	a
-52	24	\N	2019-10-27 17:02:44-06	jc9	a
-53	18	\N	2019-10-27 17:02:44-06	jc9	a
-54	8	\N	2019-10-27 17:02:44-06	jc9	a
-55	17	\N	2019-10-27 17:02:44-06	jc9	a
-56	10	\N	2019-10-27 17:02:44-06	jc9	a
-57	13	\N	2019-10-27 17:02:44-06	jc9	a
-58	31	\N	2019-10-27 17:02:44-06	jc9	a
-59	31	\N	2019-10-27 17:02:44-06	jc9	a
-60	32	\N	2019-10-27 17:02:44-06	jc9	a
-61	19	\N	2019-10-27 17:02:44-06	jc9	a
-62	2	\N	2019-10-27 17:02:44-06	jc9	a
-63	9	\N	2019-10-27 17:02:44-06	jc9	a
-64	8	\N	2019-10-27 17:02:44-06	jc9	a
-65	33	23339	2019-10-28 12:36:37-06	jc9	a
-66	34	23339	2019-10-28 12:37:57-06	jc9	a
-67	35	23339	2019-10-28 12:42:48-06	jc9	a
-68	36	23339	2019-10-28 12:45:45-06	jc9	a
-69	33	23339	2019-10-28 16:15:34-06	jc9	b
-70	34	23339	2019-10-28 16:15:39-06	jc9	b
-71	35	23339	2019-10-28 16:15:44-06	jc9	b
-72	36	23339	2019-10-28 16:32:08-06	jc9	b
-73	37	\N	2019-10-28 16:32:29-06	jc9	a
-74	37	\N	2019-10-28 17:33:08-06	jc9	b
-75	38	\N	2019-10-28 17:33:52-06	jc9	a
-76	38	\N	2019-10-28 17:44:58-06	jc9	b
-77	39	\N	2019-10-28 17:45:43-06	jc9	a
-78	39	\N	2019-10-28 17:54:57-06	jc9	b
-79	40	\N	2019-10-28 17:55:26-06	jc9	a
-80	41	\N	2019-10-28 18:12:26-06	jc9	a
-81	41	\N	2019-10-28 18:13:45-06	jc9	b
-82	40	\N	2019-10-28 18:14:07-06	jc9	b
-83	42	\N	2019-10-28 18:14:33-06	jc9	a
-84	42	\N	2019-10-28 18:34:32-06	jc9	b
-85	43	\N	2019-10-28 18:35:10-06	jc9	a
-86	44	\N	2019-10-28 18:40:59-06	jc9	a
-87	43	\N	2019-10-28 18:43:19-06	jc9	b
-88	45	\N	2019-10-28 18:43:43-06	jc9	a
-89	44	\N	2019-10-28 18:44:07-06	jc9	b
-90	45	\N	2019-10-28 18:50:38-06	jc9	b
-91	46	\N	2019-10-28 18:51:03-06	jc9	a
-92	47	\N	2019-10-28 21:09:58-06	jc9	a
-93	48	\N	2019-10-29 05:35:51-06	jc9	a
-94	48	\N	2019-10-29 05:42:44-06	jc9	b
-95	49	\N	2019-10-29 05:43:15-06	jc9	a
-96	50	\N	2019-10-29 05:43:20-06	jc9	a
-97	50	\N	2019-10-29 05:43:53-06	jc9	b
-98	49	\N	2019-10-29 05:44:07-06	jc9	b
-99	51	\N	2019-10-29 05:44:46-06	jc9	a
-100	51	\N	2019-10-29 06:02:25-06	jc9	b
-101	52	\N	2019-10-29 06:02:52-06	jc9	a
-102	53	\N	2019-10-29 06:04:53-06	jc9	a
-103	53	\N	2019-10-29 06:05:28-06	jc9	b
-104	52	\N	2019-10-29 06:05:41-06	jc9	b
-105	54	\N	2019-10-29 06:06:47-06	jc9	a
-106	54	\N	2019-10-29 06:10:03-06	jc9	b
-107	55	\N	2019-10-29 06:10:22-06	jc9	a
-108	55	\N	2019-10-29 06:11:08-06	jc9	b
-109	56	\N	2019-10-29 06:11:22-06	jc9	a
-110	56	\N	2019-10-29 06:18:11-06	jc9	b
-111	57	\N	2019-10-29 07:04:41-06	jc9	a
-112	57	\N	2019-10-29 07:08:51-06	jc9	b
-113	58	\N	2019-10-29 07:09:14-06	jc9	a
-114	58	\N	2019-10-29 07:15:41-06	jc9	b
-115	59	\N	2019-10-29 07:19:43-06	jc9	a
-116	60	\N	2019-10-29 07:40:21-06	jc9	a
-117	61	\N	2019-10-29 13:27:15-06	jc9	a
-118	62	\N	2019-10-29 14:01:00-06	jc9	a
-119	8	\N	2019-10-30 16:48:47-06	jc9	a
-120	61	\N	2019-10-30 16:48:59-06	jc9	a
+121	16	\N	2019-10-31 12:53:33-06	jc9	b
+122	16	\N	2019-10-31 12:53:33-06	jc9	b
+123	59	\N	2019-10-31 12:53:33-06	jc9	b
+124	60	\N	2019-10-31 12:53:33-06	jc9	b
+125	47	\N	2019-10-31 12:53:33-06	jc9	b
+126	61	\N	2019-10-31 12:53:33-06	jc9	b
+127	61	\N	2019-10-31 12:53:33-06	jc9	b
 \.
 
 
@@ -3374,7 +3092,7 @@ COPY his_menus_pg_group (idcambio, idmenu, grosysid, fecha_alta, usuario_alta, c
 -- Name: his_menus_pg_group_idcambio_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('his_menus_pg_group_idcambio_seq', 120, true);
+SELECT pg_catalog.setval('his_menus_pg_group_idcambio_seq', 127, true);
 
 
 --
@@ -3389,331 +3107,13 @@ SELECT pg_catalog.setval('his_menus_pg_group_seq', 1, false);
 --
 
 COPY his_menus_pg_tables (idcambio, idmenu, tablename, tselect, tinsert, tupdate, tdelete, tall, cve_movto, fecha_alta, usuario_modifico, tgrant) FROM stdin;
-1	1	menus_pg_tables	1	1	1	1	0	a	2019-10-12 14:53:07-06	inicio	 
-2	2	cat_usuarios	0	0	1	0	0	a	2019-10-12 14:53:07-06	inicio	 
-3	3	cat_usuarios_pg_group	1	1	1	1	0	a	2019-10-12 14:53:07-06	inicio	 
-4	5	his_cat_usuarios	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-5	7	menus_eventos	1	1	1	1	0	a	2019-10-12 14:53:07-06	inicio	 
-6	12	menus_htmltable	1	1	1	1	0	a	2019-10-12 14:53:07-06	inicio	 
-7	13	tablas	1	1	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-8	14	menus	1	1	1	1	0	a	2019-10-12 14:53:07-06	inicio	 
-9	16	pg_authid	1	1	1	1	0	a	2019-10-12 14:53:07-06	inicio	 
-10	20	menus_campos	1	1	1	1	0	a	2019-10-12 14:53:07-06	inicio	 
-11	21	menus_pg_group	1	1	1	1	0	a	2019-10-12 14:53:07-06	inicio	 
-12	22	menus_log	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-13	27	menus_movtos	1	1	1	1	0	a	2019-10-12 14:53:07-06	inicio	 
-14	28	menus_seguimiento	1	1	1	1	0	a	2019-10-12 14:53:07-06	inicio	 
-15	29	menus_tiempos	1	1	1	1	0	a	2019-10-12 14:53:07-06	inicio	 
-16	30	menus_subvistas	1	1	1	1	0	a	2019-10-12 14:53:07-06	inicio	 
-17	5	his_cat_usuarios_idcambio_seq	1	0	1	0	0	a	2019-10-12 14:53:07-06	inicio	 
-18	22	menus_log_idlog_seq	1	0	1	0	0	a	2019-10-12 14:53:07-06	inicio	 
-19	7	menus_eventos_idmenus_eventos_seq	1	0	1	0	0	a	2019-10-12 14:53:07-06	inicio	 
-20	30	menus_subvistas_idmenus_subvistas_seq	1	0	1	0	0	a	2019-10-12 14:53:07-06	inicio	 
-21	26	menus_log_idlog_seq	1	0	1	0	0	a	2019-10-12 14:53:07-06	inicio	 
-22	12	menus_htmltable_idhtmltable_seq	1	0	1	0	0	a	2019-10-12 14:53:07-06	inicio	 
-23	28	menus_seguimiento_idseguimietno_seq	1	0	1	0	0	a	2019-10-12 14:53:07-06	inicio	 
-24	8	his_cambios_pwd	1	1	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-25	14	pg_authid	1	1	1	1	0	a	2019-10-12 14:53:07-06	inicio	 
-26	8	menus_presentacion	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-27	8	menus_htmltable_idhtmltable_seq	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-29	18	his_cat_usuarios_pg_group	1	1	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-30	3	pg_group	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-32	11	cat_usuarios	1	1	1	1	1	a	2019-10-12 14:53:07-06	inicio	 
-33	20	menus_htmltable_idhtmltable_seq	1	0	1	0	0	a	2019-10-12 14:53:07-06	inicio	 
-34	14	menus_subvistas	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-35	22	menus	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-36	8	pg_shadow	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-37	8	menus_htmltable	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-39	14	his_menus	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-40	11	his_cat_usuarios_pg_group_idcambio_seq	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-42	17	his_cat_usuarios_pg_group_idcambio_seq	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-43	11	cat_preguntas	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-44	8	menus_pg_group	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-45	17	cat_usuarios	1	0	1	1	1	a	2019-10-12 14:53:07-06	inicio	 
-46	20	tablas	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-47	26	menus_mensajes	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-49	8	menus	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-50	8	menus_campos_eventos	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-51	26	menus	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-53	1	pg_namespace	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-55	14	menus_eventos_idmenus_eventos_seq	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-57	17	pg_shadow	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-58	19	cat_usuarios	0	1	0	0	1	a	2019-10-12 14:53:07-06	inicio	 
-59	14	eventos	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-60	1	tablas	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-61	11	pg_authid	0	0	0	0	1	a	2019-10-12 14:53:07-06	inicio	 
-62	17	his_cat_usuarios_seq	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-63	8	cat_bitacora	1	1	1	 	 	a	2019-10-12 14:53:07-06	inicio	 
-64	18	menus_pg_tables	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-65	4	cat_preguntas	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-67	18	cat_asuntos	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-68	14	menus_campos_eventos_icv_seq	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-69	17	grupos_filas	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-71	22	menus_mensajes	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-72	11	estados_usuarios	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-73	8	cat_preguntas	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-74	8	menus_movtos	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-75	14	menus_presentacion	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-76	18	his_cat_usuarios_pg_group_idcambio_seq	1	1	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-77	8	menus_seguimiento_idseguimietno_seq	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-78	11	cat_usuarios_pg_group	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-79	8	cat_usuarios_pg_group	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-80	11	his_cat_usuarios	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-81	14	menus_idmenu_seq	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-82	20	menus_campos_idcampo_seq	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-83	8	menus_seguimiento	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-85	14	pg_namespace	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-86	11	pg_shadow	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-87	11	his_cat_usuarios_seq	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-88	16	menus_pg_group	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-89	19	cat_preguntas	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-90	7	eventos	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-91	4	cat_usuarios	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-92	4	his_cat_usuarios	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-94	14	tcases	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-95	17	cat_preguntas	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-96	18	cat_asuntos_idregcambio_seq	1	0	1	0	0	a	2019-10-12 14:53:07-06	inicio	 
-97	20	campos	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-98	8	cat_bitacora_idbitacora_seq	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-99	8	campos	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-100	20	menus	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-101	20	menus_htmltable	1	1	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-102	19	cat_preguntas_seq	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-103	14	tablas	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-104	19	his_cat_usuarios	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-105	4	his_cat_usuarios_seq	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-106	8	tablas	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-107	4	cat_preguntas_seq	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-109	14	menus_campos_eventos	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-110	21	his_menus_pg_group	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-111	14	menus_movtos	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-112	17	estados_usuarios	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-114	21	his_menus_pg_group_seq	1	 	1	 	1	a	2019-10-12 14:53:07-06	inicio	 
-115	17	pg_authid	0	0	0	1	1	a	2019-10-12 14:53:07-06	inicio	 
-116	8	menus_campos	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-118	8	menus_log	 	1	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-119	14	menus_campos_idcampo_seq	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-120	14	menus_campos	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-121	8	menus_log_idlog_seq	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-122	20	tcases	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-123	19	his_cat_usuarios_seq	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-124	18	cat_asuntos_id_cveasunto_seq	1	0	1	0	0	a	2019-10-12 14:53:07-06	inicio	 
-125	14	campos	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-126	20	pg_namespace	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-127	14	menus_eventos	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-128	21	menus_pg_group_orden_seq	1	0	1	0	0	a	2019-10-12 14:53:07-06	inicio	 
-129	26	menus_log	1	0	0	0	 	a	2019-10-12 14:53:07-06	inicio	 
-130	8	cat_usuarios	1	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-131	18	cat_preguntas	1	0	0	0	0	a	2019-10-12 14:53:07-06	inicio	 
-132	8	menus_subvistas	1	 	1	 	 	a	2019-10-12 14:53:07-06	inicio	 
-134	17	his_cat_usuarios	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-135	8	menus_eventos	1	 	 	 	 	a	2019-10-12 14:53:07-06	inicio	 
-136	17	cat_usuarios_pg_group	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-137	1	his_menus_pg_tables	 	 	 	 	1	a	2019-10-12 14:53:07-06	inicio	 
-138	18	cat_asuntos	1	0	0	0	0	b	2019-10-12 14:53:07-06	inicio	 
-139	17	grupos_filas	1	0	0	0	0	b	2019-10-12 14:53:07-06	inicio	 
-140	18	cat_asuntos_idregcambio_seq	1	0	1	0	0	b	2019-10-12 14:53:07-06	inicio	 
-141	18	cat_asuntos_id_cveasunto_seq	1	0	1	0	0	b	2019-10-12 14:53:07-06	inicio	 
-142	22	menus_log	1	0	0	0	0	b	2019-10-12 15:04:31-06	inicio	 
-143	22	menus_log_idlog_seq	1	0	1	0	0	b	2019-10-12 15:04:31-06	inicio	 
-144	22	menus	1	0	0	0	0	b	2019-10-12 15:04:31-06	inicio	 
-145	22	menus_mensajes	1	0	0	0	0	b	2019-10-12 15:04:31-06	inicio	 
-146	17	cat_usuarios	1	0	1	1	1	c	2019-10-19 08:34:03-06	inicio	 
-147	19	cat_preguntas_seq	1	 	 	 	 	c	2019-10-27 15:26:35-06	inicio	 
-148	4	cat_preguntas_seq	1	 	 	 	 	c	2019-10-27 15:26:35-06	inicio	 
-149	18	his_cat_usuarios_pg_group_idcambio_seq	1	0	1	 	 	c	2019-10-27 16:56:53-06	inicio	 
-150	1	menus_pg_tables	1	1	1	1	0	a	2019-10-27 17:02:44-06	jc9	 
-151	2	cat_usuarios	0	0	1	0	0	a	2019-10-27 17:02:44-06	jc9	 
-152	3	cat_usuarios_pg_group	1	1	1	1	0	a	2019-10-27 17:02:44-06	jc9	 
-153	5	his_cat_usuarios	1	0	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-154	7	menus_eventos	1	1	1	1	0	a	2019-10-27 17:02:44-06	jc9	 
-155	12	menus_htmltable	1	1	1	1	0	a	2019-10-27 17:02:44-06	jc9	 
-156	13	tablas	1	1	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-157	14	menus	1	1	1	1	0	a	2019-10-27 17:02:44-06	jc9	 
-158	16	pg_authid	1	1	1	1	0	a	2019-10-27 17:02:44-06	jc9	 
-159	20	menus_campos	1	1	1	1	0	a	2019-10-27 17:02:44-06	jc9	 
-160	21	menus_pg_group	1	1	1	1	0	a	2019-10-27 17:02:44-06	jc9	 
-161	27	menus_movtos	1	1	1	1	0	a	2019-10-27 17:02:44-06	jc9	 
-162	28	menus_seguimiento	1	1	1	1	0	a	2019-10-27 17:02:44-06	jc9	 
-163	29	menus_tiempos	1	1	1	1	0	a	2019-10-27 17:02:44-06	jc9	 
-164	30	menus_subvistas	1	1	1	1	0	a	2019-10-27 17:02:44-06	jc9	 
-165	5	his_cat_usuarios_idcambio_seq	1	0	1	0	0	a	2019-10-27 17:02:44-06	jc9	 
-166	7	menus_eventos_idmenus_eventos_seq	1	0	1	0	0	a	2019-10-27 17:02:44-06	jc9	 
-167	30	menus_subvistas_idmenus_subvistas_seq	1	0	1	0	0	a	2019-10-27 17:02:44-06	jc9	 
-168	26	menus_log_idlog_seq	1	0	1	0	0	a	2019-10-27 17:02:44-06	jc9	 
-169	12	menus_htmltable_idhtmltable_seq	1	0	1	0	0	a	2019-10-27 17:02:44-06	jc9	 
-170	28	menus_seguimiento_idseguimietno_seq	1	0	1	0	0	a	2019-10-27 17:02:44-06	jc9	 
-171	8	his_cambios_pwd	1	1	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-172	14	pg_authid	1	1	1	1	0	a	2019-10-27 17:02:44-06	jc9	 
-173	8	menus_presentacion	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-174	8	menus_htmltable_idhtmltable_seq	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-175	18	his_cat_usuarios_pg_group	1	1	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-176	3	pg_group	1	0	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-177	11	cat_usuarios	1	1	1	1	1	a	2019-10-27 17:02:44-06	jc9	 
-178	20	menus_htmltable_idhtmltable_seq	1	0	1	0	0	a	2019-10-27 17:02:44-06	jc9	 
-179	14	menus_subvistas	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-180	8	pg_shadow	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-181	8	menus_htmltable	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-182	14	his_menus	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-183	11	his_cat_usuarios_pg_group_idcambio_seq	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-184	17	his_cat_usuarios_pg_group_idcambio_seq	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-185	11	cat_preguntas	1	0	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-186	8	menus_pg_group	1	0	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-187	20	tablas	1	0	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-188	26	menus_mensajes	1	0	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-189	8	menus	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-190	8	menus_campos_eventos	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-191	26	menus	1	0	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-192	1	pg_namespace	1	0	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-193	14	menus_eventos_idmenus_eventos_seq	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-194	17	pg_shadow	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-195	19	cat_usuarios	0	1	0	0	1	a	2019-10-27 17:02:44-06	jc9	 
-196	14	eventos	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-197	1	tablas	1	0	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-198	11	pg_authid	0	0	0	0	1	a	2019-10-27 17:02:44-06	jc9	 
-199	17	his_cat_usuarios_seq	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-200	8	cat_bitacora	1	1	1	 	 	a	2019-10-27 17:02:44-06	jc9	 
-201	18	menus_pg_tables	1	0	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-202	4	cat_preguntas	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-203	14	menus_campos_eventos_icv_seq	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-204	11	estados_usuarios	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-205	8	cat_preguntas	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-206	8	menus_movtos	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-207	14	menus_presentacion	1	0	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-208	8	menus_seguimiento_idseguimietno_seq	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-209	11	cat_usuarios_pg_group	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-210	8	cat_usuarios_pg_group	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-211	11	his_cat_usuarios	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-212	17	cat_usuarios	1	0	1	1	1	a	2019-10-27 17:02:44-06	jc9	 
-213	18	his_cat_usuarios_pg_group_idcambio_seq	1	0	1	 	 	a	2019-10-27 17:02:44-06	jc9	 
-214	14	menus_idmenu_seq	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-215	20	menus_campos_idcampo_seq	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-216	8	menus_seguimiento	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-217	14	pg_namespace	1	0	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-218	11	pg_shadow	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-219	11	his_cat_usuarios_seq	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-220	16	menus_pg_group	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-221	19	cat_preguntas	1	0	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-222	7	eventos	1	0	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-223	4	cat_usuarios	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-224	4	his_cat_usuarios	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-225	14	tcases	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-226	17	cat_preguntas	1	0	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-227	20	campos	1	0	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-228	8	cat_bitacora_idbitacora_seq	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-229	8	campos	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-230	20	menus	1	0	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-231	20	menus_htmltable	1	1	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-232	14	tablas	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-233	19	his_cat_usuarios	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-234	4	his_cat_usuarios_seq	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-235	8	tablas	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-236	14	menus_campos_eventos	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-237	21	his_menus_pg_group	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-238	14	menus_movtos	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-239	17	estados_usuarios	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-240	21	his_menus_pg_group_seq	1	 	1	 	1	a	2019-10-27 17:02:44-06	jc9	 
-241	17	pg_authid	0	0	0	1	1	a	2019-10-27 17:02:44-06	jc9	 
-242	8	menus_campos	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-243	8	menus_log	 	1	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-244	14	menus_campos_idcampo_seq	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-245	14	menus_campos	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-246	19	cat_preguntas_seq	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-247	4	cat_preguntas_seq	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-248	8	menus_log_idlog_seq	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-249	20	tcases	1	0	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-250	19	his_cat_usuarios_seq	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-251	14	campos	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-252	20	pg_namespace	1	0	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-253	14	menus_eventos	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-254	21	menus_pg_group_orden_seq	1	0	1	0	0	a	2019-10-27 17:02:44-06	jc9	 
-255	26	menus_log	1	0	0	0	 	a	2019-10-27 17:02:44-06	jc9	 
-256	8	cat_usuarios	1	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-257	18	cat_preguntas	1	0	0	0	0	a	2019-10-27 17:02:44-06	jc9	 
-258	8	menus_subvistas	1	 	1	 	 	a	2019-10-27 17:02:44-06	jc9	 
-259	17	his_cat_usuarios	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-260	8	menus_eventos	1	 	 	 	 	a	2019-10-27 17:02:44-06	jc9	 
-261	17	cat_usuarios_pg_group	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-262	1	his_menus_pg_tables	 	 	 	 	1	a	2019-10-27 17:02:44-06	jc9	 
-263	33	menus_scripts	1	1	1	1	0	a	2019-10-28 12:36:37-06	jc9	 
-264	33	menus_scripts_idscript_seq	1	0	1	0	0	a	2019-10-28 12:36:37-06	jc9	 
-265	34	menus_scripts_idscript_seq	1	0	1	0	0	a	2019-10-28 12:37:57-06	jc9	 
-266	35	menus_scripts_idscript_seq	1	0	1	0	0	a	2019-10-28 12:42:48-06	jc9	 
-267	36	menus_scripts_idscript_seq	1	0	1	0	0	a	2019-10-28 12:45:45-06	jc9	 
-268	33	menus_scripts	1	1	1	1	0	b	2019-10-28 16:15:34-06	jc9	 
-269	33	menus_scripts_idscript_seq	1	0	1	0	0	b	2019-10-28 16:15:34-06	jc9	 
-270	34	menus_scripts_idscript_seq	1	0	1	0	0	b	2019-10-28 16:15:39-06	jc9	 
-271	35	menus_scripts_idscript_seq	1	0	1	0	0	b	2019-10-28 16:15:44-06	jc9	 
-272	36	menus_scripts_idscript_seq	1	0	1	0	0	b	2019-10-28 16:32:08-06	jc9	 
-273	37	menus_scripts	1	1	1	1	0	a	2019-10-28 16:32:29-06	jc9	 
-274	37	menus_scripts_idscript_seq	1	0	1	0	0	a	2019-10-28 16:32:29-06	jc9	 
-275	37	menus_scripts	1	1	1	1	0	b	2019-10-28 17:33:08-06	jc9	 
-276	37	menus_scripts_idscript_seq	1	0	1	0	0	b	2019-10-28 17:33:08-06	jc9	 
-277	38	menus_scripts	1	1	1	1	0	a	2019-10-28 17:33:52-06	jc9	 
-278	38	menus_scripts_idscript_seq	1	0	1	0	0	a	2019-10-28 17:33:52-06	jc9	 
-279	38	menus_scripts	1	1	1	1	0	b	2019-10-28 17:44:58-06	jc9	 
-280	38	menus_scripts_idscript_seq	1	0	1	0	0	b	2019-10-28 17:44:58-06	jc9	 
-281	39	menus_scripts	1	1	1	1	0	a	2019-10-28 17:45:43-06	jc9	 
-282	39	menus_scripts_idscript_seq	1	0	1	0	0	a	2019-10-28 17:45:43-06	jc9	 
-283	39	menus_scripts	1	1	1	1	0	b	2019-10-28 17:54:57-06	jc9	 
-284	39	menus_scripts_idscript_seq	1	0	1	0	0	b	2019-10-28 17:54:57-06	jc9	 
-285	40	menus_scripts	1	1	1	1	0	a	2019-10-28 17:55:26-06	jc9	 
-286	40	menus_scripts_idscript_seq	1	0	1	0	0	a	2019-10-28 17:55:26-06	jc9	 
-287	41	menus_scripts_idscript_seq	1	0	1	0	0	a	2019-10-28 18:12:26-06	jc9	 
-288	41	menus_scripts_idscript_seq	1	0	1	0	0	b	2019-10-28 18:13:45-06	jc9	 
-289	40	menus_scripts	1	1	1	1	0	b	2019-10-28 18:14:07-06	jc9	 
-290	40	menus_scripts_idscript_seq	1	0	1	0	0	b	2019-10-28 18:14:07-06	jc9	 
-291	42	menus_scripts	1	1	1	1	0	a	2019-10-28 18:14:33-06	jc9	 
-292	42	menus_scripts_idscript_seq	1	0	1	0	0	a	2019-10-28 18:14:33-06	jc9	 
-293	42	menus_scripts	1	1	1	1	0	b	2019-10-28 18:34:32-06	jc9	 
-294	42	menus_scripts_idscript_seq	1	0	1	0	0	b	2019-10-28 18:34:32-06	jc9	 
-295	43	menus_scripts	1	1	1	1	0	a	2019-10-28 18:35:10-06	jc9	 
-296	43	menus_scripts_idscript_seq	1	0	1	0	0	a	2019-10-28 18:35:10-06	jc9	 
-297	44	menus_scripts_idscript_seq	1	0	1	0	0	a	2019-10-28 18:40:59-06	jc9	 
-298	43	menus_scripts	1	1	1	1	0	b	2019-10-28 18:43:19-06	jc9	 
-299	43	menus_scripts_idscript_seq	1	0	1	0	0	b	2019-10-28 18:43:19-06	jc9	 
-300	45	menus_scripts	1	1	1	1	0	a	2019-10-28 18:43:43-06	jc9	 
-301	45	menus_scripts_idscript_seq	1	0	1	0	0	a	2019-10-28 18:43:43-06	jc9	 
-302	44	menus_scripts_idscript_seq	1	0	1	0	0	b	2019-10-28 18:44:07-06	jc9	 
-303	45	menus_scripts	1	1	1	1	0	b	2019-10-28 18:50:38-06	jc9	 
-304	45	menus_scripts_idscript_seq	1	0	1	0	0	b	2019-10-28 18:50:38-06	jc9	 
-305	46	menus_scripts	1	1	1	1	0	a	2019-10-28 18:51:03-06	jc9	 
-306	46	menus_scripts_idscript_seq	1	0	1	0	0	a	2019-10-28 18:51:03-06	jc9	 
-307	47	juzgados	1	1	1	1	0	a	2019-10-28 21:09:58-06	jc9	 
-308	47	juzgados_idjuzgado_seq	1	0	1	0	0	a	2019-10-28 21:09:58-06	jc9	 
-309	48	infracciones	1	1	1	1	0	a	2019-10-29 05:35:51-06	jc9	 
-310	48	infracciones_idinfraccion_seq	1	0	1	0	0	a	2019-10-29 05:35:51-06	jc9	 
-311	48	infracciones	1	1	1	1	0	b	2019-10-29 05:42:44-06	jc9	 
-312	48	infracciones_idinfraccion_seq	1	0	1	0	0	b	2019-10-29 05:42:44-06	jc9	 
-313	49	juzgados_idjuzgado_seq	1	0	1	0	0	a	2019-10-29 05:43:15-06	jc9	 
-314	50	juzgados_idjuzgado_seq	1	0	1	0	0	a	2019-10-29 05:43:20-06	jc9	 
-315	50	juzgados_idjuzgado_seq	1	0	1	0	0	b	2019-10-29 05:43:53-06	jc9	 
-316	49	juzgados_idjuzgado_seq	1	0	1	0	0	b	2019-10-29 05:44:07-06	jc9	 
-317	51	infracciones	1	1	1	1	0	a	2019-10-29 05:44:46-06	jc9	 
-318	51	infracciones_idinfraccion_seq	1	0	1	0	0	a	2019-10-29 05:44:46-06	jc9	 
-319	51	infracciones	1	1	1	1	0	b	2019-10-29 06:02:25-06	jc9	 
-320	51	infracciones_idinfraccion_seq	1	0	1	0	0	b	2019-10-29 06:02:25-06	jc9	 
-321	52	infracciones	1	1	1	1	0	a	2019-10-29 06:02:52-06	jc9	 
-322	52	infracciones_idinfraccion_seq	1	0	1	0	0	a	2019-10-29 06:02:52-06	jc9	 
-323	53	infracciones_idinfraccion_seq	1	0	1	0	0	a	2019-10-29 06:04:53-06	jc9	 
-324	53	infracciones_idinfraccion_seq	1	0	1	0	0	b	2019-10-29 06:05:28-06	jc9	 
-325	52	infracciones	1	1	1	1	0	b	2019-10-29 06:05:41-06	jc9	 
-326	52	infracciones_idinfraccion_seq	1	0	1	0	0	b	2019-10-29 06:05:41-06	jc9	 
-327	54	infracciones	1	1	1	1	0	a	2019-10-29 06:06:47-06	jc9	 
-328	54	infracciones_idinfraccion_seq	1	0	1	0	0	a	2019-10-29 06:06:47-06	jc9	 
-329	54	infracciones	1	1	1	1	0	b	2019-10-29 06:10:03-06	jc9	 
-330	54	infracciones_idinfraccion_seq	1	0	1	0	0	b	2019-10-29 06:10:03-06	jc9	 
-331	55	infracciones	1	1	1	1	0	a	2019-10-29 06:10:22-06	jc9	 
-332	55	infracciones	1	1	1	1	0	b	2019-10-29 06:11:08-06	jc9	 
-333	56	infracciones	1	1	1	1	0	a	2019-10-29 06:11:22-06	jc9	 
-334	56	infracciones	1	1	1	1	0	b	2019-10-29 06:18:11-06	jc9	 
-335	57	infracciones	1	1	1	1	0	a	2019-10-29 07:04:41-06	jc9	 
-336	57	infracciones	1	1	1	1	0	b	2019-10-29 07:08:51-06	jc9	 
-337	58	infracciones	1	1	1	1	0	a	2019-10-29 07:09:14-06	jc9	 
-338	58	infracciones	1	1	1	1	0	b	2019-10-29 07:15:41-06	jc9	 
-339	59	infracciones	1	1	1	1	0	a	2019-10-29 07:19:43-06	jc9	 
-340	60	sanciones	1	1	1	1	0	a	2019-10-29 07:40:21-06	jc9	 
-341	61	boletas	1	1	1	1	0	a	2019-10-29 13:27:15-06	jc9	 
+342	16	pg_authid	1	1	1	1	0	b	2019-10-31 12:53:33-06	jc9	 
+343	16	menus_pg_group	 	 	 	 	1	b	2019-10-31 12:53:33-06	jc9	 
+344	59	infracciones	1	1	1	1	0	b	2019-10-31 12:53:33-06	jc9	 
+345	60	sanciones	1	1	1	1	0	b	2019-10-31 12:53:33-06	jc9	 
+346	47	juzgados	1	1	1	1	0	b	2019-10-31 12:53:33-06	jc9	 
+347	47	juzgados_idjuzgado_seq	1	0	1	0	0	b	2019-10-31 12:53:33-06	jc9	 
+348	61	boletas	1	1	1	1	0	b	2019-10-31 12:53:33-06	jc9	 
 \.
 
 
@@ -3721,7 +3121,7 @@ COPY his_menus_pg_tables (idcambio, idmenu, tablename, tselect, tinsert, tupdate
 -- Name: his_menus_pg_tables_idcambio_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('his_menus_pg_tables_idcambio_seq', 341, true);
+SELECT pg_catalog.setval('his_menus_pg_tables_idcambio_seq', 348, true);
 
 
 --
@@ -3763,14 +3163,9 @@ COPY menus (idmenu, descripcion, objeto, fecha_alta, usuario_alta, fecha_modific
 30	Subvistas		2019-10-12 14:53:07-06	inicio	2019-10-28 19:41:15-06	jc9		0	0	0	i,d,u,s,l,a,cc		2	3	menus_subvistas	126370		100	orden	0	0	0	0	300	f	forapi	pupanint.css	0	t	0.00	0.00					
 12	Mtto a grupo de campos		2019-10-12 14:53:07-06	inicio	2019-10-29 14:01:00-06	jc9	man_menus.php	0	10	0	i,d,u,s,l,a		2	2	menus_htmltable	126283		100		0	0	0	0	300	t	forapi	pupanint.css	0	t	0.00	0.00					
 13	Reingenieria		2019-10-12 14:53:07-06	inicio	2019-10-29 05:35:23-06	jc9	man_menus.php	0	10	0	s,i,a,l		2	1	tablas	126401		100	relname	0	0	0	0	300	f	forapi	pupanint.css	0	t	30.00	0.00	center				
-16	Mtto a grupos		2019-10-12 14:53:07-06	inicio	2019-10-30 16:30:20-06	jc9	man_menus.php	0	10	0	i,d,u,s,a,l		2	1	pg_authid	2842	rolcanlogin=false	100	rolname	0	0	0	0	300	t	pg_catalog	pupanint.css	0	t	80.00	0.00	center				
 17	Mtto a usuarios		2019-10-12 14:53:07-06	inicio	2019-10-31 11:28:59-06	jc9	man_menus.php	0	10	0	u,s,l,d,a,ex		2	2	cat_usuarios	126000		50	nombre	0	60	0	0	300	t	forapi	pupanint.css	0	t	60.00	0.00	center				
 14	Mtto a menus		2019-10-12 14:53:07-06	inicio	2019-10-19 18:46:23-06	inicio	man_menus.php	0	10	0	i,d,u,s,l,cc,ex,a	select id_voluntario,no_cred_elect, nombre, apepat, apemat, domicilio, no_ext, id_entidad from cat_voluntarios 	2	2	menus	126182		100	fecha_alta desc	0	0	0	0	300	f	forapi	pupanint.css	1	t	80.00	0.00	center				
 31	Importa desde Excel		2019-10-20 19:38:33-06	inicio	2019-10-28 11:58:19-06	jc9	man_menus.php	0	10	0	a,l,s		2	1	tablas	126401		100	relname	0	0	0	0	300	f	forapi	pupanint.css	0	t	30.00	0.00	center				
-59	infracciones	\N	2019-10-29 07:19:43-06	jc9	2019-10-30 16:15:05-06	jc9	man_menus.php	\N	32	\N	i,d,u,s,l,a	\N	2	2	infracciones	134809	\N	100	\N	0	0	0	0	300	t	jc	\N	0	t	80.00	0.00	center	\N			
-60	sanciones	\N	2019-10-29 07:40:21-06	jc9	2019-10-30 16:15:25-06	jc9	man_menus.php	\N	32	\N	i,d,u,s,l,a	\N	2	2	sanciones	134826	\N	100	\N	0	0	0	0	300	t	jc	\N	0	t	80.00	0.00	center	\N			
-47	juzgados	\N	2019-10-28 21:09:58-06	jc9	2019-10-30 16:15:56-06	jc9	man_menus.php	\N	32	\N	i,d,u,s,l,a	\N	2	2	juzgados	134768	\N	100	\N	0	0	0	0	300	t	jc	\N	0	f	80.00	0.00	center	\N			
-61	boletas	\N	2019-10-29 13:27:15-06	jc9	2019-10-30 16:21:40-06	jc9	man_menus.php	\N	0	\N	i,d,u,s,l,a	\N	2	2	boletas	134852	\N	100	\N	0	0	0	0	300	f	jc	\N	0	t	80.00	0.00	center	\N			
 46	Importa desde script	\N	2019-10-28 18:51:03-06	jc9	2019-10-29 06:20:30-06	jc9	man_menus.php	\N	10	\N	i,d,u,s,l,a	\N	2	2	menus_scripts	134741	\N	100	fecha_modifico desc	0	90	0	0	300	t	forapi	\N	0	t	90.00	0.00	center	\N			
 62	Mtto. Grupos de campos	\N	2019-10-29 14:01:00-06	jc9	2019-10-29 14:04:13-06	jc9	man_menus.php	\N	10	\N	i,d,u,s,l,a	\N	2	2	menus_htmltable	134448	\N	100	\N	0	0	0	0	300	t	forapi	\N	0	t	80.00	0.00	center	\N			
 32	Catalogos		2019-10-27 07:50:24-06	inicio	2019-10-30 16:14:30-06	jc9		0	0	0	i,d,u,s		2	2		0		100		0	0	0	0	300	f	forapi	pupanint.css	0	t	0.00	0.00					
@@ -3800,6 +3195,7 @@ COPY menus_archivos (idarchivo, descripcion, fecha_alta, usuario_alta, fecha_mod
 16	DEJC CATALOGOS-ADIP.xlsx	2019-10-20 18:24:11-06	temporal	2019-10-20 18:24:11-06	temporal	\N	0	0	\N
 17	AnalisisDeFiltrosEnProteccionCivil.xlsx	2019-10-31 10:58:36-06	jc9	2019-10-31 10:58:36-06	jc9	\N	0	0	\N
 18	AnalisisDeFiltrosEnProteccionCivil.xlsx	2019-10-31 11:08:31-06	jc9	2019-10-31 11:08:31-06	jc9	\N	0	0	\N
+19	AnalisisDeFiltrosEnProteccionCivil.xlsx	2019-10-31 12:13:07-06	jc9	2019-10-31 12:13:07-06	jc9	\N	0	0	\N
 \.
 
 
@@ -3807,7 +3203,7 @@ COPY menus_archivos (idarchivo, descripcion, fecha_alta, usuario_alta, fecha_mod
 -- Name: menus_archivos_idarchivo_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('menus_archivos_idarchivo_seq', 18, true);
+SELECT pg_catalog.setval('menus_archivos_idarchivo_seq', 19, true);
 
 
 --
@@ -3829,7 +3225,6 @@ COPY menus_campos (idcampo, idmenu, reltype, attnum, descripcion, size, male, fu
 20	11	126000	1	Usuario	20	15						0	10	0	40	30	t	t	f	2	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	10	\N
 22	2	126000	1	usename	19	0						0	10	0	40	30	t	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N
 23	25	126000	0	Usuario	30	30						0	5	0	0	0	t	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0		forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	5	\N
-387	47	134768	1	idjuzgado	8	-1					\N	0	10	\N	40	30	t	f	f	0	\N	t	\N	t	id del juzgado	2019-10-28 21:09:58-06	jc9	2019-10-28 21:09:58-06	jc9	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	2001	
 32	24	126000	1	Usuario	30	30						0	5	0	0	0	t	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	5	\N
 33	3	126048	1	Usuario	1	0	cat_usuarios	usename	usename			0	10	0	40	30	t	t	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios_pg_group	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N
 10	19	126000	0	TecleeDeNuevoelpassword	30	30						0	250	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1		forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6
@@ -3858,7 +3253,6 @@ COPY menus_campos (idcampo, idmenu, reltype, attnum, descripcion, size, male, fu
 59	7	126274	2	idmenu	8	0						0	20	0	40	30	f	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N
 38	12	126283	1	idhtmltable	8	-1						0	10	0	40	30	t	f	f	0	f	t		t	Numero de identificacion de la tabla	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_htmltable	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6
 31	13	126401	1	Tabla	0	0						0	11	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	tablas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-12
-39	16	2842	1	Grupo	20	30						0	0	0	0	0	t	t	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	pg_authid	pg_catalog	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-12 row
 29	17	126000	1	Usuario	20	15						0	10	0	40	30	t	t	f	2	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	f	f	f	0	f	0	f	20	col-md-6 row
 60	4	126000	3	Apellido Paterno	20	30						0	30	0	40	30	f	f	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N
 61	5	126104	3	nombre	30	0						0	30	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N
@@ -3909,14 +3303,12 @@ COPY menus_campos (idcampo, idmenu, reltype, attnum, descripcion, size, male, fu
 115	7	126274	6	fecha_alta	18	0						0	60	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	\N
 117	1	126341	6	tdelete	1	1						0	16	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	16	\N
 121	7	126274	7	usuario_alta	24	0						0	70	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	70	\N
-126	16	2842	7	canlogin	0	0						0	0	0	40	30	f	f	f	0	f	t	0	f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	pg_authid	pg_catalog	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	t	0	\N
 127	11	126000	7	Mail	20	0						0	70	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	70	\N
 119	18	126000	6	Depto	20	50						0	60	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6
 108	20	126222	5	Descripcion	30	0						0	140	0	40	30	t	f	f	0	f	f		f	Descripcion del campo en la vista	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6
 120	20	126222	6	Tamaño	30	2						0	150	0	40	30	f	f	f	0	f	f		f	size en el html, para el caso de select la cantidad de renglones	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6
 122	27	126321	7	fecha_modifico	18	0						0	70	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_movtos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	70	\N
 123	2	126000	7	Correo Electronico	30	0						0	70	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	70	\N
-393	47	134768	7	fecha_alta	18	0					\N	0	70	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-28 21:09:58-06	jc9	2019-10-28 21:09:58-06	jc9	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	2121	
 130	4	126000	7	Correo	20	50						0	70	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	70	\N
 133	5	126104	7	depto	30	0						0	70	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	70	\N
 134	1	126341	7	tall	1	1						0	17	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	17	\N
@@ -3925,7 +3317,6 @@ COPY menus_campos (idcampo, idmenu, reltype, attnum, descripcion, size, male, fu
 124	17	126000	7	Mail	20	0						0	70	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6 row
 136	26	126296	7	Es movil:	0	0						0	180	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	180	\N
 138	27	126321	8	usuario_modifico	24	0						0	80	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_movtos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	\N
-394	47	134768	8	usuario_alta	24	24					\N	0	80	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-28 21:09:58-06	jc9	2019-10-28 21:09:58-06	jc9	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	2141	
 140	1	126341	8	fecha_alta	0	0						0	19	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	19	\N
 143	21	126331	8	Grupo	30	30						0	30	0	40	30	t	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_group	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N
 144	5	126104	8	correoe	30	0						0	80	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	\N
@@ -3938,12 +3329,10 @@ COPY menus_campos (idcampo, idmenu, reltype, attnum, descripcion, size, male, fu
 146	26	126296	8	Browser:	0	0						0	160	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	160	\N
 151	11	126000	9	Fecha alta	20	14						0	200	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	200	\N
 152	5	126104	9	direccion_ip	30	0						0	90	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	90	\N
-395	47	134768	9	fecha_modifico	18	0					\N	0	90	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-28 21:09:58-06	jc9	2019-10-28 21:09:58-06	jc9	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	2161	
 157	7	126274	9	usuario_modifico	24	0						0	90	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	90	\N
 159	1	126341	10	usuario_alta	0	0						0	21	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	21	\N
 160	26	126296	10	Mensaje:	1	1	menus_mensajes	mensaje	idmensaje			0	50	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	50	\N
 161	11	126000	10	Fecha modifico	20	14						0	220	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	220	\N
-396	47	134768	10	usuario_modifico	24	24					\N	0	100	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-28 21:09:58-06	jc9	2019-10-28 21:09:58-06	jc9	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	2181	
 166	5	126104	10	fecha_alta	18	0						0	100	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	\N
 171	1	126341	11	usuario_modifico	0	0						0	22	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	22	\N
 172	5	126104	11	fecha_modifico	18	0						0	110	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	110	\N
@@ -3970,7 +3359,6 @@ COPY menus_campos (idcampo, idmenu, reltype, attnum, descripcion, size, male, fu
 200	11	126000	14	Respuesta	20	100						0	140	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	140	\N
 202	11	126000	15	Estatus	1	5	estados_usuarios	descripcion	estado			0	150	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	150	\N
 203	5	126104	15	telefono	30	0						0	150	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	150	\N
-392	47	134768	6	horario	30	34					\N	0	60	\N	40	30	f	f	f	0	\N	f	\N	f	horario	2019-10-28 21:09:58-06	jc9	2019-10-28 21:09:58-06	jc9	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6
 206	15	126000	15	Estatus	10	5						0	150	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	150	\N
 210	11	126000	16	Telefono	20	30						0	75	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	75	\N
 211	5	126104	16	cve_movto	5	0						0	160	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	160	\N
@@ -3985,7 +3373,6 @@ COPY menus_campos (idcampo, idmenu, reltype, attnum, descripcion, size, male, fu
 208	20	126222	15	Subvista	30	0						0	300	0	40	30	f	f	f	0	f	f		f	Si el campos tiene una subvista, habre este numbero de subvista	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6
 209	20	126222	16	Ancho Subvista	30	0						0	320	0	40	30	f	f	f	0	f	f		f	Ancho de la subvista 	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6
 215	5	126104	17	id_personas	8	0						0	170	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	170	\N
-583	61	134852	35	sancion_observacion	-1	-1					\N	0	350	\N	40	30	f	f	f	0	f	f	\N	f		2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2029		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	380	col-md-6 row
 228	4	126000	21	Password	20	30						0	240	0	40	30	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	240	\N
 231	11	126000	21	pwd	20	20						0	240	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	240	\N
 241	17	126000	24	Menu default	1	5	menus	descripcion	idmenu			0	155	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6 row
@@ -4000,7 +3387,6 @@ COPY menus_campos (idcampo, idmenu, reltype, attnum, descripcion, size, male, fu
 243	11	126000	24	Menu default	1	5	menus	descripcion	idmenu			0	155	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	155	\N
 263	20	126222	35	Validacion	30	30						0	1200	0	40	30	f	f	f	0	f	f		f	Indica la validacion especial que se incorpora para este campo	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	260	col-md-6
 248	20	126222	26	Tip de ayuda	30	255						0	1200	0	40	30	f	f	f	0	f	f		f	Ayuda que se muestra cuando es mouse esta en el campo	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	260	col-md-6
-388	47	134768	2	alcaldia	30	104					\N	0	20	\N	40	30	f	f	f	0	\N	f	\N	f	Alcaldia	2019-10-28 21:09:58-06	jc9	2019-10-28 21:09:58-06	jc9	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6
 259	14	126182	33	Alineacion de tabla	20	10						0	200	0	40	30	f	f	f	2	f	f		f	Alto en porcentaje de la tabla de captura	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	200	col-md-6
 226	14	126182	20	Orden	20	255						0	990	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	220	col-md-6
 242	20	126222	24	Valor de Default	30	100						0	400	0	0	0	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	160	col-md-6
@@ -4066,43 +3452,11 @@ COPY menus_campos (idcampo, idmenu, reltype, attnum, descripcion, size, male, fu
 249	14	126182	27	Esquema	1	0	pg_namespace	nspname	nspname			0	52	0	0	0	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0	pg_catalog	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6
 244	14	126182	24	Pone Scroll	20	1						0	150	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	160	col-md-6
 245	14	126182	25	Altura de Scroll	20	10						0	160	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	180	col-md-6
-538	60	134826	2	Tipo 	6	6					\N	0	20	\N	40	30	t	f	f	0	\N	f	\N	f	Tipo 	2019-10-29 07:40:21-06	jc9	2019-10-29 07:40:21-06	jc9	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-390	47	134768	4	direccion	30	104					\N	0	40	\N	40	30	f	f	f	0	\N	f	\N	f	Direccion	2019-10-28 21:09:58-06	jc9	2019-10-28 21:09:58-06	jc9	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-391	47	134768	5	turno	30	34					\N	0	50	\N	40	30	f	f	f	0	\N	f	\N	f	Turno	2019-10-28 21:09:58-06	jc9	2019-10-28 21:09:58-06	jc9	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-389	47	134768	3	juzgadó	30	104					\N	0	30	\N	40	30	f	f	f	0	f	f	\N	f	Juzgado	2019-10-28 21:09:58-06	jc9	2019-10-28 21:09:58-06	jc9	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-537	60	134826	1	id de la sancion	8	-1					\N	0	10	\N	40	30	t	f	f	0	\N	t	\N	t	id de la sancion	2019-10-29 07:40:21-06	jc9	2019-10-29 07:40:21-06	jc9	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	5001	
-540	60	134826	4	Unidad de cuenta hasta	30	196612					\N	0	40	\N	40	30	f	f	f	0	\N	f	\N	f	Unidad de cuenta hasta	2019-10-29 07:40:21-06	jc9	2019-10-29 07:40:21-06	jc9	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-542	60	134826	6	Horas de Servicio Comunitatio hasta	30	196612					\N	0	60	\N	40	30	f	f	f	0	\N	f	\N	f	Horas de Servicio Comunitatio hasta	2019-10-29 07:40:21-06	jc9	2019-10-29 07:40:21-06	jc9	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-541	60	134826	5	Horas de Servicio Comunitatio desde	30	196612					\N	0	50	\N	40	30	f	f	f	0	f	f	\N	f	Horas de Servicio Comunitatio desde	2019-10-29 07:40:21-06	jc9	2019-10-29 07:40:21-06	jc9	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-539	60	134826	3	Unidad de cuenta desde	30	196612					\N	0	30	\N	40	30	f	f	f	0	f	f	\N	f	Unidad de cuenta desde	2019-10-29 07:40:21-06	jc9	2019-10-29 07:40:21-06	jc9	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-582	61	134852	34	sancion_arresto	8	-1					\N	0	340	\N	40	30	f	f	f	0	f	f	\N	f		2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2029		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	380	col-md-6 row
-545	60	134826	9	fecha_alta	18	0					\N	0	90	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 07:40:21-06	jc9	2019-10-29 07:40:21-06	jc9	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	5161	
-546	60	134826	10	usuario_alta	24	24					\N	0	100	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 07:40:21-06	jc9	2019-10-29 07:40:21-06	jc9	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	5181	
-547	60	134826	11	fecha_modifico	18	0					\N	0	110	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 07:40:21-06	jc9	2019-10-29 07:40:21-06	jc9	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	5201	
-548	60	134826	12	usuario_modifico	24	24					\N	0	120	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 07:40:21-06	jc9	2019-10-29 07:40:21-06	jc9	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	5221	
-544	60	134826	8	Horas de arresto hasta	30	196612					\N	0	80	\N	40	30	f	f	f	0	\N	f	\N	f	Horas de arresto hasta	2019-10-29 07:40:21-06	jc9	2019-10-29 07:40:21-06	jc9	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-543	60	134826	7	Horas de arresto desde	30	196612					\N	0	70	\N	40	30	f	f	f	0	f	f	\N	f	Horas de arresto desde	2019-10-29 07:40:21-06	jc9	2019-10-29 07:40:21-06	jc9	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-554	61	134852	6	id_areaadcripcion	8	-1					\N	0	60	\N	40	30	f	f	f	0	f	f	\N	f		2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2026		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	80	col-md-6 row
-555	61	134852	7	Nombre(s)	30	34					\N	0	70	\N	40	30	t	f	f	0	f	f	\N	f	Nombre(s)	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	100	col-md-6 row
-569	61	134852	21	Fecha en que ocurrieron los hechos	18	0					\N	0	210	\N	40	30	f	f	f	0	f	t	\N	f	Fecha en que ocurrieron los hechos	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	240	col-md-6 row
-570	61	134852	22	Fecha en que ocurrieron los hechos	18	0					\N	0	220	\N	40	30	f	f	f	0	f	t	\N	f	Fecha en que ocurrieron los hechos	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	240	col-md-6 row
-575	61	134852	27	Colonia	8	-1					\N	0	270	\N	40	30	f	f	f	0	f	f	\N	f	Colonia	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	300	col-md-6 row
-576	61	134852	28	Alcaldia	8	-1					\N	0	280	\N	40	30	f	f	f	0	f	f	\N	f	Alcaldia	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	300	col-md-6 row
-577	61	134852	29	Datos de la probable infracción	-1	-1					\N	0	290	\N	40	30	f	f	f	0	f	f	\N	f	Datos de la probable infracción	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	320	col-md-6 row
-578	61	134852	30	Objeto(s) recogido(s) relacionado(s) con la(s) probable(s) infracción(es)	-1	-1					\N	0	300	\N	40	30	f	f	f	0	f	f	\N	f	Objeto(s) recogido(s) relacionado(s) con la(s) probable(s) infracción(es)	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	320	col-md-6 row
-579	61	134852	31	Artículos	8	-1	infracciones	descripcion	idinfraccion		\N	0	310	\N	40	30	f	f	f	0	f	f	\N	f	Artículos	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2028	jc	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	340	col-md-6 row
-580	61	134852	32	sancion_uc	8	-1					\N	0	320	\N	40	30	f	f	f	0	f	f	\N	f		2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2029		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	360	col-md-6 row
-581	61	134852	33	sancion_servicio	8	-1					\N	0	330	\N	40	30	f	f	f	0	f	f	\N	f		2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2029		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	360	col-md-6 row
-527	59	134809	3	Artículo	8	-1					\N	0	30	\N	40	30	t	f	f	0	f	f	\N	f	Artículo	2019-10-29 07:19:43-06	jc9	2019-10-29 07:19:43-06	jc9	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	25	col-md-6
-525	59	134809	1	id de la infraccion	8	-1					\N	0	10	\N	40	30	t	f	f	0	\N	t	\N	t	id de la infraccion	2019-10-29 07:19:43-06	jc9	2019-10-29 07:19:43-06	jc9	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	4761	
-600	16	2842	2	Superusuario	\N	\N					\N	0	900	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:33:08-06	jc9	2019-10-30 16:33:08-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6261	
 380	46	134741	1	idscript	8	-1					\N	0	10	\N	40	30	t	f	f	0	\N	t	\N	t	id del script	2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	20	col-md-4
 383	46	134741	4	fecha_alta	18	0					\N	0	40	\N	40	30	f	f	f	0	\N	t	\N	f	Fecha en que hizo el movimiento el usuario	2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	40	col-md-4
 384	46	134741	5	usuario_alta	24	24					\N	0	50	\N	40	30	f	f	f	0	\N	t	\N	f	Usuario hizo el alta 	2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	40	col-md-4
 385	46	134741	6	fecha_modifico	18	0					\N	0	60	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	40	col-md-4
 386	46	134741	7	usuario_modifico	24	24					\N	0	70	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	60	col-md-4
-533	59	134809	9	fecha_alta	18	0					\N	0	90	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 07:19:43-06	jc9	2019-10-29 07:19:43-06	jc9	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	4921	
-534	59	134809	10	usuario_alta	24	24					\N	0	100	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 07:19:43-06	jc9	2019-10-29 07:19:43-06	jc9	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	4941	
 381	46	134741	2	descripcion	30	104					\N	0	20	\N	40	30	f	f	f	0	\N	f	\N	f		2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6
 382	46	134741	3	sql	-1	-1					\N	0	30	\N	40	30	f	f	f	0	f	f	\N	f	instruccion	2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6
 232	30	126370	21	Orden	4	4						0	0	0	0	0	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-4
@@ -4127,34 +3481,6 @@ COPY menus_campos (idcampo, idmenu, reltype, attnum, descripcion, size, male, fu
 214	30	126370	16	usuario_alta	0	0						0	160	0	40	30	f	f	f	0	f	t		f	Usuario que dio de alta el registro	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-4
 216	30	126370	17	fecha_modifico	0	0						0	170	0	40	30	f	f	f	0	f	t		f	Fecha en que el usuario modifico el registro	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-4
 219	30	126370	18	usuario_modifico	0	0						0	180	0	40	30	f	f	f	0	f	t		f	Usuario que modifico el registro	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	160	col-md-4
-535	59	134809	11	fecha_modifico	18	0					\N	0	110	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 07:19:43-06	jc9	2019-10-29 07:19:43-06	jc9	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	4961	
-536	59	134809	12	usuario_modifico	24	24					\N	0	120	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 07:19:43-06	jc9	2019-10-29 07:19:43-06	jc9	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	4981	
-601	16	2842	3	Heredable	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:36:28-06	jc9	2019-10-30 16:36:28-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6281	
-526	59	134809	2	Infracción	30	104					\N	0	20	\N	40	30	t	f	f	0	f	f	\N	f	Infracción	2019-10-29 07:19:43-06	jc9	2019-10-29 07:19:43-06	jc9	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-12
-528	59	134809	4	Fracción	14	14					\N	0	40	\N	40	30	t	f	f	0	f	f	\N	f	Fracción	2019-10-29 07:19:43-06	jc9	2019-10-29 07:19:43-06	jc9	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	25	col-md-6
-530	59	134809	6	Conciliación	30	54					\N	0	60	\N	40	30	f	f	f	0	\N	f	\N	f	Conciliación	2019-10-29 07:19:43-06	jc9	2019-10-29 07:19:43-06	jc9	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-531	59	134809	7	Aplicar si	30	104					\N	0	70	\N	40	30	f	f	f	0	\N	f	\N	f	Aplicar si	2019-10-29 07:19:43-06	jc9	2019-10-29 07:19:43-06	jc9	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-532	59	134809	8	Tipo	7	7	sanciones	tipo	tipo		\N	0	80	\N	40	30	t	f	f	0	f	f	\N	f	Tipo	2019-10-29 07:19:43-06	jc9	2019-10-29 07:19:43-06	jc9	0	infracciones	jc	f	\N	0	jc	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-529	59	134809	5	Descripción	30	260					\N	0	50	\N	40	30	t	f	f	0	f	f	\N	f	Descripción	2019-10-29 07:19:43-06	jc9	2019-10-29 07:19:43-06	jc9	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-12
-549	61	134852	1	id de la boleta	8	-1					\N	0	10	\N	40	30	t	f	f	0	\N	t	\N	t	id de la boleta	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	5241	
-550	61	134852	2	boleta_remision	6	6					\N	0	20	\N	40	30	t	t	f	0	f	f	\N	f		2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6 row
-551	61	134852	3	Policia uno 	8	-1					\N	0	30	\N	40	30	t	f	f	0	f	f	\N	f	Policia uno 	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2026		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6 row
-552	61	134852	4	Policia dos 	8	-1					\N	0	40	\N	40	30	f	f	f	0	f	f	\N	f	Policia dos 	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2026		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6 row
-553	61	134852	5	Numero de patrulla u medio de transporte	30	34					\N	0	50	\N	40	30	t	f	f	0	f	f	\N	f	Numero de patrulla u medio de transporte	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2026		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	80	col-md-6 row
-602	16	2842	4	Crea un rol	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:38:35-06	jc9	2019-10-30 16:38:35-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6301	
-556	61	134852	8	Primer apellido	30	34					\N	0	80	\N	40	30	f	f	f	0	f	f	\N	f	Primer apellido	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	100	col-md-6 row
-557	61	134852	9	Segundo apellido	30	34					\N	0	90	\N	40	30	f	f	f	0	f	f	\N	f	Segundo apellido	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	120	col-md-6 row
-558	61	134852	10	Sexo	5	5					\N	0	100	\N	40	30	f	f	f	0	f	f	\N	f	Sexo	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	120	col-md-6 row
-559	61	134852	11	Curp	22	22					\N	0	110	\N	40	30	f	f	f	0	f	f	\N	f	Curp	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	140	col-md-6 row
-560	61	134852	12	Lugar de nacimiento	8	-1					\N	0	120	\N	40	30	f	f	f	0	f	f	\N	f	Lugar de nacimiento	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	140	col-md-6 row
-603	16	2842	5	Puede crear una BD	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:39:04-06	jc9	2019-10-30 16:39:04-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6321	
-586	61	134852	38	fecha_alta	18	0					\N	0	380	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	5981	
-587	61	134852	39	usuario_alta	24	24					\N	0	390	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6001	
-588	61	134852	40	fecha_modifico	18	0					\N	0	400	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6021	
-589	61	134852	41	usuario_modifico	24	24					\N	0	410	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6041	
-584	61	134852	36	Estatus de la boleta	8	-1					\N	0	360	\N	40	30	f	f	f	0	f	t	\N	f	Estatus de la boleta	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6 row
-585	61	134852	37	expediente	30	34					\N	0	370	\N	40	30	f	f	f	0	f	t	\N	f		2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6 row
-604	16	2842	6	Actualiza	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:42:28-06	jc9	2019-10-30 16:42:28-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6341	
 590	62	134448	1	Numero de identificacion de la tabla	8	-1					\N	0	10	\N	40	30	t	f	f	0	\N	t	\N	t	Numero de identificacion de la tabla	2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6061	
 594	62	134448	5	fecha_alta	18	-1					\N	0	50	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6141	
 595	62	134448	6	usuario_alta	24	24					\N	0	60	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6161	
@@ -4170,26 +3496,12 @@ COPY menus_campos (idcampo, idmenu, reltype, attnum, descripcion, size, male, fu
 593	62	134448	4	Numero de columnas en la tabla si es cero pone las columnas de la tabla maestra	4	-1					\N	0	40	\N	40	30	f	f	f	0	\N	f	\N	f	Numero de columnas en la tabla si es cero pone las columnas de la tabla maestra	2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6
 598	62	134448	9	Id del menu a la que pertenece el grupo de campos	8	-1					\N	0	90	\N	40	30	f	f	f	0	\N	f	\N	f	Id del menu a la que pertenece el grupo de campos	2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6
 599	62	134448	10	orden del grupo de campos	8	-1					\N	0	100	\N	40	30	f	f	f	0	\N	f	\N	f	orden del grupo de campos	2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-605	16	2842	8	Puede Replicar	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:45:14-06	jc9	2019-10-30 16:45:14-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6361	
-561	61	134852	13	Fecha de nacimiento	18	0					\N	0	130	\N	40	30	f	f	f	0	f	t	\N	f	Fecha de nacimiento	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	160	col-md-6 row
-562	61	134852	14	Calle	30	34					\N	0	140	\N	40	30	f	f	f	0	f	f	\N	f	Calle	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	160	col-md-6 row
-563	61	134852	15	No. interior	19	19					\N	0	150	\N	40	30	f	f	f	0	f	f	\N	f	No. interior	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	180	col-md-6 row
-564	61	134852	16	No. exterior	19	19					\N	0	160	\N	40	30	f	f	f	0	f	f	\N	f	No. exterior	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	180	col-md-6 row
-565	61	134852	17	Código postal	9	9					\N	0	170	\N	40	30	f	f	f	0	f	f	\N	f	Código postal	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	200	col-md-6 row
-566	61	134852	18	Colonia	8	-1					\N	0	180	\N	40	30	f	f	f	0	f	f	\N	f	Colonia	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	200	col-md-6 row
-567	61	134852	19	Alcaldia	8	-1					\N	0	190	\N	40	30	f	f	f	0	f	f	\N	f	Alcaldia	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	220	col-md-6 row
-606	16	2842	9	Limite de conexión	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:47:57-06	jc9	2019-10-30 16:47:57-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6381	
-568	61	134852	20	Fotografía	8	-1					\N	0	200	\N	40	30	f	f	f	0	f	f	\N	f	Fotografía	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2027		0	0	t	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	220	col-md-6 row
 55	17	126000	2	Nombre	20	30						0	20	0	40	30	t	t	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6 row
 197	17	126000	14	Respuesta	20	100						0	140	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6 row
 237	17	126000	23	Tipo menu	20	5						0	145	0	0	0	f	f	f	0	f	f		f	0=normal 1=vertical 2=horizontal	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6 row
 204	17	126000	15	Estatus	1	5	estados_usuarios	descripcion	estado			0	150	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6 row
 169	17	126000	11	Usuario alta	20	20						0	210	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6 row
 168	17	126000	10	Fecha modifico	20	14						0	220	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6 row
-571	61	134852	23	Calle	30	34					\N	0	230	\N	40	30	f	f	f	0	f	f	\N	f	Calle	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	260	col-md-6 row
-572	61	134852	24	No. interior	19	19					\N	0	240	\N	40	30	f	f	f	0	f	f	\N	f	No. interior	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	260	col-md-6 row
-573	61	134852	25	No. exterior	19	19					\N	0	250	\N	40	30	f	f	f	0	f	f	\N	f	No. exterior	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	280	col-md-6 row
-574	61	134852	26	Código postal	9	9					\N	0	260	\N	40	30	f	f	f	0	f	f	\N	f	Código postal	2019-10-29 13:27:15-06	jc9	2019-10-29 13:27:15-06	jc9	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	280	col-md-6 row
 \.
 
 
@@ -4327,12 +3639,10 @@ COPY menus_pg_group (idmenu, grosysid, fecha_alta, fecha_modifico, usuario_alta,
 11	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
 15	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N	admres	0	\N
 18	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
-16	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
 15	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
 21	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
 10	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
 14	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
-16	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N	admon	0	\N
 25	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
 13	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N		0	\N
 8	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N	admon	0	\N
@@ -4355,13 +3665,8 @@ COPY menus_pg_group (idmenu, grosysid, fecha_alta, fecha_modifico, usuario_alta,
 9	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	\N	temporalg	0	\N
 8	\N	2019-10-27 15:39:33-06	2019-10-27 15:39:33-06	inicio	inicio	\N	temporalg	0	\N
 46	\N	2019-10-28 18:51:03-06	2019-10-28 18:51:03-06	jc9	jc9	\N	admon	0	\N
-47	\N	2019-10-28 21:09:58-06	2019-10-28 21:09:58-06	jc9	jc9	\N	admon	0	\N
-59	\N	2019-10-29 07:19:43-06	2019-10-29 07:19:43-06	jc9	jc9	\N	admon	0	\N
-60	\N	2019-10-29 07:40:21-06	2019-10-29 07:40:21-06	jc9	jc9	\N	admon	0	\N
-61	\N	2019-10-29 13:27:15-06	2019-10-29 13:27:15-06	jc9	jc9	\N	admon	0	\N
 62	\N	2019-10-29 14:01:00-06	2019-10-29 14:01:00-06	jc9	jc9	\N	admon	0	\N
 8	\N	2019-10-30 16:48:47-06	2019-10-30 16:48:47-06	jc9	jc9	\N	juez	0	\N
-61	\N	2019-10-30 16:48:59-06	2019-10-30 16:48:59-06	jc9	jc9	\N	juez	0	\N
 \.
 
 
@@ -4385,7 +3690,6 @@ COPY menus_pg_tables (idmenu, tablename, tselect, tinsert, tupdate, tdelete, tal
 12	menus_htmltable	1	1	1	1	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	forapi
 13	tablas	1	1	0	0	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	forapi
 14	menus	1	1	1	1	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	forapi
-16	pg_authid	1	1	1	1	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	pg_catalog
 20	menus_campos	1	1	1	1	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	forapi
 21	menus_pg_group	1	1	1	1	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	forapi
 27	menus_movtos	1	1	1	1	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	forapi
@@ -4447,7 +3751,6 @@ COPY menus_pg_tables (idmenu, tablename, tselect, tinsert, tupdate, tdelete, tal
 14	pg_namespace	1	0	0	0	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	pg_catalog
 11	pg_shadow	1	 	 	 	 	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	pg_catalog
 11	his_cat_usuarios_seq	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
-16	menus_pg_group	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 19	cat_preguntas	1	0	0	0	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	forapi
 7	eventos	1	0	0	0	0	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	0	forapi
 4	cat_usuarios	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
@@ -4492,11 +3795,6 @@ COPY menus_pg_tables (idmenu, tablename, tselect, tinsert, tupdate, tdelete, tal
 1	his_menus_pg_tables	 	 	 	 	1	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 46	menus_scripts	1	1	1	1	0	2019-10-28 18:51:03-06	2019-10-28 18:51:03-06	jc9	jc9	0	forapi
 46	menus_scripts_idscript_seq	1	0	1	0	0	2019-10-28 18:51:03-06	2019-10-28 18:51:03-06	jc9	jc9	0	forapi
-47	juzgados	1	1	1	1	0	2019-10-28 21:09:58-06	2019-10-28 21:09:58-06	jc9	jc9	0	jc
-47	juzgados_idjuzgado_seq	1	0	1	0	0	2019-10-28 21:09:58-06	2019-10-28 21:09:58-06	jc9	jc9	0	jc
-59	infracciones	1	1	1	1	0	2019-10-29 07:19:43-06	2019-10-29 07:19:43-06	jc9	jc9	0	jc
-60	sanciones	1	1	1	1	0	2019-10-29 07:40:21-06	2019-10-29 07:40:21-06	jc9	jc9	0	jc
-61	boletas	1	1	1	1	0	2019-10-29 13:27:15-06	2019-10-29 13:27:15-06	jc9	jc9	0	jc
 \.
 
 
@@ -4563,7 +3861,6 @@ COPY menus_subvistas (idmenus_subvistas, idmenu, texto, imagen, idsubvista, func
 6	17	Log		26		976	602	2	0			usuario_alta	usename	2019-10-12 00:00:00-06	inicio	\N	\N		0	0	0
 7	11	Accesos Usuario		0		843	479	2	1			usuario_alta	usename	2019-10-12 00:00:00-06	inicio	\N	\N		0	0	0
 10	14	Log		26		976	602	2	0			idmenu	idmenu	2019-10-12 00:00:00-06	inicio	\N	\N		0	950	0
-12	16	Menus		21		1108	714	1	1			groname	rolname	2019-10-12 00:00:00-06	inicio	\N	\N		0	0	0
 13	14	Subvistas		30		1052	560	2	1			idmenu	idmenu	2019-10-12 00:00:00-06	inicio	\N	\N		0	0	0
 14	14	Seguimiento		28		555	476	2	0			idmenu	idmenu	2019-10-12 00:00:00-06	inicio	\N	\N		0	800	0
 17	17	Grupos		3		1135	568	2	1			usename	usename	2019-10-12 00:00:00-06	inicio	\N	\N		0	0	0
@@ -4579,13 +3876,11 @@ COPY menus_subvistas (idmenus_subvistas, idmenu, texto, imagen, idsubvista, func
 32	14	Eventos		7		1020	463	2	1			idmenu	idmenu	2019-10-12 00:00:00-06	inicio	\N	\N		0	0	0
 35	11	Log		26		976	602	2	0			usuario_alta	usename	2019-10-12 00:00:00-06	inicio	\N	\N		0	0	0
 36	17	Cambio de Password		0		845	448	2	1			usename	usename	2019-10-12 00:00:00-06	inicio	\N	\N		0	0	0
-38	16	Usuarios		3		1135	568	1	1			groname	rolname	2019-10-12 00:00:00-06	inicio	\N	\N		0	0	0
 15	13	Archivo		0	crea_sqlarchivo	40	30	1	1					2019-10-12 00:00:00-06	inicio	\N	\N	src/php/reingenieria_class.php	0	0	0
 16	13	Baja Admon		0	baja_admon	0	0	1	1					2019-10-12 00:00:00-06	inicio	\N	\N	src/php/reingenieria_class.php	1	10	0
 23	17	Permisos		0	permisos	50	30	1	1			usename	usename	2019-10-12 00:00:00-06	inicio	\N	\N	src/php/seguridad_class.php	0	0	0
 25	14	Copia Opcion		0	copiaopcion	40	30	1	0					2019-10-12 00:00:00-06	inicio	\N	\N	src/php/reingenieria_class.php	0	0	0
 28	13	Base		0	crea_menusbase	40	30	1	1					2019-10-12 00:00:00-06	inicio	\N	\N	src/php/reingenieria_class.php	0	0	0
-34	16	PermisosGrupo		0	permisosgrupo	0	0	1	0					2019-10-12 00:00:00-06	inicio	\N	\N	src/php/seguridad_class.php	0	0	0
 37	23	Validar FIEL	entrar.gif	0	validafiel	0	0	1	1					2019-10-12 00:00:00-06	inicio	\N	\N	src/php/firma_digital.php	1	10	0
 9	20	Eventos		7		879	433	1	0			idmenu;attnum	idmenu;attnum	2019-10-12 00:00:00-06	inicio	\N	\N		0	10	0
 8	14	Campos		20		800	600	2	0			idmenu	idmenu	2019-10-12 00:00:00-06	inicio	\N	\N		0	0	0
