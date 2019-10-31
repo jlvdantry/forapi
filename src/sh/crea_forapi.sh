@@ -47,6 +47,7 @@ insert into forapi.cat_usuarios (usename,nombre,id_tipomenu,password,menu,estatu
 insert into forapi.cat_usuarios_pg_group(usename,groname) values ('tmp_$1','temporalg');
 insert into forapi.cat_usuarios_pg_group(usename,groname) values ('$2','admon');
 delete from forapi.menus_pg_tables where nspname not in ('forapi','pg_catalog','estadistica','public');
+delete from forapi.menus where nspname not in ('forapi','pg_catalog','estadistica','public');
 select forapi.autoriza_usuario('tmp_$1');
 select forapi.autoriza_usuario('$2');
 delete from pg_authid where rolcanlogin=false and rolname not in ('admon','temporalg');
