@@ -23,23 +23,28 @@ drop user tmp_$2 ;
 create user Temporal_$1 with password '$3' CREATEUSER;
 create role temporalg;
 create role admon;
-create schema forapi;
+drop schema forapi cascade;
 fin
 psql -U postgres < $0.sql > tmp/$mn.log
+echo "creo base y usuarios en pg_authid" 
 psql $1 -U $2 -h localhost  < src/bd/forapi_esquema.sql >> tmp/$mn.log
+echo "creo el esquema" 
 cat > $0.sql << fin
 alter table forapi.menus_campos disable trigger ti_menus_campos;
 alter table forapi.menus disable trigger ti_menus;
 alter table forapi.menus disable trigger tu_menus;
 fin
 psql $1 -U $2 -h localhost  < $0.sql >> tmp/$mn.log
+echo "deshabilito triggers" 
 psql $1 -U $2 -h localhost  < src/bd/forapi_insert.sql >> tmp/$mn.log
+echo "inserto datos forapi" 
 cat > $0.sql << fin
 alter table forapi.menus_campos enable trigger ti_menus_campos;
 alter table forapi.menus enable  trigger ti_menus;
 alter table forapi.menus enable  trigger tu_menus;
 fin
 psql $1 -U $2 -h localhost  < $0.sql >> tmp/$mn.log
+echo "habilito triggers" 
 cat > $0.sql << fin
 insert into forapi.cat_usuarios (usename,nombre,id_tipomenu,password,estatus) values ('tmp_$1','temporal',1,'$3',1);
 insert into forapi.cat_usuarios (usename,nombre,id_tipomenu,password,menu,estatus) values ('$2','$2',1,'$3',
@@ -53,6 +58,7 @@ select forapi.autoriza_usuario('$2');
 delete from pg_authid where rolcanlogin=false and rolname not in ('admon','temporalg');
 fin
 psql $1 -U $2 -h localhost  < $0.sql  >> tmp/$mn.log
+echo "creo usuarios autorizo usuarios en forapi" 
 cat > $0.sql << fin
 select '<?php'
 union all
