@@ -1132,7 +1132,7 @@ class soldatos
                                         $filaanterior=$this->menuc[$nomcampo]["fila"];
                                         $wllinea="";
 	    			        $this->fin_tabcaptura();	  	    				
-                                        echo "<div class='btn-registro' ><tr><td><button class='btn-mostrar'  tabindex='-1' align='left' type=button id='imostrar' ".
+                                        echo "<div class='btn-01' ><tr><td><button class='btn-mostrar'  tabindex='-1' align='left' type=button id='imostrar' ".
                                         "onclick=\"return toggleDiv('".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."',this);\"></button></td>";
                                         echo "<td><label>".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."</label></td></tr></div>";
 	    		                $this->inicio_tabcaptura_t($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"],
