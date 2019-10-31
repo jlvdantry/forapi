@@ -42,20 +42,12 @@ echo "<script language='JavaScript' type='text/javascript'>\n";
 echo "try {\n";
 echo "var t;\n";
 echo "var c=0;\n";
-##function validacampos()
-##{
-##echo "   alert('entro a subir archivo');\n";
 echo "   var wlurl; \n";
 echo "   if (parent.document.getElementById('ficheroin').value == '' ) {\n";
 echo "        window.alert('No se ha especificado la ubicación del archivo');\n";
 echo "        parent.document.getElementById('ficheroin').focus();\n";
 echo "   }\n";
-#echo "   alert('despues de ficheroin');\n";
-#echo "   parent.document.getElementById('_avance_').value = 'Transmitiendo archivo' ;\n";
-#echo "   alert('despues de transmitiendo');\n";
-#echo "   checaftp();\n";
 echo "   } catch (err) { alert('error al entrar='+err.description); }\n";
-##};
 
 echo "function checaftp()\n";
 echo "{\n";
@@ -76,18 +68,19 @@ echo "}\n";
 echo "</script>\n";
 function arma_inicio_close($mensaje,$wlid_adjuntara,$wlext,$nombre)
 {
-echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
-echo " try {\n";
-echo " parent.document.getElementById('_avance_').value='".$mensaje."';\n";
-echo " parent.document.getElementById('_idar_').value='".$wlid_adjuntara.".".$wlext.";".$nombre."';\n";
-if ($wlid_adjuntara!='')
-{  echo " parent.document.getElementById('_idar_').click(); \n"; }
-echo " } catch (err) { alert('error en altaadjuntan.php ' + err.description); }\n";
-echo "</script>";
+   echo "<script language=\"JavaScript\" type=\"text/javascript\">\n";
+   echo " try {\n";
+   echo " parent.document.getElementById('_avance_').value='".$mensaje."';\n";
+   echo " parent.document.getElementById('_idar_').value='".$wlid_adjuntara.".".$wlext.";".$nombre."';\n";
+   if ($wlid_adjuntara!=='')
+   {  echo " parent.document.getElementById('_idar_').click(); \n"; }
+   echo " } catch (err) { alert('error en altaadjuntan.php ' + err.description); }\n";
+   echo "</script>";
 }
       $error="";
       if(sizeof($_FILES))
       {
+        $wlid_adjuntara=0;
         if($_FILES['ficheroin']['size'] < 1)
         {
                 $error="El tamaño de archivo esta en ceros ".$_FILES['ficheroin']['size'] ;
@@ -102,7 +95,8 @@ echo "</script>";
                 $wlext=strtolower(substr($_FILES['ficheroin']['name'], strrpos($_FILES['ficheroin']['name'], '.') + 1));
         if (($wlext!="xls" && $wlext!="xlsx" && $wlext!="doc" && $wlext!="docx" && $wlext!="txt" && $wlext!="jpg" && $wlext!="pdf" && $wlext!="bmp" && $wlext!="zip" && $wlext!="gz" && $wlext!="tar"  && $wlext!="rar" && $wlext!="key" && $wlext!="cer") && $error=="")
         {
-                $error=" Error, Los archivos con extencion <b>.".$wlext."</b> no se permiten adjuntar ";
+                error_log(dame_tiempo()."src/php/altaadjuntaran.php lo archivos con extencsion no se puede subir ".$wlext."\n",3,"/var/tmp/errores.log");
+                $error=" Error, Los archivos con extencion ".$wlext." no se permiten adjuntar ";
         }
         if ($error=="")
         {
@@ -126,7 +120,6 @@ echo "</script>";
       }
       if ($error=="") $error="Transmitio el archivo";
       arma_inicio_close($error,$wlid_adjuntara,$wlext,$_FILES['ficheroin']['name']);
-      echo "entro".print_r($_FILES,true)." no de archivo".$wlid_adjuntara;
    function dame_tiempo()
    {
                             $t=getdate();
