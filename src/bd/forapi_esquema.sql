@@ -762,11 +762,12 @@ CREATE FUNCTION cambio_menus() RETURNS trigger
      if old.columnas!=new.columnas then
         wlfila=20;
         lleva=0;
-        for mireg in select * from menus_campos where idmenu=old.idmenu
-                   order by htmltable,fila,orden
+        for mireg in select * from forapi1.menus_campos where idmenu=old.idmenu and eshidden=false
+                   order by htmltable,orden
                 loop
             update menus_campos set fila=wlfila where idcampo=mireg.idcampo;
             lleva=lleva+1;
+            raise notice 'campo actualizado %, wlfila % columnas % ', mireg.attname, wlfila, new.columnas;
             if lleva=new.columnas then
                lleva=0;
                wlfila=wlfila+20;
@@ -792,39 +793,51 @@ CREATE FUNCTION cambio_menus_columnas() RETURNS trigger
       lleva    numeric;
       mireg record;
       wlclase   varchar(100);
+      registros numeric;
+      htmltableant numeric;
     BEGIN
      if old.columnas!=new.columnas then
         if new.columnas=1 then 
-           wlclase='col-md-12';
+           wlclase='col-md-12 row';
         end if;
         if new.columnas=2 then 
-           wlclase='col-md-6';
+           wlclase='col-md-6 row';
         end if;
         if new.columnas=3 then 
-           wlclase='col-md-4';
+           wlclase='col-md-4 row';
         end if;
         if new.columnas=4 then 
-           wlclase='col-md-3';
+           wlclase='col-md-3 row';
         end if; 
         if new.columnas=5 then 
-           wlclase='col-md-2';
+           wlclase='col-md-2 row';
         end if; 
         if new.columnas=6 then 
-           wlclase='col-md-2';
+           wlclase='col-md-2 row';
         end if; 
         wlfila=20;
         lleva=0;
-        for mireg in select * from forapi.menus_campos where idmenu=old.idmenu
-                   order by htmltable,fila,orden
-                loop
-            update forapi.menus_campos set fila=wlfila,clase=wlclase where idcampo=mireg.idcampo;
-            lleva=lleva+1;
-            --raise notice ' descripcion % , fila % lleva % ', mireg.descripcion, wlfila, lleva;
+        registros=0;
+        for mireg in select * from forapi.menus_campos where idmenu=old.idmenu and eshidden=false
+                   order by htmltable,orden
+          loop
+            if registros=0 then
+               htmltableant=mireg.htmltable;
+            end if;
+            if htmltableant<>mireg.htmltable then
+               lleva=0;
+               wlfila=wlfila+20;
+               htmltableant=mireg.htmltable;
+            end if;
             if lleva=new.columnas then
                lleva=0;
                wlfila=wlfila+20;
             end if;
-        end loop;
+            update forapi.menus_campos set fila=wlfila,clase=wlclase where idcampo=mireg.idcampo;
+            lleva=lleva+1;
+            registros=registros+1;
+            raise notice ' descripcion % , fila % lleva % ', mireg.descripcion, wlfila, lleva;
+          end loop;
      end if;
      return new;
     END;$$;
@@ -2514,6 +2527,79 @@ ALTER SEQUENCE menus_presentacion_idpresentacion_seq OWNED BY menus_presentacion
 
 
 --
+-- Name: menus_scripts; Type: TABLE; Schema: forapi; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE menus_scripts (
+    idscript integer NOT NULL,
+    descripcion character varying(100),
+    sql text,
+    fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
+    usuario_alta character varying(20) DEFAULT getpgusername(),
+    fecha_modifico timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
+    usuario_modifico character varying(20) DEFAULT getpgusername()
+);
+
+
+ALTER TABLE forapi.menus_scripts OWNER TO postgres;
+
+--
+-- Name: TABLE menus_scripts; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON TABLE menus_scripts IS 'tabla para dar de alta un script ddl o dml';
+
+
+--
+-- Name: COLUMN menus_scripts.idscript; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON COLUMN menus_scripts.idscript IS 'id del script';
+
+
+--
+-- Name: COLUMN menus_scripts.sql; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON COLUMN menus_scripts.sql IS 'instruccion';
+
+
+--
+-- Name: COLUMN menus_scripts.fecha_alta; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON COLUMN menus_scripts.fecha_alta IS 'Fecha en que hizo el movimiento el usuario';
+
+
+--
+-- Name: COLUMN menus_scripts.usuario_alta; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON COLUMN menus_scripts.usuario_alta IS 'Usuario hizo el alta ';
+
+
+--
+-- Name: menus_scripts_idscript_seq; Type: SEQUENCE; Schema: forapi; Owner: postgres
+--
+
+CREATE SEQUENCE menus_scripts_idscript_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE forapi.menus_scripts_idscript_seq OWNER TO postgres;
+
+--
+-- Name: menus_scripts_idscript_seq; Type: SEQUENCE OWNED BY; Schema: forapi; Owner: postgres
+--
+
+ALTER SEQUENCE menus_scripts_idscript_seq OWNED BY menus_scripts.idscript;
+
+
+--
 -- Name: menus_seguimiento; Type: TABLE; Schema: forapi; Owner: postgres; Tablespace: 
 --
 
@@ -2798,6 +2884,13 @@ ALTER TABLE ONLY menus_presentacion ALTER COLUMN idpresentacion SET DEFAULT next
 
 
 --
+-- Name: idscript; Type: DEFAULT; Schema: forapi; Owner: postgres
+--
+
+ALTER TABLE ONLY menus_scripts ALTER COLUMN idscript SET DEFAULT nextval('menus_scripts_idscript_seq'::regclass);
+
+
+--
 -- Name: idseguimietno; Type: DEFAULT; Schema: forapi; Owner: postgres
 --
 
@@ -2904,6 +2997,14 @@ ALTER TABLE ONLY menus
 
 ALTER TABLE ONLY menus_presentacion
     ADD CONSTRAINT menus_presentacion_pkey PRIMARY KEY (idpresentacion);
+
+
+--
+-- Name: menus_scripts_pkey; Type: CONSTRAINT; Schema: forapi; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY menus_scripts
+    ADD CONSTRAINT menus_scripts_pkey PRIMARY KEY (idscript);
 
 
 --
@@ -3029,6 +3130,13 @@ CREATE INDEX ak2_menus_pg_group ON menus_pg_group USING btree (idmenu);
 
 
 --
+-- Name: ak2_menus_scripts; Type: INDEX; Schema: forapi; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX ak2_menus_scripts ON menus_scripts USING btree (usuario_alta);
+
+
+--
 -- Name: ak2_menus_seguimiento; Type: INDEX; Schema: forapi; Owner: postgres; Tablespace: 
 --
 
@@ -3061,6 +3169,13 @@ CREATE INDEX ak3_menus_campos ON menus_campos USING btree (fuente_info_idmenu);
 --
 
 CREATE INDEX ak3_menus_log ON menus_log USING btree (fecha_alta);
+
+
+--
+-- Name: ak3_menus_scripts; Type: INDEX; Schema: forapi; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX ak3_menus_scripts ON menus_scripts USING btree (fecha_alta);
 
 
 --
