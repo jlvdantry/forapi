@@ -28,16 +28,15 @@ ContextMenu.display=function(popupoptions)
 	    var eobj,cmdx,cmdy;
     	eobj = window.event;
         if (!e) var e = window.event;
-	if (e.pageX || e.pageY) 	{
-		posx = e.pageX;
-		posy = e.pageY;
-	}
-	else if (e.clientX || e.clientY) 	{
-		posx = e.clientX + document.body.scrollLeft
-			+ document.documentElement.scrollLeft;
-		posy = e.clientY + document.body.scrollTop
-			+ document.documentElement.scrollTop;
-	}
+	if (e.clientX || e.clientY) 	{
+		posx = e.clientX ;
+		posy = e.clientY ;
+	} else 
+        if (e.pageX || e.pageY)         {
+                posx = e.pageX;
+                posy = e.pageY;
+        }
+        console.log('ClienteX='+e.clientX+' ClienteY='+e.clientY+' pageX='+e.pageX+' pageY='+e.pageY+' screenX='+e.screenX+' screenY='+e.screenY);
         ContextMenu.showPopup(posx,posy);
 	ContextMenu.populatePopup(popupoptions,window)
 	ContextMenu.fixSize();
@@ -49,9 +48,9 @@ ContextMenu.display=function(popupoptions)
  ContextMenu.getScrollTop=function()
   {
 //	  alert('document.body.scrollTop='+document.body.scrollTop+' window.pageXOffset='+window.pageXOffset);
-   	//return document.body.scrollTop;
+   	return document.body.scrollTop;
 	//window.pageXOffset and window.pageYOffset for moz
-        return 0;
+        //return 0;
  }
 
    ContextMenu.getScrollLeft=function()
