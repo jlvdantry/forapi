@@ -16,7 +16,7 @@
     echo "</div>\n";
 
     echo "<div class='pleca d-flex justify-content-end'>\n";
-    echo "<div id=menus class=\"navbar navbar-expand-lg navbar-light bg-light\" >\n";
+    echo "<div id=menus class=\"navbar navbar-expand navbar-light bg-light\" >\n";
     echo "<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n";
     echo "     <ul class=\"navbar-nav mr-auto\" id=\"navbarSupportedContentul\">\n";
     echo "     </ul>";
