@@ -354,7 +354,7 @@ class soldatos
         		"	style=\" ".
                 		   ((strlen($table_width)>0 && $table_width>0) ? " width:".$table_width : "  width:100" )."%;".
                 		   ((strlen($table_height)>0 && $table_height>0) ? " height:".$table_height : " heigth:100" )."%;".
-				"	\" oncontextmenu='contextForTABLE(this);return false;' ".($this->menu["imprime"]=="2" ? " name=noimprime " : "" ).">".
+				"	\" oncontextmenu='contextForTABLE(this,$this->idmenu);return false;' ".($this->menu["imprime"]=="2" ? " name=noimprime " : "" ).">".
         	"<tr>".
         	"	<td colspan=10>".
 			"		<h1 align='center' class=titulo >".$this->titulos."</h1>".
@@ -375,12 +375,12 @@ class soldatos
         			" style=\" ".
                 		   ((strlen($table_width)>0 && $table_width>0) ? " width:".$table_width : "  width:100" )."%;".
                 		   ((strlen($table_height)>0 && $table_height>0) ? " height:".$table_height : " heigth:100" )."%;".
-				"\" id='tabcaptura' oncontextmenu='contextForTABLE(this);return false;'".
+				"\" id='tabcaptura' oncontextmenu='contextForTABLE(this,$this->idmenu);return false;'".
             	                ($this->menu["imprime"]=="2" ? " name=noimprime " : "").">\n";
   }
   function inicio_tabcaptura_t($table_width,$table_height,$table_align,$id)
   {
-        echo    "       <div id='".$id."' class='container grupo' align=\"".(($table_align!='') ? $table_align : "center")."\" style=\" width:".(($table_width>0) ? $table_width : "100" )."% height:".(($table_height!="") ? $table_height : "100" )."%;\" oncontextmenu='contextForTABLE(this);return false;'".
+        echo    "       <div id='".$id."' class='container grupo' align=\"".(($table_align!='') ? $table_align : "center")."\" style=\" width:".(($table_width>0) ? $table_width : "100" )."% height:".(($table_height!="") ? $table_height : "100" )."%;\" oncontextmenu='contextForTABLE(this,$this->idmenu);return false;'".
         ">\n";
   }
   
@@ -390,7 +390,7 @@ class soldatos
     */
   function inicio_tab_botones($table_width,$table_height,$table_align)
   {
-        echo "<div class='container' align=\"".$table_align."\" style=\" width:".(($table_width>0) ? $table_width : "100" )."%;\" id='tabbotones' align=center name=tabbotones >\n";
+        echo "<div class='container' align=\"".$table_align."\" style=\" width:".(($table_width>0) ? $table_width : "100" )."%;\" id='tabbotones_$this->idmenu' align=center name=tabbotones >\n";
   }
 
   //grecar 20070831
@@ -545,81 +545,6 @@ class soldatos
          if ($z==0) { echo "document.forms[0].".$xldato.".focus();"; };
   }
 
-  /**
-    *   arma el titulo de la fecha final
-    */
-  function pidefechafin_t()
-  {
-    echo "   <th>Fecha Final AAAA-MM-DD </th>    ";
-  }
-
-  /**
-    *  arma el campo para pedir la fecha final
-    */
-  function pidefechafin()
-  {
-    echo "   <th><input onBlur='ponCookie(this.name,this.value);' type=text name=xlfechafin maxlength=10 size=20 value=".$this->xlfechafin."></input> </th>";
-  }
-
-  /**
-    * arma el titulo del punto de recaudacion inicial
-    */
-  function pideprini_t()
-  {
-    echo "<th>PR inicial</th>";
-  }
-  /**
-    *  arma el campo para pedir el punto de recaudacion inicial
-    */
-  function pideprini()
-  {
-    echo "<th> <select onBlur='ponCookie(this.name,this.value);' name=xlprini>      ";
-    $sql ="SELECT atl || ' ' || substr((trim(nombre_atl)),1,14) as nombre_atl,atl FROM atls "
-          ."order by 2";
-    $this->arma_select($sql);
-    echo "<input type=hidden name=xlprininame value=$b></input> ";
-    echo "</select></th>  ";
-  }
-
-  /**
-    *  arma el titulo del punto de recaudacion final
-    */
-  function pideprfin_t()
-  {
-    echo "<th>PR Final</th>    ";
-  }
-
-  /**
-    * arma el campo para pedir el punto de recaudacion final
-    */
-  function pideprfin()
-  {
-    echo "<th> <select onBlur='ponCookie(this.name,this.value);' name=xlprfin>      ";
-    $sql ="SELECT atl || ' ' || substr((trim(nombre_atl)),1,14) as nombre_atl,atl FROM atls "
-          ."order by 2";
-    $this->arma_select($sql);
-    echo "<input type=hidden name=xlprfinname value=$b></input> ";
-    echo "</select></th>  ";
-  }
-
-  /**
-    * arma el titulo del estado
-    */
-  function pideestado_t()
-  {
-     echo "<th>Estado</th>    ";
-
-  }
-  
-  /**
-    *  arma el campo para pedir el estado
-    */
-  function pideestado()
-  {
-     echo "<th><select onBlur='ponCookie(this.name,this.value);' name=xlestado> ";
-     $sql ="SELECT descripcion, estado FROM estados order by estado";
-     $this->arma_select($sql);
-   }
 
    /**
      *   arma el option select del html de acuerdo al sql que se pasa
@@ -1304,8 +1229,10 @@ class soldatos
     	if (strpos($this->movto_mantto,"u")!==false)     	  
         {
 	     	echo "<td id='cambio' class='botones' > ".
-	     	($this->menum['u']['idmovto']=='u' && $this->menum['u']["descripcion"]!="" ? "<input type='button' class='hidden btn-02' id='iCambio_".$this->idmenu."' value='".$this->menum['u']["descripcion"]."' title='Cambio'  " : "<input type=button class='hidden btn-02' id='iCambio_".$this->idmenu."'  title='Cambio' value='Cambio' ").
-        	  "onclick='alert(\"Primero debe selecionar un renglon\");return false'></input></td>\n";	        
+	     	($this->menum['u']['idmovto']=='u' && $this->menum['u']["descripcion"]!="" ? "<input type='button' class='d-none btn-02' id='iCambio_".
+                     $this->idmenu."' value='".$this->menum['u']["descripcion"].
+                      "' title='Cambio'  " : "<input type=button class='d-none btn-02' id='iCambio_".$this->idmenu."'  title='Cambio' value='Cambio' ").
+        	      "></input></td>\n";	        
         }    	
 		echo $this->arma_subvistas($sql_result,$Row,$z,$meda,1);        	      	    
 		
@@ -1399,7 +1326,7 @@ class soldatos
         if (strpos($meda->camposm['movtos'],"n")!==false) 
         	{
 	     	echo "<td id='navegacionar' class='botones' > ".
-	     	($this->menum['n']['idmovto']=='n' && $this->menum['n']["descripcion"]!="" ? "<input type=button id='iinicio' value='".$this->menum['n']["descripcion"]."' title='Registro Inicial'  " : "<button type=image id='iCambio_$this->idmenu' src='img/quitato2s.gif' title='RegistroInicial' value='RegistroInicial' ").
+	     	($this->menum['n']['idmovto']=='n' && $this->menum['n']["descripcion"]!="" ? "<input type=button id='iinicio' value='".$this->menum['n']["descripcion"]."' title='Registro Inicial'  " : "<button type=image id='iInicio_$this->idmenu' src='img/quitato2s.gif' title='RegistroInicial' value='RegistroInicial' ").
         	  "onclick='registroinicial();return false'></button>  </td>\n";
 	     	echo "<td id='navegacionar' class='botones' > ".
 	     	($this->menum['n']['idmovto']=='n' && $this->menum['n']["descripcion"]!="" ? "<input type=button id='iAnterior' value='".$this->menum['n']["descripcion"]."' title='Siguiente Registro'  " : "<input type=image id='AnteriorRegistro' src='img/quita1.gif' title='AnteriorRegistro' value='AnteriorRegistro' ").

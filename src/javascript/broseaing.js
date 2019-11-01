@@ -509,9 +509,9 @@ color_renglon.poneclase= function(wlrenglon,wlclase)
 /*
  funcion que muestra el contextmenu en la tabla de capura
  */
-window.contextForTABLE = function(objtabla)
+window.contextForTABLE = function(objtabla,idmenu)
 {
-	var wlTABLE=document.getElementById("tabbotones");
+	var wlTABLE=document.getElementById("tabbotones_"+idmenu);
 	var siSelect = wlTABLE.getElementsByTagName('input');
 	var wlstr='';
   	for (e=0;e<siSelect.length;e++) {		
@@ -1099,9 +1099,9 @@ window.cambia_onclick = function(wlonclick,idmenu)
 
 	try {
 		var obj=document.getElementById("iCambio_"+idmenu);
-                if (obj.className=='hidden') { obj.className='visible'; } 
-                str=' obj.onclick = function () { ' + wlonclick + ' }';
-                eval(str);
+                if ($(obj).hasClass('d-none')) { $(obj).removeClass('d-none') } 
+                obj.setAttribute("onclick",wlonclick);
+                //eval(str);
 	} catch (err) { 
 		};
 }
