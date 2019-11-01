@@ -696,7 +696,7 @@ class soldatos
         	    		       or die("Problemas al hacer sql. arma_selectn ".$sql );
      			    $num = pg_numrows($sql_result);
 				if ($num!=1 || ($obligatorio!=='t'))
-	   			 $DefaultSelect="<option selected value='0' >".(($wltdf==3) ? $wltdd : utf8_encode("Selecciona una Opción") )."</option>\n"; 
+	   			 $DefaultSelect="<option selected value >".(($wltdf==3) ? $wltdd : utf8_encode("Selecciona una Opción") )."</option>\n"; 
      			for ($i=0; $i < $num ;$i++)
      			{
          			$Row = pg_fetch_array($sql_result, $i);

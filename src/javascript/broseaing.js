@@ -1732,6 +1732,20 @@ window.muestra_menus = function (menus,donde='navbarSupportedContentul') {
             }
          }
      }
+     /* crea la opcion de salir del sistema */
+     lid=document.createElement('li');
+     lid.setAttribute('class','nav-item dropdown');
+     ad=document.createElement('a');
+     ad.setAttribute('id','navbarDropdown_9999999');
+     ad.setAttribute('role','button');
+     ad.setAttribute('href','#');
+     adt = document.createTextNode("Salir")
+     ad.setAttribute('class','nav-link');
+     ad.setAttribute('onclick',"salir()");
+     ad.appendChild(adt)
+     lid.appendChild(ad)
+     nav.appendChild(lid);
+
      for ( var ren in m) {
          if (typeof(m[ren])=='object') {
             idpadre=m[ren].childNodes[3].innerHTML;
@@ -1749,6 +1763,7 @@ window.muestra_menus = function (menus,donde='navbarSupportedContentul') {
             }
          }
      }
+
 }
 //  recibe el menu o vista sobre el cual va a dar mantenimiento
 //  el movimiento que va a efectuar i=insert,d=delete,u=update
