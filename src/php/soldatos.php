@@ -129,13 +129,6 @@ class soldatos
     */
   function despledatos()
   {
-/*
-    if (!isset($_SESSION["parametro1"]) && ($this->descripcion!='Entrada Al Sistema' && $this->idmenu!=2396 && $this->idmenu!=1349 && $this->idmenu!=1021 ))
-    {
-          header('Location: index.php');
-          die();
-    }
-*/
 
 	  if (in_array("MTA",$this->datos)) // 20070818
 	  { // 20070818
@@ -350,37 +343,30 @@ class soldatos
      */
   function inicio_tabcaptura($table_width,$table_height,$table_align)
   { 
-        echo    " <div class='container' ".(strlen($table_align)>0 ? " align=".$table_align : "" ).
-        		"	style=\" ".
-                		   ((strlen($table_width)>0 && $table_width>0) ? " width:".$table_width : "  width:100" )."%;".
-                		   ((strlen($table_height)>0 && $table_height>0) ? " height:".$table_height : " heigth:100" )."%;".
-				"	\" oncontextmenu='contextForTABLE(this,$this->idmenu);return false;' ".($this->menu["imprime"]=="2" ? " name=noimprime " : "" ).">".
+        echo    "<tituloforma class='container'".
+				"	\" oncontextmenu='contextForTABLE(this,$this->idmenu);return false;' >".
         	"<tr>".
-        	"	<td colspan=10>".
+        	"	<td ".
 			"		<h1 align='center' class=titulo >".$this->titulos."</h1>".
         	"	</td>".
         	"</tr>".
         	"<tr>".
         	"	<div class='fecha' >".
-        ($_SESSION["parametro1"]!=""
-        ?	"		<td class='enca' >".
-		"			<button class='btn-mostrar' type=button  tabindex='-1' id='imostrar' onclick=\"return toggleDiv('".$this->titulos."',this);\" /></input>".
-		"		</td>"
-        :	"" ).
+                ($_SESSION["parametro1"]!="" ?	" <td class='enca' >".
+		"			<button class='btn-mostrar' type=button  tabindex='-1' id='imostrar' onclick=\"return toggleDiv('"
+                                        .$this->titulos."',this);\" /></input>"."		</td>"
+                                     :	"" ).
 		"	</div>".
 		"</tr>".
-		"</div>".
+		"</tituloforma>".
         	"<quepasa id='".$this->titulos."'>".
-        	"	<div class='container' ".(strlen($table_align)>0 ? " align=".$table_align : "" ).
-        			" style=\" ".
-                		   ((strlen($table_width)>0 && $table_width>0) ? " width:".$table_width : "  width:100" )."%;".
-                		   ((strlen($table_height)>0 && $table_height>0) ? " height:".$table_height : " heigth:100" )."%;".
-				"\" id='tabcaptura' oncontextmenu='contextForTABLE(this,$this->idmenu);return false;'".
-            	                ($this->menu["imprime"]=="2" ? " name=noimprime " : "").">\n";
+        	"	<div class='container'".
+				"\" id='tabcaptura' oncontextmenu='contextForTABLE(this,$this->idmenu);return false;'>\n";
   }
+
   function inicio_tabcaptura_t($table_width,$table_height,$table_align,$id)
   {
-        echo    "       <div id='".$id."' class='container grupo' align=\"".(($table_align!='') ? $table_align : "center")."\" style=\" width:".(($table_width>0) ? $table_width : "100" )."% height:".(($table_height!="") ? $table_height : "100" )."%;\" oncontextmenu='contextForTABLE(this,$this->idmenu);return false;'".
+        echo    "       <div id='".$id."' class='container grupo ' oncontextmenu='contextForTABLE(this,$this->idmenu);return false;'".
         ">\n";
   }
   
@@ -390,7 +376,10 @@ class soldatos
     */
   function inicio_tab_botones($table_width,$table_height,$table_align)
   {
-        echo "<div class='container' align=\"".$table_align."\" style=\" width:".(($table_width>0) ? $table_width : "100" )."%;\" id='tabbotones_$this->idmenu' align=center name=tabbotones >\n";
+        echo "<div class='container'><div class='row d-flex justify-content-around align-items-center' id='tabbotones_$this->idmenu' name=tabbotones >\n";
+  }
+  function fin_tab_botones() {
+        echo "</div></div>";
   }
 
   //grecar 20070831
@@ -450,7 +439,9 @@ class soldatos
     */   
   function inicio_html()
   {
-    echo "<div id='soldatos_".$this->idmenu."' class='container' onunload='this.Cierraforma()' onresize=\"this.Cambiasize('".$this->idmenu."');\" onClick='sumaclicks()' onLoad=\"try { inicia();inicioforma();\n pone_focus_forma('',this);\n pone_sort_scroll(); \n sumatotales();\n } catch (e) { };ContextMenu.intializeContextMenu();\"  >\n";      
+    echo "<div id='soldatos_".$this->idmenu."' class='container mt-lg-5' onunload='this.Cierraforma()' onresize=\"this.Cambiasize('".$this->idmenu."');\" onClick='sumaclicks()' onLoad=\"try { inicia();inicioforma();\n pone_focus_forma('',this);\n pone_sort_scroll(); \n sumatotales();\n } catch (e) { };ContextMenu.intializeContextMenu();\"  >\n";      
+    echo "<div class='row d-flex justify-content-around align-items-center' >";
+    echo "<div class='".($this->menu["table_align"]!="" ? $this->menu["table_align"] : "col-lg-6")."' >";
   }
   /**
     *  Arma el boton
@@ -490,10 +481,10 @@ class soldatos
   function fin_html()
   {
     echo "</div>";
+    echo "</div>";
+    echo "</div>";
     echo "      <script language=\"JavaScript\">";
-        //echo "  actualizaRelog ();      ";
-        echo "  </script>       ";
-    //echo "</html>";
+    echo "  </script>       ";
   } 
 
   function __construct()
@@ -1340,6 +1331,7 @@ class soldatos
         	  "onclick='registrofinal();return false'></input>  </td>\n";	                	  	        		        	        	  
         	}        	            	    	  
      	echo "</tr>";
+	    $this->fin_tab_botones();     	
 	    $this->fin_tabcaptura();     	
   }
 
