@@ -491,39 +491,6 @@ class soldatos
   {
   }
 
-  /**     //20070215
-    * arma el titulo de la descripcion de alta automatica  //20070215
-    */  //20070215
-  function pidedes_t() //20070215
-  { //20070215
-    echo "   <th>Descripcion </th>    "; //20070215
-  }    //20070215
-
-  /**  //20070215
-    * arma el campo de la descripcion  //20070215
-    */    //20070215
-  function pidedes()   //20070215
-  {  //20070215
-##    echo "   <th><input onBlur='ponCookie(this.name,this.value);' type=text name=xldes maxlength=30 size=30 value=".$this->xldes."></input> </th>"; //20070215
-    echo "   <th><input onBlur='ponCookie(this.name,this.value);' type=text name=xldes maxlength=30 size=30 value=></input> </th>"; //20070215
-  }  //20070215
-    
-  /**
-    * arma el titulo de la fecha inicial
-    */
-  function pidefechaini_t()
-  {
-    echo "   <th>Fecha Inicial AAAA-MM-DD </th>    ";
-  }
-  
-
-  /**
-    *   arma el campo para pedir la fecha inicial
-    */
-  function pidefechaini()
-  {
-    echo "   <th><input onBlur='ponCookie(this.name,this.value);' type=text name=xlfechaini maxlength=10 size=20 value=".$this->xlfechaini."></input> </th>";
-  }
 
   /**
     *   obtiene el dato de una cookie
@@ -913,7 +880,7 @@ class soldatos
 			."</label>".$wlobligatorio.$wlbusqueda; 
 	    $wli=$wli.
 	    	(($tipodedato != "text") 
-	    	? "<input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom $wleshiden'  onKeydown='return quitaenter(this,event)' " 
+	    	? "<input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ autocapitalize='none' class='form-control form-control-custom $wleshiden'  onKeydown='return quitaenter(this,event)' " 
 	    	: "<textarea $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom $wleshiden' ".((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
 	    						? "cols=".$mecq["colspantxt"] : "" )
 	    				).
