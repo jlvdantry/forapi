@@ -969,13 +969,14 @@ class soldatos
 	    	            (($tipodedato != "text") ? " ></input>" : " >".$valordefault."</textarea>").
 	    	            (($tipodedato == "timestamptz" || $tipodedato == "date") & $readonly!='t' ? " <input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' class='img' type=image id='fe_".$nombre."' name=fe_".$nombre." src='img/icon_datepicker_pink.gif' onclick='muestrafecha(this);return false' title='Selecciona la fecha del calendario'></input>" : " " ). 
                             (($espassword=="3") ? " <input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' size=20 class='captcha' readonly='on' type=text id='wl_".$nombre."_img"."__".$this->idmenu."' name=wl_".$nombre."_img__".$this->idmenu." title='Imagen de la captcha' ></input>&nbsp<input tabindex='-1' class='img' type=image id='wl_".$nombre."_bot__".$this->idmenu."' name=wl_".$nombre."_bot__".$this->idmenu." src='img/refresh.png' onclick='ReDrawCaptcha(this);return false' title='Refresca la imagen del captcha'></input>" : " " );
-						if ($mecq["upload_file"]=='t')
-						{ 
-                                                  $wli.=" <input class='img' type=image abbr='' id='upl_".$nombre."__".$this->idmenu."' name=upl_".$nombre."__".$this->idmenu." src='/dist/img/carpeta.svg' onclick='subearchivo(this);return false' title='Adjunta archivo de explorador' />"; 
-                                                  $wli.=" <input class='img' type=hidden abbr='' id='uplh_".$nombre."__".$this->idmenu."' name=uplh_".$nombre."__".$this->idmenu."  />"; 
-						}
-	    	            $wli.="</div>\n";
-//    	     }
+			if ($mecq["upload_file"]=='t')
+			{ 
+                            $wli.=" <input class='img' type=image abbr='' id='upl_".$nombre."__".$this->idmenu."' name=upl_".
+                                  $nombre."__".$this->idmenu.
+                                  " src='/dist/img/carpeta.svg' onclick='subearchivo(this);return false' title='Adjunta archivo de explorador' />"; 
+                            $wli.=" <input class='img' type=hidden abbr='' id='uplh_".$nombre."__".$this->idmenu."' name=uplh_".$nombre."__".$this->idmenu."  />"; 
+			}
+	    	        $wli.="</div>\n";
 			(substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? $wli=$wli." <input type=hidden id='nu_".$nombre."' name=nu_".$nombre." value=1></input>\n" : $wli=$wli ; 
 	 		($tipodedato=='date' || $tipodedato=='timestampz') ? $wli=$wli." <input type=hidden id='_da_".$nombre."' name=_da_".$nombre." value=1></input>\n" : $wli=$wli ; 	      	
 			($busqueda=='t') ? $wli=$wli." <input type=hidden id='bu_".$nombre."' name=bu_".$nombre." value=1></input>\n" : $wli=$wli ; 
