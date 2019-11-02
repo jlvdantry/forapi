@@ -7,10 +7,16 @@ function altaadjuntara($connection,$ficheroin)
 {
  $sql =" insert into forapi.menus_archivos (descripcion) values ('".$ficheroin."');";
  $sql_result = pg_exec($connection,$sql);
- if (strlen(pg_last_error($connection))>0) { die ("Error al ejecutar qry 1 ".$sql." ".pg_last_error($connection)); }
+ if (strlen(pg_last_error($connection))>0) { 
+       error_log(dame_tiempo()."src/php/altaadjuntaran.php archivo al inserta en menus archivos ".pg_last_error($connection)."\n",3,"/var/tmp/errores.log");
+       return "Error al subir el archivo a la base de datos";
+ }
  $sql =" select currval(pg_get_serial_sequence('forapi.menus_archivos', 'idarchivo'));";
  $sql_result = pg_exec($connection,$sql);
- if (strlen(pg_last_error($connection))>0) { die ("Error al ejecutar qry 2 ".$sql." ".pg_last_error($connection)); }
+ if (strlen(pg_last_error($connection))>0) { 
+       error_log(dame_tiempo()."src/php/altaadjuntaran.php leer secuencia del archivo ".pg_last_error($connection)."\n",3,"/var/tmp/errores.log");
+       return "Error al leer la secuencia delarchivo ";
+ }
  $Row = pg_fetch_array($sql_result, 0);
  $wlopcion="cerrar";
  return $Row[0];
@@ -101,17 +107,20 @@ function arma_inicio_close($mensaje,$wlid_adjuntara,$wlext,$nombre)
         if ($error=="")
         {
                 $wlid_adjuntara=altaadjuntara($connection,$_FILES['ficheroin']['name']);
-                $dest = $_SERVER['DOCUMENT_ROOT']."/upload_ficheros/".$wlid_adjuntara.".".$wlext;
-                error_log(dame_tiempo()."src/php/altaadjuntaran.php archivo a generar ".$dest."\n",3,"/var/tmp/errores.log");
-                if(!move_uploaded_file($_FILES['ficheroin']['tmp_name'], $dest))
-                {
+                if (gettype($wlid_adjuntara)=='string') {
+                    $error=$wlid_adjuntara;
+                } else {
+                  error_log(dame_tiempo()."src/php/altaadjuntaran.php tipo wlid_adjuntara".gettype($wlid_adjuntara)."\n",3,"/var/tmp/errores.log");
+                  $dest = $_SERVER['DOCUMENT_ROOT']."/upload_ficheros/".$wlid_adjuntara.".".$wlext;
+                  error_log(dame_tiempo()."src/php/altaadjuntaran.php archivo a generar ".$dest."\n",3,"/var/tmp/errores.log");
+                  if(!move_uploaded_file($_FILES['ficheroin']['tmp_name'], $dest)) {
                         $error="Error Hubo problemas al subir el archivo";
-                }
-                else
-                {
+                  }
+                  else {
                         chmod($dest, 0644);
                         $error="";
-                }
+                  }
+               }
         }
       }
       else
