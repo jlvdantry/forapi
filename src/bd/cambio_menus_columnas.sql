@@ -12,22 +12,22 @@ CREATE or replace FUNCTION forapi.cambio_menus_columnas() RETURNS trigger
     BEGIN
      if old.columnas!=new.columnas then
         if new.columnas=1 then 
-           wlclase='col-md-12 row';
+           wlclase='col-md-12';
         end if;
         if new.columnas=2 then 
-           wlclase='col-md-6 row';
+           wlclase='col-md-6';
         end if;
         if new.columnas=3 then 
-           wlclase='col-md-4 row';
+           wlclase='col-md-4';
         end if;
         if new.columnas=4 then 
-           wlclase='col-md-3 row';
+           wlclase='col-md-3';
         end if; 
         if new.columnas=5 then 
-           wlclase='col-md-2 row';
+           wlclase='col-md-2';
         end if; 
         if new.columnas=6 then 
-           wlclase='col-md-2 row';
+           wlclase='col-md-2';
         end if; 
         wlfila=20;
         lleva=0;
