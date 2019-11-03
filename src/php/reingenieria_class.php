@@ -55,7 +55,7 @@ class reingenieria extends xmlhttp_class
 	  $this->tabla=$this->argumentos['wl_relname'];      
 	  $this->nspname=$this->argumentos['wl_nspname'];      	  
       $sql=" insert into forapi.menus(descripcion,tabla,reltype,php,nspname,table_height,table_width,table_align,columnas) ".
-		   " select relname,relname,reltype,'man_menus.php',nspname,0,80,'center',1".
+		   " select relname,relname,reltype,'man_menus.php',nspname,0,80,'col-lg-6',2".
            " from forapi.tablas ".
            " where relname = '".$this->tabla."' ".
            " and nspname = '".$this->nspname."'";
