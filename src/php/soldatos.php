@@ -1459,7 +1459,7 @@ class soldatos
 
         	if (strpos($meda->camposm['movtos'],"cc")!==false) 
         	{
-            	 $wlini=$wlini."<td name=noimprime ><input class='img' type=image title='Copia registro' src='img/copy.gif' ".
+            	 $wlini=$wlini."<td name=noimprime ><i class='fas fa-copy' type=image title='Copia registro' src='img/copy.gif' ".
                    "onclick='mantto_tabla(\"".$meda->camposm['idmenu']."\",\"cc\",\"".$wlllave."\",".($z).",\"".
         	                          // evento antes de dar de baja
         	                          (($meda->camposme[5][2]['donde']==1) ? $meda->camposme[5][2]['descripcion'] : "").
@@ -1474,7 +1474,7 @@ class soldatos
         	                          (($meda->camposme[6][1]['donde']==0) ? $meda->camposme[6][1]['descripcion'] : "").
                                           // confirma el movimiento a efectuar
                                           "\",\"".$this->menu["noconfirmamovtos"]."\"".
-                                                           ");return false'></input></td>\n";
+                                                           ");return false'></i></td>\n";
         	}
 
 //20070611   lo modifique para que cuando sea solo select "s" se pudiese tambien seleccionar el registro
