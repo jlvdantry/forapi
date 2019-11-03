@@ -23,7 +23,7 @@ class seguridad extends xmlhttp_class
 				echo "<error>No esta definido el usuario a reasignar permisos</error>";
 				return;
 			}
-            $sql="select autoriza_usuario('".$this->argumentos['wl_usename']."')";
+            $sql="select forapi.autoriza_usuario('".$this->argumentos['wl_usename']."')";
             $sql_result = @pg_exec($this->connection,$sql);
         	if (strlen(pg_last_error($this->connection))>0)
         	{
