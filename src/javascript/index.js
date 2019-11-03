@@ -4,6 +4,12 @@ window.$ = window.jQuery = require('jquery');
 import Popper from 'popper.js';
 import 'bootstrap'
 
+import '@fortawesome/fontawesome-free/js/fontawesome'
+import '@fortawesome/fontawesome-free/js/solid'
+import '@fortawesome/fontawesome-free/js/regular'
+import '@fortawesome/fontawesome-free/js/brands'
+
+require('./fontawesome-all.js');
 require('./captcha.js');
 require('./altaadjuntara.js');
 require('./altaautomatica.js');
