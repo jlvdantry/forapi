@@ -1,4 +1,4 @@
-function altaautomatica ( ) { }
+window.altaautomatica = function ( ) { }
 altaautomatica.prototype.change = function () { }
 altaautomatica.prototype.valor  = function () { return document.getElementById("_desc_").value; }
 altaautomatica.prototype.focus  = function () { return document.getElementById("_desc_").focus(); }

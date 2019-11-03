@@ -619,7 +619,7 @@ class soldatos
                                 ."' abbr=\"".$descripcion."\" value=\"".$descripcion."\" "
    		 		.">".$descripcion.(($busqueda=='t') ? "* " : " ")
    		                ."</label>".$wlobligatorio; 
-   			$vas=$vas."<select $wlobligatorio_ $wlbusqueda_ $tipodato_ $cambiarencambios_ class='form-control form-control-custom' "
+   			$vas=$vas."<div class='d-flex'><select $wlobligatorio_ $wlbusqueda_ $tipodato_ $cambiarencambios_ class='form-control form-control-custom' "
                                     .$wleshiden."placeholder=\"prueba\" "
 	 		            .($menuc["autocomplete"]=='1' ? " ;restaura_autocomplete(this)" : "" )
    			            .(($menumce[1]["idevento"]=='1' && $menumce[1]["donde"]=='0' && $menumce[1]["descripcion"]!='') 
@@ -668,32 +668,30 @@ class soldatos
      			}
  			}
  			
-// 20070622     		$vas=$vas."  </select>";  //20070214   		
 			$vas=$vas.$DefaultSelect.$opciones."  </select>";
-	 		$vas = ($altaautomatico=='t' ? $vas. //20070214 	           		
-             	  " <button tabindex='-1' type=button class='btn-agregar'  title='Alta de un nuevo registro de: ".$descripcion."' value='Alta' id='aa_".$wlnombre."' name=matriz ". 
+	 		$vas = ($altaautomatico=='t' ? $vas.
+             	               " <input tabindex='-1' type=image class='img'  src='dist/img/agregar.svg' title='Alta de un nuevo registro de: "
+                               .$descripcion."' value='Alta' id='aa_".$wlnombre."' name=matriz ". 
             	  "onclick='altaautomatico(\"".$idmenu."\",\"".$attnum."\",".   //20070214
             	  trim(substr($this->armaid_cc($j),4))."".
             	  ",\"".$menuc["fuente"]."\"".
             	  ",\"".$menuc["fuente_campodes"]."\"".            	  
-            	  ",\"".$menuc["fuente_nspname"]."\"".       //20080115 se modifica para manejar esquema en la alta automatica
-            	  ",\"".$menuc["altaautomatico_idmenu"]."\"".       //20080115 numero de menu que va a abrir para dar de alta automatica
-            	  ",\"".$menuc["fuente_campodep"]."\"".   //20080116  se utiliza en la busqueda de una alta automatica en el catalogo 
-            	  ",\"".$menuc["fuente_campofil"]."\"".   //20080116  se utiliza en la busqueda de una alta automatica en el catalogo             	  
-            	  ",this);return false' />\n" : $vas ); //20070214
-
+            	  ",\"".$menuc["fuente_nspname"]."\"".       
+            	  ",\"".$menuc["altaautomatico_idmenu"]."\"".      
+            	  ",\"".$menuc["fuente_campodep"]."\"".   
+            	  ",\"".$menuc["fuente_campofil"]."\"".   
+            	  ",this);return false' />\n" : $vas ); 
 	 		$vas = ($fuente_busqueda=='t' ? $vas. //20070618
              	  "<input class=img type=image src='img/action_search_20.gif' title='Buscar opciones' value='Buscar' name=matriz value='Buscar' ". //20070618
    			          " onClick=\"pidebusqueda('". //20070618
    	        		  $this->dame_sql_sel($wlnombre,0)."','".$fuente_campofil."','".$wlnombre."','".$fuentewhere."','".$fuente_evento."',0".   //20080117
-            	  	  ",'".$menuc["fuente_busqueda_idmenu"]."'".       //20080117 numero de menu que va a abrir para consultar informacion
-   	        		  				"); ". //20080117
+            	  	  ",'".$menuc["fuente_busqueda_idmenu"]."'"."); ". //20080117
                  	  "return false;\"></input>\n" : $vas ); 
-     		$vas=$vas."</div>  ";  //20070214   		     		
 	 	$vas = ((substr($tipodedato,0,3)==='int' || $tipodedato=='numeric') ? $vas." <input type=hidden name=nu_".$wlnombre." value=1></input>\n" : $vas ); 
 	 	$vas = (($tipodedato=='date' || $tipodedato=='timestampz') ? $vas." <input type=hidden name=_da_".$wlnombre." value=1></input>\n" : $vas ); 	 
 	        ($val_particulares!='') ? $vas=$vas." <input type=hidden name=_vp_".$wlnombre." value='".$val_particulares."'></input>\n" : $wli=$wli ; 
 	 	$vas = ($busqueda=='t' ? $vas." <input type=hidden name=bu_".$wlnombre." value=1></input>\n" : $vas ); 	 
+     		  $vas=$vas."</div></div>";  //20070214   		     		
  		}
 	 	return $vas;
    }   

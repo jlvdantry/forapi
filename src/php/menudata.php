@@ -60,18 +60,19 @@ class menudata
 //   20080117   se incluye el esquema     
 //   function damesecuencia($fuente)
    function damesecuencia($fuente,$fuente_nspname)   
-   {																									//20070215
-//   20080117	  $sql="select valor_default  from campos where valor_default like '%nextval%' and relname='".$fuente."'";		//20070215
-	  $sql="select valor_default  from campos where valor_default like '%nextval%' and relname='".$fuente."'".	//   20080117
+   {															
+	  $sql="select valor_default  from campos where valor_default like '%nextval%' and relname='".$fuente."'".	
 	       " and nspname='".$fuente_nspname."'";
-      $sql_result = pg_exec($this->connection,$sql)														//20070215
-                    or die("Couldn't make query damesecuencia. ".$sql );												//20070215
-      $num = pg_numrows($sql_result);																	//20070215
+      $sql_result = pg_exec($this->connection,$sql);
+      if (strlen(pg_last_error($this->connection))>0)
+      {
+           error_log($this->dame_tiempo()."src/php/menudata.php damesecuencia ".$parametro1."\n",3,"/var/tmp/errores.log");
+           return "<error>Error al leer la secuencia </error>";
+      }
+      $num = pg_numrows($sql_result);				
       if ( $num == 0 ) { return "No Encontro la definicion de un menu "; }								//20070215
-//   20080117      else { $Row=pg_fetch_array($sql_result, 0); return str_replace("nextval","currval",$Row["valor_default"]); } 	   								//20070215
       else { $Row=pg_fetch_array($sql_result, 0); return str_replace("nextval('","currval('".($fuente_nspname!="" ? $fuente_nspname."." : ""),$Row["valor_default"]); } 	   								//20070215      
-   }																									//20070215
-   
+   }			
    /**
      *  LLena los diferentes arreglos en base a las tablas menus
      *  por ejemplos menus llena el arreglo camposm
@@ -469,6 +470,13 @@ class menudata
 			}
 			return $va;
    }      
+
+   function dame_tiempo()
+   {
+                            $t=getdate();
+                            return date('Y-m-d h:i:s',$t[0]);
+   }
+
 
 }
 ?>
