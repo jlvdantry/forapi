@@ -343,22 +343,13 @@ class soldatos
      */
   function inicio_tabcaptura($table_width,$table_height,$table_align)
   { 
-        echo    "<tituloforma class='container'".
+        echo    "<div class='btn-02 d-flex justify-content-center'".
 				"	\" oncontextmenu='contextForTABLE(this,$this->idmenu);return false;' >".
-        	"<tr>".
-        	"	<td ".
-			"		<h1 align='center' class=titulo >".$this->titulos."</h1>".
-        	"	</td>".
-        	"</tr>".
-        	"<tr>".
-        	"	<div class='fecha' >".
-                ($_SESSION["parametro1"]!="" ?	" <td class='enca' >".
-		"			<button class='btn-mostrar' type=button  tabindex='-1' id='imostrar' onclick=\"return toggleDiv('"
-                                        .$this->titulos."',this);\" /></input>"."		</td>"
+			"		<label align='center' class=titulo >".$this->titulos."</label>".
+                ($_SESSION["parametro1"]!="" ?	"<button class='btn-mostrar' type=button  tabindex='-1' id='imostrar' onclick=\"return toggleDiv('"
+                                        .$this->titulos."',this);\" /></button>"
                                      :	"" ).
-		"	</div>".
-		"</tr>".
-		"</tituloforma>".
+		"</div>".
         	"<quepasa id='".$this->titulos."'>".
         	"	<div class='container'".
 				"\" id='tabcaptura' oncontextmenu='contextForTABLE(this,$this->idmenu);return false;'>\n";
