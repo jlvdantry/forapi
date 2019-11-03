@@ -880,8 +880,8 @@ class soldatos
 			."</label>".$wlobligatorio.$wlbusqueda; 
 	    $wli=$wli.
 	    	(($tipodedato != "text") 
-	    	? "<input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ autocapitalize='none' class='form-control form-control-custom $wleshiden'  onKeydown='return quitaenter(this,event)' " 
-	    	: "<textarea $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom $wleshiden' ".((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
+	    	? "<div class='d-flex'><input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ autocapitalize='none' class='form-control form-control-custom $wleshiden'  onKeydown='return quitaenter(this,event)' " 
+	    	: "<div class='d-flex'><textarea $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom $wleshiden' ".((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
 	    						? "cols=".$mecq["colspantxt"] : "" )
 	    				).
 	    				(($tipodedato == "text") 
@@ -934,12 +934,15 @@ class soldatos
                                   " src='/dist/img/carpeta.svg' onclick='subearchivo(this);return false' title='Adjunta archivo de explorador' />"; 
                             $wli.=" <input class='img' type=hidden abbr='' id='uplh_".$nombre."__".$this->idmenu."' name=uplh_".$nombre."__".$this->idmenu."  />"; 
 			}
-	    	        $wli.="</div>\n";
-			(substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? $wli=$wli." <input type=hidden id='nu_".$nombre."' name=nu_".$nombre." value=1></input>\n" : $wli=$wli ; 
-	 		($tipodedato=='date' || $tipodedato=='timestampz') ? $wli=$wli." <input type=hidden id='_da_".$nombre."' name=_da_".$nombre." value=1></input>\n" : $wli=$wli ; 	      	
+			(substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? $wli=$wli." <input type=hidden id='nu_"
+                                         .$nombre."' name=nu_".$nombre." value=1></input>\n" : $wli=$wli ; 
+	 		($tipodedato=='date' || $tipodedato=='timestampz') ? $wli=$wli." <input type=hidden id='_da_".$nombre."' name=_da_".$nombre
+                                    ." value=1></input>\n" : $wli=$wli ; 	      	
 			($busqueda=='t') ? $wli=$wli." <input type=hidden id='bu_".$nombre."' name=bu_".$nombre." value=1></input>\n" : $wli=$wli ; 
-			($mecq["imprime"]!='t') ? $wli=$wli." <input type=hidden id='_np_".$nombre."' name=_np_".$nombre." ></input>\n" : $wli=$wli ; 			
-			($val_particulares!='') ? $wli=$wli." <input type=hidden id='_vp_".$nombre."' name=_vp_".$nombre." value='".$val_particulares."'></input>\n" : $wli=$wli ; 			
+			($mecq["imprime"]!='t') ? $wli=$wli." <input type=hidden id='_np_".$nombre."' name=_np_".$nombre." ></input>\n" : $wli=$wli ;
+			($val_particulares!='') ? $wli=$wli." <input type=hidden id='_vp_".$nombre."' name=_vp_".$nombre." value='"
+                                    .$val_particulares."'></input>\n" : $wli=$wli ; 			
+	    	        $wli.="</div></div>\n";
 	}
     return $wli;
   }
