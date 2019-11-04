@@ -545,7 +545,7 @@ window.contextForTR = function (objtr,idmenu)
 			wlstr=wlstr+'new ContextItem("'+siSelect[0].options[e].text+'",function(){'+siSelect[0].options[e].value+'})';
   		}
 	}
-	var siSelect = wlTR.getElementsByTagName('input');
+	var siSelect = wlTR.getElementsByTagName('button');
 	if (siSelect.length>0)
 	{
   		for (e=0;e<siSelect.length;e++) {		

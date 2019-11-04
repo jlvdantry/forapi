@@ -1737,11 +1737,11 @@ class soldatos
 //20070226	  if (strpos($wltexto,"=")===false)	 // 20070219 
 	  if ($wlfuente=='' || ($wlfuente!='' && $wlfuente=='menus_tiempos'))	 // 20070226
 	  {
-	  	return "<td onclick='contextForTR(this.parentNode);return false;' ".$this->armaid_td($z,$j).">".trim($wltexto)."</td>\n";
+	  	return "<td onclick='contextForTR(this.parentNode,$this->idmenu);return false;' ".$this->armaid_td($z,$j).">".trim($wltexto)."</td>\n";
   	}
   	else
   	{
-	  		  	return "<td onclick='contextForTR(this.parentNode);return false;' ".$this->armaid_td($z,$j)." abbr='".trim(substr($wltexto,strpos($wltexto,"=")+1))."'>".substr($wltexto,0,strpos($wltexto,"="))."</td>\n";  // 20070219
+	  		  	return "<td onclick='contextForTR(this.parentNode,$this->idmenu);return false;' ".$this->armaid_td($z,$j)." abbr='".trim(substr($wltexto,strpos($wltexto,"=")+1))."'>".substr($wltexto,0,strpos($wltexto,"="))."</td>\n";  // 20070219
   	}
   }
   	  
