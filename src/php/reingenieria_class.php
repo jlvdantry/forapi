@@ -38,7 +38,10 @@ class reingenieria extends xmlhttp_class
           echo "<error>No esta definido el sql del script</error>";
           return;
         }
-        $sql=utf8_encode($this->argumentos["wl_sql"]);
+        //$sql=utf8_encode($this->argumentos["wl_sql"]);
+        //$sql = filter_var($this->argumentos["wl_sql"], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_HIGH);
+        //$sql = preg_replace( '/[^[:print:]]/', '',$this->argumentos["wl_sql"]);
+        $sql = preg_replace('/[\x00-\x1F\x7F-\xA0\xAD]/u', '', $this->argumentos["wl_sql"]);
         $sql_result = @pg_exec($this->connection,$sql);
        if (strlen(pg_last_error($this->connection))>0) { 
              echo "<error>hubo error al ejecutar el script</error>"; 
