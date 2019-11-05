@@ -327,13 +327,13 @@ class xmlhttp_class
       $wlrenglones=ob_get_contents();
       ob_end_clean();
       error_log($this->dame_tiempo()." src/php/xmlhttp_class.php despues de ob_end_clear".$parametro1."\n",3,"/var/tmp/errores.log");
+      echo '<idmenu>'.$this->argumentos['idmenu'].'</idmenu>';
       echo '<muestra_vista>'.htmlspecialchars($wlrenglones,ENT_IGNORE,'UTF-8').'</muestra_vista>';
       //echo '<muestra_vista>'.htmlspecialchars($wlrenglones).'</muestra_vista>';
       //echo '<muestra_vista>paso</muestra_vista>';
       if (array_key_exists('donde',$this->argumentos)) {
       error_log($this->dame_tiempo()." se encontro el parametro donde \n",3,"/var/tmp/errores.log");
       echo '<donde>'.$this->argumentos['donde'].'</donde>';
-      echo '<idmenu>'.$this->argumentos['idmenu'].'</idmenu>';
       }
    }
 
@@ -352,8 +352,10 @@ class xmlhttp_class
       && $this->argumentos['movto']!='f'       // 20070223 genera txt-grecar
       && $this->argumentos['movto']!='ex'       // 20110126 genera excel-grecar
       && $this->argumentos['movto']!='ea'       // 20110126 genera excel-grecar
-      && $this->argumentos['movto']!='m' )      // 20110126 muestra manual-grecar
-      {  echo '<error>movimiento no definido'.$this->argumentos['movto'].'</error>'; return; }
+      && $this->argumentos['movto']!='m'       // 20110126 muestra manual-grecar
+      && $this->argumentos['movto']!='H' )     /* movimiento hot, se inserta o actualiza el registro
+                                                    ventaja lo que teclea el usuario se guarda */
+      {  echo '<error>movimiento no definido '.$this->argumentos['movto'].'</error>'; return; }
 
 
       $me = new menudata();
@@ -363,10 +365,6 @@ class xmlhttp_class
       $me->damemetadata();      
 	  $soldatos = new soldatos();
 	  $soldatos->idmenu=$this->argumentos['idmenu'];
-##	  echo '<error>argumentos';print_r($this->argumentos);'</error>';
-      
-//20070223      se modifico para incluir el movimiento de copia      
-//20070223      if($this->argumentos['movto']!='i' && $this->argumentos['movto']!='d' && $this->argumentos['movto']!='u' )
       
       // Consulta
       if($this->argumentos['movto']=='s' || $this->argumentos['movto']=='S' || $this->argumentos['movto']=='B')
@@ -464,7 +462,9 @@ class xmlhttp_class
 
       // alta de un registro
 //20070223      if($this->argumentos['movto']=='i' )       
-      if($this->argumentos['movto']=='I' || $this->argumentos['movto']=='i' || $this->argumentos['movto']=='cc')  //2007023
+      if($this->argumentos['movto']=='I' || $this->argumentos['movto']=='i' || $this->argumentos['movto']=='cc' 
+                                         || ($this->argumentos['movto']=='H'&& $this->argumentos['wlllave']=="")  
+        )
       { 
 		if ($this->checaduplicados($this->argumentos, $me->camposm, $me->camposmc)==false)	
 		   {
@@ -490,22 +490,16 @@ class xmlhttp_class
                                 $this->hayerrorsql($this->connection,'Alta x',$sql);
         			$Reg = pg_cmdtuples($sql_result);         			
 	        		$wlllave=$this->damellave($this->argumentos,$me->camposmc);        			
-//        	          		echo "<error>".$sql."</error>";
-//        	          		return;	        		
 	        		if ($wlllave=="")
 	        		{
-        				echo "<error>En alta, la vista no tiene definido una llave</error>";	        				        		
+        				echo "<error>En alta, la vista no tiene definido una llave</error>";	       
         				return;
 	        		}
-	        		
-			        	          }
+			    }
 
         		if($Reg!=0)
         		{  
-//  20070521  cuando meti que incluyera esquema esto trono porque a la tabla se le antepone el esquema que puede ser
-//  20070521  public o el esquema en referencia	        		
         		$sqls=substr($me->camposm['fuente'],0,$this->stringrpos($me->camposm['fuente']," from ".($me->camposm["nspname"]!="" ? $me->camposm["nspname"]."." : "").$me->camposm['tabla'])+strlen(" from ".($me->camposm["nspname"]!="" ? $me->camposm["nspname"]."." : "").$me->camposm['tabla'])).
-//	        		$sql=substr($me->camposm['fuente'],0,$this->stringrpos($me->camposm['fuente'],$me->camposm['tabla']." where")+strlen($me->camposm['tabla'])).
 	        			" where ".$wlllave;
 	        		$sql_result = @pg_exec($this->connection,$sqls);
         			if (strlen(pg_last_error($this->connection))>0)
@@ -525,6 +519,8 @@ class xmlhttp_class
 						{ echo '<copiaok>Copia efectuada</copiaok>';}
 						if ($this->argumentos['movto']=='I')
 						{ echo '<altaokautomatica>Alta efectuada</altaokautomatica>';}						
+						if ($this->argumentos['movto']=='H')
+						{ echo '<altahot>Alta efectuada</altahot>';}						
                                                 if (strpos($me->camposm['noconfirmamovtos'],'i')===false && strpos($me->camposm['noconfirmamovtos'],'I')===false && strpos($me->camposm['noconfirmamovtos'],'cc')===false)
                                                 {   } else { echo '<noconfirma>true</noconfirma>'; }
 						echo '<idmenu>'.$this->argumentos['idmenu'].'</idmenu>';
@@ -572,7 +568,7 @@ class xmlhttp_class
       }
 
       //   cambio de un registros
-      if($this->argumentos['movto']=='u') 
+      if($this->argumentos['movto']=='u' || ($this->argumentos['movto']=='H'&& $this->argumentos['wlllave']!="")) 
       { 
         if ($this->argumentos['wlllave']=="")
         {  echo '<error>no esta definida la llave para actualizar el dato</error>'; } 
@@ -808,7 +804,7 @@ class xmlhttp_class
     */
    function esfechaNula($tipo,$valor)
    {
-	   return  (strpos($tipo,"date")!==false & strlen($valor)==0 ? "null" : "'".str_replace("'","\'",$valor)."'");
+	   return  (strpos($tipo,"date")!==false & strlen($valor)==0 ? "null" : "'".str_replace("'","''",$valor)."'");
    }
    
    /**

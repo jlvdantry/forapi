@@ -412,9 +412,9 @@ class soldatos
   function inicio_form()
   {
      if ($this->accion!="")
-     { echo "  <form method=POST name='formpr' id='formpr_".$this->idmenu."' action=".$this->accion." target='".$this->destino."' >\n"; }
+     { echo "  <form method=POST data-movtos='".$this->movto_mantto."' name='formpr' id='formpr_".$this->idmenu."' action=".$this->accion." target='".$this->destino."' >\n"; }
      else
-     { echo "  <form method=POST name='formpr' id='formpr_".$this->idmenu."'  action='' >\n"; }     //20070306     
+     { echo "  <form method=POST data-movtos='".$this->movto_mantto."' name='formpr' id='formpr_".$this->idmenu."'  action='' >\n"; }     //20070306     
   }
 
   /**

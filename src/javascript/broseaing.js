@@ -899,13 +899,10 @@ window.comandos_servidor = function(wlhoja,wlfuncion,idmenu)
 window.que_cambio = function(wlmenu,wlmovto,wlllave,wlrenglon,event,nr,nc)
 {
 
-			if (event.button==1)
-	{
-		mantto_tabla(wlmenu,"u",wlllave,wlrenglon);
-	}
-	else
-	{
-		muestra_cambio("formpr",nr,nc);
+	if (event.button==1) {
+           mantto_tabla(wlmenu,"u",wlllave,wlrenglon);
+	} else {
+           muestra_cambio("formpr",nr,nc);
 	}
 	
 }
@@ -948,6 +945,20 @@ window.hayunregistro = function(idmenu)
 
 window.pone_focus_formaID = function (idmenu) {
    pone_focus_forma($("#formpr_"+idmenu)[0]);
+}
+
+/* funcimn que checa si la forma es hot, en otras palabras se acutaliza en el servidor
+ *   cada vez que cambie algun dato */
+window.eshot = function (theForm='',idmenu,wlllave='',wlrenglon='',wleventoantes='',wleventodespues='',wleventoantescl='',wleventodespuescl='',noconfirmamovto='') {
+       console.log('entro en hot');
+       
+       if ('movtos' in theForm.dataset) {
+           if (theForm.dataset.movtos.indexOf("H")!=-1) {
+                 $("#"+theForm.id+" input[id^='cc'").change(function(e){
+                       mantto_tabla(idmenu,"H",wlllave,wlrenglon,wleventoantes,wleventodespues,wleventoantescl,wleventodespuescl,noconfirmamovto);
+                 });
+           }
+       }
 }
 
 //   pone el focus en el primer campo de la forma		
@@ -1073,7 +1084,7 @@ window.buildQueryString = function(theForm) {
     if (theForm.elements[e].name!='') {
       qs+=(qs=='')?'&':'&'
       /* se hace el split por __ ya que despues de estos caracteres esta el numero de menu */
-      qs+=escape(theForm.elements[e].name.split('__')[0])+'='+escape(theForm.elements[e].value)
+      qs+=encodeURI(theForm.elements[e].name.split('__')[0])+'='+encodeURI(theForm.elements[e].value)
       }
     }
   return qs
@@ -2115,9 +2126,6 @@ window.altatabla = function(wlrenglon,idmenu)
 		color_renglon(b,idmenu);
             }
 	} catch(err) { alert('error altatabla '+err.message) }	
-	
-
-		
 }
 
 //  revisa si hay que ejecutar un evento en el servidor despues de haber ejecutado un movimiento+
@@ -2193,6 +2201,7 @@ window.querespuesta = function()
                 hayunregistro(idmenu);
                 forma=$('#formpr_'+idmenu)[0];
                 pone_focus_forma(forma,this)
+                eshot(forma,idmenu)
                 console.log('paso pone focus');
              }
              return;
@@ -2348,6 +2357,19 @@ window.querespuesta = function()
                return;
            }            
                       
+           if (req.responseText.indexOf("<altahot>") != -1)
+           {
+              var items = req.responseXML.getElementsByTagName("idmenu");
+              try { var idmenu=items[0].childNodes[0].nodeValue } catch (err) { var idmenu=0; };
+
+              var items = req.responseXML.getElementsByTagName("wlrenglon");              
+              if (items.length>0) { 
+                var wlrenglon=items[0].childNodes[0].nodeValue; 
+              	altatabla(wlrenglon,idmenu);
+              }
+              return;
+           }
+
            if (req.responseText.indexOf("<altaok>") != -1)
            {
               var items = req.responseXML.getElementsByTagName("idmenu");

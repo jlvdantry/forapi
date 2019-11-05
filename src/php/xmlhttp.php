@@ -3,7 +3,7 @@ session_start();
 header("Access-Control-Allow-Origin: *");
 $t=getdate();
 $today=date('Y-m-d h:i:s',$t[0]);
-error_log($today." Entro xhttp.php opcion=".$_POST["opcion"]." idmenu=".$_POST["idmenu"]." movto=".$_POST["movto"]." usuario=".$_SESSION["parametro1"]."\n",3,"/var/tmp/errores.log");
+error_log($today." Entro xhttp.php opcion=".print_r($_POST,true)."\n",3,"/var/tmp/errores.log");
 include("conneccion.php");
 require_once("xmlhttp_class.php");
 $va = new xmlhttp_class();
