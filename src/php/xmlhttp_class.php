@@ -585,9 +585,11 @@ class xmlhttp_class
            		   $Row = pg_cmdtuples($sql_result); 
            		   if($Row!=0)
               	           {  
-	                       echo '<cambiook>Cambio efectuado</cambiook>'; 
+                               if ($this->argumentos['movto']=='u') {
+	                          echo '<cambiook>Cambio efectuado</cambiook>'; 
+                               } else { echo '<cambiohot>Cambio hot</cambiohot>'; }
 			       echo "<wlmenu>".$this->argumentos['idmenu']."</wlmenu>";
-			       echo "<wlmovto>".htmlspecialchars($this->argumentos['wlmovto'])."</wlmovto>";		
+			       echo "<wlmovto>".htmlspecialchars($this->argumentos['movto'])."</wlmovto>";		
 			       echo "<wlllave>".htmlspecialchars($this->argumentos['wlllave'])."</wlllave>";
 			       echo "<wlrenglon>".htmlspecialchars($this->argumentos['wlrenglon'])."</wlrenglon>";
 			       if ($this->argumentos['wleventodespues']!='')

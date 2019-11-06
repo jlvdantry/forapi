@@ -1792,6 +1792,9 @@ window.mantto_tabla = function (wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,w
           if ('id' in forma.dataset) {   /* si tiene el id va a realizar un cambio */
              wlllave=forma.dataset.id;
           }
+          if ('renglon' in forma.dataset) {   /* si tiene el id va a realizar un cambio */
+             wlrenglon=forma.dataset.renglon;
+          }
         }
 
         if (hayalgundatotecleado(forma)!='si' && (wlmovto=='i' || wlmovto=='u' || wlmovto=='I'))
@@ -2373,6 +2376,7 @@ window.querespuesta = function()
               var items = req.responseXML.getElementsByTagName("wlrenglon");              
               if (items.length>0) { 
                 var wlrenglon=items[0].childNodes[0].nodeValue; 
+                forma.attr("data-renglon",wlrenglon);
               	altatabla(wlrenglon,idmenu);
               }
               return;
@@ -2502,6 +2506,28 @@ window.querespuesta = function()
 	           return;
            }           
                       
+           if (req.responseText.indexOf("<cambiohot>") != -1)
+           {
+                    var desw = req.responseXML.getElementsByTagName("wlmenu");
+                    if (desw[0].childNodes.length>0) //firefox
+                        wlmenu = desw[0].childNodes[0].nodeValue;
+                    var desw = req.responseXML.getElementsByTagName("wlllave");
+                    if (desw[0].childNodes.length>0) //firefox
+                        wlllave = desw[0].childNodes[0].nodeValue;
+                    var desw = req.responseXML.getElementsByTagName("wlmovto");
+                    if (desw[0].childNodes.length>0) //firefox
+                        wlmovto = desw[0].childNodes[0].nodeValue;
+                    forma=$('#formpr_'+wlmenu)[0];
+                    if (wlmovto=='H') {
+                       if ('renglon' in forma.dataset) {   /* si tiene el id va a realizar un cambio */
+                          wlrenglon=forma.dataset.renglon;
+                       }
+                    }
+
+		    checaSiCambioAlgo(wlmenu,wlmovto,wlllave,wlrenglon,1);
+    	            return;
+           }
+
            if (req.responseText.indexOf("<cambiook>") != -1)
            {
 	            var wlmenu=""
