@@ -311,28 +311,28 @@ class xmlhttp_class
      **/
    function muestra_vista()
    {
-      error_log($this->dame_tiempo()." src/php/xmlhttp_class.php muestra_vista".$parametro1."\n",3,"/var/tmp/errores.log");
+      //error_log($this->dame_tiempo()." src/php/xmlhttp_class.php muestra_vista".$parametro1."\n",3,"/var/tmp/errores.log");
       $soldatos = new soldatos();
       $soldatos->idmenu=$this->argumentos['idmenu'];
       if ($this->argumentos['filtro']!="") {
          $soldatos->filtro=$this->argumentos['filtro'];
       }
-      error_log($this->dame_tiempo()." src/php/xmlhttp_class.php despues de new soldatos".$parametro1."\n",3,"/var/tmp/errores.log");
+      //error_log($this->dame_tiempo()." src/php/xmlhttp_class.php despues de new soldatos".$parametro1."\n",3,"/var/tmp/errores.log");
       $soldatos->connection=$this->connection;
       $soldatos->datos=array('MTA');
       ob_start();
-      error_log($this->dame_tiempo()." src/php/xmlhttp_class.php antes de despledatos".$parametro1."\n",3,"/var/tmp/errores.log");
+      //error_log($this->dame_tiempo()." src/php/xmlhttp_class.php antes de despledatos".$parametro1."\n",3,"/var/tmp/errores.log");
       $soldatos->despledatos();
-      error_log($this->dame_tiempo()." src/php/xmlhttp_class.php despues de new despledatos".$parametro1."\n",3,"/var/tmp/errores.log");
+      //error_log($this->dame_tiempo()." src/php/xmlhttp_class.php despues de new despledatos".$parametro1."\n",3,"/var/tmp/errores.log");
       $wlrenglones=ob_get_contents();
       ob_end_clean();
-      error_log($this->dame_tiempo()." src/php/xmlhttp_class.php despues de ob_end_clear".$parametro1."\n",3,"/var/tmp/errores.log");
+      //error_log($this->dame_tiempo()." src/php/xmlhttp_class.php despues de ob_end_clear".$parametro1."\n",3,"/var/tmp/errores.log");
       echo '<idmenu>'.$this->argumentos['idmenu'].'</idmenu>';
       echo '<muestra_vista>'.htmlspecialchars($wlrenglones,ENT_IGNORE,'UTF-8').'</muestra_vista>';
       //echo '<muestra_vista>'.htmlspecialchars($wlrenglones).'</muestra_vista>';
       //echo '<muestra_vista>paso</muestra_vista>';
       if (array_key_exists('donde',$this->argumentos)) {
-      error_log($this->dame_tiempo()." se encontro el parametro donde \n",3,"/var/tmp/errores.log");
+      //error_log($this->dame_tiempo()." se encontro el parametro donde \n",3,"/var/tmp/errores.log");
       echo '<donde>'.$this->argumentos['donde'].'</donde>';
       }
    }
@@ -369,16 +369,14 @@ class xmlhttp_class
       // Consulta
       if($this->argumentos['movto']=='s' || $this->argumentos['movto']=='S' || $this->argumentos['movto']=='B')
       { 
-					$sql=$me->filtro;
+				$sql=$me->filtro;
 	        		$sql_result = @pg_exec($this->connection,$me->camposm["fuente"]);
-	        		
         			if (strlen(pg_last_error($this->connection))>0)
         			{
         				echo "<error>En select  ".pg_last_error($this->connection)." sql=".$me->camposm["fuente"]."</error>";
         				return;
         			}
 					$Row = pg_numrows($sql_result);
-
 					if ($Row>=1)
 					{	      
 						echo '<consulta>Consulta efectuada '.$Row.' registros</consulta>';
@@ -510,8 +508,8 @@ class xmlhttp_class
 					$num = pg_numrows($sql_result);                    				
 					if ($num>=1)
 					{
+						{ echo '<wlllave>'.$wlllave.'</wlllave>';}
 						$Row = pg_fetch_array($sql_result, 0); 
-						//   ejecuta armarenglon para traer el renglon armado de la tabla y poder mostrarlo en la tabla                   					 						
 						$wlrenglon=$soldatos->armarenglon($sql_result,$Row,($this->argumentos['wlrenglon']+1),$me);
 						if ($this->argumentos['movto']=='i')
 						{ echo '<altaok>Alta efectuada</altaok>';}
@@ -525,7 +523,8 @@ class xmlhttp_class
                                                 {   } else { echo '<noconfirma>true</noconfirma>'; }
 						echo '<idmenu>'.$this->argumentos['idmenu'].'</idmenu>';
 						echo '<renglon>'.htmlspecialchars($wlrenglon).'</renglon>';
-						echo '<wlrenglon>'.($this->argumentos['wlrenglon']+1).'</wlrenglon>';
+                                                error_log($this->dame_tiempo()." src/php/xmlhttp_class.php reg_".print_r($Reg,true)."\n",3,"/var/tmp/errores.log");
+						echo '<wlrenglon>'.$Reg.'</wlrenglon>';
 						if ($this->argumentos['wleventodespues']!='')
 			       		{	echo '<wleventodespues>'.$this->argumentos['wleventodespues'].'</wleventodespues>'; }	// 20070918	
 			       		if ($this->argumentos['wleventodespuescl']!='')
@@ -577,16 +576,16 @@ class xmlhttp_class
 			if ($this->checaduplicados($this->argumentos, $me->camposm, $me->camposmc)!=true)	
 		   	{
 			   	$wldatos=$this->damedatos($this->argumentos, $me->camposm, $me->camposmc);		
-           		$sql = "update ".($me->camposm["nspname"]!="" ? $me->camposm["nspname"]."." : "").$me->camposm['tabla']. //20080114
-               		" set ".$this->arma_upd($this->argumentos,$me->camposmc,$wldatos).
-               		" where ".$this->argumentos['wlllave'];
+           		        $sql = "update ".($me->camposm["nspname"]!="" ? $me->camposm["nspname"]."." : "").$me->camposm['tabla']. //20080114
+               		               " set ".$this->arma_upd($this->argumentos,$me->camposmc,$wldatos).
+               		               " where ".$this->argumentos['wlllave'];
 
-           		$sql_result = @pg_exec($this->connection,$sql);
-			$this->hayerrorsql($this->connection,'Cambio x1',$sql);
+           		   $sql_result = @pg_exec($this->connection,$sql);
+			   $this->hayerrorsql($this->connection,'Cambio x1',$sql);
            		   $Row = pg_cmdtuples($sql_result); 
            		   if($Row!=0)
               	           {  
-	               echo '<cambiook>Cambio efectuado</cambiook>'; 
+	                       echo '<cambiook>Cambio efectuado</cambiook>'; 
 			       echo "<wlmenu>".$this->argumentos['idmenu']."</wlmenu>";
 			       echo "<wlmovto>".htmlspecialchars($this->argumentos['wlmovto'])."</wlmovto>";		
 			       echo "<wlllave>".htmlspecialchars($this->argumentos['wlllave'])."</wlllave>";
@@ -598,9 +597,7 @@ class xmlhttp_class
               	           }
            		   else
               	           { echo '<error>No hizo el cambio</error>'; }
-//                         }
-
-         	}
+         	        }
         } 
       }
       $reg= new logmenus($this->connection); //20070623
@@ -781,18 +778,15 @@ class xmlhttp_class
         $wlcampo=substr($index,3);
         $pos=strpos($index,"wl_");
         $wltmp="";
-##  	 	echo "wlcamposs= ".$index." attnum=".$camposs[$wlcampo]["attnum"]." val=".$val." wldatos=".$wldatos[$wlcampo]."\n";            	         
-		if ($camposs[$wlcampo]["attnum"]!=0)        	
-		{                
-##200071219  Hay campos que tenian espacios del lado izquierdo o derecho y detectaba cambio          			
-##	     	if ($pos===0 && strpos($camposs[$wlcampo]["default"],"nextval")===false && $val!=$wldatos[$wlcampo])
-	     	if ($pos===0 && strpos($camposs[$wlcampo]["default"],"nextval")===false && trim($val)!==trim($wldatos[$wlcampo]))
-    	    	{   
+		if ($camposs[$wlcampo]["attnum"]!=0 && (($camposs[$wlcampo]["attname"]!='fecha_alta') && ($camposs[$wlcampo]["attname"]!='usuario_alta') 
+                                                     && ($camposs[$wlcampo]["attname"]!='fecha_modifico') && ($camposs[$wlcampo]["attname"]!='usuario_modifico'))) {  
+	     	   if ($pos===0 && strpos($camposs[$wlcampo]["default"],"nextval")===false && trim($val)!==trim($wldatos[$wlcampo]))
+    	    	   {   
             		 $this->lleva_comilla($camposs[$wlcampo]["typname"])===true ? 
             	 	$wltmp=substr($index,3)."=".$this->esfechaNula($camposs[$wlcampo]["typname"],utf8_encode($val)) :     
             	 	(strlen($val)==0 ? $wltmp="" : $wltmp=substr($index,3)."=".$val) ;  ##20070713
             	 	strlen($val2)==0  ? $val2.=$wltmp : ($wltmp!="" ? $val2.=",".$wltmp : $val2.="");
-        		}
+        	   }
 		}
       }
 ##    echo $val2;
@@ -804,7 +798,8 @@ class xmlhttp_class
     */
    function esfechaNula($tipo,$valor)
    {
-	   return  (strpos($tipo,"date")!==false & strlen($valor)==0 ? "null" : "'".str_replace("'","''",$valor)."'");
+           error_log($this->dame_tiempo()." xmlhttp_class.php type=".$tipo."\n",3,"/var/tmp/errores.log");
+	   return  ((strpos($tipo,"date")!==false || strpos($tipo,"timestamptz")!==false)& strlen($valor)==0 ? "null" : "'".str_replace("'","''",$valor)."'");
    }
    
    /**

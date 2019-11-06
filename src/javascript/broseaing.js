@@ -1788,6 +1788,12 @@ window.mantto_tabla = function (wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,w
 			wlllave=wlllave.replace(/"/g,"'");
 	}			
         forma=$('#formpr_'+wlmenu)[0];
+        if (wlmovto=='H') {
+          if ('id' in forma.dataset) {   /* si tiene el id va a realizar un cambio */
+             wlllave=forma.dataset.id;
+          }
+        }
+
         if (hayalgundatotecleado(forma)!='si' && (wlmovto=='i' || wlmovto=='u' || wlmovto=='I'))
         {
            alert ('no ha tecleado ningun dato'); pone_focus_forma(forma); return;
@@ -2086,9 +2092,6 @@ window.altatabla = function(wlrenglon,idmenu)
 		var b = document.getElementById('tabdinamica_'+idmenu).insertRow(1);			
                 try { document.getElementById('tabdinamica_'+idmenu).style.visibility='visible';        } catch (err) { } ;
 		var p=0;
-
-			
-
 		var wlbaja = document.getElementById('baja');
 		var wlcambio = document.getElementById('cambio');
 		for ( x in z)
@@ -2361,6 +2364,11 @@ window.querespuesta = function()
            {
               var items = req.responseXML.getElementsByTagName("idmenu");
               try { var idmenu=items[0].childNodes[0].nodeValue } catch (err) { var idmenu=0; };
+
+              var items = req.responseXML.getElementsByTagName("wlllave");
+              try { var wlllave=items[0].childNodes[0].nodeValue } catch (err) { varwlllave=""; };
+              forma=$('#formpr_'+idmenu);
+              forma.attr("data-id",wlllave);
 
               var items = req.responseXML.getElementsByTagName("wlrenglon");              
               if (items.length>0) { 
