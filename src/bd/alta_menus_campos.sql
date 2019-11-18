@@ -1,20 +1,4 @@
---
--- PostgreSQL database dump
---
-
-SET statement_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SET check_function_bodies = false;
-SET client_min_messages = warning;
-
-SET search_path = forapi, pg_catalog;
-
---
--- Name: alta_menus_campos(); Type: FUNCTION; Schema: forapi; Owner: postgres
---
-
-CREATE or replace FUNCTION alta_menus_campos() RETURNS trigger
+CREATE or replace FUNCTION forapi.alta_menus_campos() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
     DECLARE
@@ -31,7 +15,7 @@ CREATE or replace FUNCTION alta_menus_campos() RETURNS trigger
         end if;
         if new.upload_file=true then
            new.readonly=true;
-        end if
+        end if;
      return new;
     END;$$;
 
