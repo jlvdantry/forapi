@@ -920,7 +920,7 @@ class soldatos
 			{ 
                             $wli.=" <input class='img' type=image abbr='' id='upl_".$nombre."__".$this->idmenu."' name=upl_".
                                   $nombre."__".$this->idmenu.
-                                  " src='/dist/img/carpeta.svg' onclick='subearchivo(this);return false' title='Adjunta archivo de explorador' />"; 
+                                  " src='/dist/img/carpeta.svg' onclick='subearchivo(this,".$this->idmenu.");return false' title='Adjunta archivo de explorador' />"; 
                             $wli.=" <input class='img' type=hidden abbr='' id='uplh_".$nombre."__".$this->idmenu."' name=uplh_".$nombre."__".$this->idmenu."  />"; 
 			}
 			(substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? $wli=$wli." <input type=hidden id='nu_"
@@ -1355,20 +1355,12 @@ class soldatos
                			{ $wl=$wl."<td>".$Row[pg_fieldname($sql_result, $j)]."</td>"; }
                			break;
             		default:
-##  20070503        Restaure la correccion del 20070118, ya que cuando hay una consulta y existe un campos de trabajo
-##  20070503        este lo borra, el 20070213 se comentarizo no se porque no me acuerdo hay que dar seguimiento a este cambio	                    		
-##  20070118        lo modifique para que los campos de trabajo osea los campos que no forman parte de la tabla
-##					no los muestre en el renglon
-##  20070213        lo regrese a como estaba anteriormente ya que con lo campos de trabajo no checaba cuando cambiaba un dato
 			if ($meda->camposmc[pg_fieldname($sql_result, $j)]['attnum']!='0') ##  20070213
 			{##  20070213
 							if ($meda->camposmc[pg_fieldname($sql_result, $j)]['idsubvista']==''
 						    	|| $meda->camposmc[pg_fieldname($sql_result, $j)]['idsubvista']=='0'
 						   		)
 							{
-##  20070226        Esto no funcionaba cuando el valor del campo tenia el signo igual
-##  20070226        lo modifique para que contemplara el signo igual cuando este sea un campo select
-##  20070226					$wl=$wl.$this->arma_td($z,$j,$Row[pg_fieldname($sql_result, $j)]); 
 								if ($meda->camposmc[pg_fieldname($sql_result, $j)]["upload_file"]!='t' && $meda->camposmc[pg_fieldname($sql_result, $j)]["link_file"]!='t')
 								{ 
 									$wl=$wl.$this->arma_td($z,$j,$Row[pg_fieldname($sql_result, $j)],$meda->camposmc[pg_fieldname($sql_result, $j)]['fuente']);
@@ -1376,7 +1368,7 @@ class soldatos
 								else
 								{
                                                                         $wlid=$this->armaid_td($z,$j);
-                                                                        $wl=$wl."<td ".$wlid."><a onclick='showModalDialog(\"upload_ficheros/".$Row[pg_fieldname($sql_result, $j)]."\",600,700,\"".$wlid."\",2);' >".$Row[pg_fieldname($sql_result, $j)]."</a></td>";
+                                                                        $wl=$wl."<td ".$wlid."><a onclick='event.preventDefault(); showModalDialog(\"upload_ficheros/".$Row[pg_fieldname($sql_result, $j)]."\",600,700,\"".$wlid."\",2);' >".$Row[pg_fieldname($sql_result, $j)]."</a></td>";
 
 								}
 								
@@ -1426,8 +1418,8 @@ class soldatos
        			$wlcol=$wlcol+1;               	
           	}
           
-//20070703        	$wlini="<tr id=tr".($z).">";
-        	$wlini="<tr id=tr".($z)."_".$this->idmenu."  oncontextmenu='contextForTR(this,".$this->idmenu.");return false;' >"; //20070703       	        	
+        	$wlini="<tr id=tr".($z)."_".$this->idmenu."  oncontextmenu='contextForTR(this,".$this->idmenu.");return false;' >"; //20070703      
+                error_log($this->dame_tiempo()." src/php/soldatos.php valor de z en tr=".$wlini."\n",3,"/var/tmp/errores.log");
         	if (strpos($meda->camposm['movtos'],"d")!==false) 
         	{
             	 $wlini=$wlini."<td name=noimprime ><button class='btn-eliminar'  title='Eliminar registro'  ".
@@ -1468,12 +1460,9 @@ class soldatos
                                                            ");return false'></i></td>\n";
         	}
 
-//20070611   lo modifique para que cuando sea solo select "s" se pudiese tambien seleccionar el registro
-//20070611   ya que habia ocaciones que no se podiar dar update al registro y no se podia seleccionar
-//20070611     if (strpos($meda->camposm['movtos'],"u")!==false) 
             if (strpos($meda->camposm['movtos'],"u")!==false || strpos($meda->camposm['movtos'],"s")!==false)      
         	{
-            	 $wlini=$wlini."<td name=noimprime ><button class='btn-editar' name='botcam' id=cam".$z."_".$this->idmenu." title='Seleccionar renglon'  ".	        	
+            	 $wlini=$wlini."<td name=noimprime ><button class='btn-editar' name='botcam' id=cam".$z."_".$this->idmenu." title='Seleccionar renglon'  ".
                 	  "onclick='muestra_cambio(\"formpr\",".$z.",".$i.",\"".$wlllave."\",".$meda->camposm['idmenu'].",\"".
         	                          // evento antes de dar cambio
         	                          (($meda->camposme[7][2]['donde']==1) ? $meda->camposme[7][2]['descripcion'] : "").
@@ -1489,6 +1478,7 @@ class soldatos
                                                           "\",\"u\"".
                                           ",\"".$this->menu["noconfirmamovtos"]."\"".
                                           "); return false;' ></input></td>\n";
+                 //error_log($this->dame_tiempo()." src/php/soldatos.php valor de wlini en td=".$wlini."\n",3,"/var/tmp/errores.log");
         	}
         	
             if (strpos($meda->camposm['movtos'],"B")!==false)      

@@ -510,7 +510,7 @@ class xmlhttp_class
 					{
 						{ echo '<wlllave>'.$wlllave.'</wlllave>';}
 						$Row = pg_fetch_array($sql_result, 0); 
-						$wlrenglon=$soldatos->armarenglon($sql_result,$Row,($this->argumentos['wlrenglon']+1),$me);
+						$wlrenglon=$soldatos->armarenglon($sql_result,$Row,$Reg,$me);
 						if ($this->argumentos['movto']=='i')
 						{ echo '<altaok>Alta efectuada</altaok>';}
 						if ($this->argumentos['movto']=='cc')
@@ -523,7 +523,7 @@ class xmlhttp_class
                                                 {   } else { echo '<noconfirma>true</noconfirma>'; }
 						echo '<idmenu>'.$this->argumentos['idmenu'].'</idmenu>';
 						echo '<renglon>'.htmlspecialchars($wlrenglon).'</renglon>';
-                                                error_log($this->dame_tiempo()." src/php/xmlhttp_class.php reg_".print_r($Reg,true)."\n",3,"/var/tmp/errores.log");
+                                                //error_log($this->dame_tiempo()." src/php/xmlhttp_class.php reg_".print_r($Reg,true)."\n",3,"/var/tmp/errores.log");
 						echo '<wlrenglon>'.$Reg.'</wlrenglon>';
 						if ($this->argumentos['wleventodespues']!='')
 			       		{	echo '<wleventodespues>'.$this->argumentos['wleventodespues'].'</wleventodespues>'; }	// 20070918	

@@ -19,7 +19,7 @@ window._aad_ ;  // variable para altaadjuntar
        if (wlventana==1)
        { return dhtmlwindow.open(titulo, 'div', url, titulo, 'width='+w+'px,height='+h+'px,center=1,resize=1,scrolling=1')  }
        if (wlventana==2)
-       { window.open(url, '_blank',  'width='+w+'px,height='+h+'px,center=1,resize=1,scrolling=1'); return true;  }
+       { window.open(url, '_blank',  'width='+w+'px,height='+h+'px,center=1,resize=1,scrolling=1'); return false;  }
      }
 /*
    quita la function del string
@@ -119,7 +119,7 @@ window.formReset = function(theForm,limpiaralta)
                 } catch (err) { };
     }
   }
-        var all = document.getElementsByTagName("a");
+        var all = document.getElementsByTagName("input");
         for( var i=0; i<all.length; ++i ) {
              if(all[i].name.indexOf("_borrar_")>=0)
              {    all[i].parentNode.removeChild(all[i]); i=-1; }
@@ -750,7 +750,7 @@ window.pidebusqueda = function(wlselect,wlfiltropadre,wlfiltrohijo,fuentewhere,f
   *   20070301 Muestra el menu que sube un archivo
   *   @param objecto  objeto del campo
   */
-window.subearchivo = function(obj)
+window.subearchivo = function(obj,menu)
 {
 	try 
 	{ 	
@@ -770,6 +770,7 @@ window.subearchivo = function(obj)
 			                       obj.abbr=x[0];
 			                       document.getElementsByName(wlnombre)[0].value=x[0];
 			                       document.getElementsByName(wlnombreh)[0].value=x[1];
+                                               crea_ver(obj,menu,x[0]);
 		                          } else { document.getElementsByName(wlnombre)[0].value=aa.avance(); }
                                           obj.parentNode.removeChild(dapi) ;
                                         }
@@ -1145,8 +1146,25 @@ window.pone_unchecked=function(wlrenglon)
 
 }
 
+/**
+ *  funcion que crea el boton de ver
+ *  para los campos que se subio un archivo 
+ *  recibe el campo donde se subio un archivo
+ *         el numero de menu
+ *         el campo del renglon y columna
+ */
+window.crea_ver = function(captu,menu,el) {
+                                      wlele=document.createElement("input");
+                                      wlele.setAttribute("id", captu.name+"_borrar_"+menu);
+                                      wlele.setAttribute("name", captu.name+"_borrar_"+menu);
+                                      wlele.setAttribute("type", 'image');
+                                      wlele.setAttribute("src", '/dist/img/ver.svg');
+                                      wlele.setAttribute("class", 'pl-1');
+                                      //wlele.setAttribute("onclick", quitaf(document.getElementById(el+'_'+menu).firstChild.onclick + "_"));
+                                      wlele.setAttribute("onclick", 'event.preventDefault(); showModalDialog("upload_ficheros/'+el+'",600,700,"Sin titulo",2)');
+                                      captu.parentNode.appendChild(wlele);
 
-
+}
 
 // funcion que muestra un registro en el broseo en los campos de captura
 // la funcion recibe el nombre de la forma, el renglon y la cantidad de columnas que contiene el renglon
@@ -1191,7 +1209,8 @@ try {
                         {
                                 var captu=document.getElementById(elm+'_'+menu);
                                 captu.value=document.getElementById(el+'_'+menu).innerText.trim();
-                                if(document.getElementById(el+'_'+menu).firstChild.outerHTML.indexOf('<a')>=0 || document.getElementById(el+'_'+menu).firstChild.outerHTML.indexOf('<A')>=0)
+                                if(document.getElementById(el+'_'+menu).firstChild.outerHTML.indexOf('<a')>=0 
+                                          || document.getElementById(el+'_'+menu).firstChild.outerHTML.indexOf('<A')>=0)
                                 {
                                    if(document.getElementById(captu.name+"_borrar_"+menu))
                                    {
@@ -1200,19 +1219,15 @@ try {
                                    }
                                    if(captu.value!="")
                                    {
-                                      wlele=document.createElement("a");
-                                      wlele.setAttribute("id", captu.name+"_borrar_"+menu);
-                                      wlele.setAttribute("name", captu.name+"_borrar_"+menu);
-                                      wlele.setAttribute("onclick", quitaf(document.getElementById(el+'_'+menu).firstChild.onclick + "_"));
-                                      wlele.innerHTML="Ver documento";
-                                      captu.parentNode.appendChild(wlele);
+                                      crea_ver(captu,menu,captu.value);
                                    }
                                 }
                         }
 	  		if (xelm.type=='select-one')
 	  		{ 
-					document.getElementById(elm+'_'+menu).value=busca_ValorOption(document.getElementById(elm+'_'+menu),document.getElementById(el+'_'+menu).innerText,1,document.getElementById(el+'_'+menu).abbr); 
-		  		}
+			   document.getElementById(elm+'_'+menu).value=busca_ValorOption(document.getElementById(elm+'_'+menu)
+                                                                     ,document.getElementById(el+'_'+menu).innerText,1,document.getElementById(el+'_'+menu).abbr); 
+		  	}
 	  		if (xelm.type=='checkbox')
 	  		{ 
 		  		document.getElementById(elm+'_'+menu).value=valor_checkbox_cap(el+'_'+menu,elm+'_'+menu); 
