@@ -1,6 +1,7 @@
 <?php
     header("Access-Control-Allow-Origin: *; Content-Type: text/html; charset=iso-8859-1");
     //header("Content-Type: text/html; charset=iso-8859-1”);
+    require __DIR__ . "/vendor/autoload.php";
     session_start();
     $_SESSION = array();
     include("src/php/idmenus.php");

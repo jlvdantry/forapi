@@ -1,6 +1,8 @@
 <?php
 require_once("class_men.php");
 require_once("xmlhttp_class.php");
+require "../../vendor/autoload.php";
+use PhpOffice\PhpSpreadsheet\IOFactory;
 class reingenieria extends xmlhttp_class
 {
    var $tabla="";  /* tabla o sql */
@@ -10,21 +12,127 @@ class reingenieria extends xmlhttp_class
    var $camposs=array();  /* arreglo que contiene si es una secuencia de cada uno de los campos de la tabla */
    var $camposk=array();  /* arreglo que contiene si el campo es un indice */
    var $connection="";  /* tabla o sql */
+
+   function crea_desdeexcel()
+   {
+	if ($this->argumentos["wl_archivo"]=="") {
+    	  echo "<error>No esta definido el numero archivo </error>";
+    	  return; 
+        }
+        $tieneetiquetas=false;
+        $tienecampos=false;
+        $reader = IOFactory::createReader('Xlsx');
+        $reader->setReadDataOnly(TRUE);
+        $spreadsheet = $reader->load("../../upload_ficheros/".$this->argumentos["wl_archivo"]);
+        $worksheet = $spreadsheet->getActiveSheet();
+        //echo "<error>".$worksheet->getTitle().PHP_EOL;
+        foreach ($worksheet->getRowIterator() as $row) {
+            //echo "row=".$row->getRowIndex();
+            $cellIterator = $row->getCellIterator();
+            $cellIterator->setIterateOnlyExistingCells(FALSE); 
+            foreach ($cellIterator as $cell) {
+              if ($cell->getColumn()=="A" && $cell->getValue()=="Etiquetas") {
+                  $tieneetiquetas=true;
+              }
+              if ($cell->getColumn()=="A" && $cell->getValue()=="Campos") {
+                  $tienecampos=true;
+              }
+              //echo $cell->getColumn().":".$cell->getValue()."-";
+            }
+            //echo PHP_EOL;
+        }
+        if (!$tieneetiquetas) {
+            echo "<error>No tiene etiquetas</error>";
+            return;
+        }
+        if ($tieneetiquetas && !$tienecampos) {
+            echo $this->crea_sincampos($worksheet);
+        }
+    	echo "</error>";
+   }
+
+   function crea_sincampos($worksheet) {
+        $strsql = "drop table ".$worksheet->getTitle(). ";".PHP_EOL;
+        $strsql .= "create table ".$worksheet->getTitle(). "(".PHP_EOL;
+        foreach ($worksheet->getRowIterator() as $row) {
+            $cellIterator = $row->getCellIterator();
+            $cellIterator->setIterateOnlyExistingCells(FALSE);
+            foreach ($cellIterator as $cell) {
+              if ($cell->getColumn()=="A" && $cell->getValue()=="Etiquetas") {
+                  $strsql.=$this->arma_campos($cellIterator);
+                  $strsql.=$this->arma_campos_fijos();
+                  $etiquetas=$this->arma_etiquetas($cellIterator,$worksheet->getTitle());
+              }
+            }
+        }
+        $strsql.=");".PHP_EOL;
+        $strsql.=$this->arma_secuencia_pk($worksheet->getTitle());
+        $strsql.=$etiquetas;
+        //return $strsql;
+        $sql_result = @pg_exec($this->connection,$strsql);
+        if (strlen(pg_last_error($this->connection))>0) {
+             echo "<error>hubo error al ejecutar el script</error>";
+             error_log(parent::dame_tiempo()." src/php/reingenieria_class.php crea_sincampos script \n".pg_last_error($this->connection)."\n",3,"/var/tmp/errores.log");
+             return;
+        }
+        echo "<error>Creo la tabla</error>";
+
+   }
+
+   function arma_etiquetas($cellIterator,$tabla) {
+            $etiquetas="";
+            foreach ($cellIterator as $cell) {
+              if ($cell->getColumn()=="A" && $cell->getValue()=="Etiquetas") {
+              } else {
+                $etiquetas.=" comment on column ".$tabla.".".$cell->getColumn()." is '".$cell->getValue()."';".PHP_EOL;
+              }
+            }
+            return $etiquetas;
+   }
+
+   function arma_campos($cellIterator) {
+            $campos="";
+            foreach ($cellIterator as $cell) {
+              if ($cell->getColumn()=="A" && $cell->getValue()=="Etiquetas") {
+              } else {
+                $campos.=($campos!="" ? ",".$cell->getColumn()." varchar(255)" : $cell->getColumn()." varchar(255)").PHP_EOL;
+              }
+            }
+            return $campos;
+   }
+
+   function arma_campos_fijos() {
+            $strsql=",id integer not null".PHP_EOL;
+            $strsql.=",fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone".PHP_EOL;
+            $strsql.=",usuario_alta character varying(20) DEFAULT getpgusername()".PHP_EOL;
+            $strsql.=",fecha_modifico timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone".PHP_EOL;
+            $strsql.=",usuario_modifico character varying(20) DEFAULT getpgusername()".PHP_EOL;
+            return $strsql;
+   }
+
+   function arma_secuencia_pk($tabla) {
+            $strsql="drop SEQUENCE ".$tabla."_id_seq;".PHP_EOL;
+            $strsql.="CREATE SEQUENCE ".$tabla."_id_seq".PHP_EOL;
+            $strsql.="  START WITH 1 INCREMENT BY 1 CACHE 1;".PHP_EOL;
+            $strsql.="  ALTER TABLE ".$tabla."_id_seq OWNER TO postgres;".PHP_EOL;
+            $strsql.="  ALTER SEQUENCE ".$tabla."_id_seq OWNED BY ".$tabla."_id_seq".";".PHP_EOL;
+            $strsql.="  ALTER TABLE ONLY ".$tabla." ALTER COLUMN id SET DEFAULT nextval('".$tabla."_id_seq'::regclass);".PHP_EOL;
+            $strsql.="  ALTER TABLE ONLY ".$tabla." ADD CONSTRAINT ".$tabla."_pkey PRIMARY KEY (id);".PHP_EOL;
+            return $strsql;
+   }
+
    function copiaopcion()
    {
-		if ($this->argumentos["wl_idmenu"]=="")
-    	{
+	if ($this->argumentos["wl_idmenu"]=="") {
     	  echo "<error>No esta definido el numero de menu</error>";
     	  return; 
     	}			   
        $sql=" select forapi.copiamenu(".$this->argumentos["wl_idmenu"].");";
-
        $sql_result = pg_exec($this->connection,$sql);
        if (strlen(pg_last_error($this->connection))>0) { echo "<error>Error al ejecutar ".pg_last_error($this->connection)."</error>"; }
-                    //or die("No se pudo ejecutar el sql de insertar en menus".$sql);               	
      	echo "<error>Se copio todo el menu ".$wlidmenu."</error>";                                
-       	    	
    }   
+
 /* ejecuta un script desde forappi */
    function ejecuta()
    {
@@ -43,11 +151,11 @@ class reingenieria extends xmlhttp_class
         //$sql = preg_replace( '/[^[:print:]]/', '',$this->argumentos["wl_sql"]);
         $sql = preg_replace('/[\x00-\x1F\x7F-\xA0\xAD]/u', '', $this->argumentos["wl_sql"]);
         $sql_result = @pg_exec($this->connection,$sql);
-       if (strlen(pg_last_error($this->connection))>0) { 
+        if (strlen(pg_last_error($this->connection))>0) { 
              echo "<error>hubo error al ejecutar el script</error>"; 
              error_log(parent::dame_tiempo()." src/php/reingenieria_class.php error al ejecutar el script \n".pg_last_error($this->connection)."\n",3,"/var/tmp/errores.log");
              return;
-       }
+        }
         echo "<error>Se ejecuto el script </error>";
    }
 
