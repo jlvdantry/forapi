@@ -163,6 +163,9 @@ CREATE FUNCTION alta_menus_campos() RETURNS trigger
            insert into forapi.menus_pg_tables (idmenu,tablename,tselect,tinsert,tupdate,tdelete,tall,tgrant,nspname)
                   values (new.idmenu,trim(new.tabla)||'_'||trim(new.descripcion)||'_seq' ,1 ,0 ,1 ,0 ,0 ,0 ,new.nspname);
         end if;
+        if new.upload_file=true then
+           new.readonly=true;
+        end if;
      return new;
     END;$$;
 
@@ -591,7 +594,7 @@ CREATE FUNCTION cambia_menus() RETURNS trigger
   if new.tabla!=old.tabla then
      update forapi.menus_campos set tabla=new.tabla
             where idmenu=old.idmenu;
-     delete from forpai.menus_pg_tables where tablename=old.tabla and idmenu=old.idmenu;
+     delete from forapi.menus_pg_tables where tablename=old.tabla and idmenu=old.idmenu;
      if new.movtos!=old.movtos then
         insert into forapi.menus_pg_tables (idmenu,tablename,tselect,tinsert,tupdate,tdelete,tall,tgrant,nspname)
                values (old.idmenu,new.tabla
@@ -696,6 +699,28 @@ CREATE FUNCTION cambia_menus() RETURNS trigger
 ALTER FUNCTION forapi.cambia_menus() OWNER TO postgres;
 
 --
+-- Name: cambia_menus_campos(); Type: FUNCTION; Schema: forapi; Owner: postgres
+--
+
+CREATE FUNCTION cambia_menus_campos() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+    DECLARE
+      wlestado numeric;
+      wlnum    numeric;
+    BEGIN
+        if new.upload_file!=old.upload_file then
+           if new.upload_file=true then
+                 new.readonly=true;
+           end if;
+        end if;
+     return new;
+    END;$$;
+
+
+ALTER FUNCTION forapi.cambia_menus_campos() OWNER TO postgres;
+
+--
 -- Name: cambio_cat_usuarios(); Type: FUNCTION; Schema: forapi; Owner: postgres
 --
 
@@ -798,22 +823,22 @@ CREATE FUNCTION cambio_menus_columnas() RETURNS trigger
     BEGIN
      if old.columnas!=new.columnas then
         if new.columnas=1 then 
-           wlclase='col-md-12 row';
+           wlclase='col-md-12';
         end if;
         if new.columnas=2 then 
-           wlclase='col-md-6 row';
+           wlclase='col-md-6';
         end if;
         if new.columnas=3 then 
-           wlclase='col-md-4 row';
+           wlclase='col-md-4';
         end if;
         if new.columnas=4 then 
-           wlclase='col-md-3 row';
+           wlclase='col-md-3';
         end if; 
         if new.columnas=5 then 
-           wlclase='col-md-2 row';
+           wlclase='col-md-2';
         end if; 
         if new.columnas=6 then 
-           wlclase='col-md-2 row';
+           wlclase='col-md-2';
         end if; 
         wlfila=20;
         lleva=0;
@@ -2156,6 +2181,110 @@ ALTER SEQUENCE menus_eventos_idmenus_eventos_seq OWNED BY menus_eventos.idmenus_
 
 
 --
+-- Name: menus_excels; Type: TABLE; Schema: forapi; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE menus_excels (
+    idexcel integer NOT NULL,
+    descripcion character varying(100),
+    nspname name,
+    relname name,
+    archivo character varying(100),
+    movimiento numeric(1,0) DEFAULT 0,
+    fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
+    usuario_alta character varying(20) DEFAULT getpgusername(),
+    fecha_modifico timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
+    usuario_modifico character varying(20) DEFAULT getpgusername()
+);
+
+
+ALTER TABLE forapi.menus_excels OWNER TO postgres;
+
+--
+-- Name: TABLE menus_excels; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON TABLE menus_excels IS 'tabla para subir archivos que se utilizan para crear una tabla y una nueva vista';
+
+
+--
+-- Name: COLUMN menus_excels.idexcel; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON COLUMN menus_excels.idexcel IS 'id del registro';
+
+
+--
+-- Name: COLUMN menus_excels.descripcion; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON COLUMN menus_excels.descripcion IS 'Nombre de la vista';
+
+
+--
+-- Name: COLUMN menus_excels.nspname; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON COLUMN menus_excels.nspname IS 'Esquema ';
+
+
+--
+-- Name: COLUMN menus_excels.relname; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON COLUMN menus_excels.relname IS 'Tabla a la que se va a crear una vista  ';
+
+
+--
+-- Name: COLUMN menus_excels.archivo; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON COLUMN menus_excels.archivo IS 'id del archivo que se esta subiendo';
+
+
+--
+-- Name: COLUMN menus_excels.movimiento; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON COLUMN menus_excels.movimiento IS 'Movimiento que se quiere hacer 0=crea tabla y vista, 1=crea solo vista';
+
+
+--
+-- Name: COLUMN menus_excels.fecha_alta; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON COLUMN menus_excels.fecha_alta IS 'Fecha en que hizo el movimiento el usuario';
+
+
+--
+-- Name: COLUMN menus_excels.usuario_alta; Type: COMMENT; Schema: forapi; Owner: postgres
+--
+
+COMMENT ON COLUMN menus_excels.usuario_alta IS 'Usuario hizo el alta ';
+
+
+--
+-- Name: menus_excels_idexcel_seq; Type: SEQUENCE; Schema: forapi; Owner: postgres
+--
+
+CREATE SEQUENCE menus_excels_idexcel_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE forapi.menus_excels_idexcel_seq OWNER TO postgres;
+
+--
+-- Name: menus_excels_idexcel_seq; Type: SEQUENCE OWNED BY; Schema: forapi; Owner: postgres
+--
+
+ALTER SEQUENCE menus_excels_idexcel_seq OWNED BY menus_excels.idexcel;
+
+
+--
 -- Name: menus_htmltable; Type: TABLE; Schema: forapi; Owner: postgres; Tablespace: 
 --
 
@@ -2796,7 +2925,7 @@ ALTER SEQUENCE menus_tiempos_idtiempo_seq OWNED BY menus_tiempos.idtiempo;
 --
 
 CREATE VIEW tablas AS
-    SELECT c.relname, c.reltype, c.oid, n.nspname, n.nspname AS fuente_nspname FROM ((pg_class c LEFT JOIN pg_namespace n ON ((n.oid = c.relnamespace))) LEFT JOIN pg_tablespace t ON ((t.oid = c.reltablespace))) WHERE ((((c.relkind = 'r'::"char") OR (c.relkind = 'S'::"char")) OR (c.relkind = 'v'::"char")) AND (substr((c.relname)::text, 1, 4) <> 'sql_'::text));
+    SELECT c.relname, c.reltype, c.oid, n.nspname, n.nspname AS fuente_nspname FROM ((pg_class c LEFT JOIN pg_namespace n ON ((n.oid = c.relnamespace))) LEFT JOIN pg_tablespace t ON ((t.oid = c.reltablespace))) WHERE (((c.relkind = 'r'::"char") OR (c.relkind = 'v'::"char")) AND (substr((c.relname)::text, 1, 4) <> 'sql_'::text));
 
 
 ALTER TABLE forapi.tablas OWNER TO postgres;
@@ -2853,6 +2982,13 @@ ALTER TABLE ONLY menus_campos_eventos ALTER COLUMN icv SET DEFAULT nextval('menu
 --
 
 ALTER TABLE ONLY menus_eventos ALTER COLUMN idmenus_eventos SET DEFAULT nextval('menus_eventos_idmenus_eventos_seq'::regclass);
+
+
+--
+-- Name: idexcel; Type: DEFAULT; Schema: forapi; Owner: postgres
+--
+
+ALTER TABLE ONLY menus_excels ALTER COLUMN idexcel SET DEFAULT nextval('menus_excels_idexcel_seq'::regclass);
 
 
 --
@@ -2957,6 +3093,14 @@ ALTER TABLE ONLY menus_campos
 
 ALTER TABLE ONLY menus_eventos
     ADD CONSTRAINT menus_eventos_pkey PRIMARY KEY (idmenus_eventos);
+
+
+--
+-- Name: menus_excels_pkey; Type: CONSTRAINT; Schema: forapi; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY menus_excels
+    ADD CONSTRAINT menus_excels_pkey PRIMARY KEY (idexcel);
 
 
 --
@@ -3116,6 +3260,13 @@ CREATE INDEX ak2_menus_campos ON menus_campos USING btree (fuente_busqueda_idmen
 
 
 --
+-- Name: ak2_menus_excels; Type: INDEX; Schema: forapi; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX ak2_menus_excels ON menus_excels USING btree (usuario_alta);
+
+
+--
 -- Name: ak2_menus_log; Type: INDEX; Schema: forapi; Owner: postgres; Tablespace: 
 --
 
@@ -3162,6 +3313,13 @@ CREATE INDEX ak2his_tablas_cambios ON his_tablas_cambios USING btree (idregcambi
 --
 
 CREATE INDEX ak3_menus_campos ON menus_campos USING btree (fuente_info_idmenu);
+
+
+--
+-- Name: ak3_menus_excels; Type: INDEX; Schema: forapi; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX ak3_menus_excels ON menus_excels USING btree (fecha_alta);
 
 
 --
@@ -3470,6 +3628,13 @@ CREATE TRIGGER tu_cat_usuarios BEFORE UPDATE ON cat_usuarios FOR EACH ROW EXECUT
 --
 
 CREATE TRIGGER tu_menus BEFORE UPDATE ON menus FOR EACH ROW EXECUTE PROCEDURE cambia_menus();
+
+
+--
+-- Name: tu_menus_campos; Type: TRIGGER; Schema: forapi; Owner: postgres
+--
+
+CREATE TRIGGER tu_menus_campos BEFORE UPDATE ON menus_campos FOR EACH ROW EXECUTE PROCEDURE cambia_menus_campos();
 
 
 --
