@@ -19,6 +19,10 @@ class reingenieria extends xmlhttp_class
     	  echo "<error>No esta definido el numero archivo </error>";
     	  return; 
         }
+	if ($this->argumentos["wl_nspname"]=="") {
+    	  echo "<error>No esta seleccionado en que esquema se va a crear la tabla </error>";
+    	  return; 
+        }
         $tieneetiquetas=false;
         $tienecampos=false;
         $reader = IOFactory::createReader('Xlsx');
@@ -48,7 +52,10 @@ class reingenieria extends xmlhttp_class
         if ($tieneetiquetas && !$tienecampos) {
             echo $this->crea_sincampos($worksheet);
         }
-    	echo "</error>";
+        echo "<error>Creo la tabla</error>";
+        $this->tabla=$worksheet->getTitle();
+        $this->nspname=$this->argumentos["wl_nspname"];
+        $this->crea_vista();
    }
 
    function crea_sincampos($worksheet) {
@@ -71,12 +78,10 @@ class reingenieria extends xmlhttp_class
         //return $strsql;
         $sql_result = @pg_exec($this->connection,$strsql);
         if (strlen(pg_last_error($this->connection))>0) {
-             echo "<error>hubo error al ejecutar el script</error>";
-             error_log(parent::dame_tiempo()." src/php/reingenieria_class.php crea_sincampos script \n".pg_last_error($this->connection)."\n",3,"/var/tmp/errores.log");
-             return;
+           echo "<error>hubo error al ejecutar el script</error>";
+           error_log(parent::dame_tiempo()." src/php/reingenieria_class.php crea_sincampos script \n".pg_last_error($this->connection)."\n",3,"/var/tmp/errores.log");
+           return;
         }
-        echo "<error>Creo la tabla</error>";
-
    }
 
    function arma_etiquetas($cellIterator,$tabla) {
@@ -111,11 +116,11 @@ class reingenieria extends xmlhttp_class
    }
 
    function arma_secuencia_pk($tabla) {
-            $strsql="drop SEQUENCE ".$tabla."_id_seq;".PHP_EOL;
+            $strsql="drop sequence if exists  ".$tabla."_id_seq;".PHP_EOL;
             $strsql.="CREATE SEQUENCE ".$tabla."_id_seq".PHP_EOL;
             $strsql.="  START WITH 1 INCREMENT BY 1 CACHE 1;".PHP_EOL;
-            $strsql.="  ALTER TABLE ".$tabla."_id_seq OWNER TO postgres;".PHP_EOL;
-            $strsql.="  ALTER SEQUENCE ".$tabla."_id_seq OWNED BY ".$tabla."_id_seq".";".PHP_EOL;
+            //$strsql.="  ALTER TABLE ".$tabla."_id_seq OWNER TO postgres;".PHP_EOL;
+            $strsql.="  ALTER SEQUENCE ".$tabla."_id_seq OWNED BY ".$tabla.".id".";".PHP_EOL;
             $strsql.="  ALTER TABLE ONLY ".$tabla." ALTER COLUMN id SET DEFAULT nextval('".$tabla."_id_seq'::regclass);".PHP_EOL;
             $strsql.="  ALTER TABLE ONLY ".$tabla." ADD CONSTRAINT ".$tabla."_pkey PRIMARY KEY (id);".PHP_EOL;
             return $strsql;
@@ -159,14 +164,12 @@ class reingenieria extends xmlhttp_class
         echo "<error>Se ejecuto el script </error>";
    }
 
-   function crea_menusbase()
+   function crea_vista()
    {
 
       $men = new class_men();
-	  $this->tabla=$this->argumentos['wl_relname'];      
-	  $this->nspname=$this->argumentos['wl_nspname'];      	  
       $sql=" insert into forapi.menus(descripcion,tabla,reltype,php,nspname,table_height,table_width,table_align,columnas) ".
-		   " select relname,relname,reltype,'man_menus.php',nspname,0,80,'col-lg-6',2".
+                   " select relname,relname,reltype,'man_menus.php',nspname,0,80,'col-lg-6',2".
            " from forapi.tablas ".
            " where relname = '".$this->tabla."' ".
            " and nspname = '".$this->nspname."'";
@@ -175,42 +178,42 @@ class reingenieria extends xmlhttp_class
       $sql=" select currval('forapi.menus_idmenu_seq');";
       $sql_result = pg_exec($this->connection,$sql)
                     or die("No se pudo ejecutar el sql2 en menus");
-	  $row=pg_fetch_array($sql_result, 0);                    
+          $row=pg_fetch_array($sql_result, 0);
       $wlidmenu=$row["currval"];
       $sql= "select * ".
-		   " from forapi.campos ".           
+                   " from forapi.campos ".
            " where relname = '".$this->tabla."' ".
-           " and nspname = '".$this->nspname."'".   //20070818           
-           " and attnum > 0 ";                      
+           " and nspname = '".$this->nspname."'".   //20070818
+           " and attnum > 0 ";
       $sql_result = pg_exec($this->connection,$sql)
                     or die("No se pudo ejecutar el sql3 en menus");
       $num = pg_numrows($sql_result);
-      if ( $num == 0 ) {$men->menerror("No tiene campos la tabla  ".$this->tabla); die();};          
-	  for ($z=0; $z < $num ;$z++)
+      if ( $num == 0 ) {$men->menerror("No tiene campos la tabla  ".$this->tabla); die();};
+          for ($z=0; $z < $num ;$z++)
       {
-			$row=pg_fetch_array($sql_result, $z);      
-			$sql="insert into forapi.menus_campos(idmenu ,descripcion,attnum,orden,obligatorio,readonly,esindex,tipayuda,size,tabla,nspname,male,eshidden) values (\n".
+                        $row=pg_fetch_array($sql_result, $z);
+                        $sql="insert into forapi.menus_campos(idmenu ,descripcion,attnum,orden,obligatorio,readonly,esindex,tipayuda,size,tabla,nspname,male,eshidden) values (\n".
                   $wlidmenu.
                   ",'".($row["descripcion"]!="" ? $row["descripcion"] : $row["attname"])."'".
-                  ",'".$row["attnum"]."'".                  
-                  ",'".($row["attnum"]*10)."'".                                    
+                  ",'".$row["attnum"]."'".
+                  ",'".($row["attnum"]*10)."'".
                   ",".($row["attnotnull"]=='t' ? 'true' : 'false').
-		  ",".($row["atthasdef"]=='t' && $row["valor_default"]!='0' ? 'true' : 'false').
+                  ",".($row["atthasdef"]=='t' && $row["valor_default"]!='0' ? 'true' : 'false').
                   ",".($row["indice"]>=1 ? 'true' : 'false').
-                  ",'".$row["descripcion"]."'".                  
+                  ",'".$row["descripcion"]."'".
                   ",".$this->dame_size($row).
-                  ",'".$this->tabla."'".                  
-                  ",'".$row["nspname"]."'".                  
-                  ",'".$row["atttypmod"]."'".                  
+                  ",'".$this->tabla."'".
+                  ",'".$row["nspname"]."'".
+                  ",'".$row["atttypmod"]."'".
                   ",".(($row["attname"]=='fecha_alta' || $row["attname"]=='usuario_alta' || $row["attname"]=='fecha_modifico' || $row["attname"]=='usuario_modifico' || ($row["indice"]==true && strpos($row["valor_default"],"nextval")!==false)) ? 'true' : 'false' ).
                   ");\n";
-      		$sql_resulti = pg_exec($this->connection,$sql)
-            		        or die("No se pudo ejecutar el sql4 en menus: ".$sql." ".pg_last_error($this->connection));
+                $sql_resulti = pg_exec($this->connection,$sql)
+                                or die("No se pudo ejecutar el sql4 en menus: ".$sql." ".pg_last_error($this->connection));
                 //error_log(parent::dame_tiempo()." src/php/reingenieria_class.php ".print_r($row,true)."\n",3,"/var/tmp/errores.log");
-	  }	
-	  $sql="insert into forapi.menus_pg_group(idmenu ,groname) select ".$wlidmenu.",groname from pg_group where groname='admon'";
+          }
+          $sql="insert into forapi.menus_pg_group(idmenu ,groname) select ".$wlidmenu.",groname from pg_group where groname='admon'";
       $sql_resulti = pg_exec($this->connection,$sql)
-      				//or die("No se pudo ejecutar el sql5 en menus");
+                                //or die("No se pudo ejecutar el sql5 en menus");
                                 or die("No se pudo ejecutar el sql5 en menus: ".$sql." ".pg_last_error($this->connection));
 
       $sql=" update forapi.menus set columnas=2 ".
@@ -218,8 +221,12 @@ class reingenieria extends xmlhttp_class
            " and nspname = '".$this->nspname."'";
       $sql_result = pg_exec($this->connection,$sql)
                     or die("No se pudo ejecutar el sql1 en menus");
-
-       		        
+   } 
+   function crea_menusbase()
+   {
+	  $this->tabla=$this->argumentos['wl_relname'];      
+	  $this->nspname=$this->argumentos['wl_nspname'];      	  
+      $this->crea_vista();
       echo "<error>Inserto en la base la tabla ".$this->tabla."</error>";	  
    }
    
