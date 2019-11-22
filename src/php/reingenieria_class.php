@@ -12,6 +12,7 @@ class reingenieria extends xmlhttp_class
    var $camposs=array();  /* arreglo que contiene si es una secuencia de cada uno de los campos de la tabla */
    var $camposk=array();  /* arreglo que contiene si el campo es un indice */
    var $connection="";  /* tabla o sql */
+   var $idmenu=0;  /* id del menu que genero */   
 
    function crea_desdeexcel()
    {
@@ -45,22 +46,116 @@ class reingenieria extends xmlhttp_class
             }
             //echo PHP_EOL;
         }
+        $this->tabla=strtolower($worksheet->getTitle());
+        $this->nspname=strtolower($this->argumentos["wl_nspname"]);
         if (!$tieneetiquetas) {
             echo "<error>No tiene etiquetas</error>";
             return;
         }
         if ($tieneetiquetas && !$tienecampos) {
-            echo $this->crea_sincampos($worksheet);
+            if (!$this->crea_sincampos($worksheet)) return false;
         }
         echo "<error>Creo la tabla</error>";
-        $this->tabla=$worksheet->getTitle();
-        $this->nspname=$this->argumentos["wl_nspname"];
         $this->crea_vista();
+        $this->filas($worksheet);
+        $this->obligatorios($worksheet);
+        $this->anexardocumentos($worksheet);
+   }
+
+
+   function obligatorios($worksheet) {
+        foreach ($worksheet->getRowIterator() as $row) {
+            $cellIterator = $row->getCellIterator();
+            $cellIterator->setIterateOnlyExistingCells(FALSE);
+            $tienefilas=0;
+            foreach ($cellIterator as $cell) {
+              if ($cell->getColumn()=="A" && $cell->getValue()=="Obligatorios") {
+                  $tienefilas=1;
+              } else  {
+                  if ($tienefilas==1) {
+                      if ($cell->getvalue()=='si') {
+                         $strsql="update forapi.menus_campos set obligatorio=true where idmenu=".$this->idmenu." and attnum=".
+                                      "(select attnum from forapi.campos where relname='".$this->tabla."' and nspname='".$this->nspname."' and attname='".
+                                      strtolower($cell->getColumn())."');";
+                         $sql_result = @pg_exec($this->connection,$strsql);
+                         if (strlen(pg_last_error($this->connection))>0) {
+                             echo "<error>Error al actualizar las filas</error>";
+                             error_log(parent::dame_tiempo()." src/php/reingenieria_class.php filas \n"
+                                                      .pg_last_error($this->connection)."\n",3,"/var/tmp/errores.log");
+                             return false;
+                         }
+                      }
+                  }
+              }
+
+            }
+        }
+        return true;
+   }
+
+   function anexardocumentos($worksheet) {
+        foreach ($worksheet->getRowIterator() as $row) {
+            $cellIterator = $row->getCellIterator();
+            $cellIterator->setIterateOnlyExistingCells(FALSE);
+            $tienefilas=0;
+            foreach ($cellIterator as $cell) {
+              if ($cell->getColumn()=="A" && $cell->getValue()=="AnexarDocumentos") {
+                  $tienefilas=1;
+              } else  {
+                  if ($tienefilas==1) {
+                      if ($cell->getvalue()=='si') {
+                         $strsql="update forapi.menus_campos set upload_file=true where idmenu=".$this->idmenu." and attnum=".
+                                      "(select attnum from forapi.campos where relname='".$this->tabla."' and nspname='".$this->nspname."' and attname='".
+                                      strtolower($cell->getColumn())."');";
+                         $sql_result = @pg_exec($this->connection,$strsql);
+                         if (strlen(pg_last_error($this->connection))>0) {
+                             echo "<error>Error al actualizar las filas</error>";
+                             error_log(parent::dame_tiempo()." src/php/reingenieria_class.php filas \n"
+                                                      .pg_last_error($this->connection)."\n",3,"/var/tmp/errores.log");
+                             return false;
+                         }
+                      }
+                  }
+              }
+
+            }
+        }
+        return true;
+   }
+
+   function filas($worksheet) {
+        foreach ($worksheet->getRowIterator() as $row) {
+            $cellIterator = $row->getCellIterator();
+            $cellIterator->setIterateOnlyExistingCells(FALSE);
+            $tienefilas=0;
+            foreach ($cellIterator as $cell) {
+              if ($cell->getColumn()=="A" && $cell->getValue()=="Filas") {
+                  $tienefilas=1;
+              } else  {
+                  if ($tienefilas==1) {
+                      if ($cell->getvalue()!=='') {
+                         $strsql="update forapi.menus_campos set fila=".$cell->getvalue()." where idmenu=".$this->idmenu." and attnum=".
+                                      "(select attnum from forapi.campos where relname='".$this->tabla."' and nspname='".$this->nspname."' and attname='".
+                                      strtolower($cell->getColumn())."');";
+                         $sql_result = @pg_exec($this->connection,$strsql);
+                         if (strlen(pg_last_error($this->connection))>0) {
+                             echo "<error>Error al actualizar las filas</error>";
+                             error_log(parent::dame_tiempo()." src/php/reingenieria_class.php filas \n"
+                                                      .pg_last_error($this->connection)."\n",3,"/var/tmp/errores.log");
+                             return false;
+                         }
+                      }
+                  }
+              }
+             
+            }
+        }
+        return true;
    }
 
    function crea_sincampos($worksheet) {
-        $strsql = "drop table ".$worksheet->getTitle(). ";".PHP_EOL;
-        $strsql .= "create table ".$worksheet->getTitle(). "(".PHP_EOL;
+        $strsql = "drop table if exists ".$this->nspname.".".$worksheet->getTitle(). ";".PHP_EOL;
+        $strsql .= "create table ".$this->nspname.".".$worksheet->getTitle(). "(".PHP_EOL;
         foreach ($worksheet->getRowIterator() as $row) {
             $cellIterator = $row->getCellIterator();
             $cellIterator->setIterateOnlyExistingCells(FALSE);
@@ -80,8 +175,9 @@ class reingenieria extends xmlhttp_class
         if (strlen(pg_last_error($this->connection))>0) {
            echo "<error>hubo error al ejecutar el script</error>";
            error_log(parent::dame_tiempo()." src/php/reingenieria_class.php crea_sincampos script \n".pg_last_error($this->connection)."\n",3,"/var/tmp/errores.log");
-           return;
+           return false;
         }
+        return true;
    }
 
    function arma_etiquetas($cellIterator,$tabla) {
@@ -89,7 +185,7 @@ class reingenieria extends xmlhttp_class
             foreach ($cellIterator as $cell) {
               if ($cell->getColumn()=="A" && $cell->getValue()=="Etiquetas") {
               } else {
-                $etiquetas.=" comment on column ".$tabla.".".$cell->getColumn()." is '".$cell->getValue()."';".PHP_EOL;
+                $etiquetas.=" comment on column ".$this->nspname.".".$tabla.".".$cell->getColumn()." is '".$cell->getValue()."';".PHP_EOL;
               }
             }
             return $etiquetas;
@@ -116,13 +212,13 @@ class reingenieria extends xmlhttp_class
    }
 
    function arma_secuencia_pk($tabla) {
-            $strsql="drop sequence if exists  ".$tabla."_id_seq;".PHP_EOL;
-            $strsql.="CREATE SEQUENCE ".$tabla."_id_seq".PHP_EOL;
+            $strsql="drop sequence if exists  ".$this->nspname.".".$tabla."_id_seq cascade;".PHP_EOL;
+            $strsql.="CREATE SEQUENCE ".$this->nspname.".".$tabla."_id_seq".PHP_EOL;
             $strsql.="  START WITH 1 INCREMENT BY 1 CACHE 1;".PHP_EOL;
             //$strsql.="  ALTER TABLE ".$tabla."_id_seq OWNER TO postgres;".PHP_EOL;
-            $strsql.="  ALTER SEQUENCE ".$tabla."_id_seq OWNED BY ".$tabla.".id".";".PHP_EOL;
-            $strsql.="  ALTER TABLE ONLY ".$tabla." ALTER COLUMN id SET DEFAULT nextval('".$tabla."_id_seq'::regclass);".PHP_EOL;
-            $strsql.="  ALTER TABLE ONLY ".$tabla." ADD CONSTRAINT ".$tabla."_pkey PRIMARY KEY (id);".PHP_EOL;
+            $strsql.="  ALTER SEQUENCE ".$this->nspname.".".$tabla."_id_seq OWNED BY ".$this->nspname.".".$tabla.".id".";".PHP_EOL;
+            $strsql.="  ALTER TABLE ONLY ".$this->nspname.".".$tabla." ALTER COLUMN id SET DEFAULT nextval('".$this->nspname.".".$tabla."_id_seq'::regclass);".PHP_EOL;
+            $strsql.="  ALTER TABLE ONLY ".$this->nspname.".".$tabla." ADD CONSTRAINT ".$tabla."_pkey PRIMARY KEY (id);".PHP_EOL;
             return $strsql;
    }
 
@@ -169,7 +265,7 @@ class reingenieria extends xmlhttp_class
 
       $men = new class_men();
       $sql=" insert into forapi.menus(descripcion,tabla,reltype,php,nspname,table_height,table_width,table_align,columnas) ".
-                   " select relname,relname,reltype,'man_menus.php',nspname,0,80,'col-lg-6',2".
+                   " select relname,relname,reltype,'man_menus.php',nspname,0,80,'col-lg-6',1".
            " from forapi.tablas ".
            " where relname = '".$this->tabla."' ".
            " and nspname = '".$this->nspname."'";
@@ -180,6 +276,7 @@ class reingenieria extends xmlhttp_class
                     or die("No se pudo ejecutar el sql2 en menus");
           $row=pg_fetch_array($sql_result, 0);
       $wlidmenu=$row["currval"];
+      $this->idmenu=$row["currval"];
       $sql= "select * ".
                    " from forapi.campos ".
            " where relname = '".$this->tabla."' ".
@@ -213,7 +310,6 @@ class reingenieria extends xmlhttp_class
           }
           $sql="insert into forapi.menus_pg_group(idmenu ,groname) select ".$wlidmenu.",groname from pg_group where groname='admon'";
       $sql_resulti = pg_exec($this->connection,$sql)
-                                //or die("No se pudo ejecutar el sql5 en menus");
                                 or die("No se pudo ejecutar el sql5 en menus: ".$sql." ".pg_last_error($this->connection));
 
       $sql=" update forapi.menus set columnas=2 ".
@@ -222,6 +318,7 @@ class reingenieria extends xmlhttp_class
       $sql_result = pg_exec($this->connection,$sql)
                     or die("No se pudo ejecutar el sql1 en menus");
    } 
+
    function crea_menusbase()
    {
 	  $this->tabla=$this->argumentos['wl_relname'];      
