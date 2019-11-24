@@ -13,6 +13,7 @@ class reingenieria extends xmlhttp_class
    var $camposk=array();  /* arreglo que contiene si el campo es un indice */
    var $connection="";  /* tabla o sql */
    var $idmenu=0;  /* id del menu que genero */   
+   var $worksheet;
 
    function crea_desdeexcel()
    {
@@ -29,9 +30,9 @@ class reingenieria extends xmlhttp_class
         $reader = IOFactory::createReader('Xlsx');
         $reader->setReadDataOnly(TRUE);
         $spreadsheet = $reader->load("../../upload_ficheros/".$this->argumentos["wl_archivo"]);
-        $worksheet = $spreadsheet->getActiveSheet();
+        $this->worksheet = $spreadsheet->getActiveSheet();
         //echo "<error>".$worksheet->getTitle().PHP_EOL;
-        foreach ($worksheet->getRowIterator() as $row) {
+        foreach ($this->worksheet->getRowIterator() as $row) {
             //echo "row=".$row->getRowIndex();
             $cellIterator = $row->getCellIterator();
             $cellIterator->setIterateOnlyExistingCells(FALSE); 
@@ -46,22 +47,56 @@ class reingenieria extends xmlhttp_class
             }
             //echo PHP_EOL;
         }
-        $this->tabla=strtolower($worksheet->getTitle());
+        $this->tabla=strtolower($this->worksheet->getTitle());
         $this->nspname=strtolower($this->argumentos["wl_nspname"]);
         if (!$tieneetiquetas) {
             echo "<error>No tiene etiquetas</error>";
             return;
         }
         if ($tieneetiquetas && !$tienecampos) {
-            if (!$this->crea_sincampos($worksheet)) return false;
+            if (!$this->crea_sincampos($this->worksheet)) return false;
         }
         echo "<error>Creo la tabla</error>";
         $this->crea_vista();
-        $this->filas($worksheet);
-        $this->obligatorios($worksheet);
-        $this->anexardocumentos($worksheet);
+        $this->filas($this->worksheet);
+        $this->obligatorios($this->worksheet);
+        $this->anexardocumentos($this->worksheet);
+        $this->opciones($this->worksheet);
    }
 
+
+   function opciones($worksheet) {
+        foreach ($worksheet->getRowIterator() as $row) {
+            $cellIterator = $row->getCellIterator();
+            $cellIterator->setIterateOnlyExistingCells(FALSE);
+            $tienefilas=0;
+            foreach ($cellIterator as $cell) {
+              if ($cell->getColumn()=="A" && $cell->getValue()=="Opciones") {
+                  $tienefilas=1;
+              } else  {
+                  if ($tienefilas==1) {
+                      if ($cell->getvalue()=='si') {
+                         $col=strtolower($cell->getColumn());
+                         $this->crea_tablaopciones($worksheet,$col);
+                         $strsql="update forapi.menus_campos set fuente_nspname='".$this->nspname."',fuente='".$this->tabla."_".$col.
+                                      "',fuente_campodes='descripcion',fuente_campodep='id',altaautomatico=true where idmenu=".$this->idmenu." and attnum=".
+                                      "(select attnum from forapi.campos where relname='".$this->tabla."' and nspname='".$this->nspname."' and attname='".
+                                      $col."');";
+                         $sql_result = @pg_exec($this->connection,$strsql);
+                         if (strlen(pg_last_error($this->connection))>0) {
+                             echo "<error>Error al actualizar las filas</error>";
+                             error_log(parent::dame_tiempo()." src/php/reingenieria_class.php filas \n"
+                                                      .pg_last_error($this->connection)."\n",3,"/var/tmp/errores.log");
+                             return false;
+                         }
+                      }
+                  }
+              }
+
+            }
+        }
+        return true;
+   }
 
    function obligatorios($worksheet) {
         foreach ($worksheet->getRowIterator() as $row) {
@@ -153,6 +188,23 @@ class reingenieria extends xmlhttp_class
         return true;
    }
 
+   /* crea la tabla de opciones */
+   function crea_tablaopciones($worksheet,$col) {
+        $strsql = "drop table if exists ".$this->nspname.".".$worksheet->getTitle(). "_".$col.";".PHP_EOL;
+        $strsql.= "create table ".$this->nspname.".".$worksheet->getTitle()."_".$col. "(".PHP_EOL;
+        $strsql.=" descripcion varchar(100)".PHP_EOL;
+        $strsql.=$this->arma_campos_fijos();
+        $strsql.=");".PHP_EOL;
+        $strsql.=$this->arma_secuencia_pk($worksheet->getTitle(),"_".$col);
+        $sql_result = @pg_exec($this->connection,$strsql);
+        if (strlen(pg_last_error($this->connection))>0) {
+           echo "<error>hubo error al ejecutar el script</error>";
+           error_log(parent::dame_tiempo()." src/php/reingenieria_class.php crea_tablaopciones \n".pg_last_error($this->connection)."\n",3,"/var/tmp/errores.log");
+           return false;
+        }
+   }
+
+   /* crea la tabla sin nombre de campos */
    function crea_sincampos($worksheet) {
         $strsql = "drop table if exists ".$this->nspname.".".$worksheet->getTitle(). ";".PHP_EOL;
         $strsql .= "create table ".$this->nspname.".".$worksheet->getTitle(). "(".PHP_EOL;
@@ -170,7 +222,6 @@ class reingenieria extends xmlhttp_class
         $strsql.=");".PHP_EOL;
         $strsql.=$this->arma_secuencia_pk($worksheet->getTitle());
         $strsql.=$etiquetas;
-        //return $strsql;
         $sql_result = @pg_exec($this->connection,$strsql);
         if (strlen(pg_last_error($this->connection))>0) {
            echo "<error>hubo error al ejecutar el script</error>";
@@ -196,10 +247,34 @@ class reingenieria extends xmlhttp_class
             foreach ($cellIterator as $cell) {
               if ($cell->getColumn()=="A" && $cell->getValue()=="Etiquetas") {
               } else {
-                $campos.=($campos!="" ? ",".$cell->getColumn()." varchar(255)" : $cell->getColumn()." varchar(255)").PHP_EOL;
+                $col=$cell->getColumn();
+                $tipo=($this->tiene_opciones($col)==true ? " integer " : " varchar(255) ");
+                error_log(parent::dame_tiempo()." src/php/reingenieria_class.php arma_campos col=$col tipo=$tipo \n",3,"/var/tmp/errores.log");
+                $campos.=($campos!="" ? ",".$col.$tipo : $col.$tipo).PHP_EOL;
               }
             }
             return $campos;
+   }
+
+   /* checa si una columna tiene 
+      opciones 
+      */
+   function tiene_opciones($col) {
+        $tieneopcionescol=false;
+        foreach ($this->worksheet->getRowIterator() as $row) {
+            $cellIterator = $row->getCellIterator();
+            $cellIterator->setIterateOnlyExistingCells(FALSE);
+            $tieneopcionesrow=false;
+            foreach ($cellIterator as $cell) {
+              if ($cell->getColumn()=="A" && $cell->getValue()=="Opciones") {
+                  $tieneopcionesrow=true;
+              }
+              if ($cell->getColumn()==$col && $tieneopcionesrow==true) {
+                  $tieneopcionescol=true;
+              }
+            }
+        }
+        return $tieneopcionescol;
    }
 
    function arma_campos_fijos() {
@@ -211,14 +286,15 @@ class reingenieria extends xmlhttp_class
             return $strsql;
    }
 
-   function arma_secuencia_pk($tabla) {
-            $strsql="drop sequence if exists  ".$this->nspname.".".$tabla."_id_seq cascade;".PHP_EOL;
-            $strsql.="CREATE SEQUENCE ".$this->nspname.".".$tabla."_id_seq".PHP_EOL;
+   function arma_secuencia_pk($tabla,$col="") {
+            $strsql="drop sequence if exists  ".$this->nspname.".".$tabla.$col."_id_seq cascade;".PHP_EOL;
+            $strsql.="CREATE SEQUENCE ".$this->nspname.".".$tabla.$col."_id_seq".PHP_EOL;
             $strsql.="  START WITH 1 INCREMENT BY 1 CACHE 1;".PHP_EOL;
             //$strsql.="  ALTER TABLE ".$tabla."_id_seq OWNER TO postgres;".PHP_EOL;
-            $strsql.="  ALTER SEQUENCE ".$this->nspname.".".$tabla."_id_seq OWNED BY ".$this->nspname.".".$tabla.".id".";".PHP_EOL;
-            $strsql.="  ALTER TABLE ONLY ".$this->nspname.".".$tabla." ALTER COLUMN id SET DEFAULT nextval('".$this->nspname.".".$tabla."_id_seq'::regclass);".PHP_EOL;
-            $strsql.="  ALTER TABLE ONLY ".$this->nspname.".".$tabla." ADD CONSTRAINT ".$tabla."_pkey PRIMARY KEY (id);".PHP_EOL;
+            $strsql.="  ALTER SEQUENCE ".$this->nspname.".".$tabla.$col."_id_seq OWNED BY ".$this->nspname.".".$tabla.$col.".id".";".PHP_EOL;
+            $strsql.="  ALTER TABLE ONLY ".$this->nspname.".".$tabla.$col." ALTER COLUMN id SET DEFAULT nextval('"
+                                              .$this->nspname.".".$tabla.$col."_id_seq'::regclass);".PHP_EOL;
+            $strsql.="  ALTER TABLE ONLY ".$this->nspname.".".$tabla.$col." ADD CONSTRAINT ".$tabla.$col."_pkey PRIMARY KEY (id);".PHP_EOL;
             return $strsql;
    }
 
