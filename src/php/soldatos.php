@@ -343,7 +343,7 @@ class soldatos
      */
   function inicio_tabcaptura($table_width,$table_height,$table_align)
   { 
-        echo    "<div class='btn-02 d-flex justify-content-center'".
+        echo    "<div class='btn-02 d-flex justify-content-between '".
 				"	\" oncontextmenu='contextForTABLE(this,$this->idmenu);return false;' >".
 			"		<label align='center' class=titulo >".$this->titulos."</label>".
                 ($_SESSION["parametro1"]!="" ?	"<button class='btn-mostrar' type=button  tabindex='-1' id='imostrar' onclick=\"return toggleDiv('"
@@ -605,11 +605,11 @@ class soldatos
                         $cambiarencambios_ = (($menuc["cambiarencambios"]=='f') ? "data-cambiarencambios=0" : "" );
                         $tipodato_=((substr($tipodedato,0,3)==='int' || $tipodedato=='numeric') ? "data-numerico=1" : "" );
                         $wlidcampo=$mecq["idcampo"];
-   		        $vas="<div class='".$menuc["clase"]."' ><label class='form-label-custom' "
+   		        $vas="<div class='".$menuc["clase"]."' ><div class='d-flex'><label class='form-label-custom' "
                                 .$wleshiden."id='wlt_".$wlnombre."__".$this->idmenu."' name='wlt_".$wlnombre."__".$this->idmenu
                                 ."' abbr=\"".$descripcion."\" value=\"".$descripcion."\" "
    		 		.">".$descripcion.(($busqueda=='t') ? "* " : " ")
-   		                ."</label>".$wlobligatorio; 
+   		                ."</label>".$wlobligatorio."</div>"; 
    			$vas=$vas."<div class='d-flex'><select $wlobligatorio_ $wlbusqueda_ $tipodato_ $cambiarencambios_ class='form-control form-control-custom' "
                                     .$wleshiden."placeholder=\"prueba\" "
 	 		            .($menuc["autocomplete"]=='1' ? " ;restaura_autocomplete(this)" : "" )
@@ -864,9 +864,9 @@ class soldatos
     $wlbusqueda_=   (($busqueda=='t')    ? "data-busqueda=1" : "");
     $wlidcampo=$mecq["idcampo"];
     $wltipodedato=((substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? " type='tel' " : "");
-            $wli="<div class='".$mecq["clase"]."'><label class='form-label-custom $wleshiden'  id='wlt_".$nombre."__".$this->idmenu."' name=wlt_".$nombre."__".$this->idmenu." title=\"".$descripcion."\" abbr=\"".$descripcion."\""
+            $wli="<div class='".$mecq["clase"]."'><div class='d-flex'><label class='form-label-custom $wleshiden'  id='wlt_".$nombre."__".$this->idmenu."' name=wlt_".$nombre."__".$this->idmenu." title=\"".$descripcion."\" abbr=\"".$descripcion."\""
 			.">".$descripcion
-			."</label>".$wlobligatorio.$wlbusqueda; 
+			."</label>".$wlobligatorio.$wlbusqueda."</div>"; 
 	    $wli=$wli.
 	    	(($tipodedato != "text") 
 	    	? "<div class='d-flex'><input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ autocapitalize='none' class='form-control form-control-custom $wleshiden'  onKeydown='return quitaenter(this,event)' " 
@@ -1008,7 +1008,7 @@ class soldatos
                                         $filaanterior=$this->menuc[$nomcampo]["fila"];
                                         $wllinea="";
 	    			        $this->fin_tabcaptura();	  	    				
-                                        echo "<div class='btn-01' ><tr><td><button class='btn-mostrar'  tabindex='-1' align='left' type=button id='imostrar' ".
+                                        echo "<div class='btn-01 d-flex justify-content-between flex-row-reverse' ><tr><td><button class='btn-mostrar'  tabindex='-1' align='left' type=button id='imostrar' ".
                                         "onclick=\"return toggleDiv('".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."',this);\"></button></td>";
                                         echo "<td><label>".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."</label></td></tr></div>";
 	    		                $this->inicio_tabcaptura_t($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"],
@@ -1018,7 +1018,7 @@ class soldatos
                                         error_log($this->dame_tiempo()." src/php/soldatos.php no detecto cambio j=".$j."\n",3,"/var/tmp/errores.log");
                                 }
                   if ($this->menuc[$nomcampo]["fila"]!=$filaanterior) {
-                      $wllinea="<div id=".$filaanterior." class='d-flex justify-content-between flex-wrap'>".$wllinea."</div>";
+                      $wllinea="<div id=".$filaanterior." class='d-flex justify-content-between flex-wrap mb-2'>".$wllinea."</div>";
                       echo $wllinea;
                       $filaanterior=$this->menuc[$nomcampo]["fila"];
                       $wllinea="";
