@@ -269,8 +269,10 @@ class reingenieria extends xmlhttp_class
               if ($cell->getColumn()=="A" && $cell->getValue()=="Opciones") {
                   $tieneopcionesrow=true;
               }
-              if ($cell->getColumn()==$col && $tieneopcionesrow==true) {
+              if ($cell->getColumn()==$col && $tieneopcionesrow==true && $cell->getValue()=="si") {
                   $tieneopcionescol=true;
+                  error_log(parent::dame_tiempo()." src/php/reingenieria_class.php tiene_opciones col=".$col." getColumn=".$cell->getColumn()." \n",3,"/var/tmp/errores.log");
+                  return $tieneopcionescol;
               }
             }
         }
