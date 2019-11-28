@@ -12,13 +12,13 @@ Posteriormente de haber hecho un clone al repositorio.
 
 se debera de ir al directorio del proyecto donde se hizo el clone y ejecutar el siguiente script.
 
-src/sh/crea_forapi.sh  <Nombre de la base de datos> <usuario administrador> <password del administrador>
+src/sh/crea_forapi.sh   $1 $2 $3 
 
 se debera de proporciona los parametros
 
-Nombre de la base de datos
-usuario administrador
-password del administrador
+$1=Nombre de la base de datos
+$2=usuario administrador
+$3=password del administrador
 
 
 Una vez ejecutado este shell, se debera de utilizar un browser y darle la url donde se instalo la herramienta, 
