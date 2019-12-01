@@ -64,6 +64,8 @@ class reingenieria extends xmlhttp_class
         $this->opciones($this->worksheet);
         $this->agrupaciones($this->worksheet);
         $this->longitudes($this->worksheet);
+        $this->clases($this->worksheet);
+        $this->clases_datos($this->worksheet);
    }
 
 
@@ -173,6 +175,77 @@ class reingenieria extends xmlhttp_class
         }
         return true;
    }
+
+/* checa si hay campos con longitudes */
+   function clases($worksheet) {
+        foreach ($worksheet->getRowIterator() as $row) {
+            $cellIterator = $row->getCellIterator();
+            $cellIterator->setIterateOnlyExistingCells(FALSE);
+            $tienetipos=0;
+            foreach ($cellIterator as $cell) {
+              if ($cell->getColumn()=="A" && $cell->getValue()=="Clases etiquetas") {
+                  $tienetipos=1;
+              } else  {
+                  if ($tienetipos==1) {
+                      if ($cell->getvalue()!='') {
+                         $col=strtolower($cell->getColumn());
+                         $val=$cell->getvalue();
+                         if ($val!="") {
+                            $strsql="update forapi.menus_campos set clase_label='".$val."'".
+                                 " where idmenu=".$this->idmenu." and attnum=".
+                                 "(select attnum from forapi.campos where relname='".$this->tabla."' and nspname='".$this->nspname."' and attname='".
+                                      $col."');";
+                            $sql_result = @pg_exec($this->connection,$strsql);
+                            if (strlen(pg_last_error($this->connection))>0) {
+                               echo "<error>Error al actualizar las filas</error>";
+                               error_log(parent::dame_tiempo()." src/php/reingenieria_class.php filas \n"
+                                                      .pg_last_error($this->connection)."\n",3,"/var/tmp/errores.log");
+                               return false;
+                            }
+                         }
+                      }
+                  }
+              }
+            }
+        }
+        return true;
+   }
+
+/* checa si hay campos con longitudes */
+   function clases_datos($worksheet) {
+        foreach ($worksheet->getRowIterator() as $row) {
+            $cellIterator = $row->getCellIterator();
+            $cellIterator->setIterateOnlyExistingCells(FALSE);
+            $tienetipos=0;
+            foreach ($cellIterator as $cell) {
+              if ($cell->getColumn()=="A" && $cell->getValue()=="Clases datos") {
+                  $tienetipos=1;
+              } else  {
+                  if ($tienetipos==1) {
+                      if ($cell->getvalue()!='') {
+                         $col=strtolower($cell->getColumn());
+                         $val=$cell->getvalue();
+                         if ($val!="") {
+                            $strsql="update forapi.menus_campos set clase_dato='".$val."'".
+                                 " where idmenu=".$this->idmenu." and attnum=".
+                                 "(select attnum from forapi.campos where relname='".$this->tabla."' and nspname='".$this->nspname."' and attname='".
+                                      $col."');";
+                            $sql_result = @pg_exec($this->connection,$strsql);
+                            if (strlen(pg_last_error($this->connection))>0) {
+                               echo "<error>Error al actualizar las filas</error>";
+                               error_log(parent::dame_tiempo()." src/php/reingenieria_class.php filas \n"
+                                                      .pg_last_error($this->connection)."\n",3,"/var/tmp/errores.log");
+                               return false;
+                            }
+                         }
+                      }
+                  }
+              }
+            }
+        }
+        return true;
+   }
+
 
    function altaagrupacion($worksheet,$val) {
         $strsql.= "insert into forapi.menus_htmltable (".PHP_EOL;

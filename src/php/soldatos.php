@@ -605,12 +605,13 @@ class soldatos
                         $cambiarencambios_ = (($menuc["cambiarencambios"]=='f') ? "data-cambiarencambios=0" : "" );
                         $tipodato_=((substr($tipodedato,0,3)==='int' || $tipodedato=='numeric') ? "data-numerico=1" : "" );
                         $wlidcampo=$mecq["idcampo"];
-   		        $vas="<div class='".$menuc["clase"]."' ><div class='d-flex'><label class='form-label-custom' "
+   		        $vas="<div class='".$menuc["clase"]."' ><div class='d-flex'><label class='form-label-custom ".$menuc["clase_label"]." ' "
                                 .$wleshiden."id='wlt_".$wlnombre."__".$this->idmenu."' name='wlt_".$wlnombre."__".$this->idmenu
                                 ."' abbr=\"".$descripcion."\" value=\"".$descripcion."\" "
    		 		.">".$descripcion.(($busqueda=='t') ? "* " : " ")
    		                ."</label>".$wlobligatorio."</div>"; 
-   			$vas=$vas."<div class='d-flex'><select $wlobligatorio_ $wlbusqueda_ $tipodato_ $cambiarencambios_ class='form-control form-control-custom' "
+   			$vas=$vas."<div class='d-flex'><select $wlobligatorio_ $wlbusqueda_ $tipodato_ $cambiarencambios_ class="
+                                    ."'form-control form-control-custom".$menuc["clase_dato"]."' "
                                     .$wleshiden."placeholder=\"prueba\" "
 	 		            .($menuc["autocomplete"]=='1' ? " ;restaura_autocomplete(this)" : "" )
    			            .(($menumce[1]["idevento"]=='1' && $menumce[1]["donde"]=='0' && $menumce[1]["descripcion"]!='') 
@@ -864,13 +865,15 @@ class soldatos
     $wlbusqueda_=   (($busqueda=='t')    ? "data-busqueda=1" : "");
     $wlidcampo=$mecq["idcampo"];
     $wltipodedato=((substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? " type='tel' " : "");
-            $wli="<div class='".$mecq["clase"]."'><div class='d-flex'><label class='form-label-custom $wleshiden'  id='wlt_".$nombre."__".$this->idmenu."' name=wlt_".$nombre."__".$this->idmenu." title=\"".$descripcion."\" abbr=\"".$descripcion."\""
+            $wli="<div class='".$mecq["clase"]."'><div class='d-flex'><label class='form-label-custom $wleshiden ".$mecq["clase_label"]."'  id='wlt_".$nombre."__".$this->idmenu."' name=wlt_".$nombre."__".$this->idmenu." title=\"".$descripcion."\" abbr=\"".$descripcion."\""
 			.">".$descripcion
 			."</label>".$wlobligatorio.$wlbusqueda."</div>"; 
 	    $wli=$wli.
 	    	(($tipodedato != "text") 
-	    	? "<div class='d-flex'><input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ autocapitalize='none' class='form-control form-control-custom $wleshiden'  onKeydown='return quitaenter(this,event)' " 
-	    	: "<div class='d-flex'><textarea $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class='form-control form-control-custom $wleshiden' ".((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
+	    	? "<div class='d-flex'><input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ autocapitalize='none' class=".
+                            "'form-control form-control-custom $wleshiden".$mecq["clase_dato"]."'  onKeydown='return quitaenter(this,event)' " 
+	    	: "<div class='d-flex'><textarea $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class=".
+                            "'form-control form-control-custom $wleshiden".$mecq["clase_dato"]."' ".((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
 	    						? "cols=".$mecq["colspantxt"] : "" )
 	    				).
 	    				(($tipodedato == "text") 
