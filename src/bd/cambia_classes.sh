@@ -1,7 +1,14 @@
 export PGPASSWORD=jc104
 cat > $0.sql << fin
-update forapi.menus_campos set nspname='jc',fuente='opciones_b',fuente_campodes='descricion',fuente_campodep='id',altaautomatico=true where idmenu=96 and attnum=
-( select attnum from forapi.campos where relname='opciones' and nspname='jc' and attname='b' );
+--update forapi.menus_campos set nspname='jc',fuente='opciones_b',fuente_campodes='descricion',fuente_campodep='id',altaautomatico=true where idmenu=96 and attnum=
+--( select attnum from forapi.campos where relname='opciones' and nspname='jc' and attname='b' );
+--create unique index ak1_menus_htmltable on  forapi.menus_htmltable (descripcion,idmenu);
+--select * from forapi.menus_htmltable where descripcion like '%AG%';
+--delete from forapi.menus_htmltable where descripcion like '%AG%';
+select idmenu,descripcion,htmltable from forapi.menus_campos WHERE idmenu=132;
+select idhtmltable from forapi.menus_htmltable where descripcion='AGRUPADOS';
+-- and idmenu=130 limit 1;
+--update forapi.menus_campos set htmltable=coalesce((select idhtmltable from forapi.menus_htmltable where descripcion='AGRUPADOS' and idmenu=130 limit 1),0) where idmenu=130 and attnum=(select attnum from forapi.campos where relname='opciones' and nspname='jc' and attname='h');
 fin
 psql jc104 -U jc104 -h localhost  <  $0.sql
 ##psql jc104 -U jc104  -h localhost < src/bd/ejemplo/boletas.sql

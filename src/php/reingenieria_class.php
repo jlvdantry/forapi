@@ -62,9 +62,13 @@ class reingenieria extends xmlhttp_class
         $this->obligatorios($this->worksheet);
         $this->anexardocumentos($this->worksheet);
         $this->opciones($this->worksheet);
+        $this->agrupaciones($this->worksheet);
    }
 
 
+/*  checa si hay campos con opciones
+    si es asi crea la tabla con opciones 
+**/
    function opciones($worksheet) {
         foreach ($worksheet->getRowIterator() as $row) {
             $cellIterator = $row->getCellIterator();
@@ -97,6 +101,55 @@ class reingenieria extends xmlhttp_class
         }
         return true;
    }
+/* checa si hay campos con agrupaciones */
+   function agrupaciones($worksheet) {
+        foreach ($worksheet->getRowIterator() as $row) {
+            $cellIterator = $row->getCellIterator();
+            $cellIterator->setIterateOnlyExistingCells(FALSE);
+            $tienefilas=0;
+            foreach ($cellIterator as $cell) {
+              if ($cell->getColumn()=="A" && $cell->getValue()=="Agrupaciones") {
+                  $tienefilas=1;
+              } else  {
+                  if ($tienefilas==1) {
+                      if ($cell->getvalue()!='') {
+                         $col=strtolower($cell->getColumn());
+                         $val=strtoupper($cell->getvalue());
+                         $this->altaagrupacion($worksheet,$val);
+                         $strsql="update forapi.menus_campos set htmltable=".
+                                 "coalesce((select idhtmltable from forapi.menus_htmltable where descripcion='".$val."' and idmenu=".$this->idmenu." limit 1),0)".
+                                 " where idmenu=".$this->idmenu." and attnum=".
+                                 "(select attnum from forapi.campos where relname='".$this->tabla."' and nspname='".$this->nspname."' and attname='".
+                                      $col."');";
+                         $sql_result = @pg_exec($this->connection,$strsql);
+                         if (strlen(pg_last_error($this->connection))>0) {
+                             echo "<error>Error al actualizar las filas</error>";
+                             error_log(parent::dame_tiempo()." src/php/reingenieria_class.php filas \n"
+                                                      .pg_last_error($this->connection)."\n",3,"/var/tmp/errores.log");
+                             return false;
+                         }
+                      }
+                  }
+              }
+
+            }
+        }
+        return true;
+   }
+
+   function altaagrupacion($worksheet,$val) {
+        $strsql.= "insert into forapi.menus_htmltable (".PHP_EOL;
+        $strsql.=" descripcion,idmenu) values ('".$val."'".PHP_EOL;
+        $strsql.=",".$this->idmenu.")".PHP_EOL;
+        $sql_result = @pg_exec($this->connection,$strsql);
+        if (strlen(pg_last_error($this->connection))>0) {
+           //echo "<error>hubo error al ejecutar el script</error>";
+           error_log(parent::dame_tiempo()." src/php/reingenieria_class.php crea_tablaopciones \n".pg_last_error($this->connection)."\n",3,"/var/tmp/errores.log");
+           return false;
+        }
+        return true;
+   }
+
 
    function obligatorios($worksheet) {
         foreach ($worksheet->getRowIterator() as $row) {
