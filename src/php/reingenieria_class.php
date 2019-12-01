@@ -63,6 +63,7 @@ class reingenieria extends xmlhttp_class
         $this->anexardocumentos($this->worksheet);
         $this->opciones($this->worksheet);
         $this->agrupaciones($this->worksheet);
+        $this->longitudes($this->worksheet);
    }
 
 
@@ -101,6 +102,7 @@ class reingenieria extends xmlhttp_class
         }
         return true;
    }
+
 /* checa si hay campos con agrupaciones */
    function agrupaciones($worksheet) {
         foreach ($worksheet->getRowIterator() as $row) {
@@ -132,6 +134,41 @@ class reingenieria extends xmlhttp_class
                   }
               }
 
+            }
+        }
+        return true;
+   }
+
+/* checa si hay campos con longitudes */
+   function longitudes($worksheet) {
+        foreach ($worksheet->getRowIterator() as $row) {
+            $cellIterator = $row->getCellIterator();
+            $cellIterator->setIterateOnlyExistingCells(FALSE);
+            $tienetipos=0;
+            foreach ($cellIterator as $cell) {
+              if ($cell->getColumn()=="A" && $cell->getValue()=="Tipos de dato") {
+                  $tienetipos=1;
+              } else  {
+                  if ($tienetipos==1) {
+                      if ($cell->getvalue()!='') {
+                         $col=strtolower($cell->getColumn());
+                         $val=explode(":",$cell->getvalue());
+                         if ($val[1]!="") {
+                            $strsql="update forapi.menus_campos set male=".$val[1].
+                                 " where idmenu=".$this->idmenu." and attnum=".
+                                 "(select attnum from forapi.campos where relname='".$this->tabla."' and nspname='".$this->nspname."' and attname='".
+                                      $col."');";
+                            $sql_result = @pg_exec($this->connection,$strsql);
+                            if (strlen(pg_last_error($this->connection))>0) {
+                               echo "<error>Error al actualizar las filas</error>";
+                               error_log(parent::dame_tiempo()." src/php/reingenieria_class.php filas \n"
+                                                      .pg_last_error($this->connection)."\n",3,"/var/tmp/errores.log");
+                               return false;
+                            }
+                         }
+                      }
+                  }
+              }
             }
         }
         return true;
@@ -301,12 +338,51 @@ class reingenieria extends xmlhttp_class
               if ($cell->getColumn()=="A" && $cell->getValue()=="Etiquetas") {
               } else {
                 $col=$cell->getColumn();
-                $tipo=($this->tiene_opciones($col)==true ? " integer " : " varchar(255) ");
+                $tipo=($this->tiene_opciones($col)==true ? " integer " : $this->dame_tipo($col));
                 error_log(parent::dame_tiempo()." src/php/reingenieria_class.php arma_campos col=$col tipo=$tipo \n",3,"/var/tmp/errores.log");
                 $campos.=($campos!="" ? ",".$col.$tipo : $col.$tipo).PHP_EOL;
               }
             }
             return $campos;
+   }
+
+/*
+ * regresa el tipo de dato 
+ */
+   function dame_tipo($col) {
+        $tipo=" varchar(255) ";
+        foreach ($this->worksheet->getRowIterator() as $row) {
+            $cellIterator = $row->getCellIterator();
+            $cellIterator->setIterateOnlyExistingCells(FALSE);
+            $tienetiporow=false;
+           foreach ($cellIterator as $cell) {
+              if ($cell->getColumn()=="A" && $cell->getValue()=="Tipos de dato") {
+                  $tienetiporow=true;
+              }
+              if ($cell->getColumn()==$col && $tienetiporow==true && $cell->getValue()!="") {
+                  $campo=explode(":",$cell->getValue());
+                  if ($campo[0]=="numero") {
+                     if ($campo[1]!="") {
+                        $tipo=" numeric(".$campo[1].")";
+                        return $tipo;
+                     } else {
+                        $tipo=" integer ";
+                        return $tipo;
+                     }
+                  }
+                  if ($campo[0]=="textolargo") {
+                     if ($campo[1]!="") {
+                        $tipo=" text ";
+                        return $tipo;
+                     } else {
+                        $tipo=" text ";
+                        return $tipo;
+                     }
+                  }
+              }
+           }
+        }
+        return $tipo;
    }
 
    /* checa si una columna tiene 
