@@ -22,7 +22,7 @@ COPY cat_bitacora (idbitacora, idproceso, fecha_inicio, fecha_fin, at_inicio, at
 -- Name: cat_bitacora_idbitacora_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('cat_bitacora_idbitacora_seq', 47, true);
+SELECT pg_catalog.setval('cat_bitacora_idbitacora_seq', 49, true);
 
 
 --
@@ -59,23 +59,23 @@ SELECT pg_catalog.setval('cat_preguntas_seq', 100, false);
 --
 
 COPY cat_usuarios (usename, nombre, apepat, apemat, puesto, depto, correoe, direccion_ip, fecha_alta, fecha_modifico, usuario_alta, usuario_modifico, idpregunta, respuesta, estatus, telefono, direccion, atl, id_direccion, id_persona, password, id_puesto, id_tipomenu, menu, id_modulo, rfc, llaveprivada, llavepublica, numerotel, imagen) FROM stdin;
-inicio         	inicio	\N	\N	\N	\N	\N	\N	2019-10-12 14:53:07-06	2019-10-12 15:16:17.631751-06	inicio	inicio	0	\N	1	\N	\N	\N	\N	\N	inicio	\N	1	17	0				\N	\N
-usuario20      	JOSE	VASQUEZ	BARBOSA	\N	\N	\N	\N	2019-10-16 08:13:25-06	2019-10-16 08:13:25-06	temporal	temporal	0	\N	0	\N	\N	\N	\N	\N	888aDantryR	\N	1	\N	0				565672416	\N
-usuario21      	JOSE	VASQUEZ	BARBOSA	\N	\N	\N	\N	2019-10-16 08:17:22-06	2019-10-16 08:17:22-06	temporal	temporal	0	\N	0	\N	\N	\N	\N	\N	888aDantryR	\N	1	\N	0				565672416	\N
-usuario80      	JOSE	VASQUEZ	BARBOSA	\N	\N	\N	\N	2019-10-16 12:46:49-06	2019-10-16 12:46:49-06	temporal	temporal	0	\N	0	\N	\N	\N	\N	\N	888aDantryR	\N	1	\N	0				56572416	\N
-usuario81      	JOSE	LUIS	VASQUEZ	\N	\N	\N	\N	2019-10-16 15:49:04-06	2019-10-16 15:49:04-06	temporal	temporal	0	\N	0	\N	\N	\N	\N	\N	888aDantryR	\N	1	\N	0				5556572416	\N
-usuario10      	JOSE	VASQ	BAR	\N	\N	\N	\N	2019-10-20 07:33:01-06	2019-10-20 07:33:01-06	temporal	temporal	0	\N	0	\N	\N	\N	\N	\N	888aDantryR	\N	1	\N	0				5556572416	\N
-usuario11      	JOSE	VASQUEZ	BARBOSA	\N	\N	\N	\N	2019-10-20 07:41:22-06	2019-10-20 07:41:22-06	temporal	temporal	0	\N	0	\N	\N	\N	\N	\N	888aDantryR	\N	1	\N	0				5556572416	\N
-inicio5        	JOSE	LUIS	VASQUEZ	\N	\N	\N	\N	2019-10-20 07:54:23-06	2019-10-20 07:54:23-06	temporal	temporal	0	\N	0	\N	\N	\N	\N	\N	888aDantryR	\N	1	\N	0				5556572416	\N
-usuario4       	JOSE	VAS	BARBOSA	\N	\N	\N	\N	2019-10-20 07:56:51-06	2019-10-20 07:56:51-06	temporal	temporal	0	\N	0	\N	\N	\N	\N	\N	888aDantryR	\N	1	\N	0				5556572416	\N
-inicio78       	JOSE	LUIS	\N	\N	\N	\N	\N	2019-10-20 14:02:34-06	2019-10-20 14:02:34-06	temporal	temporal	0	\N	0	\N	\N	\N	\N	\N	888aDantryR	\N	1	\N	0				5556572416	\\x31342e786c7378
-tmp_jc9        	temporal	\N	\N	\N	\N	\N	\N	2019-10-27 17:02:44-06	2019-10-27 17:02:43.784708-06	jc9	jc9	0	\N	1	\N	\N	\N	\N	\N	jc9	\N	1	\N	0				\N	\N
-jc9            	jc9	\N	\N	\N	\N	\N	\N	2019-10-27 17:02:44-06	2019-10-27 17:02:43.833875-06	jc9	jc9	0	\N	1	\N	\N	\N	\N	\N	jc9	\N	1	17	0				\N	\N
-juez1          	NOMBRE	PATERNO	\N	\N	\N	\N	\N	2019-10-30 17:18:25-06	2019-10-30 17:23:57.288473-06	tmp_jc9	jc9	0	\N	1	\N	\N	\N	\N	\N	juez11	\N	1	61	0				5556572416	\N
-tmp_jc101      	temporal	\N	\N	\N	\N	\N	\N	2019-10-31 16:51:33-06	2019-10-31 16:51:32.744554-06	jc101	jc101	0	\N	1	\N	\N	\N	\N	\N	jc101	\N	1	\N	0				\N	\N
-jc101          	jc101	\N	\N	\N	\N	\N	\N	2019-10-31 16:51:33-06	2019-10-31 16:51:32.784103-06	jc101	jc101	0	\N	1	\N	\N	\N	\N	\N	jc101	\N	1	17	0				\N	\N
-jc104          	jc104	\N	\N	\N	\N	\N	\N	2019-10-31 17:00:06-06	2019-11-03 09:26:56.914106-07	jc104	jc104	0	\N	1	\N	\N	\N	\N	\N	jc104	\N	1	17	0				\N	\N
-tmp_jc104      	temporal	\N	\N	\N	\N	\N	\N	2019-10-31 17:00:06-06	2019-11-03 09:30:37.285462-07	jc104	jc104	0	\N	1	\N	\N	\N	\N	\N	jc104	\N	1	\N	0				\N	\N
+inicio	inicio	\N	\N	\N	\N	\N	\N	2019-10-12 14:53:07-06	2019-10-12 15:16:17.631751-06	inicio	inicio	0	\N	1	\N	\N	\N	\N	\N	inicio	\N	1	17	0				\N	\N
+usuario20	JOSE	VASQUEZ	BARBOSA	\N	\N	\N	\N	2019-10-16 08:13:25-06	2019-10-16 08:13:25-06	temporal	temporal	0	\N	0	\N	\N	\N	\N	\N	888aDantryR	\N	1	\N	0				565672416	\N
+usuario21	JOSE	VASQUEZ	BARBOSA	\N	\N	\N	\N	2019-10-16 08:17:22-06	2019-10-16 08:17:22-06	temporal	temporal	0	\N	0	\N	\N	\N	\N	\N	888aDantryR	\N	1	\N	0				565672416	\N
+usuario80	JOSE	VASQUEZ	BARBOSA	\N	\N	\N	\N	2019-10-16 12:46:49-06	2019-10-16 12:46:49-06	temporal	temporal	0	\N	0	\N	\N	\N	\N	\N	888aDantryR	\N	1	\N	0				56572416	\N
+usuario81	JOSE	LUIS	VASQUEZ	\N	\N	\N	\N	2019-10-16 15:49:04-06	2019-10-16 15:49:04-06	temporal	temporal	0	\N	0	\N	\N	\N	\N	\N	888aDantryR	\N	1	\N	0				5556572416	\N
+usuario10	JOSE	VASQ	BAR	\N	\N	\N	\N	2019-10-20 07:33:01-06	2019-10-20 07:33:01-06	temporal	temporal	0	\N	0	\N	\N	\N	\N	\N	888aDantryR	\N	1	\N	0				5556572416	\N
+usuario11	JOSE	VASQUEZ	BARBOSA	\N	\N	\N	\N	2019-10-20 07:41:22-06	2019-10-20 07:41:22-06	temporal	temporal	0	\N	0	\N	\N	\N	\N	\N	888aDantryR	\N	1	\N	0				5556572416	\N
+inicio5	JOSE	LUIS	VASQUEZ	\N	\N	\N	\N	2019-10-20 07:54:23-06	2019-10-20 07:54:23-06	temporal	temporal	0	\N	0	\N	\N	\N	\N	\N	888aDantryR	\N	1	\N	0				5556572416	\N
+usuario4	JOSE	VAS	BARBOSA	\N	\N	\N	\N	2019-10-20 07:56:51-06	2019-10-20 07:56:51-06	temporal	temporal	0	\N	0	\N	\N	\N	\N	\N	888aDantryR	\N	1	\N	0				5556572416	\N
+inicio78	JOSE	LUIS	\N	\N	\N	\N	\N	2019-10-20 14:02:34-06	2019-10-20 14:02:34-06	temporal	temporal	0	\N	0	\N	\N	\N	\N	\N	888aDantryR	\N	1	\N	0				5556572416	\\x31342e786c7378
+tmp_jc9	temporal	\N	\N	\N	\N	\N	\N	2019-10-27 17:02:44-06	2019-10-27 17:02:43.784708-06	jc9	jc9	0	\N	1	\N	\N	\N	\N	\N	jc9	\N	1	\N	0				\N	\N
+jc9	jc9	\N	\N	\N	\N	\N	\N	2019-10-27 17:02:44-06	2019-10-27 17:02:43.833875-06	jc9	jc9	0	\N	1	\N	\N	\N	\N	\N	jc9	\N	1	17	0				\N	\N
+juez1	NOMBRE	PATERNO	\N	\N	\N	\N	\N	2019-10-30 17:18:25-06	2019-10-30 17:23:57.288473-06	tmp_jc9	jc9	0	\N	1	\N	\N	\N	\N	\N	juez11	\N	1	61	0				5556572416	\N
+tmp_jc101	temporal	\N	\N	\N	\N	\N	\N	2019-10-31 16:51:33-06	2019-10-31 16:51:32.744554-06	jc101	jc101	0	\N	1	\N	\N	\N	\N	\N	jc101	\N	1	\N	0				\N	\N
+jc101	jc101	\N	\N	\N	\N	\N	\N	2019-10-31 16:51:33-06	2019-10-31 16:51:32.784103-06	jc101	jc101	0	\N	1	\N	\N	\N	\N	\N	jc101	\N	1	17	0				\N	\N
+jc104	jc104	\N	\N	\N	\N	\N	\N	2019-10-31 17:00:06-06	2019-11-03 09:26:56.914106-07	jc104	jc104	0	\N	1	\N	\N	\N	\N	\N	jc104	\N	1	17	0				\N	\N
+tmp_jc104	temporal	\N	\N	\N	\N	\N	\N	2019-10-31 17:00:06-06	2019-11-03 09:30:37.285462-07	jc104	jc104	0	\N	1	\N	\N	\N	\N	\N	jc104	\N	1	\N	0				\N	\N
 \.
 
 
@@ -84,18 +84,18 @@ tmp_jc104      	temporal	\N	\N	\N	\N	\N	\N	2019-10-31 17:00:06-06	2019-11-03 09:
 --
 
 COPY cat_usuarios_pg_group (usename, grosysid, fecha_alta, fecha_modifico, usuario_alta, usuario_modifico, groname) FROM stdin;
-inicio         	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	admon
-temporal1      	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	temporalg
-forapi         	\N	2019-10-27 15:35:24-06	2019-10-27 15:35:24-06	inicio	inicio	accesosistema
-forapi         	\N	2019-10-27 15:35:53-06	2019-10-27 15:35:53-06	inicio	inicio	accesosistema
-forapi         	\N	2019-10-27 15:36:50-06	2019-10-27 15:36:50-06	inicio	inicio	accesosistema
-tmp_jc9        	\N	2019-10-27 17:02:44-06	2019-10-27 17:02:44-06	jc9	jc9	temporalg
-jc9            	\N	2019-10-27 17:02:44-06	2019-10-27 17:02:44-06	jc9	jc9	admon
-juez1          	\N	2019-10-30 17:19:30-06	2019-10-30 17:19:30-06	jc9	jc9	juez
-tmp_jc101      	\N	2019-10-31 16:51:33-06	2019-10-31 16:51:33-06	jc101	jc101	temporalg
-jc101          	\N	2019-10-31 16:51:33-06	2019-10-31 16:51:33-06	jc101	jc101	admon
-tmp_jc104      	\N	2019-10-31 17:00:06-06	2019-10-31 17:00:06-06	jc104	jc104	temporalg
-jc104          	\N	2019-10-31 17:00:06-06	2019-10-31 17:00:06-06	jc104	jc104	admon
+inicio	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	admon
+temporal1	\N	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	temporalg
+forapi	\N	2019-10-27 15:35:24-06	2019-10-27 15:35:24-06	inicio	inicio	accesosistema
+forapi	\N	2019-10-27 15:35:53-06	2019-10-27 15:35:53-06	inicio	inicio	accesosistema
+forapi	\N	2019-10-27 15:36:50-06	2019-10-27 15:36:50-06	inicio	inicio	accesosistema
+tmp_jc9	\N	2019-10-27 17:02:44-06	2019-10-27 17:02:44-06	jc9	jc9	temporalg
+jc9	\N	2019-10-27 17:02:44-06	2019-10-27 17:02:44-06	jc9	jc9	admon
+juez1	\N	2019-10-30 17:19:30-06	2019-10-30 17:19:30-06	jc9	jc9	juez
+tmp_jc101	\N	2019-10-31 16:51:33-06	2019-10-31 16:51:33-06	jc101	jc101	temporalg
+jc101	\N	2019-10-31 16:51:33-06	2019-10-31 16:51:33-06	jc101	jc101	admon
+tmp_jc104	\N	2019-10-31 17:00:06-06	2019-10-31 17:00:06-06	jc104	jc104	temporalg
+jc104	\N	2019-10-31 17:00:06-06	2019-10-31 17:00:06-06	jc104	jc104	admon
 \.
 
 
@@ -187,7 +187,7 @@ COPY his_menus_pg_group (idcambio, idmenu, grosysid, fecha_alta, usuario_alta, c
 -- Name: his_menus_pg_group_idcambio_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('his_menus_pg_group_idcambio_seq', 295, true);
+SELECT pg_catalog.setval('his_menus_pg_group_idcambio_seq', 359, true);
 
 
 --
@@ -209,7 +209,7 @@ COPY his_menus_pg_tables (idcambio, idmenu, tablename, tselect, tinsert, tupdate
 -- Name: his_menus_pg_tables_idcambio_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('his_menus_pg_tables_idcambio_seq', 751, true);
+SELECT pg_catalog.setval('his_menus_pg_tables_idcambio_seq', 857, true);
 
 
 --
@@ -258,11 +258,11 @@ COPY menus (idmenu, descripcion, objeto, fecha_alta, usuario_alta, fecha_modific
 66	boletas	\N	2019-10-31 17:25:09-06	jc104	2019-11-06 15:09:33-07	jc104	man_menus.php	\N	\N	\N	i,d,u,s,l,a,H	\N	2	2	boletas	147506	\N	100	\N	0	0	0	0	300	t	jc	\N	0	t	80.00	0.00	col-lg-8	\N			
 64	juzgados	\N	2019-10-31 17:25:01-06	jc104	2019-11-02 14:32:08-06	jc104	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	juzgados	147467	\N	100	\N	0	0	0	0	300	f	jc	\N	0	t	80.00	0.00	col-lg-6	\N			
 17	Mtto a usuarios		2019-10-12 14:53:07-06	inicio	2019-11-02 17:12:09-06	jc104	man_menus.php	0	10	0	u,s,l,d,a,ex		2	2	cat_usuarios	126000		50	nombre	0	60	0	0	300	t	forapi	pupanint.css	0	t	60.00	0.00	col-lg-8				
-115	opciones	\N	2019-11-25 13:23:19-07	jc104	2019-11-25 19:52:29-07	jc104	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	3	opciones	150051	\N	100	\N	0	0	0	0	300	f	jc	\N	0	t	80.00	0.00	col-lg-10	\N			
 14	Mtto a menus		2019-10-12 14:53:07-06	inicio	2019-11-02 17:39:51-06	jc104	man_menus.php	0	10	0	i,d,u,s,l,cc,ex,a	select id_voluntario,no_cred_elect, nombre, apepat, apemat, domicilio, no_ext, id_entidad from cat_voluntarios 	2	2	menus	126182		100	fecha_alta desc	0	0	0	0	300	f	forapi	pupanint.css	1	t	80.00	0.00	col-lg-8				
-31	Importa desde Excel		2019-10-20 19:38:33-06	inicio	2019-11-18 10:17:04-07	jc104	man_menus.php	0	10	0	a,l,s,i,u,d		2	1	menus_excels	126401		100	relname	0	0	0	0	300	t	forapi	pupanint.css	0	t	30.00	0.00	col-lg-8				
 65	infracciones	\N	2019-10-31 17:25:05-06	jc104	2019-11-02 17:56:23-06	jc104	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	infracciones	147479	\N	100	\N	0	0	0	0	300	f	jc	\N	0	t	80.00	0.00	center	\N			
 63	sanciones	\N	2019-10-31 17:24:57-06	jc104	2019-11-02 17:59:47-06	jc104	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	sanciones	147494	\N	100	\N	0	0	0	0	300	f	jc	\N	0	t	80.00	0.00	col-lg-8	\N			
+31	Importa desde Excel		2019-10-20 19:38:33-06	inicio	2019-12-01 12:45:09-07	jc104	man_menus.php	0	10	0	a,l,s,i,u,d		2	1	menus_excels	126401		100	fecha_alta desc	0	0	0	0	300	t	forapi	pupanint.css	0	t	30.00	0.00	col-lg-8				
+147	opciones	\N	2019-12-01 14:15:30-07	jc104	2019-12-01 14:15:30-07	jc104	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	opciones	152131	\N	100	\N	0	0	0	0	300	f	jc	\N	0	t	80.00	0.00	col-lg-6	\N			
 \.
 
 
@@ -345,6 +345,16 @@ COPY menus_archivos (idarchivo, descripcion, fecha_alta, usuario_alta, fecha_mod
 72	QueHaceFalta al 30-08-2019.docx	2019-11-25 13:24:25-07	jc104	2019-11-25 13:24:25-07	jc104	\N	0	0	\N
 73	QueHaceFalta al 30-08-2019.docx	2019-11-25 13:24:30-07	jc104	2019-11-25 13:24:30-07	jc104	\N	0	0	\N
 74	68.xlsx	2019-11-25 19:43:58-07	jc104	2019-11-25 19:43:58-07	jc104	\N	0	0	\N
+75	74.xlsx	2019-11-30 10:40:50-07	jc104	2019-11-30 10:40:50-07	jc104	\N	0	0	\N
+76	74.xlsx	2019-11-30 11:05:15-07	jc104	2019-11-30 11:05:15-07	jc104	\N	0	0	\N
+77	74.xlsx	2019-11-30 11:35:46-07	jc104	2019-11-30 11:35:46-07	jc104	\N	0	0	\N
+78	74.xlsx	2019-12-01 12:16:13-07	jc104	2019-12-01 12:16:13-07	jc104	\N	0	0	\N
+79	78.xlsx	2019-12-01 13:10:37-07	jc104	2019-12-01 13:10:37-07	jc104	\N	0	0	\N
+80	78.xlsx	2019-12-01 13:20:35-07	jc104	2019-12-01 13:20:35-07	jc104	\N	0	0	\N
+81	80.xlsx	2019-12-01 13:47:05-07	jc104	2019-12-01 13:47:05-07	jc104	\N	0	0	\N
+82	80.xlsx	2019-12-01 13:53:32-07	jc104	2019-12-01 13:53:32-07	jc104	\N	0	0	\N
+83	80.xlsx	2019-12-01 14:04:28-07	jc104	2019-12-01 14:04:28-07	jc104	\N	0	0	\N
+84	80.xlsx	2019-12-01 14:15:21-07	jc104	2019-12-01 14:15:21-07	jc104	\N	0	0	\N
 \.
 
 
@@ -352,404 +362,404 @@ COPY menus_archivos (idarchivo, descripcion, fecha_alta, usuario_alta, fecha_mod
 -- Name: menus_archivos_idarchivo_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('menus_archivos_idarchivo_seq', 74, true);
+SELECT pg_catalog.setval('menus_archivos_idarchivo_seq', 84, true);
 
 
 --
 -- Data for Name: menus_campos; Type: TABLE DATA; Schema: forapi; Owner: postgres
 --
 
-COPY menus_campos (idcampo, idmenu, reltype, attnum, descripcion, size, male, fuente, fuente_campodes, fuente_campodep, fuente_campofil, fuente_where, fuente_evento, orden, idsubvista, dialogwidth, dialogheight, obligatorio, busqueda, altaautomatico, tcase, checaduplicidad, readonly, valordefault, esindex, tipayuda, fecha_alta, usuario_alta, fecha_modifico, usuario_modifico, espassword, tabla, nspname, fuente_busqueda, val_particulares, htmltable, fuente_nspname, altaautomatico_idmenu, fuente_busqueda_idmenu, upload_file, formato_td, colspantxt, rowspantxt, autocomplete, imprime, totales, cambiarencambios, link_file, fuente_info, fuente_info_idmenu, fuente_actu, fuente_actu_idmenu, eshidden, fila, clase) FROM stdin;
-1	25	126000	0	PasswordNuevo	30	30						0	20	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1		forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N
-7	2	126000	0	Respuesta_	50	50						0	0	0	0	0	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	0	\N
-8	4	126000	0	TecleeDeNuevoPassword	20	30						0	250	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1		forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	250	\N
-9	11	126000	0	Password	20	20						0	160	0	0	0	f	f	f	0	f	f		f	password	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	160	\N
-11	25	126000	0	TecleedeNuevoPassword	30	30						0	30	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1		forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N
-12	25	126000	0	PasswordAnterior	30	30						0	10	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1		forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N
-13	24	126000	0	TecleedeNuevoPassword	30	30						0	30	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1		forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N
-15	23	126000	0	LLavePrivada	10	10						0	15	0	40	30	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	t	0	0	0	0	t	f	t	f	f	0	f	0	f	15	\N
-16	23	126000	0	LLavePublica	10	10						0	10	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	t	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N
-18	5	126104	1	idcambio	8	0						0	10	0	40	30	f	f	f	0	f	t		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N
-19	21	126331	1	Opcion:	0	0	menus	descripcion	idmenu			0	10	0	40	30	f	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_group	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N
-20	11	126000	1	Usuario	20	15						0	10	0	40	30	t	t	f	2	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	10	\N
-22	2	126000	1	usename	19	0						0	10	0	40	30	t	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N
-23	25	126000	0	Usuario	30	30						0	5	0	0	0	t	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0		forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	5	\N
-32	24	126000	1	Usuario	30	30						0	5	0	0	0	t	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	5	\N
-33	3	126048	1	Usuario	1	0	cat_usuarios	usename	usename			0	10	0	40	30	t	t	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios_pg_group	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N
-10	19	126000	0	TecleeDeNuevoelpassword	30	30						0	250	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1		forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-14	18	126000	0	Password	20	30						0	0	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-34	18	126000	1	Usuario	20	15						0	10	0	40	30	f	t	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-17	20	126222	1	Idcampo	30	0						0	110	0	40	30	f	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-285	20	126222	54	Fila	30	100						0	400	0	0	0	f	f	f	0	f	f		f		2019-10-19 15:45:56-06	inicio	2019-10-19 15:45:56-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	160	col-md-6
-35	4	126000	1	Usuario	10	15						0	10	0	40	30	t	f	f	2	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N
-36	26	126296	1	idlog	8	0						0	900	0	40	30	t	f	f	0	f	t		t	registro en la tabla	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	900	\N
-40	27	126321	1	idmenu	8	0						0	10	0	40	30	t	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_movtos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N
-41	28	126363	1	idseguimietno	8	0						0	10	0	40	30	t	f	f	0	f	t		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_seguimiento	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N
-42	2	126000	2	Nombre	30	0						0	20	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N
-43	15	126000	2	Nombre	20	30						0	20	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N
-44	4	126000	2	Nombre	20	30						0	20	0	40	30	t	f	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N
-45	27	126321	2	idmovto	5	0						0	20	0	40	30	f	f	f	0	f	f		t	i=insert,d=delete,s=select,u=upate,l=limpiar	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_movtos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N
-49	28	126363	2	idmenu	8	0						0	20	0	40	30	t	f	f	0	f	f		f	Numero de menu a dar seguimietno si 9999999=todos	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_seguimiento	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N
-54	26	126296	2	idmenu	1	0	menus	descripcion	idmenu			0	20	0	40	30	t	t	f	0	f	f		f	Numero de menu que utilizo el usuario	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N
-57	5	126104	2	usename	19	0						0	20	0	40	30	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N
-37	9	126000	1	Usuario	0	0						0	10	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-47	19	126000	2	Nombre	30	30						0	20	0	40	30	t	f	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-52	20	126222	2	Menu	1	0	menus	descripcion	idmenu			0	120	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-51	11	126000	2	Nombre	20	30						0	20	0	40	30	t	t	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	20	\N
-59	7	126274	2	idmenu	8	0						0	20	0	40	30	f	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N
-38	12	126283	1	idhtmltable	8	-1						0	10	0	40	30	t	f	f	0	f	t		t	Numero de identificacion de la tabla	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_htmltable	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-31	13	126401	1	Tabla	0	0						0	11	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	tablas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-12
-654	66	147506	14	Calle	30	34					\N	0	140	\N	40	30	f	f	f	0	f	f	\N	f	Calle	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	140	col-md-6
-60	4	126000	3	Apellido Paterno	20	30						0	30	0	40	30	f	f	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N
-61	5	126104	3	nombre	30	0						0	30	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N
-62	3	126048	3	Fecha alta	30	0						0	30	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios_pg_group	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N
-48	1	126341	2	Tabla	0	0	tablas	relname	relname	nspname		1	12	0	40	30	f	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-56	14	126182	2	Descripcion	99	0						0	20	0	40	30	t	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	80	3	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-65	7	126274	3	idevento	1	0	eventos	descripcion	idevento			0	30	0	40	30	t	f	t	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N
-68	27	126321	3	descripcion	30	0						0	30	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_movtos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N
-69	2	126000	3	Apellido Paterno	30	0						0	30	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N
-72	28	126363	3	usename	24	0						0	30	0	40	30	f	f	f	0	f	f		f	Usuario a dar seguimiento *=todos	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_seguimiento	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N
-73	15	126000	3	Paterno	20	30						0	30	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N
-79	5	126104	4	apepat	30	0						0	40	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	\N
-80	7	126274	4	donde	4	0						0	40	0	40	30	t	f	f	0	f	f		t	0=cliente 1=servidor	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	\N
-71	19	126000	3	Apellido Paterno	30	30						0	30	0	40	30	f	f	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-50	18	126000	2	Nombre	20	30						0	20	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-64	18	126000	3	Paterno	20	30						0	30	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-75	26	126296	3	movto	5	0						0	910	0	40	30	f	f	f	0	f	t		f	Movimiento que hizo el usuario	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	910	\N
-77	11	126000	3	Paterno	20	30						0	30	0	40	30	f	t	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	30	\N
-84	28	126363	4	fecha_alta	18	0						0	40	0	40	30	f	f	f	0	f	t		f	Fecha en que hizo el movimiento	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_seguimiento	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	\N
-63	12	126283	3	esdesistema	1	-1						0	30	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_htmltable	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-655	66	147506	15	No. interior	19	19					\N	0	150	\N	40	30	f	f	f	0	f	f	\N	f	No. interior	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	160	col-md-6
-656	66	147506	16	No. exterior	19	19					\N	0	160	\N	40	30	f	f	f	0	f	f	\N	f	No. exterior	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	160	col-md-6
-85	11	126000	4	Materno	20	30						0	40	0	40	30	f	t	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	40	\N
-86	15	126000	4	Materno	20	30						0	40	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	\N
-87	27	126321	4	imagen	30	0						0	40	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_movtos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	\N
-90	4	126000	4	Apellido Materno	20	30						0	40	0	40	30	f	f	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	\N
-91	26	126296	4	sql	-1	0						0	40	0	40	30	f	t	f	0	f	f		f	Movimiento que hizo el usuario	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	\N
-92	2	126000	4	Apellido Materno	30	0						0	40	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	\N
-93	3	126048	4	Fecha modifico	30	0						0	40	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios_pg_group	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	\N
-101	26	126296	5	fecha_alta	18	0						0	10	0	40	30	f	f	f	0	f	t		f	Fecha en que hizo el movimiento el usuario	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N
-102	28	126363	5	usuario_alta	24	0						0	50	0	40	30	f	f	f	0	f	t		f	Usuario hizo el alta 	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_seguimiento	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	50	\N
-103	7	126274	5	descripcion	30	0						0	50	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	50	\N
-96	20	126222	4	Campo	1	0	campos	attname	attnum	tabla,nspname		2	130	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-95	19	126000	4	Apellido Materno	30	30						0	40	0	40	30	f	f	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-94	18	126000	4	Materno	20	30						0	40	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-97	18	126000	5	Puesto	20	50						0	50	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-99	15	126000	5	Puesto	20	50						0	50	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	50	\N
-105	3	126048	5	Usuario alta	30	0						0	50	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios_pg_group	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	50	\N
-106	5	126104	5	apemat	30	0						0	50	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	50	\N
-107	27	126321	5	fecha_alta	18	0						0	50	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_movtos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	50	\N
-89	12	126283	4	Columnas:	4	-1						0	40	0	40	30	f	f	f	0	f	f		f	Numero de columnas en la tabla si es cero pone las columnas de la tabla maestra	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_htmltable	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-78	13	126401	4	Esquema	1	30	pg_namespace	nspname	nspname			0	0	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	tablas	forapi	f		0	pg_catalog	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-12
-110	26	126296	6	usuario_alta	24	0						0	60	0	40	30	f	f	f	0	f	t		f	Usuario hizo el alta 	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	\N
-111	5	126104	6	puesto	30	0						0	60	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	\N
-112	27	126321	6	usuario_alta	24	0						0	60	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_movtos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	\N
-114	3	126048	6	Usuario modifico	30	0						0	60	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios_pg_group	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	\N
-115	7	126274	6	fecha_alta	18	0						0	60	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	\N
-121	7	126274	7	usuario_alta	24	0						0	70	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	70	\N
-126	16	2842	7	canlogin	0	0						0	0	0	40	30	f	f	f	0	f	t	0	f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	pg_authid	pg_catalog	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	t	0	\N
-127	11	126000	7	Mail	20	0						0	70	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	70	\N
-119	18	126000	6	Depto	20	50						0	60	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-108	20	126222	5	Descripcion	30	0						0	140	0	40	30	t	f	f	0	f	f		f	Descripcion del campo en la vista	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6
-120	20	126222	6	Tamaño	30	2						0	150	0	40	30	f	f	f	0	f	f		f	size en el html, para el caso de select la cantidad de renglones	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6
-122	27	126321	7	fecha_modifico	18	0						0	70	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_movtos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	70	\N
-123	2	126000	7	Correo Electronico	30	0						0	70	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	70	\N
-130	4	126000	7	Correo	20	50						0	70	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	70	\N
-133	5	126104	7	depto	30	0						0	70	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	70	\N
-135	3	126048	7	Grupo:	0	0	pg_group	groname	groname			0	15	0	40	30	t	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios_pg_group	forapi	f		0	pg_catalog	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	15	\N
-116	12	126283	6	usuario_alta	24	24						0	60	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_htmltable	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-658	66	147506	18	Colonia	8	-1					\N	0	180	\N	40	30	f	f	f	0	f	f	\N	f	Colonia	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	180	col-md-6
-136	26	126296	7	Es movil:	0	0						0	180	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	180	\N
-138	27	126321	8	usuario_modifico	24	0						0	80	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_movtos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	\N
-1262	115	150051	8	id	8	-1					\N	0	80	\N	40	30	t	f	f	0	\N	t	\N	t		2019-11-25 13:23:19-07	jc104	2019-11-25 13:23:19-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	19501	
-143	21	126331	8	Grupo	30	30						0	30	0	40	30	t	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_group	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N
-144	5	126104	8	correoe	30	0						0	80	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	\N
-145	7	126274	8	fecha_modifico	18	0						0	80	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	\N
-1263	115	150051	9	fecha_alta	18	0					\N	0	90	\N	40	30	f	f	f	0	\N	t	\N	f		2019-11-25 13:23:19-07	jc104	2019-11-25 13:23:19-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	19521	
-150	26	126296	9	IP:	0	0						0	150	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	150	\N
-132	20	126222	7	Longitud	30	4						0	160	0	40	30	f	f	f	0	f	f		f	Maxima longitud permitida en el html	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6
-142	14	126182	8	PHP	20	30						0	40	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-137	20	126222	8	Fuente	1	0	tablas	relname	relname	fuente_nspname		1	170	0	40	30	f	f	f	0	f	f		f	Para el campo select se indica la tabla que se va utilizar para seleccionar los valores	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	360	col-md-6
-146	26	126296	8	Browser:	0	0						0	160	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	160	\N
-151	11	126000	9	Fecha alta	20	14						0	200	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	200	\N
-152	5	126104	9	direccion_ip	30	0						0	90	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	90	\N
-157	7	126274	9	usuario_modifico	24	0						0	90	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	90	\N
-1264	115	150051	10	usuario_alta	24	24					\N	0	100	\N	40	30	f	f	f	0	\N	t	\N	f		2019-11-25 13:23:19-07	jc104	2019-11-25 13:23:19-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	19541	
-160	26	126296	10	Mensaje:	1	1	menus_mensajes	mensaje	idmensaje			0	50	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	50	\N
-161	11	126000	10	Fecha modifico	20	14						0	220	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	220	\N
-166	5	126104	10	fecha_alta	18	0						0	100	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	\N
-1265	115	150051	11	fecha_modifico	18	0					\N	0	110	\N	40	30	f	f	f	0	\N	t	\N	f		2019-11-25 13:23:19-07	jc104	2019-11-25 13:23:19-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	19561	
-172	5	126104	11	fecha_modifico	18	0						0	110	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	110	\N
-173	11	126000	11	Usuario alta	20	20						0	210	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	210	\N
-659	66	147506	19	Alcaldia	8	-1					\N	0	190	\N	40	30	f	f	f	0	f	f	\N	f	Alcaldia	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	200	col-md-6
-154	18	126000	9	Fecha alta	20	14						0	90	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6
-162	18	126000	10	Fecha modifico	20	14						0	100	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6
-158	20	126222	9	Descripcion	1	0	campos	attname	attname	fuente_nspname,fuente		2	180	0	40	30	f	f	f	0	f	f		f	se indica el nombre del campo en que va mostrar en la seleccion	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	380	col-md-6
-163	20	126222	10	Liga	1	0	campos	attname	attname	fuente_nspname,fuente		2	190	0	40	30	f	f	f	0	f	f		f	se indica el nombre del campo del cual vale la descripcion	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	380	col-md-6
-1266	115	150051	12	usuario_modifico	24	24					\N	0	120	\N	40	30	f	f	f	0	\N	t	\N	f		2019-11-25 13:23:19-07	jc104	2019-11-25 13:23:19-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	19581	
-181	11	126000	12	Usuario modifico	20	20						0	230	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	230	\N
-183	5	126104	12	idpregunta	4	0						0	120	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	120	\N
-184	11	126000	13	Pregunta	1	1	cat_preguntas	descripcion	idpregunta			0	130	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	130	\N
-186	4	126000	13	Pregunta	3	2	cat_preguntas	descripcion	idpregunta			0	130	0	40	30	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	130	\N
-190	2	126000	13	idpregunta	4	0	cat_preguntas	descripcion	idpregunta			0	130	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	130	\N
-192	5	126104	13	respuesta	30	0						0	130	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	130	\N
-194	4	126000	14	Respuesta	20	50						0	140	0	40	30	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	\N
-174	20	126222	11	Filtros	30	0						0	200	0	40	30	f	f	f	0	f	f		f	se indica el nombre del campo del cual tiene un filtro, si hay varios separados por, se liga campos de la fuente contra campos de la tabla del menu, si el filtro compara que no son iguales esto se incluye con un;	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	400	col-md-6
-176	20	126222	12	Condicion WHERE	30	0						0	202	0	40	30	f	f	f	0	f	f		f	Filtro a aplicar en la fuente si queremos que tome valores de la pantalla al nombre hay que anteponer wl_	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	400	col-md-6
-175	18	126000	11	Usuario alta	20	20						0	110	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6
-196	5	126104	14	estatus	4	0						0	140	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	\N
-200	11	126000	14	Respuesta	20	100						0	140	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	140	\N
-202	11	126000	15	Estatus	1	5	estados_usuarios	descripcion	estado			0	150	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	150	\N
-203	5	126104	15	telefono	30	0						0	150	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	150	\N
-206	15	126000	15	Estatus	10	5						0	150	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	150	\N
-210	11	126000	16	Telefono	20	30						0	75	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	75	\N
-211	5	126104	16	cve_movto	5	0						0	160	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	160	\N
-198	18	126000	14	Respuesta	20	100						0	140	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6
-207	18	126000	15	Estatus	10	5						0	150	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	160	col-md-6
-199	20	126222	14	Orden	30	0						0	135	0	40	30	f	f	f	0	f	f		f	Campo por el cual se va a ordenar la información	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-661	66	147506	21	Fecha en que ocurrieron los hechos	18	0					\N	0	210	\N	40	30	f	f	f	0	f	t	\N	f	Fecha en que ocurrieron los hechos	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	220	col-md-6
-662	66	147506	22	Fecha en que ocurrieron los hechos	18	0					\N	0	220	\N	40	30	f	f	f	0	f	t	\N	f	Fecha en que ocurrieron los hechos	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	220	col-md-6
-187	1	126341	13	Esquema	0	0	pg_namespace	nspname	nspname			0	5	0	40	30	t	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0	pg_catalog	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-212	14	126182	16	Tabla	1	30	tablas	relname	relname	nspname		2	55	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-660	66	147506	20	Fotografía	8	-1					\N	0	200	\N	40	30	f	f	f	0	f	f	\N	f	Fotografa	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	t	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	200	col-md-6
-663	66	147506	23	Calle	30	34					\N	0	230	\N	40	30	f	f	f	0	f	f	\N	f	Calle	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	240	col-md-6
-208	20	126222	15	Subvista	30	0						0	300	0	40	30	f	f	f	0	f	f		f	Si el campos tiene una subvista, habre este numbero de subvista	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6
-209	20	126222	16	Ancho Subvista	30	0						0	320	0	40	30	f	f	f	0	f	f		f	Ancho de la subvista 	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6
-215	5	126104	17	id_personas	8	0						0	170	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	170	\N
-228	4	126000	21	Password	20	30						0	240	0	40	30	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	240	\N
-231	11	126000	21	pwd	20	20						0	240	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	240	\N
-664	66	147506	24	No. interior	19	19					\N	0	240	\N	40	30	f	f	f	0	f	f	\N	f	No. interior	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	240	col-md-6
-230	19	126000	21	Password	30	30						0	240	0	40	30	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-260	20	126222	33	Esquema	1	0	pg_namespace	nspname	nspname			0	123	0	40	30	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0	pg_catalog	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-258	20	126222	32	Tabla	1	30	tablas	relname	relname	nspname		2	125	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-217	20	126222	17	Alto Subvista	30	0						0	325	0	40	30	f	f	f	0	f	f		f	Alto de la subvista 	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6
-238	11	126000	23	Tipo menu	20	5						0	145	0	0	0	f	f	f	0	f	f		f	0=normal 1=vertical 2=horizontal	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	145	\N
-252	19	126000	29	Numero de telefono:	30	50						0	70	0	40	30	t	f	f	2	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-243	11	126000	24	Menu default	1	5	menus	descripcion	idmenu			0	155	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	155	\N
-263	20	126222	35	Validacion	30	30						0	1200	0	40	30	f	f	f	0	f	f		f	Indica la validacion especial que se incorpora para este campo	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	260	col-md-6
-248	20	126222	26	Tip de ayuda	30	255						0	1200	0	40	30	f	f	f	0	f	f		f	Ayuda que se muestra cuando es mouse esta en el campo	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	260	col-md-6
-665	66	147506	25	No. exterior	19	19					\N	0	250	\N	40	30	f	f	f	0	f	f	\N	f	No. exterior	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	260	col-md-6
-676	66	147506	36	Estatus de la boleta	8	-1					\N	0	360	\N	40	30	f	f	f	0	f	f	\N	f	Estatus de la boleta	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2029		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	380	col-md-6
-242	20	126222	24	Valor de Default	30	100						0	400	0	0	0	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	160	col-md-6
-240	20	126222	23	Solo lectura?	30	0						0	900	0	40	30	f	f	f	0	f	f		f	Este dato no se puede modificar	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	240	col-md-6
-220	14	126182	18	Filtro	20	255						0	70	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6
-234	14	126182	22	Ancho de ventana	20	10						0	120	0	40	30	f	f	f	0	f	f		f	Ancho en abrir la subvista esta en pixeles	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6
-246	20	126222	25	Iindex?	30	0						0	1100	0	40	30	f	f	f	0	f	f		f	Define este como index ya que existe el caso de las vistas que no tienen indices	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	240	col-md-6
-262	20	126222	34	Busqueda?	30	0						0	205	0	0	0	f	f	f	0	f	f		f	En un campos con opciones se utilizar para hacer una busqueda	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	t		1		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	440	col-md-6
-24	15	126000	1	Usuario	20	15						0	10	0	40	30	f	t	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N
-278	20	126222	47	Permitir cambios?	30	0						0	510	0	0	0	f	f	f	0	f	f		f	Con este campo se control que no se puedan cambiar datos en cambios, especificamente sirve para los campos de busqueda	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	f	f	t	f	f	0	f	0	f	200	col-md-6
-28	7	126274	1	idmenus_eventos	8	0						0	10	0	40	30	f	f	f	0	f	t		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N
-25	19	126000	1	Usuario	30	15						0	10	0	40	30	t	f	f	2	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-265	20	126222	36	Tabla HTML	1	0	menus_htmltable	descripcion	idhtmltable			0	137	0	0	0	f	f	t	0	f	f		f	Grupo de campos	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-282	20	126222	51	Actualizacion?	30	1						0	625	0	40	30	f	f	f	0	f	f		f	Permite modificar el contenido del campo select	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	500	col-md-6
-283	20	126222	52	Menu actualizacion	1	1	menus	descripcion	idmenu			0	630	0	40	30	f	f	f	0	f	f		f	Subvista que se utiliza para modificar la informacion	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	500	col-md-6
-612	63	147494	6	Horas de Servicio Comunitatio hasta	30	196612					\N	0	60	\N	40	30	f	f	f	0	\N	f	\N	f	Horas de Servicio Comunitatio hasta	2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-613	63	147494	7	Horas de arresto desde	30	196612					\N	0	70	\N	40	30	f	f	f	0	\N	f	\N	f	Horas de arresto desde	2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-614	63	147494	8	Horas de arresto hasta	30	196612					\N	0	80	\N	40	30	f	f	f	0	\N	f	\N	f	Horas de arresto hasta	2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-284	20	126222	53	Dato escondido?	1	1						0	1265	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	340	col-md-6
-281	20	126222	50	Menu informacion	1	1	menus	descripcion	idmenu			0	620	0	40	30	f	f	f	0	f	f		f	Indica que subvista se utiliza para mostrar la informacion	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	480	col-md-6
-2	23	126000	0	Password	0	0						0	20	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N
-1257	115	150051	3	Unidad de cuenta hasta	30	259					\N	0	30	\N	40	30	f	f	f	0	\N	f	\N	f	Unidad de cuenta hasta	2019-11-25 13:23:19-07	jc104	2019-11-25 13:23:19-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-4
-4	6	126000	0	Usuario	0	0						0	0	0	0	0	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	0	\N
-5	24	126000	0	PasswordNuevo	30	30						0	20	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1		forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N
-3	9	126000	0	Password	0	0						0	20	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-633	65	147479	5	Descripción	30	260					\N	0	50	\N	40	30	t	f	f	0	\N	f	\N	f	Descripción	2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-21	14	126182	1	Idmenu	20	5						0	1000	0	800	600	f	f	f	0	f	t		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	t	240	col-md-6
-634	65	147479	6	Conciliación	30	54					\N	0	60	\N	40	30	f	f	f	0	\N	f	\N	f	Conciliación	2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-635	65	147479	7	Aplicar si	30	104					\N	0	70	\N	40	30	f	f	f	0	\N	f	\N	f	Aplicar si	2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-286	20	126222	55	Clase	30	100						0	410	0	0	0	f	f	f	0	f	f		f		2019-10-19 18:37:08-06	inicio	2019-10-19 18:37:08-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-182	18	126000	12	Usuario modifico	20	20						0	120	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6
-188	18	126000	13	Pegunta	1	0	cat_preguntas	descripcion	idpregunta			0	130	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6
-125	18	126000	7	Mail	20	50						0	70	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-218	20	126222	18	Obligatorio?	30	0						0	400	0	40	30	f	f	f	0	f	f		f	El campo es obligatorio	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	180	col-md-6
-223	20	126222	19	Busqueda?	30	0						0	500	0	40	30	f	f	f	0	f	f		f	El campos se puede utilizar en consulta de informacion	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	180	col-md-6
-227	20	126222	21	Case	1	0	tcases	descripcion	tcase			0	700	0	40	30	f	f	f	0	f	f		f	Los datos se convierte a mayusculas o minusculas	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	200	col-md-6
-235	20	126222	22	Valida duplicidad?	30	0						0	800	0	40	30	f	f	f	0	f	f		f	Maxima longitud permitida en el html	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	220	col-md-6
-636	65	147479	8	Tipo	7	7					\N	0	80	\N	40	30	t	f	f	0	\N	f	\N	f	Tipo	2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-266	14	126182	36	Icono	0	0						0	1300	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	280	col-md-6
-287	31	126401	4	Tabla	0	0	tablas	relname	relname	nspname		2	11	0	40	30	f	f	f	0	f	f		f		2019-10-20 19:38:33.016632-06	inicio	2019-10-20 19:38:33.016632-06	inicio	0	menus_excels	forapi	f		0	forapi	0	0	t	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-288	31	126401	3	Esquema	1	30	pg_namespace	nspname	nspname			0	0	0	40	30	t	f	f	0	f	f		f		2019-10-20 19:38:33.016632-06	inicio	2019-10-20 19:38:33.016632-06	inicio	0	menus_excels	forapi	f		0	pg_catalog	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-1255	115	150051	1	Tipo	8	-1	opciones_b	descripcion	id		\N	0	10	\N	40	30	t	f	t	0	f	f	\N	f	Tipo	2019-11-25 13:23:19-07	jc104	2019-11-25 13:23:19-07	jc104	0	opciones	jc	f	\N	0	jc	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	5	col-md-4
-255	20	126222	31	Password?	30	4						0	800	0	0	0	f	f	f	0	f	f		f	1=es pwd 2=subir un archivo(pendiente)	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	220	col-md-6
-271	20	126222	40	SubeArchivo	30	30						0	1210	0	40	30	f	f	f	0	f	f		f	Indica si el campo sirver para subir un archivo	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	280	col-md-6
-276	20	126222	45	Imprime	30	30						0	1212	0	40	30	f	f	f	0	f	f		f	Indica si el campo se imprime	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	280	col-md-6
-277	20	126222	46	Totales	30	30						0	1220	0	40	30	f	f	f	0	f	f		f	Indica si se imprimen totales de un columna	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	300	col-md-6
-272	20	126222	41	Formato td	30	1						0	1230	0	40	30	f	f	f	0	f	f		f	0=normal,1=etiqueta y texto junto, 2=Etiqueta y texto junto todo el renglón	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	300	col-md-6
-274	20	126222	43	No. de filas	30	3						0	1240	0	40	30	f	f	f	0	f	f		f	Registros para el campos textarea	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	320	col-md-6
-273	20	126222	42	No.de columnas	30	3						0	1250	0	40	30	f	f	f	0	f	f		f	Columnas para el campos textarea	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	320	col-md-6
-279	20	126222	48	Enlace?	30	30						0	1260	0	40	30	f	f	f	0	f	f		f	Indica si el campo es un link	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	340	col-md-6
-268	20	126222	37	Esquema	1	30	pg_namespace	nspname	nspname			0	165	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1	pg_catalog	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	360	col-md-6
-185	20	126222	13	Evento	30	0						0	203	0	40	30	f	f	f	0	f	f		f	En que evento se cargan los campos select 0=cuando la forma se carga,1=cuando el campo padre cambia,2=cuando el campo recibe el focus,3=cuando el campo recibe el focus solo la primera vez	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	420	col-md-6
-275	20	126222	44	Autocompletar	30	1						0	204	0	40	30	f	f	f	0	f	f		f	0=no, 1=si	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	420	col-md-6
-270	20	126222	39	Menu busqueda	1	0	menus	descripcion	idmenu			0	207	0	0	0	f	f	f	0	f	f		f	No. de menu para buscar datos	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	440	col-md-6
-225	20	126222	20	Alta automatica?	30	0						0	600	0	40	30	f	f	f	0	f	f		f	Para los campos select se pueden dar de alta una descripcion	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	460	col-md-6
-269	20	126222	38	Menu alta en automatico	1	1	menus	descripcion	idmenu			0	610	0	40	30	f	f	f	0	f	f		f	Indica que subvista se utiliza para dar de alta un registro	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	460	col-md-6
-280	20	126222	49	Informacion?	30	1						0	615	0	40	30	f	f	f	0	f	f		f	Muestra informacion relevante del contenido del campo select	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	480	col-md-6
-39	16	2842	1	Grupo	20	30						0	0	0	0	0	t	t	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	pg_authid	pg_catalog	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-12
-1256	115	150051	2	Unidad de cuenta desde	30	259					\N	0	20	\N	40	30	f	f	f	0	\N	f	\N	f	Unidad de cuenta desde	2019-11-25 13:23:19-07	jc104	2019-11-25 13:23:19-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-4
-600	16	2842	2	Superusuario	\N	\N					\N	0	900	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:33:08-06	jc9	2019-10-30 16:33:08-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6261	
-380	46	134741	1	idscript	8	-1					\N	0	10	\N	40	30	t	f	f	0	\N	t	\N	t	id del script	2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	20	col-md-4
-383	46	134741	4	fecha_alta	18	0					\N	0	40	\N	40	30	f	f	f	0	\N	t	\N	f	Fecha en que hizo el movimiento el usuario	2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	40	col-md-4
-1258	115	150051	4	Horas de Servicio Comunitatio desde	30	259					\N	0	40	\N	40	30	t	f	f	0	\N	f	\N	f	Horas de Servicio Comunitatio desde	2019-11-25 13:23:19-07	jc104	2019-11-25 13:23:19-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-4
-384	46	134741	5	usuario_alta	24	24					\N	0	50	\N	40	30	f	f	f	0	\N	t	\N	f	Usuario hizo el alta 	2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	40	col-md-4
-385	46	134741	6	fecha_modifico	18	0					\N	0	60	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	40	col-md-4
-386	46	134741	7	usuario_modifico	24	24					\N	0	70	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	60	col-md-4
-1259	115	150051	5	Horas de Servicio Comunitario hasta	30	259					\N	0	50	\N	40	30	t	f	f	0	\N	f	\N	f	Horas de Servicio Comunitario hasta	2019-11-25 13:23:19-07	jc104	2019-11-25 13:23:19-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-4
-1260	115	150051	6	Horas de arresto desde	30	259					\N	0	60	\N	40	30	f	f	f	0	\N	t	\N	f	Horas de arresto desde	2019-11-25 13:23:19-07	jc104	2019-11-25 13:23:19-07	jc104	0	opciones	jc	f	\N	0		0	0	t	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-4
-1261	115	150051	7	Horas de arresto hasta	30	259					\N	0	70	\N	40	30	f	f	f	0	\N	t	\N	f	Horas de arresto hasta	2019-11-25 13:23:19-07	jc104	2019-11-25 13:23:19-07	jc104	0	opciones	jc	f	\N	0		0	0	t	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-4
-381	46	134741	2	descripcion	30	104					\N	0	20	\N	40	30	f	f	f	0	\N	f	\N	f		2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-12
-382	46	134741	3	sql	-1	-1					\N	0	30	\N	40	30	f	f	f	0	f	f	\N	f	instruccion	2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	80	10	0	t	f	t	f	f	0	f	0	f	40	col-md-12
-601	16	2842	3	Heredable	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:36:28-06	jc9	2019-10-30 16:36:28-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6281	
-602	16	2842	4	Crea un rol	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:38:35-06	jc9	2019-10-30 16:38:35-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6301	
-603	16	2842	5	Puede crear una BD	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:39:04-06	jc9	2019-10-30 16:39:04-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6321	
-604	16	2842	6	Actualiza	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:42:28-06	jc9	2019-10-30 16:42:28-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6341	
-590	62	134448	1	Numero de identificacion de la tabla	8	-1					\N	0	10	\N	40	30	t	f	f	0	\N	t	\N	t	Numero de identificacion de la tabla	2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6061	
-594	62	134448	5	fecha_alta	18	-1					\N	0	50	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6141	
-595	62	134448	6	usuario_alta	24	24					\N	0	60	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6161	
-596	62	134448	7	fecha_modifico	18	-1					\N	0	70	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6181	
-597	62	134448	8	usuario_modifico	24	24					\N	0	80	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6201	
-46	12	126283	2	Descripción:	30	259						0	20	0	40	30	f	f	f	1	f	f		f	Caption que va a tener la tabla	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_htmltable	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-165	12	126283	10	Orden del grupo:	3	3						0	45	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_htmltable	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-104	12	126283	5	fecha_alta	18	-1						0	50	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_htmltable	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-129	12	126283	7	fecha_modifico	18	-1						0	70	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_htmltable	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-147	12	126283	8	usuario_modifico	24	24						0	80	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_htmltable	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6
-591	62	134448	2	Caption que va a tener la tabla	30	259					\N	0	20	\N	40	30	f	f	f	0	\N	f	\N	f	Caption que va a tener la tabla	2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-592	62	134448	3	esdesistema	1	-1					\N	0	30	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-618	63	147494	12	usuario_modifico	24	24					\N	0	120	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6621	
-593	62	134448	4	Numero de columnas en la tabla si es cero pone las columnas de la tabla maestra	4	-1					\N	0	40	\N	40	30	f	f	f	0	\N	f	\N	f	Numero de columnas en la tabla si es cero pone las columnas de la tabla maestra	2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-598	62	134448	9	Id del menu a la que pertenece el grupo de campos	8	-1					\N	0	90	\N	40	30	f	f	f	0	\N	f	\N	f	Id del menu a la que pertenece el grupo de campos	2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-599	62	134448	10	orden del grupo de campos	8	-1					\N	0	100	\N	40	30	f	f	f	0	\N	f	\N	f	orden del grupo de campos	2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-605	16	2842	8	Puede Replicar	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:45:14-06	jc9	2019-10-30 16:45:14-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6361	
-606	16	2842	9	Limite de conexión	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:47:57-06	jc9	2019-10-30 16:47:57-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6381	
-607	63	147494	1	id de la sancion	8	-1					\N	0	10	\N	40	30	t	f	f	0	\N	t	\N	t	id de la sancion	2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6401	
-253	19	126000	30	Foto:	0	0						0	80	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	t	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-615	63	147494	9	fecha_alta	18	0					\N	0	90	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6561	
-616	63	147494	10	usuario_alta	24	24					\N	0	100	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6581	
-617	63	147494	11	fecha_modifico	18	0					\N	0	110	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6601	
-55	17	126000	2	Nombre	20	30						0	20	0	40	30	t	t	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-197	17	126000	14	Respuesta	20	100						0	140	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-237	17	126000	23	Tipo menu	20	5						0	145	0	0	0	f	f	f	0	f	f		f	0=normal 1=vertical 2=horizontal	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6
-204	17	126000	15	Estatus	1	5	estados_usuarios	descripcion	estado			0	150	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6
-169	17	126000	11	Usuario alta	20	20						0	210	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6
-168	17	126000	10	Fecha modifico	20	14						0	220	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6
-619	64	147467	1	id del juzgado	8	-1					\N	0	10	\N	40	30	t	f	f	0	\N	t	\N	t	id del juzgado	2019-10-31 17:25:01-06	jc104	2019-10-31 17:25:01-06	jc104	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6641	
-625	64	147467	7	fecha_alta	18	0					\N	0	70	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:01-06	jc104	2019-10-31 17:25:01-06	jc104	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6761	
-626	64	147467	8	usuario_alta	24	24					\N	0	80	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:01-06	jc104	2019-10-31 17:25:01-06	jc104	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6781	
-627	64	147467	9	fecha_modifico	18	0					\N	0	90	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:01-06	jc104	2019-10-31 17:25:01-06	jc104	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6801	
-628	64	147467	10	usuario_modifico	24	24					\N	0	100	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:01-06	jc104	2019-10-31 17:25:01-06	jc104	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6821	
-620	64	147467	2	Alcaldia	30	104					\N	0	20	\N	40	30	f	f	f	0	\N	f	\N	f	Alcaldia	2019-10-31 17:25:01-06	jc104	2019-10-31 17:25:01-06	jc104	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6 row
-621	64	147467	3	Juzgado	30	104					\N	0	30	\N	40	30	f	f	f	0	\N	f	\N	f	Juzgado	2019-10-31 17:25:01-06	jc104	2019-10-31 17:25:01-06	jc104	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6 row
-622	64	147467	4	Direccion	30	104					\N	0	40	\N	40	30	f	f	f	0	\N	f	\N	f	Direccion	2019-10-31 17:25:01-06	jc104	2019-10-31 17:25:01-06	jc104	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6 row
-623	64	147467	5	Turno	30	34					\N	0	50	\N	40	30	f	f	f	0	\N	f	\N	f	Turno	2019-10-31 17:25:01-06	jc104	2019-10-31 17:25:01-06	jc104	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6 row
-624	64	147467	6	horario	30	34					\N	0	60	\N	40	30	f	f	f	0	\N	f	\N	f	horario	2019-10-31 17:25:01-06	jc104	2019-10-31 17:25:01-06	jc104	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6 row
-629	65	147479	1	id de la infraccion	8	-1					\N	0	10	\N	40	30	t	f	f	0	\N	t	\N	t	id de la infraccion	2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6841	
-608	63	147494	2	Tipo 	6	6					\N	0	20	\N	40	30	t	f	f	0	\N	f	\N	f	Tipo 	2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-609	63	147494	3	Unidad de cuenta desde	30	196612					\N	0	30	\N	40	30	f	f	f	0	\N	f	\N	f	Unidad de cuenta desde	2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-610	63	147494	4	Unidad de cuenta hasta	30	196612					\N	0	40	\N	40	30	f	f	f	0	\N	f	\N	f	Unidad de cuenta hasta	2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-611	63	147494	5	Horas de Servicio Comunitatio desde	30	196612					\N	0	50	\N	40	30	f	f	f	0	\N	f	\N	f	Horas de Servicio Comunitatio desde	2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-70	1	126341	3	tselect	1	1						0	13	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-81	1	126341	4	tinsert	1	1						0	14	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-100	1	126341	5	tupdate	1	1						0	15	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-117	1	126341	6	tdelete	1	1						0	16	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-637	65	147479	9	fecha_alta	18	0					\N	0	90	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	7001	
-638	65	147479	10	usuario_alta	24	24					\N	0	100	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	7021	
-639	65	147479	11	fecha_modifico	18	0					\N	0	110	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	7041	
-640	65	147479	12	usuario_modifico	24	24					\N	0	120	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	7061	
-630	65	147479	2	Infracción 	30	104					\N	0	20	\N	40	30	t	f	f	0	\N	f	\N	f	Infracción 	2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-631	65	147479	3	Artículo	8	-1					\N	0	30	\N	40	30	t	f	f	0	\N	f	\N	f	Artículo	2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-632	65	147479	4	Fracción	14	14					\N	0	40	\N	40	30	t	f	f	0	\N	f	\N	f	Fracción	2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-134	1	126341	7	tall	1	1						0	17	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-178	1	126341	12	tgrant	1	1						0	18	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-140	1	126341	8	fecha_alta	0	0						0	19	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6
-149	1	126341	9	fecha_modifico	0	0						0	20	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6
-641	66	147506	1	id de la boleta	8	-1					\N	0	10	\N	40	30	t	f	f	0	\N	t	\N	t	id de la boleta	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	7081	
-642	66	147506	2	boleta_remision	6	6					\N	0	20	\N	40	30	t	f	f	0	\N	f	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-643	66	147506	3	Policia uno 	8	-1					\N	0	30	\N	40	30	t	f	f	0	f	f	\N	f	Policia uno 	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2026		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-159	1	126341	10	usuario_alta	0	0						0	21	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6
-644	66	147506	4	Policia dos 	8	-1					\N	0	40	\N	40	30	f	f	f	0	f	f	\N	f	Policia dos 	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2026		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-645	66	147506	5	Numero de patrulla u medio de transporte	30	34					\N	0	50	\N	40	30	t	f	f	0	f	f	\N	f	Numero de patrulla u medio de transporte	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2026		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-171	1	126341	11	usuario_modifico	0	0						0	22	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6
-27	1	126341	1	idmenu	0	0						0	800	0	40	30	f	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6
-232	30	126370	21	Orden	4	4						0	0	0	0	0	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-30	30	126370	1	idmenus_subvistas	0	0						0	10	0	40	30	t	f	f	0	f	t		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-53	30	126370	2	idmenu	0	0						0	20	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-76	30	126370	3	texto	0	0						0	30	0	40	30	f	f	f	0	f	f		f	Texto para activas la subvista	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-83	30	126370	4	imagen	0	0						0	40	0	40	30	f	f	f	0	f	f		f	Imagen que aparece para activar la subvista	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-109	30	126370	5	idsubvista	0	0	menus	descripcion	idmenu			0	50	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-221	30	126370	19	Clase	0	0						0	58	0	40	30	f	f	f	0	f	f		f	Clase que se va a ejecutar en el servidor	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-118	30	126370	6	funcion	0	0						0	60	0	40	30	f	f	f	0	f	f		f	Funcion que se va a ejecutar en el servidor	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-236	30	126370	22	Ventana	1	1						0	65	0	40	30	f	f	f	0	f	f		f	0=showModalDialog,1=showModelessDialog,2=open,3=misma ventana	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6
-128	30	126370	7	dialogwidth	0	0						0	70	0	40	30	f	f	f	0	f	f		f	El ancho que va a tener la subvista	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6
-139	30	126370	8	dialogheight	0	0						0	80	0	40	30	f	f	f	0	f	f		f	La altura que va a tener la subvista	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6
-164	30	126370	10	donde	0	0						0	100	0	40	30	f	f	f	0	f	f		f	En donde se va a ejecutar el evento antes de abrir la subvista 0=cliente 1=servidor	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6
-170	30	126370	11	eventos_antes	0	0						0	110	0	40	30	f	f	f	0	f	f		f	Funcion que se va a ejecutar antes de abrir la subvista	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6
-180	30	126370	12	eventos_despues	0	0						0	120	0	40	30	f	f	f	0	f	f		f	Funcion que se va a ejecutar despues de abrir la subvista	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6
-189	30	126370	13	campo_filtro	0	0						0	130	0	40	30	f	f	f	0	f	f		f	Nombre del campo de la subvista el cual se va hacer el filtro, mas de uno es separado por ;	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	160	col-md-6
-195	30	126370	14	valor_padre	0	0						0	140	0	40	30	f	f	f	0	f	f		f	Valor del campo padre, este lo toma de los campos de captura	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	160	col-md-6
-224	30	126370	20	Posicion	1	1						0	145	0	0	0	f	f	f	0	f	f		f	posicion dondes se ubica el boton o subvistas 0=registro, 1=cabecera	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	180	col-md-6
-205	30	126370	15	fecha_alta	0	0						0	150	0	40	30	f	f	f	0	f	t		f	Fecha en que el usuario dio de alta el registro	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	180	col-md-6
-156	30	126370	9	Esboton	1	1						0	150	0	40	30	f	f	f	0	f	f		f	0=link,1=boton,2=menu select	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	200	col-md-6
-214	30	126370	16	usuario_alta	0	0						0	160	0	40	30	f	f	f	0	f	t		f	Usuario que dio de alta el registro	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	200	col-md-6
-216	30	126370	17	fecha_modifico	0	0						0	170	0	40	30	f	f	f	0	f	t		f	Fecha en que el usuario modifico el registro	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	220	col-md-6
-646	66	147506	6	id_areaadcripcion	8	-1					\N	0	60	\N	40	30	f	f	f	0	f	f	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2026		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-647	66	147506	7	Nombre(s)	30	34					\N	0	70	\N	40	30	t	f	f	0	f	f	\N	f	Nombre(s)	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-648	66	147506	8	Primer apellido	30	34					\N	0	80	\N	40	30	f	f	f	0	f	f	\N	f	Primer apellido	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-649	66	147506	9	Segundo apellido	30	34					\N	0	90	\N	40	30	f	f	f	0	f	f	\N	f	Segundo apellido	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	100	col-md-6
-650	66	147506	10	Sexo	5	5					\N	0	100	\N	40	30	f	f	f	0	f	f	\N	f	Sexo	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	100	col-md-6
-651	66	147506	11	Curp	22	22					\N	0	110	\N	40	30	f	f	f	0	f	f	\N	f	Curp	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	120	col-md-6
-652	66	147506	12	Lugar de nacimiento	8	-1					\N	0	120	\N	40	30	f	f	f	0	f	f	\N	f	Lugar de nacimiento	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	120	col-md-6
-653	66	147506	13	Fecha de nacimiento	18	0					\N	0	130	\N	40	30	f	f	f	0	f	t	\N	f	Fecha de nacimiento	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	140	col-md-6
-678	66	147506	38	fecha_alta	18	0					\N	0	380	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	7821	
-679	66	147506	39	usuario_alta	24	24					\N	0	390	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	7841	
-680	66	147506	40	fecha_modifico	18	0					\N	0	400	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	7861	
-681	66	147506	41	usuario_modifico	24	24					\N	0	410	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	7881	
-219	30	126370	18	usuario_modifico	0	0						0	180	0	40	30	f	f	f	0	f	t		f	Usuario que modifico el registro	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	220	col-md-6
-657	66	147506	17	Código postal	9	9					\N	0	170	\N	40	30	f	f	f	0	f	f	\N	f	Código postal	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	180	col-md-6
-688	31	126401	2	Descripción de la vista	\N	\N					\N	0	\N	\N	40	30	t	f	f	0	f	f	\N	f	\N	2019-11-18 09:58:13-07	jc104	2019-11-18 09:58:13-07	jc104	0	menus_excels	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	5	col-md-12
-29	17	126000	1	Usuario	20	15						0	10	0	40	30	t	t	f	2	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	f	f	f	0	f	0	f	20	col-md-6
-66	17	126000	3	Paterno	20	30						0	30	0	40	30	f	t	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-82	17	126000	4	Materno	20	30						0	40	0	40	30	f	t	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-124	17	126000	7	Mail	20	0						0	70	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-213	17	126000	16	Telefono	20	30						0	75	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-191	17	126000	13	Pregunta	1	1	cat_preguntas	descripcion	idpregunta			0	130	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-241	17	126000	24	Menu default	1	5	menus	descripcion	idmenu			0	155	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6
-153	17	126000	9	Fecha alta	20	14						0	200	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6
-179	17	126000	12	Usuario modifico	20	20						0	230	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	160	col-md-6
-67	14	126182	3	Objeto	20	30						0	30	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6
-148	14	126182	9	Modo consulta	20	5						0	50	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6
-249	14	126182	27	Esquema	1	0	pg_namespace	nspname	nspname			0	52	0	0	0	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0	pg_catalog	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6
-201	14	126182	15	Columnas	20	5						0	57	0	40	30	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-177	14	126182	12	Movtos	20	30						0	60	0	40	30	t	f	f	0	f	f		f	i=insert,d=delete,u=update,l=limpiar,cc=copiar,a=autodiseño,I=AltaAutomatica,s=Select,S=select sin opcion de seleccionar registro,f=Genera un archivo txt de la consulta,B=Busqueda	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6
-689	31	126401	5	Archivo	\N	\N					\N	0	\N	\N	40	30	t	f	f	0	f	t	\N	f	\N	2019-11-18 09:58:43-07	jc104	2019-11-18 09:58:43-07	jc104	0	menus_excels	forapi	f	\N	0		0	0	t	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	8041	col-md-6
-690	31	126401	1	id	\N	\N					\N	0	800	\N	40	30	\N	f	f	0	\N	f	\N	t	\N	2019-11-18 10:15:33-07	jc104	2019-11-18 10:15:33-07	jc104	0	menus_excels	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	8061	
-264	14	126182	35	No Confirma movtos.	10	10						0	63	0	40	30	f	f	f	0	f	f		f	No confirma los movimientos por ejemplo si se pone una i no confirma las altas	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6
-167	14	126182	10	Menu Padre	1	20	menus	descripcion	idmenu			0	65	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6
-222	14	126182	19	Limite	20	10						0	80	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6
-229	14	126182	21	Campos de menu	1	255	menus	descripcion	idmenu			0	110	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6
-239	14	126182	23	Altura de ventana	20	10						0	140	0	40	30	f	f	f	0	f	f		f	Altura en que va abrir la subvista esta en pixeles	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	160	col-md-6
-244	14	126182	24	Pone Scroll	20	1						0	150	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	160	col-md-6
-245	14	126182	25	Altura de Scroll	20	10						0	160	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	180	col-md-6
-256	14	126182	31	Ancho de tabla	20	10						0	180	0	40	30	f	f	f	0	f	f		f	Ancho en porcentaje de la tabla de captura	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	180	col-md-6
-257	14	126182	32	Alto de tabla	20	10						0	190	0	40	30	f	f	f	0	f	f		f	Alto en porcentaje de la tabla de captura	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	200	col-md-6
-259	14	126182	33	Alineacion de tabla	20	10						0	200	0	40	30	f	f	f	2	f	f		f	Alto en porcentaje de la tabla de captura	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	200	col-md-6
-226	14	126182	20	Orden	20	255						0	990	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	220	col-md-6
-247	14	126182	26	Muestra Registros al Inicio	0	0						0	995	0	0	0	f	f	f	0	f	f		f	Indica si muestra los registro al mostrar la pantalla	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	220	col-md-6
-250	14	126182	28	Hoja de estilo	20	50						0	998	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	240	col-md-6
-254	14	126182	30	LimpiarAlta	20	1						0	1000	0	40	30	f	f	f	0	f	f		f	Limpia la pantalla despues de dar de alta	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	240	col-md-6
-251	14	126182	29	Imprime	20	1						0	1000	0	40	30	f	f	f	0	f	f		f	0=todo,1=tabla de captura,2=tabla de renglones	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	260	col-md-6
-261	14	126182	34	Manual	20	500						0	1100	0	40	30	f	t	f	0	f	f		f	Manual del sistema	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	80	3	0	t	f	t	f	f	0	f	0	f	260	col-md-6
-267	14	126182	37	Ayuda	0	0						0	1300	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	280	col-md-6
-666	66	147506	26	Código postal	9	9					\N	0	260	\N	40	30	f	f	f	0	f	f	\N	f	Código postal	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	260	col-md-6
-667	66	147506	27	Colonia	8	-1					\N	0	270	\N	40	30	f	f	f	0	f	f	\N	f	Colonia	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	280	col-md-6
-668	66	147506	28	Alcaldia	8	-1					\N	0	280	\N	40	30	f	f	f	0	f	f	\N	f	Alcaldia	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	280	col-md-6
-669	66	147506	29	Datos de la probable infracción	-1	-1					\N	0	290	\N	40	30	f	f	f	0	f	f	\N	f	Datos de la probable infracción	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	300	col-md-6
-670	66	147506	30	Objeto(s) recogido(s) relacionado(s) con la(s) probable(s) infracción(es)	-1	-1					\N	0	300	\N	40	30	f	f	f	0	f	f	\N	f	Objeto(s) recogido(s) relacionado(s) con la(s) probable(s) infracción(es)	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	300	col-md-6
-671	66	147506	31	Artículos	8	-1					\N	0	310	\N	40	30	f	f	f	0	f	f	\N	f	Artículos	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	320	col-md-6
-672	66	147506	32	sancion_uc	8	-1					\N	0	320	\N	40	30	f	f	f	0	f	f	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2029		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	340	col-md-6
-673	66	147506	33	sancion_servicio	8	-1					\N	0	330	\N	40	30	f	f	f	0	f	f	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2029		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	340	col-md-6
-674	66	147506	34	sancion_arresto	8	-1					\N	0	340	\N	40	30	f	f	f	0	f	f	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2029		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	360	col-md-6
-675	66	147506	35	sancion_observacion	-1	-1					\N	0	350	\N	40	30	f	f	f	0	f	f	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2029		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	360	col-md-6
-677	66	147506	37	expediente	30	34					\N	0	370	\N	40	30	f	f	f	0	f	f	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2029		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	380	col-md-6
+COPY menus_campos (idcampo, idmenu, reltype, attnum, descripcion, size, male, fuente, fuente_campodes, fuente_campodep, fuente_campofil, fuente_where, fuente_evento, orden, idsubvista, dialogwidth, dialogheight, obligatorio, busqueda, altaautomatico, tcase, checaduplicidad, readonly, valordefault, esindex, tipayuda, fecha_alta, usuario_alta, fecha_modifico, usuario_modifico, espassword, tabla, nspname, fuente_busqueda, val_particulares, htmltable, fuente_nspname, altaautomatico_idmenu, fuente_busqueda_idmenu, upload_file, formato_td, colspantxt, rowspantxt, autocomplete, imprime, totales, cambiarencambios, link_file, fuente_info, fuente_info_idmenu, fuente_actu, fuente_actu_idmenu, eshidden, fila, clase, clase_label, clase_dato) FROM stdin;
+1	25	126000	0	PasswordNuevo	30	30						0	20	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1		forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N	\N	\N
+7	2	126000	0	Respuesta_	50	50						0	0	0	0	0	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	0	\N	\N	\N
+8	4	126000	0	TecleeDeNuevoPassword	20	30						0	250	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1		forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	250	\N	\N	\N
+9	11	126000	0	Password	20	20						0	160	0	0	0	f	f	f	0	f	f		f	password	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	160	\N	\N	\N
+11	25	126000	0	TecleedeNuevoPassword	30	30						0	30	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1		forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N	\N	\N
+12	25	126000	0	PasswordAnterior	30	30						0	10	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1		forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N	\N	\N
+13	24	126000	0	TecleedeNuevoPassword	30	30						0	30	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1		forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N	\N	\N
+15	23	126000	0	LLavePrivada	10	10						0	15	0	40	30	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	t	0	0	0	0	t	f	t	f	f	0	f	0	f	15	\N	\N	\N
+16	23	126000	0	LLavePublica	10	10						0	10	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	t	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N	\N	\N
+18	5	126104	1	idcambio	8	0						0	10	0	40	30	f	f	f	0	f	t		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N	\N	\N
+19	21	126331	1	Opcion:	0	0	menus	descripcion	idmenu			0	10	0	40	30	f	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_group	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N	\N	\N
+20	11	126000	1	Usuario	20	15						0	10	0	40	30	t	t	f	2	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	10	\N	\N	\N
+22	2	126000	1	usename	19	0						0	10	0	40	30	t	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N	\N	\N
+23	25	126000	0	Usuario	30	30						0	5	0	0	0	t	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0		forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	5	\N	\N	\N
+32	24	126000	1	Usuario	30	30						0	5	0	0	0	t	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	5	\N	\N	\N
+33	3	126048	1	Usuario	1	0	cat_usuarios	usename	usename			0	10	0	40	30	t	t	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios_pg_group	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N	\N	\N
+10	19	126000	0	TecleeDeNuevoelpassword	30	30						0	250	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1		forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6	\N	\N
+14	18	126000	0	Password	20	30						0	0	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+34	18	126000	1	Usuario	20	15						0	10	0	40	30	f	t	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+17	20	126222	1	Idcampo	30	0						0	110	0	40	30	f	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+35	4	126000	1	Usuario	10	15						0	10	0	40	30	t	f	f	2	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N	\N	\N
+36	26	126296	1	idlog	8	0						0	900	0	40	30	t	f	f	0	f	t		t	registro en la tabla	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	900	\N	\N	\N
+285	20	126222	54	Fila	30	100						0	400	0	0	0	f	f	f	0	f	f		f		2019-10-19 15:45:56-06	inicio	2019-10-19 15:45:56-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	65	col-md-6	\N	\N
+40	27	126321	1	idmenu	8	0						0	10	0	40	30	t	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_movtos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N	\N	\N
+41	28	126363	1	idseguimietno	8	0						0	10	0	40	30	t	f	f	0	f	t		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_seguimiento	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N	\N	\N
+42	2	126000	2	Nombre	30	0						0	20	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N	\N	\N
+43	15	126000	2	Nombre	20	30						0	20	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N	\N	\N
+44	4	126000	2	Nombre	20	30						0	20	0	40	30	t	f	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N	\N	\N
+45	27	126321	2	idmovto	5	0						0	20	0	40	30	f	f	f	0	f	f		t	i=insert,d=delete,s=select,u=upate,l=limpiar	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_movtos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N	\N	\N
+49	28	126363	2	idmenu	8	0						0	20	0	40	30	t	f	f	0	f	f		f	Numero de menu a dar seguimietno si 9999999=todos	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_seguimiento	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N	\N	\N
+54	26	126296	2	idmenu	1	0	menus	descripcion	idmenu			0	20	0	40	30	t	t	f	0	f	f		f	Numero de menu que utilizo el usuario	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N	\N	\N
+57	5	126104	2	usename	19	0						0	20	0	40	30	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N	\N	\N
+37	9	126000	1	Usuario	0	0						0	10	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+47	19	126000	2	Nombre	30	30						0	20	0	40	30	t	f	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+52	20	126222	2	Menu	1	0	menus	descripcion	idmenu			0	120	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+51	11	126000	2	Nombre	20	30						0	20	0	40	30	t	t	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	20	\N	\N	\N
+59	7	126274	2	idmenu	8	0						0	20	0	40	30	f	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N	\N	\N
+38	12	126283	1	idhtmltable	8	-1						0	10	0	40	30	t	f	f	0	f	t		t	Numero de identificacion de la tabla	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_htmltable	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+31	13	126401	1	Tabla	0	0						0	11	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	tablas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-12	\N	\N
+654	66	147506	14	Calle	30	34					\N	0	140	\N	40	30	f	f	f	0	f	f	\N	f	Calle	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	140	col-md-6	\N	\N
+60	4	126000	3	Apellido Paterno	20	30						0	30	0	40	30	f	f	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N	\N	\N
+61	5	126104	3	nombre	30	0						0	30	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N	\N	\N
+62	3	126048	3	Fecha alta	30	0						0	30	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios_pg_group	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N	\N	\N
+48	1	126341	2	Tabla	0	0	tablas	relname	relname	nspname		1	12	0	40	30	f	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+56	14	126182	2	Descripcion	99	0						0	20	0	40	30	t	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	80	3	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+65	7	126274	3	idevento	1	0	eventos	descripcion	idevento			0	30	0	40	30	t	f	t	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N	\N	\N
+68	27	126321	3	descripcion	30	0						0	30	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_movtos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N	\N	\N
+69	2	126000	3	Apellido Paterno	30	0						0	30	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N	\N	\N
+72	28	126363	3	usename	24	0						0	30	0	40	30	f	f	f	0	f	f		f	Usuario a dar seguimiento *=todos	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_seguimiento	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N	\N	\N
+73	15	126000	3	Paterno	20	30						0	30	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N	\N	\N
+79	5	126104	4	apepat	30	0						0	40	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	\N	\N	\N
+80	7	126274	4	donde	4	0						0	40	0	40	30	t	f	f	0	f	f		t	0=cliente 1=servidor	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	\N	\N	\N
+71	19	126000	3	Apellido Paterno	30	30						0	30	0	40	30	f	f	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+50	18	126000	2	Nombre	20	30						0	20	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+64	18	126000	3	Paterno	20	30						0	30	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+75	26	126296	3	movto	5	0						0	910	0	40	30	f	f	f	0	f	t		f	Movimiento que hizo el usuario	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	910	\N	\N	\N
+77	11	126000	3	Paterno	20	30						0	30	0	40	30	f	t	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	30	\N	\N	\N
+84	28	126363	4	fecha_alta	18	0						0	40	0	40	30	f	f	f	0	f	t		f	Fecha en que hizo el movimiento	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_seguimiento	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	\N	\N	\N
+63	12	126283	3	esdesistema	1	-1						0	30	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_htmltable	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+655	66	147506	15	No. interior	19	19					\N	0	150	\N	40	30	f	f	f	0	f	f	\N	f	No. interior	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	160	col-md-6	\N	\N
+656	66	147506	16	No. exterior	19	19					\N	0	160	\N	40	30	f	f	f	0	f	f	\N	f	No. exterior	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	160	col-md-6	\N	\N
+85	11	126000	4	Materno	20	30						0	40	0	40	30	f	t	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	40	\N	\N	\N
+86	15	126000	4	Materno	20	30						0	40	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	\N	\N	\N
+87	27	126321	4	imagen	30	0						0	40	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_movtos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	\N	\N	\N
+90	4	126000	4	Apellido Materno	20	30						0	40	0	40	30	f	f	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	\N	\N	\N
+91	26	126296	4	sql	-1	0						0	40	0	40	30	f	t	f	0	f	f		f	Movimiento que hizo el usuario	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	\N	\N	\N
+92	2	126000	4	Apellido Materno	30	0						0	40	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	\N	\N	\N
+93	3	126048	4	Fecha modifico	30	0						0	40	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios_pg_group	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	\N	\N	\N
+101	26	126296	5	fecha_alta	18	0						0	10	0	40	30	f	f	f	0	f	t		f	Fecha en que hizo el movimiento el usuario	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N	\N	\N
+102	28	126363	5	usuario_alta	24	0						0	50	0	40	30	f	f	f	0	f	t		f	Usuario hizo el alta 	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_seguimiento	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	50	\N	\N	\N
+103	7	126274	5	descripcion	30	0						0	50	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	50	\N	\N	\N
+96	20	126222	4	Campo	1	0	campos	attname	attnum	tabla,nspname		2	130	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+95	19	126000	4	Apellido Materno	30	30						0	40	0	40	30	f	f	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+94	18	126000	4	Materno	20	30						0	40	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+97	18	126000	5	Puesto	20	50						0	50	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+99	15	126000	5	Puesto	20	50						0	50	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	50	\N	\N	\N
+105	3	126048	5	Usuario alta	30	0						0	50	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios_pg_group	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	50	\N	\N	\N
+106	5	126104	5	apemat	30	0						0	50	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	50	\N	\N	\N
+107	27	126321	5	fecha_alta	18	0						0	50	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_movtos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	50	\N	\N	\N
+89	12	126283	4	Columnas:	4	-1						0	40	0	40	30	f	f	f	0	f	f		f	Numero de columnas en la tabla si es cero pone las columnas de la tabla maestra	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_htmltable	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+78	13	126401	4	Esquema	1	30	pg_namespace	nspname	nspname			0	0	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	tablas	forapi	f		0	pg_catalog	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-12	\N	\N
+110	26	126296	6	usuario_alta	24	0						0	60	0	40	30	f	f	f	0	f	t		f	Usuario hizo el alta 	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	\N	\N	\N
+111	5	126104	6	puesto	30	0						0	60	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	\N	\N	\N
+112	27	126321	6	usuario_alta	24	0						0	60	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_movtos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	\N	\N	\N
+114	3	126048	6	Usuario modifico	30	0						0	60	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios_pg_group	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	\N	\N	\N
+115	7	126274	6	fecha_alta	18	0						0	60	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	\N	\N	\N
+121	7	126274	7	usuario_alta	24	0						0	70	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	70	\N	\N	\N
+126	16	2842	7	canlogin	0	0						0	0	0	40	30	f	f	f	0	f	t	0	f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	pg_authid	pg_catalog	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	t	0	\N	\N	\N
+127	11	126000	7	Mail	20	0						0	70	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	70	\N	\N	\N
+119	18	126000	6	Depto	20	50						0	60	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6	\N	\N
+108	20	126222	5	Descripcion	30	0						0	140	0	40	30	t	f	f	0	f	f		f	Descripcion del campo en la vista	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6	\N	\N
+120	20	126222	6	Tamaño	30	2						0	150	0	40	30	f	f	f	0	f	f		f	size en el html, para el caso de select la cantidad de renglones	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6	\N	\N
+122	27	126321	7	fecha_modifico	18	0						0	70	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_movtos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	70	\N	\N	\N
+123	2	126000	7	Correo Electronico	30	0						0	70	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	70	\N	\N	\N
+130	4	126000	7	Correo	20	50						0	70	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	70	\N	\N	\N
+133	5	126104	7	depto	30	0						0	70	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	70	\N	\N	\N
+135	3	126048	7	Grupo:	0	0	pg_group	groname	groname			0	15	0	40	30	t	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios_pg_group	forapi	f		0	pg_catalog	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	15	\N	\N	\N
+116	12	126283	6	usuario_alta	24	24						0	60	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_htmltable	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6	\N	\N
+658	66	147506	18	Colonia	8	-1					\N	0	180	\N	40	30	f	f	f	0	f	f	\N	f	Colonia	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	180	col-md-6	\N	\N
+136	26	126296	7	Es movil:	0	0						0	180	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	180	\N	\N	\N
+138	27	126321	8	usuario_modifico	24	0						0	80	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_movtos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	\N	\N	\N
+143	21	126331	8	Grupo	30	30						0	30	0	40	30	t	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_group	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	30	\N	\N	\N
+144	5	126104	8	correoe	30	0						0	80	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	\N	\N	\N
+145	7	126274	8	fecha_modifico	18	0						0	80	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	\N	\N	\N
+150	26	126296	9	IP:	0	0						0	150	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	150	\N	\N	\N
+132	20	126222	7	Longitud	30	4						0	160	0	40	30	f	f	f	0	f	f		f	Maxima longitud permitida en el html	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6	\N	\N
+142	14	126182	8	PHP	20	30						0	40	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+137	20	126222	8	Fuente	1	0	tablas	relname	relname	fuente_nspname		1	170	0	40	30	f	f	f	0	f	f		f	Para el campo select se indica la tabla que se va utilizar para seleccionar los valores	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	360	col-md-6	\N	\N
+146	26	126296	8	Browser:	0	0						0	160	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	160	\N	\N	\N
+151	11	126000	9	Fecha alta	20	14						0	200	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	200	\N	\N	\N
+152	5	126104	9	direccion_ip	30	0						0	90	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	90	\N	\N	\N
+157	7	126274	9	usuario_modifico	24	0						0	90	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	90	\N	\N	\N
+160	26	126296	10	Mensaje:	1	1	menus_mensajes	mensaje	idmensaje			0	50	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_log	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	50	\N	\N	\N
+161	11	126000	10	Fecha modifico	20	14						0	220	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	220	\N	\N	\N
+166	5	126104	10	fecha_alta	18	0						0	100	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	\N	\N	\N
+172	5	126104	11	fecha_modifico	18	0						0	110	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	110	\N	\N	\N
+173	11	126000	11	Usuario alta	20	20						0	210	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	210	\N	\N	\N
+659	66	147506	19	Alcaldia	8	-1					\N	0	190	\N	40	30	f	f	f	0	f	f	\N	f	Alcaldia	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	200	col-md-6	\N	\N
+154	18	126000	9	Fecha alta	20	14						0	90	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6	\N	\N
+162	18	126000	10	Fecha modifico	20	14						0	100	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6	\N	\N
+158	20	126222	9	Descripcion	1	0	campos	attname	attname	fuente_nspname,fuente		2	180	0	40	30	f	f	f	0	f	f		f	se indica el nombre del campo en que va mostrar en la seleccion	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	380	col-md-6	\N	\N
+163	20	126222	10	Liga	1	0	campos	attname	attname	fuente_nspname,fuente		2	190	0	40	30	f	f	f	0	f	f		f	se indica el nombre del campo del cual vale la descripcion	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	380	col-md-6	\N	\N
+181	11	126000	12	Usuario modifico	20	20						0	230	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	230	\N	\N	\N
+183	5	126104	12	idpregunta	4	0						0	120	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	120	\N	\N	\N
+184	11	126000	13	Pregunta	1	1	cat_preguntas	descripcion	idpregunta			0	130	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	130	\N	\N	\N
+186	4	126000	13	Pregunta	3	2	cat_preguntas	descripcion	idpregunta			0	130	0	40	30	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	130	\N	\N	\N
+190	2	126000	13	idpregunta	4	0	cat_preguntas	descripcion	idpregunta			0	130	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	130	\N	\N	\N
+192	5	126104	13	respuesta	30	0						0	130	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	130	\N	\N	\N
+194	4	126000	14	Respuesta	20	50						0	140	0	40	30	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	\N	\N	\N
+174	20	126222	11	Filtros	30	0						0	200	0	40	30	f	f	f	0	f	f		f	se indica el nombre del campo del cual tiene un filtro, si hay varios separados por, se liga campos de la fuente contra campos de la tabla del menu, si el filtro compara que no son iguales esto se incluye con un;	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	400	col-md-6	\N	\N
+176	20	126222	12	Condicion WHERE	30	0						0	202	0	40	30	f	f	f	0	f	f		f	Filtro a aplicar en la fuente si queremos que tome valores de la pantalla al nombre hay que anteponer wl_	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	400	col-md-6	\N	\N
+175	18	126000	11	Usuario alta	20	20						0	110	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6	\N	\N
+196	5	126104	14	estatus	4	0						0	140	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	\N	\N	\N
+200	11	126000	14	Respuesta	20	100						0	140	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	140	\N	\N	\N
+202	11	126000	15	Estatus	1	5	estados_usuarios	descripcion	estado			0	150	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	150	\N	\N	\N
+203	5	126104	15	telefono	30	0						0	150	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	150	\N	\N	\N
+206	15	126000	15	Estatus	10	5						0	150	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	150	\N	\N	\N
+210	11	126000	16	Telefono	20	30						0	75	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	75	\N	\N	\N
+211	5	126104	16	cve_movto	5	0						0	160	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	160	\N	\N	\N
+198	18	126000	14	Respuesta	20	100						0	140	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6	\N	\N
+207	18	126000	15	Estatus	10	5						0	150	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	160	col-md-6	\N	\N
+199	20	126222	14	Orden	30	0						0	135	0	40	30	f	f	f	0	f	f		f	Campo por el cual se va a ordenar la información	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6	\N	\N
+661	66	147506	21	Fecha en que ocurrieron los hechos	18	0					\N	0	210	\N	40	30	f	f	f	0	f	t	\N	f	Fecha en que ocurrieron los hechos	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	220	col-md-6	\N	\N
+662	66	147506	22	Fecha en que ocurrieron los hechos	18	0					\N	0	220	\N	40	30	f	f	f	0	f	t	\N	f	Fecha en que ocurrieron los hechos	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	220	col-md-6	\N	\N
+187	1	126341	13	Esquema	0	0	pg_namespace	nspname	nspname			0	5	0	40	30	t	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0	pg_catalog	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+212	14	126182	16	Tabla	1	30	tablas	relname	relname	nspname		2	55	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+660	66	147506	20	Fotografía	8	-1					\N	0	200	\N	40	30	f	f	f	0	f	f	\N	f	Fotografa	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	t	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	200	col-md-6	\N	\N
+663	66	147506	23	Calle	30	34					\N	0	230	\N	40	30	f	f	f	0	f	f	\N	f	Calle	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	240	col-md-6	\N	\N
+208	20	126222	15	Subvista	30	0						0	300	0	40	30	f	f	f	0	f	f		f	Si el campos tiene una subvista, habre este numbero de subvista	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6	\N	\N
+209	20	126222	16	Ancho Subvista	30	0						0	320	0	40	30	f	f	f	0	f	f		f	Ancho de la subvista 	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6	\N	\N
+215	5	126104	17	id_personas	8	0						0	170	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	his_cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	170	\N	\N	\N
+228	4	126000	21	Password	20	30						0	240	0	40	30	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	240	\N	\N	\N
+231	11	126000	21	pwd	20	20						0	240	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	240	\N	\N	\N
+664	66	147506	24	No. interior	19	19					\N	0	240	\N	40	30	f	f	f	0	f	f	\N	f	No. interior	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	240	col-md-6	\N	\N
+230	19	126000	21	Password	30	30						0	240	0	40	30	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6	\N	\N
+260	20	126222	33	Esquema	1	0	pg_namespace	nspname	nspname			0	123	0	40	30	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0	pg_catalog	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+258	20	126222	32	Tabla	1	30	tablas	relname	relname	nspname		2	125	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+217	20	126222	17	Alto Subvista	30	0						0	325	0	40	30	f	f	f	0	f	f		f	Alto de la subvista 	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6	\N	\N
+238	11	126000	23	Tipo menu	20	5						0	145	0	0	0	f	f	f	0	f	f		f	0=normal 1=vertical 2=horizontal	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	145	\N	\N	\N
+252	19	126000	29	Numero de telefono:	30	50						0	70	0	40	30	t	f	f	2	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+243	11	126000	24	Menu default	1	5	menus	descripcion	idmenu			0	155	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	155	\N	\N	\N
+263	20	126222	35	Validacion	30	30						0	1200	0	40	30	f	f	f	0	f	f		f	Indica la validacion especial que se incorpora para este campo	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	260	col-md-6	\N	\N
+248	20	126222	26	Tip de ayuda	30	255						0	1200	0	40	30	f	f	f	0	f	f		f	Ayuda que se muestra cuando es mouse esta en el campo	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	260	col-md-6	\N	\N
+665	66	147506	25	No. exterior	19	19					\N	0	250	\N	40	30	f	f	f	0	f	f	\N	f	No. exterior	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	260	col-md-6	\N	\N
+676	66	147506	36	Estatus de la boleta	8	-1					\N	0	360	\N	40	30	f	f	f	0	f	f	\N	f	Estatus de la boleta	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2029		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	380	col-md-6	\N	\N
+242	20	126222	24	Valor de Default	30	100						0	400	0	0	0	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	160	col-md-6	\N	\N
+240	20	126222	23	Solo lectura?	30	0						0	900	0	40	30	f	f	f	0	f	f		f	Este dato no se puede modificar	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	240	col-md-6	\N	\N
+220	14	126182	18	Filtro	20	255						0	70	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6	\N	\N
+234	14	126182	22	Ancho de ventana	20	10						0	120	0	40	30	f	f	f	0	f	f		f	Ancho en abrir la subvista esta en pixeles	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6	\N	\N
+246	20	126222	25	Iindex?	30	0						0	1100	0	40	30	f	f	f	0	f	f		f	Define este como index ya que existe el caso de las vistas que no tienen indices	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	240	col-md-6	\N	\N
+262	20	126222	34	Busqueda?	30	0						0	205	0	0	0	f	f	f	0	f	f		f	En un campos con opciones se utilizar para hacer una busqueda	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	t		1		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	440	col-md-6	\N	\N
+24	15	126000	1	Usuario	20	15						0	10	0	40	30	f	t	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N	\N	\N
+278	20	126222	47	Permitir cambios?	30	0						0	510	0	0	0	f	f	f	0	f	f		f	Con este campo se control que no se puedan cambiar datos en cambios, especificamente sirve para los campos de busqueda	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	f	f	t	f	f	0	f	0	f	200	col-md-6	\N	\N
+28	7	126274	1	idmenus_eventos	8	0						0	10	0	40	30	f	f	f	0	f	t		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_eventos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N	\N	\N
+25	19	126000	1	Usuario	30	15						0	10	0	40	30	t	f	f	2	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+265	20	126222	36	Tabla HTML	1	0	menus_htmltable	descripcion	idhtmltable			0	137	0	0	0	f	f	t	0	f	f		f	Grupo de campos	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6	\N	\N
+282	20	126222	51	Actualizacion?	30	1						0	625	0	40	30	f	f	f	0	f	f		f	Permite modificar el contenido del campo select	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	500	col-md-6	\N	\N
+283	20	126222	52	Menu actualizacion	1	1	menus	descripcion	idmenu			0	630	0	40	30	f	f	f	0	f	f		f	Subvista que se utiliza para modificar la informacion	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	500	col-md-6	\N	\N
+612	63	147494	6	Horas de Servicio Comunitatio hasta	30	196612					\N	0	60	\N	40	30	f	f	f	0	\N	f	\N	f	Horas de Servicio Comunitatio hasta	2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+613	63	147494	7	Horas de arresto desde	30	196612					\N	0	70	\N	40	30	f	f	f	0	\N	f	\N	f	Horas de arresto desde	2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+614	63	147494	8	Horas de arresto hasta	30	196612					\N	0	80	\N	40	30	f	f	f	0	\N	f	\N	f	Horas de arresto hasta	2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	80	col-md-6	\N	\N
+284	20	126222	53	Dato escondido?	1	1						0	1265	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	340	col-md-6	\N	\N
+281	20	126222	50	Menu informacion	1	1	menus	descripcion	idmenu			0	620	0	40	30	f	f	f	0	f	f		f	Indica que subvista se utiliza para mostrar la informacion	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	480	col-md-6	\N	\N
+2	23	126000	0	Password	0	0						0	20	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N	\N	\N
+4	6	126000	0	Usuario	0	0						0	0	0	0	0	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	0	\N	\N	\N
+5	24	126000	0	PasswordNuevo	30	30						0	20	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1		forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	\N	\N	\N
+3	9	126000	0	Password	0	0						0	20	0	0	0	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	1	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+633	65	147479	5	Descripción	30	260					\N	0	50	\N	40	30	t	f	f	0	\N	f	\N	f	Descripción	2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+21	14	126182	1	Idmenu	20	5						0	1000	0	800	600	f	f	f	0	f	t		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	t	240	col-md-6	\N	\N
+634	65	147479	6	Conciliación	30	54					\N	0	60	\N	40	30	f	f	f	0	\N	f	\N	f	Conciliación	2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+635	65	147479	7	Aplicar si	30	104					\N	0	70	\N	40	30	f	f	f	0	\N	f	\N	f	Aplicar si	2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+182	18	126000	12	Usuario modifico	20	20						0	120	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6	\N	\N
+188	18	126000	13	Pegunta	1	0	cat_preguntas	descripcion	idpregunta			0	130	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6	\N	\N
+125	18	126000	7	Mail	20	50						0	70	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6	\N	\N
+218	20	126222	18	Obligatorio?	30	0						0	400	0	40	30	f	f	f	0	f	f		f	El campo es obligatorio	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	180	col-md-6	\N	\N
+223	20	126222	19	Busqueda?	30	0						0	500	0	40	30	f	f	f	0	f	f		f	El campos se puede utilizar en consulta de informacion	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	180	col-md-6	\N	\N
+227	20	126222	21	Case	1	0	tcases	descripcion	tcase			0	700	0	40	30	f	f	f	0	f	f		f	Los datos se convierte a mayusculas o minusculas	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	200	col-md-6	\N	\N
+235	20	126222	22	Valida duplicidad?	30	0						0	800	0	40	30	f	f	f	0	f	f		f	Maxima longitud permitida en el html	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	220	col-md-6	\N	\N
+636	65	147479	8	Tipo	7	7					\N	0	80	\N	40	30	t	f	f	0	\N	f	\N	f	Tipo	2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	80	col-md-6	\N	\N
+266	14	126182	36	Icono	0	0						0	1300	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	280	col-md-6	\N	\N
+287	31	126401	4	Tabla	0	0	tablas	relname	relname	nspname		2	11	0	40	30	f	f	f	0	f	f		f		2019-10-20 19:38:33.016632-06	inicio	2019-10-20 19:38:33.016632-06	inicio	0	menus_excels	forapi	f		0	forapi	0	0	t	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+288	31	126401	3	Esquema	1	30	pg_namespace	nspname	nspname			0	0	0	40	30	t	f	f	0	f	f		f		2019-10-20 19:38:33.016632-06	inicio	2019-10-20 19:38:33.016632-06	inicio	0	menus_excels	forapi	f		0	pg_catalog	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+286	20	126222	55	Clase	30	100						0	410	0	0	0	f	f	f	0	f	f		f		2019-10-19 18:37:08-06	inicio	2019-10-19 18:37:08-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	65	col-md-6	\N	\N
+255	20	126222	31	Password?	30	4						0	800	0	0	0	f	f	f	0	f	f		f	1=es pwd 2=subir un archivo(pendiente)	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	220	col-md-6	\N	\N
+271	20	126222	40	SubeArchivo	30	30						0	1210	0	40	30	f	f	f	0	f	f		f	Indica si el campo sirver para subir un archivo	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	280	col-md-6	\N	\N
+276	20	126222	45	Imprime	30	30						0	1212	0	40	30	f	f	f	0	f	f		f	Indica si el campo se imprime	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	280	col-md-6	\N	\N
+277	20	126222	46	Totales	30	30						0	1220	0	40	30	f	f	f	0	f	f		f	Indica si se imprimen totales de un columna	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	300	col-md-6	\N	\N
+272	20	126222	41	Formato td	30	1						0	1230	0	40	30	f	f	f	0	f	f		f	0=normal,1=etiqueta y texto junto, 2=Etiqueta y texto junto todo el renglón	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	300	col-md-6	\N	\N
+274	20	126222	43	No. de filas	30	3						0	1240	0	40	30	f	f	f	0	f	f		f	Registros para el campos textarea	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	320	col-md-6	\N	\N
+273	20	126222	42	No.de columnas	30	3						0	1250	0	40	30	f	f	f	0	f	f		f	Columnas para el campos textarea	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	320	col-md-6	\N	\N
+279	20	126222	48	Enlace?	30	30						0	1260	0	40	30	f	f	f	0	f	f		f	Indica si el campo es un link	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	340	col-md-6	\N	\N
+268	20	126222	37	Esquema	1	30	pg_namespace	nspname	nspname			0	165	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1	pg_catalog	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	360	col-md-6	\N	\N
+185	20	126222	13	Evento	30	0						0	203	0	40	30	f	f	f	0	f	f		f	En que evento se cargan los campos select 0=cuando la forma se carga,1=cuando el campo padre cambia,2=cuando el campo recibe el focus,3=cuando el campo recibe el focus solo la primera vez	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	420	col-md-6	\N	\N
+275	20	126222	44	Autocompletar	30	1						0	204	0	40	30	f	f	f	0	f	f		f	0=no, 1=si	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	420	col-md-6	\N	\N
+270	20	126222	39	Menu busqueda	1	0	menus	descripcion	idmenu			0	207	0	0	0	f	f	f	0	f	f		f	No. de menu para buscar datos	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	440	col-md-6	\N	\N
+225	20	126222	20	Alta automatica?	30	0						0	600	0	40	30	f	f	f	0	f	f		f	Para los campos select se pueden dar de alta una descripcion	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	460	col-md-6	\N	\N
+269	20	126222	38	Menu alta en automatico	1	1	menus	descripcion	idmenu			0	610	0	40	30	f	f	f	0	f	f		f	Indica que subvista se utiliza para dar de alta un registro	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	460	col-md-6	\N	\N
+280	20	126222	49	Informacion?	30	1						0	615	0	40	30	f	f	f	0	f	f		f	Muestra informacion relevante del contenido del campo select	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_campos	forapi	f		1		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	480	col-md-6	\N	\N
+39	16	2842	1	Grupo	20	30						0	0	0	0	0	t	t	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	pg_authid	pg_catalog	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-12	\N	\N
+600	16	2842	2	Superusuario	\N	\N					\N	0	900	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:33:08-06	jc9	2019-10-30 16:33:08-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6261		\N	\N
+380	46	134741	1	idscript	8	-1					\N	0	10	\N	40	30	t	f	f	0	\N	t	\N	t	id del script	2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	20	col-md-4	\N	\N
+383	46	134741	4	fecha_alta	18	0					\N	0	40	\N	40	30	f	f	f	0	\N	t	\N	f	Fecha en que hizo el movimiento el usuario	2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	40	col-md-4	\N	\N
+384	46	134741	5	usuario_alta	24	24					\N	0	50	\N	40	30	f	f	f	0	\N	t	\N	f	Usuario hizo el alta 	2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	40	col-md-4	\N	\N
+385	46	134741	6	fecha_modifico	18	0					\N	0	60	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	40	col-md-4	\N	\N
+386	46	134741	7	usuario_modifico	24	24					\N	0	70	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	60	col-md-4	\N	\N
+381	46	134741	2	descripcion	30	104					\N	0	20	\N	40	30	f	f	f	0	\N	f	\N	f		2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-12	\N	\N
+1644	147	152131	6	Horas de arresto desde	8	-1					\N	0	60	\N	40	30	f	f	f	0	\N	t	\N	f	Horas de arresto desde	2019-12-01 14:15:30-07	jc104	2019-12-01 14:15:30-07	jc104	0	opciones	jc	f	\N	2096		0	0	t	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+382	46	134741	3	sql	-1	-1					\N	0	30	\N	40	30	f	f	f	0	f	f	\N	f	instruccion	2019-10-28 18:51:03-06	jc9	2019-10-28 18:51:03-06	jc9	0	menus_scripts	forapi	f	\N	0		0	0	f	\N	80	10	0	t	f	t	f	f	0	f	0	f	40	col-md-12	\N	\N
+1645	147	152131	7	Horas de arresto hasta	30	259					\N	0	70	\N	40	30	f	f	f	0	\N	t	\N	f	Horas de arresto hasta	2019-12-01 14:15:30-07	jc104	2019-12-01 14:15:30-07	jc104	0	opciones	jc	f	\N	2096		0	0	t	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+1646	147	152131	8	id	8	-1					\N	0	80	\N	40	30	t	f	f	0	\N	t	\N	t		2019-12-01 14:15:30-07	jc104	2019-12-01 14:15:30-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	27181		\N	\N
+1643	147	152131	5	Horas de Servicio Comunitario hasta	-1	-1					\N	0	50	\N	40	30	t	f	f	0	\N	f	\N	f	Horas de Servicio Comunitario hasta	2019-12-01 14:15:30-07	jc104	2019-12-01 14:15:30-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	30	col-md-6	\N	\N
+1642	147	152131	4	Horas de Servicio Comunitatio desde	30	10					\N	0	40	\N	40	30	t	f	f	0	\N	f	\N	f	Horas de Servicio Comunitatio desde	2019-12-01 14:15:30-07	jc104	2019-12-01 14:15:30-07	jc104	0	opciones	jc	f	\N	2095		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	30	col-md-6	\N	border-danger
+601	16	2842	3	Heredable	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:36:28-06	jc9	2019-10-30 16:36:28-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6281		\N	\N
+602	16	2842	4	Crea un rol	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:38:35-06	jc9	2019-10-30 16:38:35-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6301		\N	\N
+603	16	2842	5	Puede crear una BD	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:39:04-06	jc9	2019-10-30 16:39:04-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6321		\N	\N
+604	16	2842	6	Actualiza	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:42:28-06	jc9	2019-10-30 16:42:28-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6341		\N	\N
+590	62	134448	1	Numero de identificacion de la tabla	8	-1					\N	0	10	\N	40	30	t	f	f	0	\N	t	\N	t	Numero de identificacion de la tabla	2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6061		\N	\N
+594	62	134448	5	fecha_alta	18	-1					\N	0	50	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6141		\N	\N
+595	62	134448	6	usuario_alta	24	24					\N	0	60	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6161		\N	\N
+596	62	134448	7	fecha_modifico	18	-1					\N	0	70	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6181		\N	\N
+597	62	134448	8	usuario_modifico	24	24					\N	0	80	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6201		\N	\N
+46	12	126283	2	Descripción:	30	259						0	20	0	40	30	f	f	f	1	f	f		f	Caption que va a tener la tabla	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_htmltable	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+165	12	126283	10	Orden del grupo:	3	3						0	45	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_htmltable	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+104	12	126283	5	fecha_alta	18	-1						0	50	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_htmltable	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+129	12	126283	7	fecha_modifico	18	-1						0	70	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_htmltable	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6	\N	\N
+147	12	126283	8	usuario_modifico	24	24						0	80	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_htmltable	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6	\N	\N
+591	62	134448	2	Caption que va a tener la tabla	30	259					\N	0	20	\N	40	30	f	f	f	0	\N	f	\N	f	Caption que va a tener la tabla	2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+592	62	134448	3	esdesistema	1	-1					\N	0	30	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+618	63	147494	12	usuario_modifico	24	24					\N	0	120	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6621		\N	\N
+593	62	134448	4	Numero de columnas en la tabla si es cero pone las columnas de la tabla maestra	4	-1					\N	0	40	\N	40	30	f	f	f	0	\N	f	\N	f	Numero de columnas en la tabla si es cero pone las columnas de la tabla maestra	2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+598	62	134448	9	Id del menu a la que pertenece el grupo de campos	8	-1					\N	0	90	\N	40	30	f	f	f	0	\N	f	\N	f	Id del menu a la que pertenece el grupo de campos	2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+599	62	134448	10	orden del grupo de campos	8	-1					\N	0	100	\N	40	30	f	f	f	0	\N	f	\N	f	orden del grupo de campos	2019-10-29 14:01:00-06	jc9	2019-10-29 14:01:00-06	jc9	0	menus_htmltable	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+605	16	2842	8	Puede Replicar	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:45:14-06	jc9	2019-10-30 16:45:14-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6361		\N	\N
+606	16	2842	9	Limite de conexión	\N	\N					\N	0	\N	\N	40	30	\N	f	f	0	\N	f	0	f	\N	2019-10-30 16:47:57-06	jc9	2019-10-30 16:47:57-06	jc9	0	pg_authid	pg_catalog	f	\N	0	0	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6381		\N	\N
+607	63	147494	1	id de la sancion	8	-1					\N	0	10	\N	40	30	t	f	f	0	\N	t	\N	t	id de la sancion	2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6401		\N	\N
+253	19	126000	30	Foto:	0	0						0	80	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	t	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+615	63	147494	9	fecha_alta	18	0					\N	0	90	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6561		\N	\N
+616	63	147494	10	usuario_alta	24	24					\N	0	100	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6581		\N	\N
+617	63	147494	11	fecha_modifico	18	0					\N	0	110	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6601		\N	\N
+55	17	126000	2	Nombre	20	30						0	20	0	40	30	t	t	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+197	17	126000	14	Respuesta	20	100						0	140	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6	\N	\N
+237	17	126000	23	Tipo menu	20	5						0	145	0	0	0	f	f	f	0	f	f		f	0=normal 1=vertical 2=horizontal	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6	\N	\N
+204	17	126000	15	Estatus	1	5	estados_usuarios	descripcion	estado			0	150	0	40	30	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6	\N	\N
+169	17	126000	11	Usuario alta	20	20						0	210	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6	\N	\N
+168	17	126000	10	Fecha modifico	20	14						0	220	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6	\N	\N
+619	64	147467	1	id del juzgado	8	-1					\N	0	10	\N	40	30	t	f	f	0	\N	t	\N	t	id del juzgado	2019-10-31 17:25:01-06	jc104	2019-10-31 17:25:01-06	jc104	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6641		\N	\N
+625	64	147467	7	fecha_alta	18	0					\N	0	70	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:01-06	jc104	2019-10-31 17:25:01-06	jc104	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6761		\N	\N
+626	64	147467	8	usuario_alta	24	24					\N	0	80	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:01-06	jc104	2019-10-31 17:25:01-06	jc104	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6781		\N	\N
+627	64	147467	9	fecha_modifico	18	0					\N	0	90	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:01-06	jc104	2019-10-31 17:25:01-06	jc104	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6801		\N	\N
+628	64	147467	10	usuario_modifico	24	24					\N	0	100	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:01-06	jc104	2019-10-31 17:25:01-06	jc104	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6821		\N	\N
+620	64	147467	2	Alcaldia	30	104					\N	0	20	\N	40	30	f	f	f	0	\N	f	\N	f	Alcaldia	2019-10-31 17:25:01-06	jc104	2019-10-31 17:25:01-06	jc104	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6 row	\N	\N
+621	64	147467	3	Juzgado	30	104					\N	0	30	\N	40	30	f	f	f	0	\N	f	\N	f	Juzgado	2019-10-31 17:25:01-06	jc104	2019-10-31 17:25:01-06	jc104	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6 row	\N	\N
+622	64	147467	4	Direccion	30	104					\N	0	40	\N	40	30	f	f	f	0	\N	f	\N	f	Direccion	2019-10-31 17:25:01-06	jc104	2019-10-31 17:25:01-06	jc104	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6 row	\N	\N
+623	64	147467	5	Turno	30	34					\N	0	50	\N	40	30	f	f	f	0	\N	f	\N	f	Turno	2019-10-31 17:25:01-06	jc104	2019-10-31 17:25:01-06	jc104	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6 row	\N	\N
+624	64	147467	6	horario	30	34					\N	0	60	\N	40	30	f	f	f	0	\N	f	\N	f	horario	2019-10-31 17:25:01-06	jc104	2019-10-31 17:25:01-06	jc104	0	juzgados	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6 row	\N	\N
+629	65	147479	1	id de la infraccion	8	-1					\N	0	10	\N	40	30	t	f	f	0	\N	t	\N	t	id de la infraccion	2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	6841		\N	\N
+608	63	147494	2	Tipo 	6	6					\N	0	20	\N	40	30	t	f	f	0	\N	f	\N	f	Tipo 	2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+609	63	147494	3	Unidad de cuenta desde	30	196612					\N	0	30	\N	40	30	f	f	f	0	\N	f	\N	f	Unidad de cuenta desde	2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+610	63	147494	4	Unidad de cuenta hasta	30	196612					\N	0	40	\N	40	30	f	f	f	0	\N	f	\N	f	Unidad de cuenta hasta	2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+611	63	147494	5	Horas de Servicio Comunitatio desde	30	196612					\N	0	50	\N	40	30	f	f	f	0	\N	f	\N	f	Horas de Servicio Comunitatio desde	2019-10-31 17:24:57-06	jc104	2019-10-31 17:24:57-06	jc104	0	sanciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+70	1	126341	3	tselect	1	1						0	13	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+81	1	126341	4	tinsert	1	1						0	14	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+100	1	126341	5	tupdate	1	1						0	15	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+117	1	126341	6	tdelete	1	1						0	16	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+1647	147	152131	9	fecha_alta	18	0					\N	0	90	\N	40	30	f	f	f	0	\N	t	\N	f		2019-12-01 14:15:30-07	jc104	2019-12-01 14:15:30-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	27201		\N	\N
+637	65	147479	9	fecha_alta	18	0					\N	0	90	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	7001		\N	\N
+638	65	147479	10	usuario_alta	24	24					\N	0	100	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	7021		\N	\N
+639	65	147479	11	fecha_modifico	18	0					\N	0	110	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	7041		\N	\N
+640	65	147479	12	usuario_modifico	24	24					\N	0	120	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	7061		\N	\N
+630	65	147479	2	Infracción 	30	104					\N	0	20	\N	40	30	t	f	f	0	\N	f	\N	f	Infracción 	2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+631	65	147479	3	Artículo	8	-1					\N	0	30	\N	40	30	t	f	f	0	\N	f	\N	f	Artículo	2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+632	65	147479	4	Fracción	14	14					\N	0	40	\N	40	30	t	f	f	0	\N	f	\N	f	Fracción	2019-10-31 17:25:05-06	jc104	2019-10-31 17:25:05-06	jc104	0	infracciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+134	1	126341	7	tall	1	1						0	17	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6	\N	\N
+178	1	126341	12	tgrant	1	1						0	18	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6	\N	\N
+140	1	126341	8	fecha_alta	0	0						0	19	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6	\N	\N
+149	1	126341	9	fecha_modifico	0	0						0	20	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6	\N	\N
+641	66	147506	1	id de la boleta	8	-1					\N	0	10	\N	40	30	t	f	f	0	\N	t	\N	t	id de la boleta	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	7081		\N	\N
+642	66	147506	2	boleta_remision	6	6					\N	0	20	\N	40	30	t	f	f	0	\N	f	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+643	66	147506	3	Policia uno 	8	-1					\N	0	30	\N	40	30	t	f	f	0	f	f	\N	f	Policia uno 	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2026		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+159	1	126341	10	usuario_alta	0	0						0	21	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6	\N	\N
+644	66	147506	4	Policia dos 	8	-1					\N	0	40	\N	40	30	f	f	f	0	f	f	\N	f	Policia dos 	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2026		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+645	66	147506	5	Numero de patrulla u medio de transporte	30	34					\N	0	50	\N	40	30	t	f	f	0	f	f	\N	f	Numero de patrulla u medio de transporte	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2026		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+1648	147	152131	10	usuario_alta	24	24					\N	0	100	\N	40	30	f	f	f	0	\N	t	\N	f		2019-12-01 14:15:30-07	jc104	2019-12-01 14:15:30-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	27221		\N	\N
+171	1	126341	11	usuario_modifico	0	0						0	22	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6	\N	\N
+27	1	126341	1	idmenu	0	0						0	800	0	40	30	f	f	f	0	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_pg_tables	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6	\N	\N
+1649	147	152131	11	fecha_modifico	18	0					\N	0	110	\N	40	30	f	f	f	0	\N	t	\N	f		2019-12-01 14:15:30-07	jc104	2019-12-01 14:15:30-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	27241		\N	\N
+1650	147	152131	12	usuario_modifico	24	24					\N	0	120	\N	40	30	f	f	f	0	\N	t	\N	f		2019-12-01 14:15:30-07	jc104	2019-12-01 14:15:30-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	27261		\N	\N
+232	30	126370	21	Orden	4	4						0	0	0	0	0	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+30	30	126370	1	idmenus_subvistas	0	0						0	10	0	40	30	t	f	f	0	f	t		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+53	30	126370	2	idmenu	0	0						0	20	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+76	30	126370	3	texto	0	0						0	30	0	40	30	f	f	f	0	f	f		f	Texto para activas la subvista	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+83	30	126370	4	imagen	0	0						0	40	0	40	30	f	f	f	0	f	f		f	Imagen que aparece para activar la subvista	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+109	30	126370	5	idsubvista	0	0	menus	descripcion	idmenu			0	50	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0	forapi	0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+221	30	126370	19	Clase	0	0						0	58	0	40	30	f	f	f	0	f	f		f	Clase que se va a ejecutar en el servidor	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6	\N	\N
+118	30	126370	6	funcion	0	0						0	60	0	40	30	f	f	f	0	f	f		f	Funcion que se va a ejecutar en el servidor	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6	\N	\N
+236	30	126370	22	Ventana	1	1						0	65	0	40	30	f	f	f	0	f	f		f	0=showModalDialog,1=showModelessDialog,2=open,3=misma ventana	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6	\N	\N
+128	30	126370	7	dialogwidth	0	0						0	70	0	40	30	f	f	f	0	f	f		f	El ancho que va a tener la subvista	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6	\N	\N
+139	30	126370	8	dialogheight	0	0						0	80	0	40	30	f	f	f	0	f	f		f	La altura que va a tener la subvista	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6	\N	\N
+164	30	126370	10	donde	0	0						0	100	0	40	30	f	f	f	0	f	f		f	En donde se va a ejecutar el evento antes de abrir la subvista 0=cliente 1=servidor	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6	\N	\N
+170	30	126370	11	eventos_antes	0	0						0	110	0	40	30	f	f	f	0	f	f		f	Funcion que se va a ejecutar antes de abrir la subvista	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6	\N	\N
+180	30	126370	12	eventos_despues	0	0						0	120	0	40	30	f	f	f	0	f	f		f	Funcion que se va a ejecutar despues de abrir la subvista	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6	\N	\N
+189	30	126370	13	campo_filtro	0	0						0	130	0	40	30	f	f	f	0	f	f		f	Nombre del campo de la subvista el cual se va hacer el filtro, mas de uno es separado por ;	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	160	col-md-6	\N	\N
+195	30	126370	14	valor_padre	0	0						0	140	0	40	30	f	f	f	0	f	f		f	Valor del campo padre, este lo toma de los campos de captura	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	160	col-md-6	\N	\N
+224	30	126370	20	Posicion	1	1						0	145	0	0	0	f	f	f	0	f	f		f	posicion dondes se ubica el boton o subvistas 0=registro, 1=cabecera	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	180	col-md-6	\N	\N
+205	30	126370	15	fecha_alta	0	0						0	150	0	40	30	f	f	f	0	f	t		f	Fecha en que el usuario dio de alta el registro	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	180	col-md-6	\N	\N
+156	30	126370	9	Esboton	1	1						0	150	0	40	30	f	f	f	0	f	f		f	0=link,1=boton,2=menu select	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	200	col-md-6	\N	\N
+214	30	126370	16	usuario_alta	0	0						0	160	0	40	30	f	f	f	0	f	t		f	Usuario que dio de alta el registro	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	200	col-md-6	\N	\N
+216	30	126370	17	fecha_modifico	0	0						0	170	0	40	30	f	f	f	0	f	t		f	Fecha en que el usuario modifico el registro	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	220	col-md-6	\N	\N
+646	66	147506	6	id_areaadcripcion	8	-1					\N	0	60	\N	40	30	f	f	f	0	f	f	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2026		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+647	66	147506	7	Nombre(s)	30	34					\N	0	70	\N	40	30	t	f	f	0	f	f	\N	f	Nombre(s)	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	80	col-md-6	\N	\N
+648	66	147506	8	Primer apellido	30	34					\N	0	80	\N	40	30	f	f	f	0	f	f	\N	f	Primer apellido	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	80	col-md-6	\N	\N
+649	66	147506	9	Segundo apellido	30	34					\N	0	90	\N	40	30	f	f	f	0	f	f	\N	f	Segundo apellido	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	100	col-md-6	\N	\N
+650	66	147506	10	Sexo	5	5					\N	0	100	\N	40	30	f	f	f	0	f	f	\N	f	Sexo	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	100	col-md-6	\N	\N
+651	66	147506	11	Curp	22	22					\N	0	110	\N	40	30	f	f	f	0	f	f	\N	f	Curp	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	120	col-md-6	\N	\N
+652	66	147506	12	Lugar de nacimiento	8	-1					\N	0	120	\N	40	30	f	f	f	0	f	f	\N	f	Lugar de nacimiento	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	120	col-md-6	\N	\N
+653	66	147506	13	Fecha de nacimiento	18	0					\N	0	130	\N	40	30	f	f	f	0	f	t	\N	f	Fecha de nacimiento	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	140	col-md-6	\N	\N
+678	66	147506	38	fecha_alta	18	0					\N	0	380	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	7821		\N	\N
+679	66	147506	39	usuario_alta	24	24					\N	0	390	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	7841		\N	\N
+680	66	147506	40	fecha_modifico	18	0					\N	0	400	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	7861		\N	\N
+681	66	147506	41	usuario_modifico	24	24					\N	0	410	\N	40	30	f	f	f	0	\N	t	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	7881		\N	\N
+219	30	126370	18	usuario_modifico	0	0						0	180	0	40	30	f	f	f	0	f	t		f	Usuario que modifico el registro	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus_subvistas	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	220	col-md-6	\N	\N
+657	66	147506	17	Código postal	9	9					\N	0	170	\N	40	30	f	f	f	0	f	f	\N	f	Código postal	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2027		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	180	col-md-6	\N	\N
+688	31	126401	2	Descripción de la vista	\N	\N					\N	0	\N	\N	40	30	t	f	f	0	f	f	\N	f	\N	2019-11-18 09:58:13-07	jc104	2019-11-18 09:58:13-07	jc104	0	menus_excels	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	5	col-md-12	\N	\N
+1639	147	152131	1	Tipo	8	-1	opciones_b	descripcion	id		\N	0	10	\N	40	30	t	f	t	0	\N	f	\N	f	Tipo	2019-12-01 14:15:30-07	jc104	2019-12-01 14:15:30-07	jc104	0	opciones	jc	f	\N	0	jc	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	10	col-md-6	text-danger	\N
+1641	147	152131	3	Unidad de cuenta hasta	30	10					\N	0	30	\N	40	30	f	f	f	0	\N	f	\N	f	Unidad de cuenta hasta	2019-12-01 14:15:30-07	jc104	2019-12-01 14:15:30-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6	text-warning	\N
+1640	147	152131	2	Unidad de cuenta desde	30	5					\N	0	20	\N	40	30	f	f	f	0	\N	f	\N	f	Unidad de cuenta desde	2019-12-01 14:15:30-07	jc104	2019-12-01 14:15:30-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6	text-primary	border-dark
+29	17	126000	1	Usuario	20	15						0	10	0	40	30	t	t	f	2	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	f	f	f	0	f	0	f	20	col-md-6	\N	\N
+66	17	126000	3	Paterno	20	30						0	30	0	40	30	f	t	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+82	17	126000	4	Materno	20	30						0	40	0	40	30	f	t	f	1	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+124	17	126000	7	Mail	20	0						0	70	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+213	17	126000	16	Telefono	20	30						0	75	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+191	17	126000	13	Pregunta	1	1	cat_preguntas	descripcion	idpregunta			0	130	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6	\N	\N
+241	17	126000	24	Menu default	1	5	menus	descripcion	idmenu			0	155	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6	\N	\N
+153	17	126000	9	Fecha alta	20	14						0	200	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6	\N	\N
+179	17	126000	12	Usuario modifico	20	20						0	230	0	40	30	f	f	f	0	f	t		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	160	col-md-6	\N	\N
+67	14	126182	3	Objeto	20	30						0	30	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	20	col-md-6	\N	\N
+148	14	126182	9	Modo consulta	20	5						0	50	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+249	14	126182	27	Esquema	1	0	pg_namespace	nspname	nspname			0	52	0	0	0	f	t	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0	pg_catalog	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	60	col-md-6	\N	\N
+201	14	126182	15	Columnas	20	5						0	57	0	40	30	t	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6	\N	\N
+177	14	126182	12	Movtos	20	30						0	60	0	40	30	t	f	f	0	f	f		f	i=insert,d=delete,u=update,l=limpiar,cc=copiar,a=autodiseño,I=AltaAutomatica,s=Select,S=select sin opcion de seleccionar registro,f=Genera un archivo txt de la consulta,B=Busqueda	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	80	col-md-6	\N	\N
+689	31	126401	5	Archivo	\N	\N					\N	0	\N	\N	40	30	t	f	f	0	f	t	\N	f	\N	2019-11-18 09:58:43-07	jc104	2019-11-18 09:58:43-07	jc104	0	menus_excels	forapi	f	\N	0		0	0	t	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	8041	col-md-6	\N	\N
+690	31	126401	1	id	\N	\N					\N	0	800	\N	40	30	\N	f	f	0	\N	f	\N	t	\N	2019-11-18 10:15:33-07	jc104	2019-11-18 10:15:33-07	jc104	0	menus_excels	forapi	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	8061		\N	\N
+264	14	126182	35	No Confirma movtos.	10	10						0	63	0	40	30	f	f	f	0	f	f		f	No confirma los movimientos por ejemplo si se pone una i no confirma las altas	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6	\N	\N
+167	14	126182	10	Menu Padre	1	20	menus	descripcion	idmenu			0	65	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	100	col-md-6	\N	\N
+222	14	126182	19	Limite	20	10						0	80	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	120	col-md-6	\N	\N
+229	14	126182	21	Campos de menu	1	255	menus	descripcion	idmenu			0	110	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0	forapi	0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	140	col-md-6	\N	\N
+239	14	126182	23	Altura de ventana	20	10						0	140	0	40	30	f	f	f	0	f	f		f	Altura en que va abrir la subvista esta en pixeles	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	160	col-md-6	\N	\N
+244	14	126182	24	Pone Scroll	20	1						0	150	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	160	col-md-6	\N	\N
+245	14	126182	25	Altura de Scroll	20	10						0	160	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	180	col-md-6	\N	\N
+256	14	126182	31	Ancho de tabla	20	10						0	180	0	40	30	f	f	f	0	f	f		f	Ancho en porcentaje de la tabla de captura	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	180	col-md-6	\N	\N
+257	14	126182	32	Alto de tabla	20	10						0	190	0	40	30	f	f	f	0	f	f		f	Alto en porcentaje de la tabla de captura	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	200	col-md-6	\N	\N
+259	14	126182	33	Alineacion de tabla	20	10						0	200	0	40	30	f	f	f	2	f	f		f	Alto en porcentaje de la tabla de captura	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	200	col-md-6	\N	\N
+226	14	126182	20	Orden	20	255						0	990	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	220	col-md-6	\N	\N
+247	14	126182	26	Muestra Registros al Inicio	0	0						0	995	0	0	0	f	f	f	0	f	f		f	Indica si muestra los registro al mostrar la pantalla	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	220	col-md-6	\N	\N
+250	14	126182	28	Hoja de estilo	20	50						0	998	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	240	col-md-6	\N	\N
+254	14	126182	30	LimpiarAlta	20	1						0	1000	0	40	30	f	f	f	0	f	f		f	Limpia la pantalla despues de dar de alta	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	240	col-md-6	\N	\N
+251	14	126182	29	Imprime	20	1						0	1000	0	40	30	f	f	f	0	f	f		f	0=todo,1=tabla de captura,2=tabla de renglones	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	260	col-md-6	\N	\N
+261	14	126182	34	Manual	20	500						0	1100	0	40	30	f	t	f	0	f	f		f	Manual del sistema	2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	80	3	0	t	f	t	f	f	0	f	0	f	260	col-md-6	\N	\N
+267	14	126182	37	Ayuda	0	0						0	1300	0	40	30	f	f	f	0	f	f		f		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	menus	forapi	f		0		0	0	f	1	0	0	0	t	f	t	f	f	0	f	0	f	280	col-md-6	\N	\N
+666	66	147506	26	Código postal	9	9					\N	0	260	\N	40	30	f	f	f	0	f	f	\N	f	Código postal	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	260	col-md-6	\N	\N
+667	66	147506	27	Colonia	8	-1					\N	0	270	\N	40	30	f	f	f	0	f	f	\N	f	Colonia	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	280	col-md-6	\N	\N
+668	66	147506	28	Alcaldia	8	-1					\N	0	280	\N	40	30	f	f	f	0	f	f	\N	f	Alcaldia	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	280	col-md-6	\N	\N
+669	66	147506	29	Datos de la probable infracción	-1	-1					\N	0	290	\N	40	30	f	f	f	0	f	f	\N	f	Datos de la probable infracción	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	300	col-md-6	\N	\N
+670	66	147506	30	Objeto(s) recogido(s) relacionado(s) con la(s) probable(s) infracción(es)	-1	-1					\N	0	300	\N	40	30	f	f	f	0	f	f	\N	f	Objeto(s) recogido(s) relacionado(s) con la(s) probable(s) infracción(es)	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	300	col-md-6	\N	\N
+671	66	147506	31	Artículos	8	-1					\N	0	310	\N	40	30	f	f	f	0	f	f	\N	f	Artículos	2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2028		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	320	col-md-6	\N	\N
+672	66	147506	32	sancion_uc	8	-1					\N	0	320	\N	40	30	f	f	f	0	f	f	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2029		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	340	col-md-6	\N	\N
+673	66	147506	33	sancion_servicio	8	-1					\N	0	330	\N	40	30	f	f	f	0	f	f	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2029		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	340	col-md-6	\N	\N
+674	66	147506	34	sancion_arresto	8	-1					\N	0	340	\N	40	30	f	f	f	0	f	f	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2029		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	360	col-md-6	\N	\N
+675	66	147506	35	sancion_observacion	-1	-1					\N	0	350	\N	40	30	f	f	f	0	f	f	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2029		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	360	col-md-6	\N	\N
+677	66	147506	37	expediente	30	34					\N	0	370	\N	40	30	f	f	f	0	f	f	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2029		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	380	col-md-6	\N	\N
 \.
 
 
@@ -774,14 +784,14 @@ SELECT pg_catalog.setval('menus_campos_eventos_icv_seq', 2, true);
 -- Name: menus_campos_fila_seq; Type: SEQUENCE SET; Schema: forapi; Owner: inicio
 --
 
-SELECT pg_catalog.setval('menus_campos_fila_seq', 19581, true);
+SELECT pg_catalog.setval('menus_campos_fila_seq', 27261, true);
 
 
 --
 -- Name: menus_campos_idcampo_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('menus_campos_idcampo_seq', 1266, true);
+SELECT pg_catalog.setval('menus_campos_idcampo_seq', 1650, true);
 
 
 --
@@ -819,7 +829,9 @@ COPY menus_excels (idexcel, descripcion, nspname, relname, archivo, movimiento, 
 16	Alta desde excel, etiquetas, filas y oligatorios	jc	\N	64.xlsx	0	2019-11-21 16:19:05-07	jc104	2019-11-21 16:19:05-07	jc104
 17	Alta desde excel, ejemplo de anexar documentos	jc	\N	65.xlsx	0	2019-11-21 16:39:24-07	jc104	2019-11-21 16:39:24-07	jc104
 18	creacion de opciones	jc	\N	68.xlsx	0	2019-11-23 10:09:45-07	jc104	2019-11-23 10:09:45-07	jc104
-19	creacion de grupos de campos	jc	\N	74.xlsx	0	2019-11-25 19:44:04-07	jc104	2019-11-25 19:44:04-07	jc104
+19	creacion de grupos de campos	jc	\N	77.xlsx	0	2019-11-25 19:44:04-07	jc104	2019-11-25 19:44:04-07	jc104
+20	crea vista con tipo de datos	jc	\N	78.xlsx	0	2019-12-01 12:16:17-07	jc104	2019-12-01 12:16:17-07	jc104
+21	crea vista incluendo clases a nivel campo	jc	\N	84.xlsx	0	2019-12-01 13:10:44-07	jc104	2019-12-01 13:10:44-07	jc104
 \.
 
 
@@ -827,7 +839,7 @@ COPY menus_excels (idexcel, descripcion, nspname, relname, archivo, movimiento, 
 -- Name: menus_excels_idexcel_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('menus_excels_idexcel_seq', 19, true);
+SELECT pg_catalog.setval('menus_excels_idexcel_seq', 21, true);
 
 
 --
@@ -841,6 +853,38 @@ COPY menus_htmltable (idhtmltable, descripcion, esdesistema, columnas, fecha_alt
 2027	INFRACTORES	f	0	2019-10-29 21:17:05-06	jc9	2019-10-29 21:17:05-06	jc9	\N	\N
 2028	INFRACCIONES	f	0	2019-10-29 21:26:36-06	jc9	2019-10-29 21:26:36-06	jc9	\N	\N
 2029	SANCIÓN	f	0	2019-10-29 21:33:26-06	jc9	2019-10-29 21:33:26-06	jc9	\N	\N
+2050	AGRUPAUNO	f	0	2019-11-30 11:55:46-07	jc104	2019-11-30 11:55:46-07	jc104	132	\N
+2051	AGRUPADOS	f	0	2019-11-30 11:55:46-07	jc104	2019-11-30 11:55:46-07	jc104	132	\N
+2053	AGRUPAUNO	f	0	2019-12-01 12:22:35-07	jc104	2019-12-01 12:22:35-07	jc104	133	\N
+2054	AGRUPADOS	f	0	2019-12-01 12:22:35-07	jc104	2019-12-01 12:22:35-07	jc104	133	\N
+2056	AGRUPAUNO	f	0	2019-12-01 12:23:57-07	jc104	2019-12-01 12:23:57-07	jc104	134	\N
+2057	AGRUPADOS	f	0	2019-12-01 12:23:57-07	jc104	2019-12-01 12:23:57-07	jc104	134	\N
+2059	AGRUPAUNO	f	0	2019-12-01 12:45:21-07	jc104	2019-12-01 12:45:21-07	jc104	135	\N
+2060	AGRUPADOS	f	0	2019-12-01 12:45:21-07	jc104	2019-12-01 12:45:21-07	jc104	135	\N
+2062	AGRUPAUNO	f	0	2019-12-01 12:48:05-07	jc104	2019-12-01 12:48:05-07	jc104	136	\N
+2063	AGRUPADOS	f	0	2019-12-01 12:48:05-07	jc104	2019-12-01 12:48:05-07	jc104	136	\N
+2065	AGRUPAUNO	f	0	2019-12-01 12:49:29-07	jc104	2019-12-01 12:49:29-07	jc104	137	\N
+2066	AGRUPADOS	f	0	2019-12-01 12:49:29-07	jc104	2019-12-01 12:49:29-07	jc104	137	\N
+2068	AGRUPAUNO	f	0	2019-12-01 12:51:08-07	jc104	2019-12-01 12:51:08-07	jc104	138	\N
+2069	AGRUPADOS	f	0	2019-12-01 12:51:08-07	jc104	2019-12-01 12:51:08-07	jc104	138	\N
+2071	AGRUPAUNO	f	0	2019-12-01 12:52:01-07	jc104	2019-12-01 12:52:01-07	jc104	139	\N
+2072	AGRUPADOS	f	0	2019-12-01 12:52:01-07	jc104	2019-12-01 12:52:01-07	jc104	139	\N
+2074	AGRUPAUNO	f	0	2019-12-01 13:21:03-07	jc104	2019-12-01 13:21:03-07	jc104	140	\N
+2075	AGRUPADOS	f	0	2019-12-01 13:21:03-07	jc104	2019-12-01 13:21:03-07	jc104	140	\N
+2077	AGRUPAUNO	f	0	2019-12-01 13:25:13-07	jc104	2019-12-01 13:25:13-07	jc104	141	\N
+2078	AGRUPADOS	f	0	2019-12-01 13:25:13-07	jc104	2019-12-01 13:25:13-07	jc104	141	\N
+2080	AGRUPAUNO	f	0	2019-12-01 13:28:46-07	jc104	2019-12-01 13:28:46-07	jc104	142	\N
+2081	AGRUPADOS	f	0	2019-12-01 13:28:46-07	jc104	2019-12-01 13:28:46-07	jc104	142	\N
+2083	AGRUPAUNO	f	0	2019-12-01 13:30:12-07	jc104	2019-12-01 13:30:12-07	jc104	143	\N
+2084	AGRUPADOS	f	0	2019-12-01 13:30:12-07	jc104	2019-12-01 13:30:12-07	jc104	143	\N
+2086	AGRUPAUNO	f	0	2019-12-01 13:50:43-07	jc104	2019-12-01 13:50:43-07	jc104	144	\N
+2087	AGRUPADOS	f	0	2019-12-01 13:50:43-07	jc104	2019-12-01 13:50:43-07	jc104	144	\N
+2089	AGRUPAUNO	f	0	2019-12-01 13:53:40-07	jc104	2019-12-01 13:53:40-07	jc104	145	\N
+2090	AGRUPADOS	f	0	2019-12-01 13:53:40-07	jc104	2019-12-01 13:53:40-07	jc104	145	\N
+2092	AGRUPAUNO	f	0	2019-12-01 14:04:43-07	jc104	2019-12-01 14:04:43-07	jc104	146	\N
+2093	AGRUPADOS	f	0	2019-12-01 14:04:43-07	jc104	2019-12-01 14:04:43-07	jc104	146	\N
+2095	AGRUPAUNO	f	0	2019-12-01 14:15:30-07	jc104	2019-12-01 14:15:30-07	jc104	147	\N
+2096	AGRUPADOS	f	0	2019-12-01 14:15:30-07	jc104	2019-12-01 14:15:30-07	jc104	147	\N
 \.
 
 
@@ -848,14 +892,14 @@ COPY menus_htmltable (idhtmltable, descripcion, esdesistema, columnas, fecha_alt
 -- Name: menus_htmltable_idhtmltable_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('menus_htmltable_idhtmltable_seq', 2031, true);
+SELECT pg_catalog.setval('menus_htmltable_idhtmltable_seq', 2097, true);
 
 
 --
 -- Name: menus_idmenu_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('menus_idmenu_seq', 115, true);
+SELECT pg_catalog.setval('menus_idmenu_seq', 147, true);
 
 
 --
@@ -942,7 +986,7 @@ COPY menus_pg_group (idmenu, grosysid, fecha_alta, fecha_modifico, usuario_alta,
 64	\N	2019-10-31 17:25:01-06	2019-10-31 17:25:01-06	jc104	jc104	\N	admon	0	\N
 65	\N	2019-10-31 17:25:05-06	2019-10-31 17:25:05-06	jc104	jc104	\N	admon	0	\N
 66	\N	2019-10-31 17:25:09-06	2019-10-31 17:25:09-06	jc104	jc104	\N	admon	0	\N
-115	\N	2019-11-25 13:23:19-07	2019-11-25 13:23:19-07	jc104	jc104	\N	admon	0	\N
+147	\N	2019-12-01 14:15:30-07	2019-12-01 14:15:30-07	jc104	jc104	\N	admon	0	\N
 \.
 
 
@@ -1078,8 +1122,8 @@ COPY menus_pg_tables (idmenu, tablename, tselect, tinsert, tupdate, tdelete, tal
 19	menus_archivos	1	1	 	 	 	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 66	boletas	1	1	1	1	0	2019-10-31 17:25:09-06	2019-10-31 17:25:09-06	jc104	jc104	0	jc
 31	menus_excels	1	1	1	1	0	2019-11-18 09:35:24-07	2019-11-18 09:35:24-07	jc104	jc104	0	forapi
-115	opciones	1	1	1	1	0	2019-11-25 13:23:19-07	2019-11-25 13:23:19-07	jc104	jc104	0	jc
-115	opciones_id_seq	1	0	1	0	0	2019-11-25 13:23:19-07	2019-11-25 13:23:19-07	jc104	jc104	0	jc
+147	opciones	1	1	1	1	0	2019-12-01 14:15:30-07	2019-12-01 14:15:30-07	jc104	jc104	0	jc
+147	opciones_id_seq	1	0	1	0	0	2019-12-01 14:15:30-07	2019-12-01 14:15:30-07	jc104	jc104	0	jc
 \.
 
 

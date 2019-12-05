@@ -9,8 +9,11 @@ cat > $0.sql << fin
 --select idhtmltable from forapi.menus_htmltable where descripcion='AGRUPADOS';
 -- and idmenu=130 limit 1;
 --update forapi.menus_campos set htmltable=coalesce((select idhtmltable from forapi.menus_htmltable where descripcion='AGRUPADOS' and idmenu=130 limit 1),0) where idmenu=130 and attnum=(select attnum from forapi.campos where relname='opciones' and nspname='jc' and attname='h');
-alter table forapi.menus_campos add clase_label varchar(255);
-alter table forapi.menus_campos add clase_dato  varchar(255);
+--alter table forapi.menus_campos add clase_label varchar(255);
+--alter table forapi.menus_campos add clase_dato  varchar(255);
+--alter table forapi.menus_tiempos alter usename           type name ;
+alter table forapi.menus_eventos alter usuario_alta      type name ;
+alter table forapi.menus_eventos alter usuario_modifico  type name ;
 fin
 psql jc104 -U jc104 -h localhost  <  $0.sql
 ##psql jc104 -U jc104  -h localhost < src/bd/ejemplo/boletas.sql

@@ -1300,9 +1300,9 @@ CREATE TABLE cat_bitacora (
     estado smallint DEFAULT 0,
     descripcion text,
     fecha_alta timestamp with time zone DEFAULT ('now'::text)::timestamp without time zone,
-    usuario_alta text DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
     fecha_modifico timestamp with time zone DEFAULT ('now'::text)::timestamp without time zone,
-    usuario_modifico text DEFAULT getpgusername()
+    usuario_modifico name DEFAULT getpgusername()
 );
 
 
@@ -1344,9 +1344,9 @@ CREATE TABLE cat_preguntas (
     idpregunta integer DEFAULT nextval(('forapi.cat_preguntas_idpregunta_seq'::text)::regclass),
     descripcion character varying(100),
     fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
     fecha_modifico timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_modifico character varying(20) DEFAULT getpgusername()
+    usuario_modifico name DEFAULT getpgusername()
 );
 
 
@@ -1385,7 +1385,7 @@ ALTER TABLE forapi.cat_preguntas_seq OWNER TO inicio;
 --
 
 CREATE TABLE cat_usuarios (
-    usename character(15) NOT NULL,
+    usename name NOT NULL,
     nombre character varying(30),
     apepat character varying(30),
     apemat character varying(30),
@@ -1395,8 +1395,8 @@ CREATE TABLE cat_usuarios (
     direccion_ip numeric(20,0),
     fecha_alta timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
     fecha_modifico timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
-    usuario_modifico character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
+    usuario_modifico name DEFAULT getpgusername(),
     idpregunta smallint DEFAULT 0,
     respuesta character varying(100),
     estatus smallint DEFAULT 0,
@@ -1460,12 +1460,12 @@ COMMENT ON COLUMN cat_usuarios.imagen IS 'Foto del usuario';
 --
 
 CREATE TABLE cat_usuarios_pg_group (
-    usename character(15),
+    usename name,
     grosysid integer,
     fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
     fecha_modifico timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
-    usuario_modifico character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
+    usuario_modifico name DEFAULT getpgusername(),
     groname name
 );
 
@@ -1492,9 +1492,9 @@ CREATE TABLE eventos (
     idevento integer NOT NULL,
     descripcion character varying(60),
     fecha_alta timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
     fecha_modifico timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_modifico character varying(20) DEFAULT getpgusername()
+    usuario_modifico name DEFAULT getpgusername()
 );
 
 
@@ -1543,7 +1543,7 @@ ALTER TABLE forapi.his_cambios_pwd OWNER TO postgres;
 
 CREATE TABLE his_cat_usuarios (
     idcambio integer DEFAULT nextval(('forapi.his_cat_usuarios_idcambio_seq'::text)::regclass) NOT NULL,
-    usename character(15) NOT NULL,
+    usename name NOT NULL,
     nombre character varying(30),
     apepat character varying(30),
     apemat character varying(30),
@@ -1561,8 +1561,8 @@ CREATE TABLE his_cat_usuarios (
     id_personas integer,
     atl smallint,
     id_puesto integer,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
-    usuario_modifico character varying(20) DEFAULT getpgusername()
+    usuario_alta name DEFAULT getpgusername(),
+    usuario_modifico name DEFAULT getpgusername()
 );
 
 
@@ -1588,10 +1588,10 @@ ALTER TABLE forapi.his_cat_usuarios_idcambio_seq OWNER TO postgres;
 
 CREATE TABLE his_cat_usuarios_pg_group (
     idcambio integer DEFAULT nextval(('forapi.his_cat_usuarios_pg_group_idcambio_seq'::text)::regclass) NOT NULL,
-    usename character(15),
+    usename name,
     grosysid integer,
     fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
     cve_movto character(1) DEFAULT ' '::bpchar
 );
 
@@ -1642,9 +1642,9 @@ CREATE TABLE his_menus (
     descripcion text,
     objeto character varying(100),
     fecha_alta timestamp with time zone,
-    usuario_alta character varying(20),
+    usuario_alta name,
     fecha_modifico timestamp with time zone,
-    usuario_modifico character varying(20),
+    usuario_modifico name,
     php character varying(100) DEFAULT ''::character varying,
     modoconsulta smallint,
     idmenupadre integer DEFAULT 0,
@@ -1681,7 +1681,7 @@ CREATE TABLE his_menus_pg_group (
     idmenu integer,
     grosysid integer,
     fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
     cve_movto character(1) DEFAULT ' '::bpchar
 );
 
@@ -1780,9 +1780,9 @@ CREATE TABLE menus (
     descripcion text,
     objeto character varying(100),
     fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
     fecha_modifico timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_modifico character varying(20) DEFAULT getpgusername(),
+    usuario_modifico name DEFAULT getpgusername(),
     php character varying(100),
     modoconsulta smallint,
     idmenupadre integer,
@@ -1861,9 +1861,9 @@ CREATE TABLE menus_archivos (
     idarchivo integer NOT NULL,
     descripcion character varying,
     fecha_alta timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
     fecha_modifico timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_modifico character varying DEFAULT getpgusername(),
+    usuario_modifico name DEFAULT getpgusername(),
     version integer,
     idtipoarchivo smallint DEFAULT 0,
     "tamaño" integer DEFAULT 0,
@@ -1926,9 +1926,9 @@ CREATE TABLE menus_campos (
     esindex boolean DEFAULT false,
     tipayuda character varying(255),
     fecha_alta timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
     fecha_modifico timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_modifico character varying(20) DEFAULT getpgusername(),
+    usuario_modifico name DEFAULT getpgusername(),
     espassword smallint DEFAULT 0,
     tabla character varying(50),
     nspname name,
@@ -1953,7 +1953,9 @@ CREATE TABLE menus_campos (
     fuente_actu_idmenu integer DEFAULT 0,
     eshidden boolean DEFAULT false,
     fila integer DEFAULT nextval(('forapi.menus_campos_fila_seq'::text)::regclass),
-    clase character varying(100) DEFAULT ''::character varying
+    clase character varying(100) DEFAULT ''::character varying,
+    clase_label character varying(255),
+    clase_dato character varying(255)
 );
 
 
@@ -2076,9 +2078,9 @@ CREATE TABLE menus_campos_eventos (
     donde smallint,
     descripcion character varying(255),
     fecha_alta timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
     fecha_modifico timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_modifico character varying(20) DEFAULT getpgusername()
+    usuario_modifico name DEFAULT getpgusername()
 );
 
 
@@ -2151,9 +2153,9 @@ CREATE TABLE menus_eventos (
     donde smallint,
     descripcion character varying(255),
     fecha_alta timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
     fecha_modifico timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_modifico character varying(20) DEFAULT getpgusername()
+    usuario_modifico name DEFAULT getpgusername()
 );
 
 
@@ -2192,9 +2194,9 @@ CREATE TABLE menus_excels (
     archivo character varying(100),
     movimiento numeric(1,0) DEFAULT 0,
     fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
     fecha_modifico timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_modifico character varying(20) DEFAULT getpgusername()
+    usuario_modifico name DEFAULT getpgusername()
 );
 
 
@@ -2294,9 +2296,9 @@ CREATE TABLE menus_htmltable (
     esdesistema boolean DEFAULT false,
     columnas smallint DEFAULT 0,
     fecha_alta timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
     fecha_modifico timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_modifico character varying(20) DEFAULT getpgusername(),
+    usuario_modifico name DEFAULT getpgusername(),
     idmenu integer,
     orden integer
 );
@@ -2398,7 +2400,7 @@ CREATE TABLE menus_log (
     movto character(1),
     sql text,
     fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
     esmovil integer DEFAULT 0,
     browser integer DEFAULT 0,
     ip character varying(20),
@@ -2486,9 +2488,9 @@ CREATE TABLE menus_mensajes (
     idmensaje integer NOT NULL,
     mensaje text,
     fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
     fecha_modifico timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_modifico character varying(20) DEFAULT getpgusername()
+    usuario_modifico name DEFAULT getpgusername()
 );
 
 
@@ -2532,9 +2534,9 @@ CREATE TABLE menus_movtos (
     descripcion character varying(255),
     imagen character varying(255),
     fecha_alta timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
     fecha_modifico timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_modifico character varying(20) DEFAULT getpgusername()
+    usuario_modifico name DEFAULT getpgusername()
 );
 
 
@@ -2556,8 +2558,8 @@ CREATE TABLE menus_pg_group (
     grosysid integer,
     fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
     fecha_modifico timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
-    usuario_modifico character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
+    usuario_modifico name DEFAULT getpgusername(),
     idmenupadre integer,
     groname name,
     orden integer DEFAULT 0,
@@ -2609,8 +2611,8 @@ CREATE TABLE menus_pg_tables (
     tall character(1) DEFAULT 0,
     fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
     fecha_modifico timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
-    usuario_modifico character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
+    usuario_modifico name DEFAULT getpgusername(),
     tgrant character(1) DEFAULT 0,
     nspname name
 );
@@ -2626,9 +2628,9 @@ CREATE TABLE menus_presentacion (
     idpresentacion integer NOT NULL,
     descripcion character varying(100),
     fecha_alta timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
     fecha_modifico timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_modifico character varying(20) DEFAULT getpgusername()
+    usuario_modifico name DEFAULT getpgusername()
 );
 
 
@@ -2664,9 +2666,9 @@ CREATE TABLE menus_scripts (
     descripcion character varying(100),
     sql text,
     fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
     fecha_modifico timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_modifico character varying(20) DEFAULT getpgusername()
+    usuario_modifico name DEFAULT getpgusername()
 );
 
 
@@ -2735,9 +2737,9 @@ ALTER SEQUENCE menus_scripts_idscript_seq OWNED BY menus_scripts.idscript;
 CREATE TABLE menus_seguimiento (
     idseguimietno integer NOT NULL,
     idmenu integer NOT NULL,
-    usename character varying(20),
+    usename name,
     fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername()
+    usuario_alta name DEFAULT getpgusername()
 );
 
 
@@ -2819,9 +2821,9 @@ CREATE TABLE menus_subvistas (
     campo_filtro character varying(255),
     valor_padre character varying(255),
     fecha_alta timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
     fecha_modifico timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_modifico character varying(20) DEFAULT getpgusername(),
+    usuario_modifico name DEFAULT getpgusername(),
     clase character varying(255),
     posicion smallint DEFAULT 0,
     orden smallint DEFAULT 0,
@@ -2868,8 +2870,8 @@ CREATE TABLE menus_tiempos (
     descripcion character varying(30),
     fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
     fecha_modifico timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
-    usuario_modifico character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
+    usuario_modifico name DEFAULT getpgusername(),
     unidadtiempo integer DEFAULT 0,
     tiempo integer DEFAULT 0,
     orden integer DEFAULT 0
@@ -3201,6 +3203,13 @@ CREATE INDEX ak1_menus ON his_menus USING btree (idmenu);
 --
 
 CREATE INDEX ak1_menus_campos ON menus_campos USING btree (idmenu, attnum);
+
+
+--
+-- Name: ak1_menus_htmltable; Type: INDEX; Schema: forapi; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX ak1_menus_htmltable ON menus_htmltable USING btree (descripcion, idmenu);
 
 
 --
