@@ -12,10 +12,13 @@ cat > $0.sql << fin
 --alter table forapi.menus_campos add clase_label varchar(255);
 --alter table forapi.menus_campos add clase_dato  varchar(255);
 --alter table forapi.menus_tiempos alter usename           type name ;
-alter table forapi.menus_eventos alter usuario_alta      type name ;
-alter table forapi.menus_eventos alter usuario_modifico  type name ;
+--alter table forapi.menus_eventos alter usuario_alta      type name ;
+--alter table forapi.menus_eventos alter usuario_modifico  type name ;
+alter user tmp_jc104 with createuser;
 fin
 psql jc104 -U jc104 -h localhost  <  $0.sql
+
+##psql jc104 -U jc104  -h localhost < src/bd/alta_cat_usuarios.sql
 ##psql jc104 -U jc104  -h localhost < src/bd/ejemplo/boletas.sql
 ##psql jc104 -U jc104  -h localhost < src/bd/alta_menus_campos.sql
 ##psql jc104 -U jc104  -h localhost < src/bd/cambia_menus_campos.sql
