@@ -49,7 +49,7 @@ CREATE FUNCTION alta_cat_usuarios() RETURNS trigger
       wlestado numeric;
       wlsi numeric;
       wlsentencia varchar(255);
-      wlusuario varchar(20);
+      wlusuario name;
       wlpasswd varchar(20);
     BEGIN
 --        select count(*) into wlsi from contra.cat_personas where id_persona=new.id_persona;
@@ -73,7 +73,7 @@ CREATE FUNCTION alta_cat_usuarios() RETURNS trigger
 		RAISE NOTICE ' $wlusuario % ', wlusuario;
 		RAISE NOTICE ' $wlpasswd % ', wlpasswd;
 		
-		wlsentencia = ' create user ' || wlusuario || ' with password ' || quote_literal(trim(wlpasswd)) || ' nocreatedb ; ';
+		wlsentencia = ' create user "' || wlusuario || '" with password ' || quote_literal(trim(wlpasswd)) || ' nocreatedb ; ';
 --        insert into pg_shadow (usename,passwd,usesysid,usecreatedb,usesuper,usecatupd)
 --               values (new.usename,md5(new.password),(select max(usesysid)+1 from pg_shadow), false,false,false);
 		RAISE NOTICE ' $wlsentencia % ', wlsentencia;
@@ -380,7 +380,7 @@ CREATE FUNCTION autoriza_usuario(text) RETURNS character varying
            end if;
            end if;
          if trim(mireg.tablename)!='' then   -- 20070720
-            wlsentencia='grant ' || trim(wlper) || '  on ' || trim(mireg.tablename) || ' to ' ||  $1 || ' with grant option ';
+            wlsentencia='grant ' || trim(wlper) || '  on ' || trim(mireg.tablename) || ' to "' ||  $1 || '" with grant option ';
             --raise notice ' sentencia % %', wlsentencia,mireg.descripcion  ;
             if wlper!='' then
                execute wlsentencia;     -- 20070720
@@ -409,10 +409,10 @@ CREATE FUNCTION autoriza_usuario(text) RETURNS character varying
          if mireg.nspname!='public' then
             --wlsentencia=' revoke all on schema ' || trim(mireg.nspname) || ' from ' ||  $1  || ' cascade' ;
             --execute wlsentencia;
-            wlsentencia=' grant usage,create on schema ' || trim(mireg.nspname) || ' to ' ||  $1 || ' with grant option ';
+            wlsentencia=' grant usage,create on schema ' || trim(mireg.nspname) || ' to "' ||  $1 || '" with grant option ';
             execute wlsentencia;
             --raise notice ' sentencia % ', wlsentencia  ;
-            wlsentencia=' grant all PRIVILEGES on all sequences in schema ' || trim(mireg.nspname) || ' to ' ||  $1 || ' with grant option ';
+            wlsentencia=' grant all PRIVILEGES on all sequences in schema ' || trim(mireg.nspname) || ' to "' ||  $1 || '" with grant option ';
             execute wlsentencia;
             --raise notice ' sentencia % ', wlsentencia  ;
          end if;
@@ -708,12 +708,35 @@ CREATE FUNCTION cambia_menus_campos() RETURNS trigger
     DECLARE
       wlestado numeric;
       wlnum    numeric;
+      wlfuente_nspname  forapi.menus_campos.fuente_nspname%TYPE;
+      wlfuente          forapi.menus_campos.fuente%TYPE;
     BEGIN
         if new.upload_file!=old.upload_file then
            if new.upload_file=true then
                  new.readonly=true;
            end if;
         end if;
+        if (new.fuente_nspname!=old.fuente_nspname)
+           wlfuente_nspname=new.fuente_nspname; 
+        else
+           wlfuente_nspname=old.fuente_nspname; 
+        end if;
+        if (new.fuente!=old.fuente)
+           wlfuente=new.fuente; 
+        else
+           wlfuente=old.fuente; 
+        end if;
+        if (wlfuente_nspname!='' and wlfuente!='')  then
+           select count (*) into wlnum from forapi.menus_pg_tables where tablename=wlfuente and nspname=wlnspname and idmenu=old.idmenu;
+        --raise notice 'registros % tabla % nspname % ', wlnum, new.tabla, new.nspname;
+           if wlnum=0 then
+        --raise notice 'entro a insertar % tabla % nspname % ', wlnum, new.tabla, new.nspname;
+              insert into forapi.menus_pg_tables (idmenu,tablename,tselect,tinsert,tupdate,tdelete,tall,tgrant,nspname)
+               values (old.idmenu,wlfuente ,1 ,1 ,1 ,1 ,0 ,0 ,wlnspname);
+           end if;
+        end if;
+
+        
      return new;
     END;$$;
 
@@ -1665,7 +1688,7 @@ CREATE TABLE his_menus (
     s_table_height integer DEFAULT 300,
     cvemovto character varying(1),
     fecha_movto timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_movto character varying(20) DEFAULT getpgusername(),
+    usuario_movto name DEFAULT getpgusername(),
     nspname name
 );
 
@@ -1731,7 +1754,7 @@ CREATE TABLE his_menus_pg_tables (
     tall character(1) DEFAULT ''::bpchar,
     cve_movto character(1),
     fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_modifico character varying(20) DEFAULT getpgusername(),
+    usuario_modifico name DEFAULT getpgusername(),
     tgrant character(1) DEFAULT ''::bpchar
 );
 
