@@ -46,9 +46,9 @@ CREATE TABLE menus_campos (
     esindex boolean DEFAULT false,
     tipayuda character varying(255),
     fecha_alta timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_alta character varying(20) DEFAULT getpgusername(),
+    usuario_alta name DEFAULT getpgusername(),
     fecha_modifico timestamp with time zone DEFAULT ('now'::text)::timestamp(0) with time zone,
-    usuario_modifico character varying(20) DEFAULT getpgusername(),
+    usuario_modifico name DEFAULT getpgusername(),
     espassword smallint DEFAULT 0,
     tabla character varying(50),
     nspname name,
@@ -73,7 +73,9 @@ CREATE TABLE menus_campos (
     fuente_actu_idmenu integer DEFAULT 0,
     eshidden boolean DEFAULT false,
     fila integer DEFAULT nextval(('forapi.menus_campos_fila_seq'::text)::regclass),
-    clase character varying(100) DEFAULT ''::character varying
+    clase character varying(100) DEFAULT ''::character varying,
+    clase_label character varying(255),
+    clase_dato character varying(255)
 );
 
 
@@ -270,6 +272,13 @@ CREATE TRIGGER ti_menus_campos BEFORE INSERT ON menus_campos FOR EACH ROW EXECUT
 
 
 --
+-- Name: tu_menus_campos; Type: TRIGGER; Schema: forapi; Owner: postgres
+--
+
+CREATE TRIGGER tu_menus_campos BEFORE UPDATE ON menus_campos FOR EACH ROW EXECUTE PROCEDURE cambia_menus_campos();
+
+
+--
 -- Name: menus_campos; Type: ACL; Schema: forapi; Owner: postgres
 --
 
@@ -278,6 +287,7 @@ REVOKE ALL ON TABLE menus_campos FROM postgres;
 GRANT ALL ON TABLE menus_campos TO postgres;
 GRANT SELECT ON TABLE menus_campos TO tmp_jc104 WITH GRANT OPTION;
 GRANT ALL ON TABLE menus_campos TO jc104 WITH GRANT OPTION;
+GRANT ALL ON TABLE menus_campos TO "jlvdantry@hotmail.com" WITH GRANT OPTION;
 
 
 --
@@ -289,6 +299,7 @@ REVOKE ALL ON SEQUENCE menus_campos_idcampo_seq FROM postgres;
 GRANT ALL ON SEQUENCE menus_campos_idcampo_seq TO postgres;
 GRANT ALL ON SEQUENCE menus_campos_idcampo_seq TO tmp_jc104 WITH GRANT OPTION;
 GRANT ALL ON SEQUENCE menus_campos_idcampo_seq TO jc104 WITH GRANT OPTION;
+GRANT ALL ON SEQUENCE menus_campos_idcampo_seq TO "jlvdantry@hotmail.com" WITH GRANT OPTION;
 
 
 --

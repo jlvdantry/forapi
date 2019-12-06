@@ -14,14 +14,16 @@ cat > $0.sql << fin
 --alter table forapi.menus_tiempos alter usename           type name ;
 --alter table forapi.menus_eventos alter usuario_alta      type name ;
 --alter table forapi.menus_eventos alter usuario_modifico  type name ;
-alter user tmp_jc104 with createuser;
+--alter table forapi.his_menus alter usuario_movto  type name ;
+alter table forapi.his_menus_pg_tables alter usuario_modifico  type name ;
+--alter user tmp_jc104 with createuser;
 fin
 ##psql jc104 -U jc104 -h localhost  <  $0.sql
 
-psql jc104 -U jc104  -h localhost < src/bd/autoriza_usuario.sql
+##psql jc104 -U jc104  -h localhost < src/bd/autoriza_usuario.sql
 ##psql jc104 -U jc104  -h localhost < src/bd/ejemplo/boletas.sql
 ##psql jc104 -U jc104  -h localhost < src/bd/alta_menus_campos.sql
-##psql jc104 -U jc104  -h localhost < src/bd/cambia_menus_campos.sql
+psql jc104 -U jc104  -h localhost < src/bd/cambia_menus_campos.sql
 ##psql jc104 -U jc104 -h localhost  <  src/bd/menus_excels.sql
 ##psql jc104 -U jc104 -h localhost  <  src/bd/cambia_menus.sql
 ##psql jc9 -U jc9 -h localhost  <  src/bd/cambio_menus.sql
