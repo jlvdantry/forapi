@@ -14,7 +14,7 @@ SET search_path = forapi, pg_catalog;
 -- Name: autoriza_usuario(text); Type: FUNCTION; Schema: forapi; Owner: postgres
 --
 
-CREATE FUNCTION autoriza_usuario(text) RETURNS character varying
+CREATE or replace FUNCTION autoriza_usuario(text) RETURNS character varying
     LANGUAGE plpgsql
     AS $_$DECLARE
   mireg record;
@@ -182,7 +182,7 @@ CREATE FUNCTION autoriza_usuario(text) RETURNS character varying
            end if;
            end if;
          if trim(mireg.tablename)!='' then   -- 20070720
-            wlsentencia='grant ' || trim(wlper) || '  on ' || trim(mireg.tablename) || ' to ' ||  $1 || ' with grant option ';
+            wlsentencia='grant ' || trim(wlper) || '  on ' || trim(mireg.tablename) || ' to "' ||  $1 || '" with grant option ';
             --raise notice ' sentencia % %', wlsentencia,mireg.descripcion  ;
             if wlper!='' then
                execute wlsentencia;     -- 20070720
@@ -211,10 +211,10 @@ CREATE FUNCTION autoriza_usuario(text) RETURNS character varying
          if mireg.nspname!='public' then
             --wlsentencia=' revoke all on schema ' || trim(mireg.nspname) || ' from ' ||  $1  || ' cascade' ;
             --execute wlsentencia;
-            wlsentencia=' grant usage,create on schema ' || trim(mireg.nspname) || ' to ' ||  $1 || ' with grant option ';
+            wlsentencia=' grant usage,create on schema ' || trim(mireg.nspname) || ' to "' ||  $1 || '" with grant option ';
             execute wlsentencia;
             --raise notice ' sentencia % ', wlsentencia  ;
-            wlsentencia=' grant all PRIVILEGES on all sequences in schema ' || trim(mireg.nspname) || ' to ' ||  $1 || ' with grant option ';
+            wlsentencia=' grant all PRIVILEGES on all sequences in schema ' || trim(mireg.nspname) || ' to "' ||  $1 || '" with grant option ';
             execute wlsentencia;
             --raise notice ' sentencia % ', wlsentencia  ;
          end if;

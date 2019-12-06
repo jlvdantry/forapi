@@ -1877,12 +1877,13 @@ class soldatos
     {
    $wlemail='jlvdantry@hotmail.com';
    $mail = new PHPMailer;
+   $mail->SMTPDebug = 2;                               // Enable SMTP authentication
    $mail->IsSMTP();                                      // Set mailer to use SMTP
-   $mail->Host = 'smtp.live.com';  // Specify main and backup server
+   $mail->Host = 'smtp.mandrillapp.com';  // Specify main and backup server
    $mail->SMTPAuth = true;                               // Enable SMTP authentication
    $mail->Username = 'jlvdantry@hotmail.com';                            // SMTP username
-   $mail->Password = '888aDantryR';                           // SMTP password
-   $mail->Port = '25';                           // SMTP password
+   $mail->Password = 'e16d42294963c438fcf646972e931ae0-us4';                           // SMTP password
+   $mail->Port = '587';                           // SMTP password
    $mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
    $mail->From = $wlemail;
   // $mail->SMTPDebug  = 1;
