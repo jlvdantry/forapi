@@ -1877,7 +1877,7 @@ class soldatos
     {
    $wlemail='jlvdantry@hotmail.com';
    $mail = new PHPMailer;
-   $mail->SMTPDebug = 2;                               // Enable SMTP authentication
+   //$mail->SMTPDebug = 2;                               // Enable SMTP authentication
    $mail->IsSMTP();                                      // Set mailer to use SMTP
    $mail->Host = 'smtp.mandrillapp.com';  // Specify main and backup server
    $mail->SMTPAuth = true;                               // Enable SMTP authentication

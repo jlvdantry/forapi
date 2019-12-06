@@ -160,8 +160,8 @@ class seguridad extends xmlhttp_class
           $_SESSION["puerto"]=$this->puerto; //20070822
                         if ($menu>0) {
 		           $this->argumentos["idmenu"] = $menu;		##20071105
+                           parent::muestra_vista();
                         }
-                        parent::muestra_vista();
                         parent::dame_menus();
 
 		}

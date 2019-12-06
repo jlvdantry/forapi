@@ -2228,6 +2228,13 @@ window.querespuesta = function()
              return;
            }
 
+             if (req.responseText.indexOf("<menus>") != -1) {
+                muestra_menus(req.responseXML.getElementsByTagName("menus"));
+                try { $(entrada).children()[0].remove(); } catch(er) { };
+                return;
+             }
+
+
            if (req.responseText.indexOf("<error>") != -1)
            {
               var items = req.responseXML.getElementsByTagName("noconfirma");
