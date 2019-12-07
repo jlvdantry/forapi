@@ -82,8 +82,8 @@ select 'define(MANDRILL_APIKEY,'''');'
 union all
 select '?>'
 fin
-psql -t $1 -U $2 -h localhost  < $0.sql  > ./src/php/idmenus.php
+psql -t $1 -U $2 -h localhost  < $0.sql  > ./src/php/config.php
 echo "creo constantes"
 sed -i -e "s/ //g" ./src/php/config.php
-tail -n 1 "./src/php/idmenus.php" | wc -c | xargs -I {} truncate "./src/php/idmenus.php" -s -{}
+tail -n 1 "./src/php/config.php" | wc -c | xargs -I {} truncate "./src/php/config.php" -s -{}
 echo "cambio variales de la base"
