@@ -383,6 +383,7 @@ class reingenieria extends xmlhttp_class
             }
         }
         $strsql.=");".PHP_EOL;
+        $strsql.="alter table ".$this->nspname.".".$worksheet->getTitle()." owner to \"".$_SESSION['parametro1']."\";".PHP_EOL;
         $strsql.=$this->arma_secuencia_pk($worksheet->getTitle());
         $strsql.=$etiquetas;
         $sql_result = @pg_exec($this->connection,$strsql);
@@ -484,9 +485,9 @@ class reingenieria extends xmlhttp_class
    function arma_campos_fijos() {
             $strsql=",id integer not null".PHP_EOL;
             $strsql.=",fecha_alta timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone".PHP_EOL;
-            $strsql.=",usuario_alta character varying(20) DEFAULT getpgusername()".PHP_EOL;
+            $strsql.=",usuario_alta name DEFAULT getpgusername()".PHP_EOL;
             $strsql.=",fecha_modifico timestamp(0) with time zone DEFAULT ('now'::text)::timestamp(0) with time zone".PHP_EOL;
-            $strsql.=",usuario_modifico character varying(20) DEFAULT getpgusername()".PHP_EOL;
+            $strsql.=",usuario_modifico name DEFAULT getpgusername()".PHP_EOL;
             return $strsql;
    }
 
@@ -494,7 +495,7 @@ class reingenieria extends xmlhttp_class
             $strsql="drop sequence if exists  ".$this->nspname.".".$tabla.$col."_id_seq cascade;".PHP_EOL;
             $strsql.="CREATE SEQUENCE ".$this->nspname.".".$tabla.$col."_id_seq".PHP_EOL;
             $strsql.="  START WITH 1 INCREMENT BY 1 CACHE 1;".PHP_EOL;
-            //$strsql.="  ALTER TABLE ".$tabla."_id_seq OWNER TO postgres;".PHP_EOL;
+            $strsql.="  ALTER TABLE ".$this->nspname.".".$tabla.$col."_id_seq OWNER TO \"".$_SESSION['parametro1']."\";".PHP_EOL;
             $strsql.="  ALTER SEQUENCE ".$this->nspname.".".$tabla.$col."_id_seq OWNED BY ".$this->nspname.".".$tabla.$col.".id".";".PHP_EOL;
             $strsql.="  ALTER TABLE ONLY ".$this->nspname.".".$tabla.$col." ALTER COLUMN id SET DEFAULT nextval('"
                                               .$this->nspname.".".$tabla.$col."_id_seq'::regclass);".PHP_EOL;

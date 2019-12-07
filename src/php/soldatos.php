@@ -1876,17 +1876,14 @@ class soldatos
     function Enviaemail($error)
     {
    $wlemail='jlvdantry@hotmail.com';
-   $mail = new PHPMailer;
    //$mail->SMTPDebug = 2;                               // Enable SMTP authentication
-   $mail->IsSMTP();                                      // Set mailer to use SMTP
    $mail->Host = 'smtp.mandrillapp.com';  // Specify main and backup server
    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-   $mail->Username = 'jlvdantry@hotmail.com';                            // SMTP username
-   $mail->Password = 'e16d42294963c438fcf646972e931ae0-us4';                           // SMTP password
+   $mail->Username = 'jlvdantry';                            // SMTP username
+   $mail->Password = '89fe225a380a7cdc0ab769fea289dd5e-us4';                           // SMTP password
    $mail->Port = '587';                           // SMTP password
    $mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
    $mail->From = $wlemail;
-  // $mail->SMTPDebug  = 1;
    $mail->FromName = 'Jose Luis Vasquez Barbosa';
    $mail->AddAddress($wlemail);               // Name is optional
    $mail->AddAddress($wlemailk);               // Name is optional
