@@ -15,7 +15,7 @@ include("mensajes.php");
 require_once("class.phpmailer.php");
 require_once("menudata.php");
 require_once("class_logmenus.php");   
-require_once("idmenus.php");   
+require_once("config.php");   
 /**
 *   clase que genera la pantalla que genera la solicitud de datos 
 *   <pre>
@@ -1875,23 +1875,21 @@ class soldatos
 
     function Enviaemail($error)
     {
+   $mail = new PHPMailer();
    $wlemail='jlvdantry@hotmail.com';
-   //$mail->SMTPDebug = 2;                               // Enable SMTP authentication
-   $mail->Host = 'smtp.mandrillapp.com';  // Specify main and backup server
+   $mail->Host = CORREO_HOST;  // Specify main and backup server
    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-   $mail->Username = 'jlvdantry';                            // SMTP username
-   $mail->Password = '89fe225a380a7cdc0ab769fea289dd5e-us4';                           // SMTP password
-   $mail->Port = '587';                           // SMTP password
+   $mail->Username = MANDRILL_USUARIO;                            // SMTP username
+   $mail->Password = MANDRILL_APIKEY;                           // SMTP password
+   $mail->Port = CORREO_PUERTO;                           // SMTP password
    $mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
    $mail->From = $wlemail;
    $mail->FromName = 'Jose Luis Vasquez Barbosa';
    $mail->AddAddress($wlemail);               // Name is optional
-   $mail->AddAddress($wlemailk);               // Name is optional
-   $mail->AddAddress($wlemaila);               // Name is optional
    $mail->AddReplyTo($wlemail, 'Information');
    $mail->WordWrap = 50;                                 // Set word wrap to 50 characters
    $mail->IsHTML(true);                                  // Set email format to HTML
-   $mail->Subject = 'Error en el aplicativo de ventanilla';
+   $mail->Subject = 'envio de email';
    $mail->Body    = $error."<br>IP: ".(is_null($_SERVER['REMOTE_ADDR'])?'Localhost':$_SERVER['REMOTE_ADDR']);
    if(!$mail->Send()) {
       exit;

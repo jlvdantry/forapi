@@ -1,7 +1,7 @@
 <?php
 session_cache_expire(60);  ## se establece el limite de la sesion de php en 60 min
 session_start(); 
-require_once("idmenus.php");
+require_once("config.php");
 ##  hay que checar porque hay veces que entra la clave temporal, como que hay un limite y se pierde la session
 $wlhost='localhost';
 $wldbname=BD;
