@@ -4,7 +4,7 @@
     require __DIR__ . "/vendor/autoload.php";
     session_start();
     $_SESSION = array();
-    include("src/php/idmenus.php");
+    include("src/php/config.php");
     echo "<html class=\"html-custom\" >";
     echo "<head>\n";
     echo " <meta name='viewport' content='width=device-width, initial-scale=1'>\n";
