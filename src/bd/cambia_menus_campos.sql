@@ -28,12 +28,12 @@ CREATE or replace FUNCTION cambia_menus_campos() RETURNS trigger
                  new.readonly=true;
            end if;
         end if;
-        if (new.fuente_nspname!=old.fuente_nspname) then
+        if new.fuente_nspname!=old.fuente_nspname then
            wlfuente_nspname=new.fuente_nspname; 
         else
            wlfuente_nspname=old.fuente_nspname; 
         end if;
-        if (new.fuente!=old.fuente) then
+        if new.fuente!=old.fuente then
            wlfuente=new.fuente; 
         else
            wlfuente=old.fuente; 

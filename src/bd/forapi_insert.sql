@@ -22,7 +22,7 @@ COPY cat_bitacora (idbitacora, idproceso, fecha_inicio, fecha_fin, at_inicio, at
 -- Name: cat_bitacora_idbitacora_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('cat_bitacora_idbitacora_seq', 49, true);
+SELECT pg_catalog.setval('cat_bitacora_idbitacora_seq', 50, true);
 
 
 --
@@ -76,7 +76,7 @@ tmp_jc101	temporal	\N	\N	\N	\N	\N	\N	2019-10-31 16:51:33-06	2019-10-31 16:51:32.
 jc101	jc101	\N	\N	\N	\N	\N	\N	2019-10-31 16:51:33-06	2019-10-31 16:51:32.784103-06	jc101	jc101	0	\N	1	\N	\N	\N	\N	\N	jc101	\N	1	17	0				\N	\N
 jc104	jc104	\N	\N	\N	\N	\N	\N	2019-10-31 17:00:06-06	2019-11-03 09:26:56.914106-07	jc104	jc104	0	\N	1	\N	\N	\N	\N	\N	jc104	\N	1	17	0				\N	\N
 tmp_jc104	temporal	\N	\N	\N	\N	\N	\N	2019-10-31 17:00:06-06	2019-11-03 09:30:37.285462-07	jc104	jc104	0	\N	1	\N	\N	\N	\N	\N	jc104	\N	1	\N	0				\N	\N
-jlvdantry@hotmail.com	JOSE	LUIS	VASQUEZ	\N	\N	\N	\N	2019-12-05 15:17:02-07	2019-12-06 11:05:18.455344-07	tmp_jc104	jc104	0	\N	1	\N	\N	\N	\N	\N	888aDantryR	\N	1	\N	0				5556572416	\N
+jlvdantry@hotmail.com	JOSE	LUIS	VASQUEZ	\N	\N	\N	\N	2019-12-05 15:17:02-07	2019-12-06 16:54:15.208557-07	tmp_jc104	jc104	0	\N	1	\N	\N	\N	\N	\N	888aDantryR	\N	1	\N	0				5556572416	\N
 \.
 
 
@@ -144,7 +144,7 @@ COPY his_cat_usuarios (idcambio, usename, nombre, apepat, apemat, puesto, depto,
 -- Name: his_cat_usuarios_idcambio_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('his_cat_usuarios_idcambio_seq', 107, true);
+SELECT pg_catalog.setval('his_cat_usuarios_idcambio_seq', 109, true);
 
 
 --
@@ -189,7 +189,7 @@ COPY his_menus_pg_group (idcambio, idmenu, grosysid, fecha_alta, usuario_alta, c
 -- Name: his_menus_pg_group_idcambio_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('his_menus_pg_group_idcambio_seq', 364, true);
+SELECT pg_catalog.setval('his_menus_pg_group_idcambio_seq', 375, true);
 
 
 --
@@ -211,7 +211,7 @@ COPY his_menus_pg_tables (idcambio, idmenu, tablename, tselect, tinsert, tupdate
 -- Name: his_menus_pg_tables_idcambio_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('his_menus_pg_tables_idcambio_seq', 865, true);
+SELECT pg_catalog.setval('his_menus_pg_tables_idcambio_seq', 886, true);
 
 
 --
@@ -264,6 +264,7 @@ COPY menus (idmenu, descripcion, objeto, fecha_alta, usuario_alta, fecha_modific
 65	infracciones	\N	2019-10-31 17:25:05-06	jc104	2019-11-02 17:56:23-06	jc104	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	infracciones	147479	\N	100	\N	0	0	0	0	300	f	jc	\N	0	t	80.00	0.00	center	\N			
 63	sanciones	\N	2019-10-31 17:24:57-06	jc104	2019-11-02 17:59:47-06	jc104	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	sanciones	147494	\N	100	\N	0	0	0	0	300	f	jc	\N	0	t	80.00	0.00	col-lg-8	\N			
 31	Importa desde Excel		2019-10-20 19:38:33-06	inicio	2019-12-01 12:45:09-07	jc104	man_menus.php	0	10	0	a,l,s,i,u,d		2	1	menus_excels	126401		100	fecha_alta desc	0	0	0	0	300	t	forapi	pupanint.css	0	t	30.00	0.00	col-lg-8				
+154	opciones	\N	2019-12-06 16:53:46-07	jc104	2019-12-06 16:53:46-07	jc104	man_menus.php	\N	\N	\N	i,d,u,s,l,a	\N	2	2	opciones	152747	\N	100	\N	0	0	0	0	300	f	jc	\N	0	t	80.00	0.00	col-lg-6	\N			
 \.
 
 
@@ -749,6 +750,18 @@ COPY menus_campos (idcampo, idmenu, reltype, attnum, descripcion, size, male, fu
 675	66	147506	35	sancion_observacion	-1	-1					\N	0	350	\N	40	30	f	f	f	0	f	f	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2029		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	360	col-md-6	\N	\N
 677	66	147506	37	expediente	30	34					\N	0	370	\N	40	30	f	f	f	0	f	f	\N	f		2019-10-31 17:25:09-06	jc104	2019-10-31 17:25:09-06	jc104	0	boletas	jc	f	\N	2029		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	380	col-md-6	\N	\N
 35	4	126000	1	Usuario	10	40						0	10	0	40	30	t	f	f	2	f	f		t		2019-10-12 14:53:07-06	inicio	2019-10-12 14:53:07-06	inicio	0	cat_usuarios	forapi	f		0		0	0	f	0	0	0	0	t	f	t	f	f	0	f	0	f	10	\N	\N	\N
+1723	154	152747	1	Tipo	8	-1	opciones_b	descripcion	id		\N	0	10	\N	40	30	t	f	t	0	\N	f	\N	f	Tipo	2019-12-06 16:53:46-07	jc104	2019-12-06 16:53:46-07	jc104	0	opciones	jc	f	\N	0	jc	0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	10	col-md-6	text-danger	\N
+1724	154	152747	2	Unidad de cuenta desde	30	5					\N	0	20	\N	40	30	f	f	f	0	\N	f	\N	f	Unidad de cuenta desde	2019-12-06 16:53:46-07	jc104	2019-12-06 16:53:46-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6	text-primary	border-dark
+1730	154	152747	8	id	8	-1					\N	0	80	\N	40	30	t	f	f	0	\N	t	\N	t		2019-12-06 16:53:46-07	jc104	2019-12-06 16:53:46-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	28861		\N	\N
+1731	154	152747	9	fecha_alta	18	0					\N	0	90	\N	40	30	f	f	f	0	\N	t	\N	f		2019-12-06 16:53:46-07	jc104	2019-12-06 16:53:46-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	28881		\N	\N
+1732	154	152747	10	usuario_alta	8	-1					\N	0	100	\N	40	30	f	f	f	0	\N	t	\N	f		2019-12-06 16:53:46-07	jc104	2019-12-06 16:53:46-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	28901		\N	\N
+1733	154	152747	11	fecha_modifico	18	0					\N	0	110	\N	40	30	f	f	f	0	\N	t	\N	f		2019-12-06 16:53:46-07	jc104	2019-12-06 16:53:46-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	28921		\N	\N
+1734	154	152747	12	usuario_modifico	8	-1					\N	0	120	\N	40	30	f	f	f	0	\N	t	\N	f		2019-12-06 16:53:46-07	jc104	2019-12-06 16:53:46-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	t	28941		\N	\N
+1725	154	152747	3	Unidad de cuenta hasta	30	10					\N	0	30	\N	40	30	f	f	f	0	\N	f	\N	f	Unidad de cuenta hasta	2019-12-06 16:53:46-07	jc104	2019-12-06 16:53:46-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	20	col-md-6	text-warning	\N
+1728	154	152747	6	Horas de arresto desde	8	-1					\N	0	60	\N	40	30	f	f	f	0	\N	t	\N	f	Horas de arresto desde	2019-12-06 16:53:46-07	jc104	2019-12-06 16:53:46-07	jc104	0	opciones	jc	f	\N	2111		0	0	t	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+1729	154	152747	7	Horas de arresto hasta	30	259					\N	0	70	\N	40	30	f	f	f	0	\N	t	\N	f	Horas de arresto hasta	2019-12-06 16:53:46-07	jc104	2019-12-06 16:53:46-07	jc104	0	opciones	jc	f	\N	2111		0	0	t	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	40	col-md-6	\N	\N
+1726	154	152747	4	Horas de Servicio Comunitatio desde	30	10					\N	0	40	\N	40	30	t	f	f	0	\N	f	\N	f	Horas de Servicio Comunitatio desde	2019-12-06 16:53:46-07	jc104	2019-12-06 16:53:46-07	jc104	0	opciones	jc	f	\N	2110		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	30	col-md-6	\N	border-danger
+1727	154	152747	5	Horas de Servicio Comunitario hasta	-1	-1					\N	0	50	\N	40	30	t	f	f	0	\N	f	\N	f	Horas de Servicio Comunitario hasta	2019-12-06 16:53:46-07	jc104	2019-12-06 16:53:46-07	jc104	0	opciones	jc	f	\N	0		0	0	f	\N	\N	\N	0	t	f	t	f	f	0	f	0	f	30	col-md-6	\N	\N
 \.
 
 
@@ -773,14 +786,14 @@ SELECT pg_catalog.setval('menus_campos_eventos_icv_seq', 2, true);
 -- Name: menus_campos_fila_seq; Type: SEQUENCE SET; Schema: forapi; Owner: inicio
 --
 
-SELECT pg_catalog.setval('menus_campos_fila_seq', 27501, true);
+SELECT pg_catalog.setval('menus_campos_fila_seq', 28941, true);
 
 
 --
 -- Name: menus_campos_idcampo_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('menus_campos_idcampo_seq', 1662, true);
+SELECT pg_catalog.setval('menus_campos_idcampo_seq', 1734, true);
 
 
 --
@@ -876,6 +889,14 @@ COPY menus_htmltable (idhtmltable, descripcion, esdesistema, columnas, fecha_alt
 2096	AGRUPADOS	f	0	2019-12-01 14:15:30-07	jc104	2019-12-01 14:15:30-07	jc104	147	\N
 2098	AGRUPAUNO	f	0	2019-12-05 14:23:53-07	jc104	2019-12-05 14:23:53-07	jc104	148	\N
 2099	AGRUPADOS	f	0	2019-12-05 14:23:53-07	jc104	2019-12-05 14:23:53-07	jc104	148	\N
+2101	AGRUPAUNO	f	0	2019-12-06 13:55:15-07	jc104	2019-12-06 13:55:15-07	jc104	151	\N
+2102	AGRUPADOS	f	0	2019-12-06 13:55:15-07	jc104	2019-12-06 13:55:15-07	jc104	151	\N
+2104	AGRUPAUNO	f	0	2019-12-06 14:03:59-07	jc104	2019-12-06 14:03:59-07	jc104	152	\N
+2105	AGRUPADOS	f	0	2019-12-06 14:03:59-07	jc104	2019-12-06 14:03:59-07	jc104	152	\N
+2107	AGRUPAUNO	f	0	2019-12-06 14:08:35-07	jc104	2019-12-06 14:08:35-07	jc104	153	\N
+2108	AGRUPADOS	f	0	2019-12-06 14:08:35-07	jc104	2019-12-06 14:08:35-07	jc104	153	\N
+2110	AGRUPAUNO	f	0	2019-12-06 16:53:46-07	jc104	2019-12-06 16:53:46-07	jc104	154	\N
+2111	AGRUPADOS	f	0	2019-12-06 16:53:46-07	jc104	2019-12-06 16:53:46-07	jc104	154	\N
 \.
 
 
@@ -883,14 +904,14 @@ COPY menus_htmltable (idhtmltable, descripcion, esdesistema, columnas, fecha_alt
 -- Name: menus_htmltable_idhtmltable_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('menus_htmltable_idhtmltable_seq', 2100, true);
+SELECT pg_catalog.setval('menus_htmltable_idhtmltable_seq', 2112, true);
 
 
 --
 -- Name: menus_idmenu_seq; Type: SEQUENCE SET; Schema: forapi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('menus_idmenu_seq', 148, true);
+SELECT pg_catalog.setval('menus_idmenu_seq', 154, true);
 
 
 --
@@ -977,6 +998,7 @@ COPY menus_pg_group (idmenu, grosysid, fecha_alta, fecha_modifico, usuario_alta,
 64	\N	2019-10-31 17:25:01-06	2019-10-31 17:25:01-06	jc104	jc104	\N	admon	0	\N
 65	\N	2019-10-31 17:25:05-06	2019-10-31 17:25:05-06	jc104	jc104	\N	admon	0	\N
 66	\N	2019-10-31 17:25:09-06	2019-10-31 17:25:09-06	jc104	jc104	\N	admon	0	\N
+154	\N	2019-12-06 16:53:46-07	2019-12-06 16:53:46-07	jc104	jc104	\N	admon	0	\N
 \.
 
 
@@ -1112,6 +1134,9 @@ COPY menus_pg_tables (idmenu, tablename, tselect, tinsert, tupdate, tdelete, tal
 19	menus_archivos	1	1	 	 	 	2019-10-12 14:53:07-06	2019-10-12 14:53:07-06	inicio	inicio	 	forapi
 66	boletas	1	1	1	1	0	2019-10-31 17:25:09-06	2019-10-31 17:25:09-06	jc104	jc104	0	jc
 31	menus_excels	1	1	1	1	0	2019-11-18 09:35:24-07	2019-11-18 09:35:24-07	jc104	jc104	0	forapi
+154	opciones	1	1	1	1	0	2019-12-06 16:53:46-07	2019-12-06 16:53:46-07	jc104	jc104	0	jc
+154	opciones_id_seq	1	0	1	0	0	2019-12-06 16:53:46-07	2019-12-06 16:53:46-07	jc104	jc104	0	jc
+154	opciones_b	1	1	1	1	0	2019-12-06 16:53:46-07	2019-12-06 16:53:46-07	jc104	jc104	0	jc
 \.
 
 
