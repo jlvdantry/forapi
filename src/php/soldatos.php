@@ -1006,7 +1006,7 @@ class soldatos
 				{
                                         error_log($this->dame_tiempo()." src/php/soldatos.php detecto cambio htmltable=".$htmltableanterior
                                           ." de campos=".$this->menuc[$nomcampo]["htmltable"]." j=".$j."\n",3,"/var/tmp/errores.log");
-                                        $wllinea="<div id=".$filaanterior." class='d-flex justify-content-between flex-wrap'>".$wllinea."</div>";
+                                        $wllinea="<div id=".$filaanterior." class='d-flex justify-content-between flex-wrap align-items-end'>".$wllinea."</div>";
                                         echo $wllinea;
                                         $filaanterior=$this->menuc[$nomcampo]["fila"];
                                         $wllinea="";
@@ -1021,7 +1021,7 @@ class soldatos
                                         error_log($this->dame_tiempo()." src/php/soldatos.php no detecto cambio j=".$j."\n",3,"/var/tmp/errores.log");
                                 }
                   if ($this->menuc[$nomcampo]["fila"]!=$filaanterior) {
-                      $wllinea="<div id=".$filaanterior." class='d-flex justify-content-between flex-wrap mb-2'>".$wllinea."</div>";
+                      $wllinea="<div id=".$filaanterior." class='d-flex justify-content-between flex-wrap mb-2 align-items-end'>".$wllinea."</div>";
                       echo $wllinea;
                       $filaanterior=$this->menuc[$nomcampo]["fila"];
                       $wllinea="";
@@ -1115,14 +1115,14 @@ class soldatos
 
         };
             if ($wllinea!="") {
-                                   $wllinea="<div id=".$filaanterior." class='d-flex justify-content-between flex-wrap'>".$wllinea."</div>";
+                                   $wllinea="<div id=".$filaanterior." class='d-flex justify-content-between flex-wrap align-items-end'>".$wllinea."</div>";
                                    echo $wllinea;
             }
 	    $this->fin_tabcaptura();	  	    
 	    $this->fin_tabcaptura();	  	    
 	    echo "</quepasa>";      	
 	    $this->inicio_tab_botones($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);
-     	echo "<tr class='d-flex justify-content-between flex-wrap' >";	    
+     	echo "<tr class='d-flex justify-content-between flex-wrap align-items-end' >";	    
         if ( strpos($this->movto_mantto,"i")!==false ||  strpos($this->movto_mantto,"I")!==false  
         ) 
         {
