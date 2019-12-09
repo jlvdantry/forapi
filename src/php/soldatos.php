@@ -890,7 +890,7 @@ class soldatos
 	    	            : ( $espassword=="1" ? " type=password onChange='seguridad(this)'"   //20070305
 	    	            : "")).	//20070305 //20080123
 	    	            ##(($tipodedato == "timestamptz" || $tipodedato=='date') ? " type=date format='aaaaa-mm-dd' onChange='validafecha(this)' " : " " ).
-	    	            (($tipodedato == "timestamptz" || $tipodedato=='date') ? " onChange='validafecha(this)' " : " " ).
+	    	            //(($tipodedato == "timestamptz" || $tipodedato=='date') ? " onChange='validafecha(this)' " : " " ).
 	    	            $this->armaid_cc($j)." name=wl_".$nombre."__".$this->idmenu.
 						( $size!="" ? " size=".$size : ($espassword=="3" ? " size=14 " : ""));
 						($tcase==1) ? $wli=$wli." onkeyup='mayusculas(this,event);'" : "";  ##20071029
@@ -1317,20 +1317,19 @@ class soldatos
 	}     //20070623
      $tt = $this->titulos_tab($sql_result,$md);     
      $wlllave="";
+     $tt = $tt."<tbody class='scrolling_table_body'>\n";
      if ($num!=0)
      {
 	     $Row1 = pg_fetch_array($sql_result, 0);
-		 $tt = $tt."<tbody class='scrolling_table_body'>\n";
     	 for ($z=0; $z < $num ;$z++)
      	{
 	    	$wlllave="";
         	$Row = pg_fetch_array($sql_result, $z);
         	$wl=$this->armarenglon($sql_result,$Row,$z,$md);
  			$tt = $tt.$wl;       
-          	//next($Row1);
         }
-		$tt = $tt."</tbody>\n";        
       }
+		$tt = $tt."</tbody>\n";        
 	return $tt;		
   } 
 

@@ -1842,14 +1842,6 @@ window.mantto_tabla = function (wlmenu,wlmovto,wlllave,wlrenglon,wleventoantes,w
 
         if (wlmovto=='i' || wlmovto=='u' || wlmovto=='I')
         {
-        	if (checafechas(forma)==false)	
-        	{
-           		return;
-			}           		
-        }                
-
-        if (wlmovto=='i' || wlmovto=='u' || wlmovto=='I')
-        {
         	if (checaparticulares(forma)==false)	
         	{
            		return;
@@ -2107,7 +2099,8 @@ window.altatabla = function(wlrenglon,idmenu)
                 var xx = req.responseXML.getElementsByTagName("renglon");              	
                 var tr=xx[0].childNodes[0].nodeValue.split(">");        
                 var z=xx[0].childNodes[0].nodeValue.split("</td>");
-		var b = document.getElementById('tabdinamica_'+idmenu).insertRow(1);			
+                var tb= document.getElementById('tabdinamica_'+idmenu).getElementsByTagName('tbody')[0]
+		var b = tb.insertRow(0);			
                 try { document.getElementById('tabdinamica_'+idmenu).style.visibility='visible';        } catch (err) { } ;
 		var p=0;
 		var wlbaja = document.getElementById('baja');

@@ -9,7 +9,7 @@ altaautomatica.prototype.create = function ( doc ) {
 
         // create elements
         this._el = doc.createElement( "div" );
-        this._el.className = "pupan";
+        //this._el.className = "form-control form-control-custom";
         this._el.setAttribute('id', 'altaautomatica_');
         this._el.setAttribute('name', 'altaautomatica_');
 
@@ -30,7 +30,7 @@ altaautomatica.prototype.create = function ( doc ) {
         tBody.appendChild( tr );
         var td = doc.createElement( "td" );
         this._desc = doc.createElement( "input" );
-        this._desc.className = "foco";
+        this._desc.className = "form-control form-control-custom";
         this._desc.setAttribute("type", "text");
         this._desc.setAttribute("id", "_desc_");
         this._desc.setAttribute("value", "");
