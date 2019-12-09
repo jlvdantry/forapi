@@ -608,8 +608,8 @@ class soldatos
    		        $vas="<div class='".$menuc["clase"]."' ><div class='d-flex'><label class='form-label-custom ".$menuc["clase_label"]." ' "
                                 .$wleshiden."id='wlt_".$wlnombre."__".$this->idmenu."' name='wlt_".$wlnombre."__".$this->idmenu
                                 ."' abbr=\"".$descripcion."\" value=\"".$descripcion."\" "
-   		 		.">".$descripcion.(($busqueda=='t') ? "* " : " ")
-   		                ."</label>".$wlobligatorio."</div>"; 
+   		 		.">".$descripcion
+   		                ."</label>".$wlbusqueda.$wlobligatorio."</div>"; 
    			$vas=$vas."<div class='d-flex'><select $wlobligatorio_ $wlbusqueda_ $tipodato_ $cambiarencambios_ class="
                                     ."'form-control form-control-custom".$menuc["clase_dato"]."' "
                                     .$wleshiden."placeholder=\"prueba\" "
@@ -864,13 +864,14 @@ class soldatos
     $tipodato_=((substr($tipodedato,0,3)==='int' || $tipodedato=='numeric') ? "data-numerico=1" : "" );
     $wlbusqueda_=   (($busqueda=='t')    ? "data-busqueda=1" : "");
     $wlidcampo=$mecq["idcampo"];
-    $wltipodedato=((substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? " type='tel' " : "");
+    if (substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') { $wltipodedato=" type='tel' "; }
+    if ($tipodedato=='date' ) { $wltipodedato=" type='date' "; }
             $wli="<div class='".$mecq["clase"]."'><div class='d-flex'><label class='form-label-custom $wleshiden ".$mecq["clase_label"]."'  id='wlt_".$nombre."__".$this->idmenu."' name=wlt_".$nombre."__".$this->idmenu." title=\"".$descripcion."\" abbr=\"".$descripcion."\""
 			.">".$descripcion
 			."</label>".$wlobligatorio.$wlbusqueda."</div>"; 
 	    $wli=$wli.
 	    	(($tipodedato != "text") 
-	    	? "<div class='d-flex'><input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ autocapitalize='none' class=".
+	    	? "<div class='d-flex'><input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ $wltipodedato autocapitalize='none' class=".
                             "'form-control form-control-custom $wleshiden".$mecq["clase_dato"]."'  onKeydown='return quitaenter(this,event)' " 
 	    	: "<div class='d-flex'><textarea $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class=".
                             "'form-control form-control-custom $wleshiden".$mecq["clase_dato"]."' ".((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
@@ -917,7 +918,9 @@ class soldatos
 
 	    	            $wli=$wli.(($wltdf==3) ? " placeholder=\"".$wltdd."\"" : "").
 	    	            (($tipodedato != "text") ? " ></input>" : " >".$valordefault."</textarea>").
+/*
 	    	            (($tipodedato == "timestamptz" || $tipodedato == "date") & $readonly!='t' ? " <input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' class='img' type=image id='fe_".$nombre."' name=fe_".$nombre." src='img/icon_datepicker_pink.gif' onclick='muestrafecha(this);return false' title='Selecciona la fecha del calendario'></input>" : " " ). 
+*/
                             (($espassword=="3") ? " <input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' size=20 class='captcha' readonly='on' type=text id='wl_".$nombre."_img"."__".$this->idmenu."' name=wl_".$nombre."_img__".$this->idmenu." title='Imagen de la captcha' ></input>&nbsp<input tabindex='-1' class='img' type=image id='wl_".$nombre."_bot__".$this->idmenu."' name=wl_".$nombre."_bot__".$this->idmenu." src='img/refresh.png' onclick='ReDrawCaptcha(this);return false' title='Refresca la imagen del captcha'></input>" : " " );
 			if ($mecq["upload_file"]=='t')
 			{ 

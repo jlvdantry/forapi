@@ -2035,7 +2035,7 @@ try {  // firefox
 	  		{
                                 cc_elm=document.getElementById(elm+"_"+wlmenu);
                                 cc_el=document.getElementById(el+"_"+wlmenu);
-	  			if (cc_elm.type=='text' || cc_elm.type=='password' || cc_elm.type=='textarea')
+	  			if (cc_elm.type=='text' || cc_elm.type=='password' || cc_elm.type=='textarea' || cc_elm.type=='date' || cc_elm.type=='tel')
                 {  // 20070630 este inicio de { estaba a partir del siguiente if, esto hacia que no acutalizara bien
                    try { var valorren=cc_el.innerText.trim(); } catch (err) { var valorren=null; }
 	  			 if (cc_elm.value.trim()!=valorren)

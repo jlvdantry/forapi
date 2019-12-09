@@ -60,6 +60,7 @@ class reingenieria extends xmlhttp_class
         $this->crea_vista();
         $this->filas($this->worksheet);
         $this->obligatorios($this->worksheet);
+        $this->busquedas($this->worksheet);
         $this->anexardocumentos($this->worksheet);
         $this->opciones($this->worksheet);
         $this->agrupaciones($this->worksheet);
@@ -291,6 +292,37 @@ class reingenieria extends xmlhttp_class
         return true;
    }
 
+   function busquedas($worksheet) {
+        foreach ($worksheet->getRowIterator() as $row) {
+            $cellIterator = $row->getCellIterator();
+            $cellIterator->setIterateOnlyExistingCells(FALSE);
+            $tienefilas=0;
+            foreach ($cellIterator as $cell) {
+              if ($cell->getColumn()=="A" && $cell->getValue()=="Dato de busqueda") {
+                  $tienefilas=1;
+              } else  {
+                  if ($tienefilas==1) {
+                      if ($cell->getvalue()=='si') {
+                         $strsql="update forapi.menus_campos set busqueda=true where idmenu=".$this->idmenu." and attnum=".
+                                      "(select attnum from forapi.campos where relname='".$this->tabla."' and nspname='".$this->nspname."' and attname='".
+                                      strtolower($cell->getColumn())."');";
+                         $sql_result = @pg_exec($this->connection,$strsql);
+                         if (strlen(pg_last_error($this->connection))>0) {
+                             echo "<error>Error al actualizar las filas</error>";
+                             error_log(parent::dame_tiempo()." src/php/reingenieria_class.php filas \n"
+                                                      .pg_last_error($this->connection)."\n",3,"/var/tmp/errores.log");
+                             return false;
+                         }
+                      }
+                  }
+              }
+
+            }
+        }
+        return true;
+   }
+
+
    function anexardocumentos($worksheet) {
         foreach ($worksheet->getRowIterator() as $row) {
             $cellIterator = $row->getCellIterator();
@@ -445,14 +477,20 @@ class reingenieria extends xmlhttp_class
                      }
                   }
                   if ($campo[0]=="textolargo") {
-                     if ($campo[1]!="") {
                         $tipo=" text ";
                         return $tipo;
-                     } else {
-                        $tipo=" text ";
-                        return $tipo;
-                     }
                   }
+
+                  if ($campo[0]=="texto") {
+                      if (count($campo)>2) {
+                        $tipo=" varchar(".$campo[1].")";
+                      }
+                  }
+
+                  if ($campo[0]=="fecha") {
+                        $tipo=" date";
+                  }
+
               }
            }
         }
