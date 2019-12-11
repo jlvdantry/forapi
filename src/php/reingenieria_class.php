@@ -56,9 +56,9 @@ class reingenieria extends xmlhttp_class
         if ($tieneetiquetas && !$tienecampos) {
             if (!$this->crea_sincampos($this->worksheet)) return false;
         }
-        echo "<error>Creo la tabla</error>";
         $this->crea_vista();
         $this->filas($this->worksheet);
+        $this->columnas_vista();
         $this->obligatorios($this->worksheet);
         $this->busquedas($this->worksheet);
         $this->anexardocumentos($this->worksheet);
@@ -67,6 +67,8 @@ class reingenieria extends xmlhttp_class
         $this->longitudes($this->worksheet);
         $this->clases($this->worksheet);
         $this->clases_datos($this->worksheet);
+        echo "<crea_desdeexcel>Creo la vista</crea_desdeexcel>";
+        echo parent::dame_menus();
    }
 
 
@@ -382,6 +384,28 @@ class reingenieria extends xmlhttp_class
         }
         return true;
    }
+   /* regresa un arreglo con los campos que contenga la vistas, en caso de existir un renglon el excel que se llame filas */
+   function dame_vista($worksheet) {
+        $vista=array();
+        foreach ($worksheet->getRowIterator() as $row) {
+            $cellIterator = $row->getCellIterator();
+            $cellIterator->setIterateOnlyExistingCells(FALSE);
+            $tienefilas=0;
+            foreach ($cellIterator as $cell) {
+              if ($cell->getColumn()=="A" && $cell->getValue()=="Vista") {
+                  $tienefilas=1;
+              } else  {
+                  if ($tienefilas==1) {
+                      if ($cell->getvalue()!=='') {
+                         $campo=explode(":",$cell->getValue());
+                         if (count($campo)>1) { $vista[$campo[0]]=$campo[1]; }
+                      }
+                  }
+             }
+           }
+        }
+        return $vista;
+    }
 
    /* crea la tabla de opciones */
    function crea_tablaopciones($worksheet,$col) {
@@ -583,10 +607,12 @@ class reingenieria extends xmlhttp_class
    {
 
       $men = new class_men();
+      $vista = $this->dame_vista($this->worksheet);
       $sql=" insert into forapi.menus(descripcion,tabla,reltype,php,nspname,table_height,table_width,table_align,columnas) ".
-                   " select relname,relname,reltype,'man_menus.php',nspname,0,80,'col-lg-6',1".
-           " from forapi.tablas ".
-           " where relname = '".$this->tabla."' ".
+                   " select relname,relname,reltype,'man_menus.php',nspname,0,80,'".
+                   (array_key_exists("clase",$vista) ? $vista["clase"] : "col-lg-6")."',1".
+                   " from forapi.tablas ".
+                   " where relname = '".$this->tabla."' ".
            " and nspname = '".$this->nspname."'";
       $sql_result = pg_exec($this->connection,$sql)
                     or die("No se pudo ejecutar el sql1 en menus");
@@ -612,7 +638,7 @@ class reingenieria extends xmlhttp_class
                   $wlidmenu.
                   ",'".($row["descripcion"]!="" ? $row["descripcion"] : $row["attname"])."'".
                   ",'".$row["attnum"]."'".
-                  ",'".($row["attnum"]*10)."'".
+                  ",'".(($row["attname"]=='fecha_alta' || $row["attname"]=='usuario_alta' || $row["attname"]=='fecha_modifico' || $row["attname"]=='usuario_modifico' || ($row["indice"]==true && strpos($row["valor_default"],"nextval")!==false)) ? ($row["attnum"]*1000) : ($row["attnum"]*10) )."'".
                   ",".($row["attnotnull"]=='t' ? 'true' : 'false').
                   ",".($row["atthasdef"]=='t' && $row["valor_default"]!='0' ? 'true' : 'false').
                   ",".($row["indice"]>=1 ? 'true' : 'false').
@@ -630,13 +656,32 @@ class reingenieria extends xmlhttp_class
           $sql="insert into forapi.menus_pg_group(idmenu ,groname) select ".$wlidmenu.",groname from pg_group where groname='admon'";
       $sql_resulti = pg_exec($this->connection,$sql)
                                 or die("No se pudo ejecutar el sql5 en menus: ".$sql." ".pg_last_error($this->connection));
-
-      $sql=" update forapi.menus set columnas=2 ".
-           " where tabla = '".$this->tabla."' ".
-           " and nspname = '".$this->nspname."'";
-      $sql_result = pg_exec($this->connection,$sql)
-                    or die("No se pudo ejecutar el sql1 en menus");
    } 
+
+   function columnas_vista()
+   {
+      $vista = $this->dame_vista($this->worksheet);
+      if (array_key_exists("columnas",$vista)) {
+         if ($vista["columnas"]=="no") { return; }
+         if (is_numeric($vista["columnas"])) {
+             if ($vista["columnas"]<13) {
+                $sql=" update forapi.menus set columnas=".$vista["columnas"].
+                     " where tabla = '".$this->tabla."' ".
+                     " and nspname = '".$this->nspname."'".
+                     " and idmenu = ".$this->idmenu;
+                $sql_result = pg_exec($this->connection,$sql)
+                    or die("No se pudo ejecutar el sql1 en menus");
+             }
+         }
+      } else {
+        $sql=" update forapi.menus set columnas=2 ".
+           " where tabla = '".$this->tabla."' ".
+           " and nspname = '".$this->nspname."'".
+           " and idmenu = ".$this->idmenu;
+        $sql_result = pg_exec($this->connection,$sql)
+                    or die("No se pudo ejecutar el sql1 en menus");
+      }
+   }
 
    function crea_menusbase()
    {

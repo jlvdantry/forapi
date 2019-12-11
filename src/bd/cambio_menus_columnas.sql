@@ -9,8 +9,10 @@ CREATE or replace FUNCTION forapi.cambio_menus_columnas() RETURNS trigger
       wlclase   varchar(100);
       registros numeric;
       htmltableant numeric;
+      num_rows numeric;
     BEGIN
      if old.columnas!=new.columnas then
+      if new.columnas>0 then
         if new.columnas=1 then 
            wlclase='col-md-12';
         end if;
@@ -52,6 +54,36 @@ CREATE or replace FUNCTION forapi.cambio_menus_columnas() RETURNS trigger
             registros=registros+1;
             raise notice ' descripcion % , fila % lleva % ', mireg.descripcion, wlfila, lleva;
           end loop;
+      end if;
+      if new.columnas=0 then
+        for mireg in select coalesce(htmltable,0) htmltable,coalesce(fila,0) fila,count(*) as columnas from forapi.menus_campos where idmenu=old.idmenu and eshidden=false
+                  group by htmltable,fila
+                  order by htmltable,fila
+          loop
+          wlclase='col-md-1';
+          if mireg.columnas=1 then
+             wlclase='col-md-12';
+          end if;
+          if mireg.columnas=2 then
+             wlclase='col-md-6';
+          end if;
+          if mireg.columnas=3 then
+             wlclase='col-md-4';
+          end if;
+          if mireg.columnas=4 then
+             wlclase='col-md-3';
+          end if;
+          if mireg.columnas=5 then
+             wlclase='col-md-2';
+          end if;
+          if mireg.columnas=6 then
+             wlclase='col-md-2';
+          end if;
+          update forapi.menus_campos set clase=wlclase where idmenu=old.idmenu and fila=mireg.fila and htmltable=mireg.htmltable and coalesce(clase,'')='';
+          GET DIAGNOSTICS num_rows = ROW_COUNT;
+          raise notice ' clase % , fila % lleva % actualizados % columnas %', wlclase, mireg.fila, mireg.htmltable, num_rows,  mireg.columnas;
+          end loop;
+      end if;
      end if;
      return new;
     END;$$;
