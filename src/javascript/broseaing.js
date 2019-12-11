@@ -2102,7 +2102,7 @@ window.altatabla = function(wlrenglon,idmenu)
                 var z=xx[0].childNodes[0].nodeValue.split("</td>");
                 var tb= document.getElementById('tabdinamica_'+idmenu).getElementsByTagName('tbody')[0]
 		var b = tb.insertRow(0);			
-                try { document.getElementById('tabdinamica_'+idmenu).style.visibility='visible';        } catch (err) { } ;
+                try { $('#tabdinamica_'+idmenu).removeClass('d-none');        } catch (err) { } ;
 		var p=0;
 		var wlbaja = document.getElementById('baja');
 		var wlcambio = document.getElementById('cambio');
@@ -2483,6 +2483,7 @@ window.querespuesta = function()
                                         else
                                         { entrada.insertAdjacentHTML('beforeEnd', items[0].textContent); }  //ff
 					hayunregistro(idmenu);
+                                        try { $('#tabdinamica_'+idmenu).removeClass('d-none');        } catch (err) { } ;
 					sumatotales(idmenu);	
               }
               else {alert('no encontro renglones '+req.responseText)}

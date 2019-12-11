@@ -343,10 +343,10 @@ class soldatos
      */
   function inicio_tabcaptura($table_width,$table_height,$table_align)
   { 
-        echo    "<div class='btn-02 d-flex justify-content-between '".
+        echo    "<div class='titulos-formulario d-flex justify-content-between '".
 				"	\" oncontextmenu='contextForTABLE(this,$this->idmenu);return false;' >".
 			"		<label align='center' class=titulo >".$this->titulos."</label>".
-                ($_SESSION["parametro1"]!="" ?	"<button class='btn-mostrar' type=button  tabindex='-1' id='imostrar' onclick=\"return toggleDiv('"
+                ($_SESSION["parametro1"]!="" ?	"<button class='btn-mostrar pl-1' type=button  tabindex='-1' id='imostrar' onclick=\"return toggleDiv('"
                                         .$this->titulos."',this);\" /></button>"
                                      :	"" ).
 		"</div>".
@@ -397,9 +397,9 @@ class soldatos
     *  @param int $s_table  indica si pone scrroll en la tabla 0=si 1=no
     *  @param int $s_table_height  Altura del scroll
     */
-  function inicio_tab($table_width,$table_height,$table_align)
+  function inicio_tab($table_width,$table_height,$table_align,$num=0)
   {
-    		return "<div class='table-responsive'> <table id='tabdinamica_".$this->idmenu."' class='tabla table-striped'"
+    		return "<div class='table-responsive'> <table id='tabdinamica_".$this->idmenu."' class='tabla table-striped ".($num==0 ? 'd-none' : '')."'"
                          .(strlen($table_align)>0 ? " align=".$table_align : "" )
                          ."       style=\" ".   "  width:100" ."%;"
                          .((strlen($table_height)>0 && $table_height>0) ? " height:".$table_height : " heigth:100" )."%;\""
@@ -592,6 +592,7 @@ class soldatos
      	         || (strpos($movtos,"B")!==true )
 		 ) 
 		{
+                        $clase_dato=$mecq["clase_dato"]!="" ? $mecq["clase_dato"] : 'form-control form-control-custom';
 			$wlonchange=""; // 20071109 maneje variables ya que un evento puede ejecutar varias funciones
 			$wlonfocus="";	                    
 			$vas="";
@@ -611,7 +612,7 @@ class soldatos
    		 		.">".$descripcion
    		                ."</label>".$wlbusqueda.$wlobligatorio."</div>"; 
    			$vas=$vas."<div class='d-flex'><select $wlobligatorio_ $wlbusqueda_ $tipodato_ $cambiarencambios_ class="
-                                    ."'form-control form-control-custom".$menuc["clase_dato"]."' "
+                                    ."'$clase_dato' "
                                     .$wleshiden."placeholder=\"prueba\" "
 	 		            .($menuc["autocomplete"]=='1' ? " ;restaura_autocomplete(this)" : "" )
    			            .(($menumce[1]["idevento"]=='1' && $menumce[1]["donde"]=='0' && $menumce[1]["descripcion"]!='') 
@@ -662,7 +663,7 @@ class soldatos
  			
 			$vas=$vas.$DefaultSelect.$opciones."  </select>";
 	 		$vas = ($altaautomatico=='t' ? $vas.
-             	               " <input tabindex='-1' type=image class='img'  src='dist/img/agregar.svg' title='Alta de un nuevo registro de: "
+             	               " <input tabindex='-1' type=image class='img ml-1'  src='dist/img/agregar.svg' title='Alta de un nuevo registro de: "
                                .$descripcion."' value='Alta' id='aa_".$wlnombre."' name=matriz ". 
             	  "onclick='altaautomatico(\"".$idmenu."\",\"".$attnum."\",".   //20070214
             	  trim(substr($this->armaid_cc($j),4))."".
@@ -853,6 +854,7 @@ class soldatos
 	    $wlonblur="";
 	    $wlonkp="";	    
 	    $wlonck="";	    	    
+    $clase_dato=$mecq["clase_dato"]!="" ? $mecq["clase_dato"] : 'form-control form-control-custom';
     $descripcion=($espassword=="3" ? $tip : $descripcion);
     $wlvalordefault=" value=\"$valordefault\" ";
     $wlvalordefault=($valordefault=='hoy' ? " value=\"".date("Y")."-".date('m')."-".date("d")."\" " : ($valordefault=='hora' ? " value=\"".date("H").":".date('i').":".date('s')."\" " : ($valordefault=='hoyyhora' ? " value=\"".date("Y")."-".date('m')."-".date("d")." ".date("H").":".date('i').":".date('s')."\" " :$wlvalordefault)));
@@ -872,9 +874,9 @@ class soldatos
 	    $wli=$wli.
 	    	(($tipodedato != "text") 
 	    	? "<div class='d-flex'><input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ $wltipodedato autocapitalize='none' class=".
-                            "'form-control form-control-custom $wleshiden".$mecq["clase_dato"]."'  onKeydown='return quitaenter(this,event)' " 
+                            "'$clase_dato $wleshiden'  onKeydown='return quitaenter(this,event)' " 
 	    	: "<div class='d-flex'><textarea $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class=".
-                            "'form-control form-control-custom $wleshiden".$mecq["clase_dato"]."' ".((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
+                            "'$clase_dato $wleshiden' ".((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
 	    						? "cols=".$mecq["colspantxt"] : "" )
 	    				).
 	    				(($tipodedato == "text") 
@@ -1014,7 +1016,7 @@ class soldatos
                                         $filaanterior=$this->menuc[$nomcampo]["fila"];
                                         $wllinea="";
 	    			        $this->fin_tabcaptura();	  	    				
-                                        echo "<div class='btn-01 d-flex justify-content-between flex-row-reverse' ><tr><td><button class='btn-mostrar'  tabindex='-1' align='left' type=button id='imostrar' ".
+                                        echo "<div class='subtitulos-formulario d-flex justify-content-end flex-row-reverse container grupo align-items-start' ><tr><td><button class='btn-mostrar ml-2'  tabindex='-1' align='left' type=button id='imostrar' ".
                                         "onclick=\"return toggleDiv('".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."',this);\"></button></td>";
                                         echo "<td><label>".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."</label></td></tr></div>";
 	    		                $this->inicio_tabcaptura_t($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"],
@@ -1834,7 +1836,7 @@ class soldatos
          || strpos($this->movto_mantto,"B")!==false                      
          )          
          {
-     		echo $this->inicio_tab($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);	  	  
+     		echo $this->inicio_tab($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"],$num);	  	  
      		echo $this->filas_ing($sql_result, $num, $this->metada);     		//20070623   
      		echo "</table>";  		
      		echo "</div>";  		

@@ -42,7 +42,6 @@
 .label-custom-formulario{
   color: $gray-03;
 }
-check
 //checkboxes
 
 .radio-cuadrado,
@@ -69,11 +68,13 @@ check
     }
   }
 
+/* esto se puede controlar por flexbox
   input[type="radio"],
   input[type="checkbox"] {
     position: absolute;
     left: -9999px;
   }
+*/
 
   input[type="radio"] + label,
   input[type="checkbox"] + label {
@@ -164,12 +165,32 @@ textarea{
 }
 
 .subtitulos-formulario{
-  h2{
-    line-height: 1.3rem;
-    padding-top: 1rem;
-    margin-bottom: .5rem;
-  }
+  height: 17px;
+  font-family: Metropolis;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: var(--pine-green);
+  margin-left: 1em;
+  margin-top: 2em;
 }
+
+.titulos-formulario{
+  height: 32px;
+  font-family: Metropolis;
+  font-size: 24px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  color: var(--pine-green);
+  margin-left: 2em;
+}
+
 
 .form-control:focus{
     border-color: $verde-aqua;
