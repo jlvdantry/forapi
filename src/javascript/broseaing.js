@@ -1721,7 +1721,8 @@ window.muestra_vista = function (wlmenu,donde='entrada',filtro='',titulo='') {
 window.muestra_menus = function (menus,donde='navbarSupportedContentul') {
      console.log('menus'+menus[0]); 
      m=menus[0].getElementsByTagName('menu');
-     nav=document.getElementByID(donde);
+     nav=$('#'+donde);
+     nav.empty();
      /** interactual sobre los menus que no tiene padre */
      for ( var ren in m) {  
          if (typeof(m[ren])=='object') {
@@ -1754,7 +1755,7 @@ window.muestra_menus = function (menus,donde='navbarSupportedContentul') {
                }
                ad.appendChild(adt) 
                lid.appendChild(ad) 
-               nav.appendChild(lid);
+               nav[0].appendChild(lid);
             }
          }
      }
@@ -1770,7 +1771,7 @@ window.muestra_menus = function (menus,donde='navbarSupportedContentul') {
      ad.setAttribute('onclick',"salir()");
      ad.appendChild(adt)
      lid.appendChild(ad)
-     nav.appendChild(lid);
+     nav[0].appendChild(lid);
 
      for ( var ren in m) {
          if (typeof(m[ren])=='object') {
@@ -2221,9 +2222,13 @@ window.querespuesta = function()
              return;
            }
 
-             if (req.responseText.indexOf("<menus>") != -1) {
-                muestra_menus(req.responseXML.getElementsByTagName("menus"));
-                try { $(entrada).children()[0].remove(); } catch(er) { };
+             if (req.responseText.indexOf("<crea_desdeexcel>") != -1) {
+                 var items = req.responseXML.getElementsByTagName("crea_desdeexcel");
+                 if (items.length>0)
+                 { alert(items[0].childNodes[0].nodeValue); }
+                 else {alert('no encontro el error='+req.responseText)}
+                 muestra_menus(req.responseXML.getElementsByTagName("menus"));
+                //try { $(entrada).children()[0].remove(); } catch(er) { };
                 return;
              }
 
