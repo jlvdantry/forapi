@@ -62,28 +62,29 @@ echo "creo usuarios autorizo usuarios en forapi"
 cat > $0.sql << fin
 select '<?php'
 union all
-select 'define(MENU,''' || idmenu || ''');' from forapi.menus where descripcion='Mtto a menus'
+select 'define(''MENU'',''' || idmenu || ''');' from forapi.menus where descripcion='Mtto a menus'
 union all
-select 'define(MENUS_CAMPOS,''' || idmenu || ''');' from forapi.menus where descripcion='Campos de menus'
+select 'define(''MENUS_CAMPOS'',''' || idmenu || ''');' from forapi.menus where descripcion='Campos de menus'
 union all
-select 'define(MENUS_BIENVENIDO,''' || idmenu || ''');' from forapi.menus where descripcion='Bienvenido'
+select 'define(''MENUS_BIENVENIDO'',''' || idmenu || ''');' from forapi.menus where descripcion='Bienvenido'
 union all
-select 'define(BD,''$1'');' 
+select 'define(''BD'',''$1'');' 
 union all
-select 'define(PWD_USER_TMP,''$3'');' 
+select 'define(''PWD_USER_TMP'',''$3'');' 
 union all
-select 'define(CORREO_HOST,'''');' 
+select 'define(''CORREO_HOST'','''');' 
 union all
-select 'define(CORREO_PUERTO,'''');' 
+select 'define(''CORREO_PUERTO'','''');' 
 union all
-select 'define(MANDRILL_USUARIO,'''');' 
+select 'define(''MANDRILL_USUARIO'','''');' 
 union all
-select 'define(MANDRILL_APIKEY,'''');' 
+select 'define(''MANDRILL_APIKEY'','''');' 
 union all
 select '?>'
 fin
 psql -t $1 -U $2 -h localhost  < $0.sql  > ./src/php/config.php
 echo "creo constantes"
+rm $0.sql
 sed -i -e "s/ //g" ./src/php/config.php
 tail -n 1 "./src/php/config.php" | wc -c | xargs -I {} truncate "./src/php/config.php" -s -{}
 echo "cambio variales de la base"
