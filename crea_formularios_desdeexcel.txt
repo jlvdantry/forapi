@@ -1,0 +1,16 @@
+En la columna A se definen las propiedades de un dato que va a contiener el formulario.
+
+Las propiedades son las siguiente:
+
+Etiquetas, es basico si no se tiene no se puede generar el formulario, de la columna B en adelante se pone las descripcion de los campos o columnas del formulario
+Campos, solo se especifica cuando se va a realizar un formulario para una tabla ya creada
+Tipos de datos, indica el tipo de dato que contiene la etiqueta, puede ser numero,textolargo,texto,fecha,si en caso de que no se defina todos son textolargo
+Agrupaciones, los campos que tengan una misma agrupación, los encuadra en un cuadro juntos
+AnexarDocumentos, indica si el datos se utiliza para anexar un documento
+Filas,
+Dato de busqueda,
+Obligatorios,
+Clases etiqueta y datos,
+Clases datos,
+Clases etiquetas,
+Opciones

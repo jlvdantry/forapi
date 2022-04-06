@@ -1,0 +1,4 @@
+src/sh/crea_forapi.sh    crea la base de datos de formas rapidas, pide 3 parametros 
+                         parametro 1 nombre de la base de datos
+                         parametro 2 usuario administrador
+                         parametro 3 password del usuario administrador
