@@ -346,7 +346,7 @@ class soldatos
         echo    "<div class='titulos-formulario d-flex justify-content-between '".
 				"	\" oncontextmenu='contextForTABLE(this,$this->idmenu);return false;' >".
 			"		<label align='center' class=titulo >".$this->titulos."</label>".
-                ($_SESSION["parametro1"]!="" ?	"<button class='btn-mostrar pl-1' type=button  tabindex='-1' id='imostrar' onclick=\"return toggleDiv('"
+                (@$_SESSION["parametro1"]!="" ?	"<button class='btn-mostrar pl-1' type=button  tabindex='-1' id='imostrar' onclick=\"return toggleDiv('"
                                         .$this->titulos."',this);\" /></button>"
                                      :	"" ).
 		"</div>".
@@ -596,6 +596,9 @@ class soldatos
 			$wlonchange=""; // 20071109 maneje variables ya que un evento puede ejecutar varias funciones
 			$wlonfocus="";	                    
 			$vas="";
+                        $wli="";
+                        $DefaultSelect="";
+                        $opciones="";
 			$wltdf=$menuc["formato_td"];
 			$wltdd="Seleccionar opcion";
                         $wleshiden=($menuc["eshidden"]!='t' ? "" : " class='hidden' ");
@@ -648,436 +651,437 @@ class soldatos
      			    $num = pg_numrows($sql_result);
 				if ($num!=1 || ($obligatorio!=='t'))
 	   			 $DefaultSelect="<option selected value >".(($wltdf==3) ? $wltdd : utf8_encode("Selecciona una Opción") )."</option>\n"; 
-     			for ($i=0; $i < $num ;$i++)
-     			{
-         			$Row = pg_fetch_array($sql_result, $i);
-         			$a = trim($Row[1]);
-         			$b = trim($Row[0]);
-         			if (($a==$valorDefault & $valorDefault!="") )// 20070622
-         			{ $DefaultSelect="<option selected value=".$valorDefault." >".$b."</option>\n";        			}// 20070622
-         			if ($num==1 & $obligatorio=='t' & $DefaultSelect=="")// 20070622         			
-         			{ $DefaultSelect="<option selected value=".$a." >".$b."</option>\n";        			}// 20070622 
-           			$opciones=$opciones."<option value=$a>$b</option>\n";
-     			}
- 			}
- 			
-			$vas=$vas.$DefaultSelect.$opciones."  </select>";
-	 		$vas = ($altaautomatico=='t' ? $vas.
-             	               " <input tabindex='-1' type=image class='img ml-1'  src='dist/img/agregar.svg' title='Alta de un nuevo registro de: "
-                               .$descripcion."' value='Alta' id='aa_".$wlnombre."' name=matriz ". 
-            	  "onclick='altaautomatico(\"".$idmenu."\",\"".$attnum."\",".   //20070214
-            	  trim(substr($this->armaid_cc($j),4))."".
-            	  ",\"".$menuc["fuente"]."\"".
-            	  ",\"".$menuc["fuente_campodes"]."\"".            	  
-            	  ",\"".$menuc["fuente_nspname"]."\"".       
-            	  ",\"".$menuc["altaautomatico_idmenu"]."\"".      
-            	  ",\"".$menuc["fuente_campodep"]."\"".   
-            	  ",\"".$menuc["fuente_campofil"]."\"".   
-            	  ",this);return false' />\n" : $vas ); 
-	 		$vas = ($fuente_busqueda=='t' ? $vas. //20070618
-             	  "<input class=img type=image src='img/action_search_20.gif' title='Buscar opciones' value='Buscar' name=matriz value='Buscar' ". //20070618
-   			          " onClick=\"pidebusqueda('". //20070618
-   	        		  $this->dame_sql_sel($wlnombre,0)."','".$fuente_campofil."','".$wlnombre."','".$fuentewhere."','".$fuente_evento."',0".   //20080117
-            	  	  ",'".$menuc["fuente_busqueda_idmenu"]."'"."); ". //20080117
-                 	  "return false;\"></input>\n" : $vas ); 
-	 	$vas = ((substr($tipodedato,0,3)==='int' || $tipodedato=='numeric') ? $vas." <input type=hidden name=nu_".$wlnombre." value=1></input>\n" : $vas ); 
-	 	$vas = (($tipodedato=='date' || $tipodedato=='timestampz') ? $vas." <input type=hidden name=_da_".$wlnombre." value=1></input>\n" : $vas ); 	 
-	        ($val_particulares!='') ? $vas=$vas." <input type=hidden name=_vp_".$wlnombre." value='".$val_particulares."'></input>\n" : $wli=$wli ; 
-	 	$vas = ($busqueda=='t' ? $vas." <input type=hidden name=bu_".$wlnombre." value=1></input>\n" : $vas ); 	 
-     		  $vas=$vas."</div></div>";  //20070214   		     		
- 		}
-	 	return $vas;
-   }   
-   
-  /**
-    * Funcion que arma los titulos de la tabla dinamica
-    * @param recordset $sql_result recibe el result del sql
-    * @param metada    $md  Metadata del menu
-    */   
-  function titulos_tab($sql_result,$md)  
-  {
-	 $tt = "<script type=\"text/javascript\">\n";
-	 $tt .= "function pone_sort_scroll() {\n";
-	 $tt .= " initable( 'tabdinamica_".$this->idmenu."', [ ";
-     $i = pg_numfields($sql_result);
-        for ($j = 0; $j < $i; $j++) {
-	        $tt .= (($j==0) ? "null" : ",null");
-        }
-	 $tt .= " ], 0, null, 28 );";
-	 $tt .= "}";
-	 $tt .= "</script>\n";
-	 
-	 $tt .= "<thead class='scrolling_table_body'>\n";
-     $tt .= "<tr>";
-     if (strpos($md->camposm["movtos"],"d")!==false) 
-     {
-             $tt .= "<th id='baja_$this->idmenu' name=noimprime >Baja</th>\n";             
-     }
-     if (strpos($md->camposm["movtos"],"cc")!==false) 
-     {
-             $tt .= "<th id='copia_$this->idmenu' name=noimprime >Copia</th>\n";             
-     }
-
-//20070611   lo modifique para que cuando sea solo select "s" se pudiese tambien seleccionar el registro
-//20070611   ya que habia ocaciones que no se podiar dar update al registro y no se podia seleccionar
-//20070611     if (strpos($md->camposm["movtos"],"u")!==false) 
-     if (strpos($md->camposm["movtos"],"u")!==false || strpos($md->camposm["movtos"],"s")!==false || strpos($md->camposm["movtos"],"B")!==false)      
-     {
-             $tt .= "<th id='cambiotxt_$this->idmenu' name=noimprime >Sel</th>\n";                          
-     }     
-
-	$tt .= $this->titulos_subvistas($md->camposmsv,0);
- 
-     // campos      	     
-     $i = pg_numfields($sql_result);
-        for ($j = 0; $j < $i; $j++)
-        {
-##  20070503        Restaure la correccion del 20070118, ya que cuando hay una consulta y existe un campos de trabajo
-##  20070503        este lo borra, el 20070213 se comentarizo no se porque no me acuerdo hay que dar seguimiento a este cambio	        
-##  20070118        lo modifique para que los campos de trabajo osea los campos que no forman parte de la tabla
-##					no los muestre en el renglon
-			if	($md->camposmc[pg_fieldname($sql_result, $j)]["attnum"]!="0") ## 20070213	
-			{ ## 20070213	
-//20070515          		echo "<td>".$this->menuc[pg_fieldname($sql_result, $j)]["descripcion"]."</td>\n";## 20070213	
-          		$tt .= "<th".($md->camposmc[pg_fieldname($sql_result, $j)]["totales"]=='t' ? " id=totales " : "").
-          		">".$md->camposmc[pg_fieldname($sql_result, $j)]["descripcion"]."</th>";## 20070213	          		
-      		} ## 20070213	
-        };
-     $tt .= "</tr>";
-	$tt .= "</thead>\n";
-	return $tt;
-  }
-
-  /**
-    * arma los titulos de la subvista
-    * @param metada $md Arreglo de la subvistas
-    * @param integer $cs Indica si hay colspan en los botones de acciones  0=no 1=si  (sirve para que las acciones esten centradas baja,cambio,xxxx,
-    *       este dato hay que ponerlo en las tablas las tablas 
-    * @return string  string armado con los titulos de las subvistas
-    */
-  function titulos_subvistas($md,$cs)
-  {  
-	 $regresa="";
-	 $wlcs=0;
-     $i=0;
-     while ($i < count($md))    // checa que subvistas hay o botones
-	 {
-		 if($md[$i]["esboton"]==0 || $md[$i]["esboton"]==1)
-		 {		 
-		 	if($md[$i]["posicion"]=="0")   // pone los titulos de vistas o botones que que van a nivel renglon
-		 	{
-				if ($cs ==0)
+				for ($i=0; $i < $num ;$i++)
 				{
-//20070524		 		$regresa.="<td>".$md[$i]["texto"]."</td>";
-		 			$regresa.="<th name=noimprime >".$md[$i]["texto"]."</th>";		 		
-	 			}
-	 			else
-	 			{   $wlcs+=1; }
-	 	 	}
-	 	}
-	 	$i=$i+1;
-     }     
-     
-     //  20070629   se incluyo menus como opciones     
-     $i=0;
-     while ($i < count($md))    // checa que subvistas hay o botones
-	 {
-		 if($md[$i]["esboton"]==2 )
-		 {
-			 if($md[$i]["posicion"]=="0")   // pone los titulos de vistas o botones que que van a nivel renglon
-			 {
-				if ($cs ==0)
-				{
-		 			$regresasel="<th>Opciones</th>";
-	 			}
-	 			else
-	 			{   $wlcs+=1; }
-	 	 	}
- 	 	 }
-		 $i=$i+1;
-     }     
-          
-     if ($cs==1)
-     {
-//20070524	     $regresa="<td colspan=".$wlcs." >Acciones</td>";
-	     $regresa="<th colspan=".$wlcs." >Acciones</th>";	     
-     }
-     return $regresa.$regresasel; //  20070629
-  }     
-  
-  
-  /**
-    *  funcion que arma los campos input a capturar
-    *  @param string $nombre nombre del campo
-    *  @param int $size tamañ desplegar en pantalla
-    *  @param int $male maxima longitud recibida en la pantalla
-    *  @param bool $obligatorio indica si es obligatorio el dato o no, este lo pone com hidden
-    *  @param string $tip ayuda del campo
-    *  @param string $tipodedato tipo de dato para ver si es numerico
-    *  @param bool $busqueda   campos que indica si por este campo se puede hacer una busqueda
-    *  @param int $tcase      indica si el dato que se capturar lleva case o no 1=upper 2=lower
-    *  @param int $j numero de la columna
-    *  @param bool $readonly  indica si el campo es de readonly
-    *  @param string $valordefault  valor del campo a mostrar por default
-    *  @param int $espassword  diferente de cero indica que el campo es un password
-    *  @param string $movtos  Que movimiento se debe hacer a la tabla o vista
-    *  @param string descripcion Descripcion del td
-    *				20070622  se incluyo la logica para validar campos particulares
-    *  @param string val_particulares  que validacion se va hacer en forma particular en este campo
-    *									esto se programa en el archivo val_particulares.js y se debe de desarrollar
-    *									la funcion caso contrario envia mensaje de error
-    *  @param arreglo menumce      eventos del campos    
-    *  @parma arreglo menuc todos los datos el campo        
-    *  @return string Input armado
-    */
-##  function arma_input ($nombre,$size,$male,$obligatorio,$descripcion,$tipodedato,$busqueda,$tcase,$j,$readonly,$valordefault,$espassword)  //20070214
-  function arma_input ($nombre,$size,$male,$obligatorio,$tip,$tipodedato,$busqueda,$tcase,$j,$readonly
-  						,$valordefault,$espassword,$movtos,$descripcion,$val_particulares
-              ,$menumce  // 20071009  
-              ,$mecq  // 20080123
-  )   // 20070214
-  { 
-	  $wltdf=$mecq["formato_td"];
-	  $wltdd="".$mecq["descripcion"];
-     if (strpos($movtos,"i")!==false 
-     || ((strpos($movtos,"s")!==false ))      // 20060117
-     || strpos($movtos,"u")!==false
-     || strpos($movtos,"e")!==false     
-     || strpos($movtos,"I")!==false          // 20080115  altas automaticas de catalogo
-     || (strpos($movtos,"S")!==false )  //20080119   // 20070214     
-     || (strpos($movtos,"B")!==false )  //20080119   // 20070214          
-     ) 
-     {
-	    $wlonchange=""; // 20071009 maneje variables ya que un evento puede ejecutar varias funciones
-	                    // ejemplo el touupercase combinarse con una funcion particular
-	    $wlfocus="";
-	    $wlonblur="";
-	    $wlonkp="";	    
-	    $wlonck="";	    	    
-    $clase_dato=$mecq["clase_dato"]!="" ? $mecq["clase_dato"] : 'form-control form-control-custom';
-    $descripcion=($espassword=="3" ? $tip : $descripcion);
-    $wlvalordefault=" value=\"$valordefault\" ";
-    $wlvalordefault=($valordefault=='hoy' ? " value=\"".date("Y")."-".date('m')."-".date("d")."\" " : ($valordefault=='hora' ? " value=\"".date("H").":".date('i').":".date('s')."\" " : ($valordefault=='hoyyhora' ? " value=\"".date("Y")."-".date('m')."-".date("d")." ".date("H").":".date('i').":".date('s')."\" " :$wlvalordefault)));
-    $wleshiden=($mecq["eshidden"]!='t' ? "" : " d-none ");
-    $wlbusqueda=   (($busqueda=='t')    ? "<font color='black'>*</font>" : "");
-    $wlobligatorio=(($obligatorio=='t') ? "<font ".$wleshiden." color='red'>*</font>" : "");
-    $wlobligatorio_=(($obligatorio=='t') ? "data-obligatorio=1" : "");
-    $cambiarencambios_ = (($mecq["cambiarencambios"]=='f') ? "data-cambiarencambios=0" : "" );
-    $tipodato_=((substr($tipodedato,0,3)==='int' || $tipodedato=='numeric') ? "data-numerico=1" : "" );
-    $wlbusqueda_=   (($busqueda=='t')    ? "data-busqueda=1" : "");
-    $wlidcampo=$mecq["idcampo"];
-    if (substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') { $wltipodedato=" type='tel' "; }
-    if ($tipodedato=='date' ) { $wltipodedato=" type='date' "; }
-            $wli="<div class='".$mecq["clase"]."'><div class='d-flex'><label class='form-label-custom $wleshiden ".$mecq["clase_label"]."'  id='wlt_".$nombre."__".$this->idmenu."' name=wlt_".$nombre."__".$this->idmenu." title=\"".$descripcion."\" abbr=\"".$descripcion."\""
-			.">".$descripcion
-			."</label>".$wlobligatorio.$wlbusqueda."</div>"; 
-	    $wli=$wli.
-	    	(($tipodedato != "text") 
-	    	? "<div class='d-flex'><input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ $wltipodedato autocapitalize='none' class=".
-                            "'$clase_dato $wleshiden'  onKeydown='return quitaenter(this,event)' " 
-	    	: "<div class='d-flex'><textarea $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class=".
-                            "'$clase_dato $wleshiden' ".((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
-	    						? "cols=".$mecq["colspantxt"] : "" )
-	    				).
-	    				(($tipodedato == "text") 
-	    					? ($mecq["rowspantxt"]=="" 
-	    						? "" 
-	    						: " rows=".$mecq["rowspantxt"]." " ) 
-	    						: " ").
-	                    (($male!="" && $male!="0") ? " maxlength=".$male : ($espassword=="3" ? " maxlength=14 " : "") ).
-                                (($readonly=='t') ? (($tipodedato == 'bool') ? " disabled=true " : " readonly=true ")." readonly " : " ").
-                            $wlvalordefault.
-	    	            ($tip!="" ? " title='".$tip."'" : " ").
-	    	            ($tipodedato == "bool" ? " type=checkbox onclick='ponvalor_cb(this)' value=f " 
-	    	            : ( $espassword=="1" ? " type=password onChange='seguridad(this)'"   //20070305
-	    	            : "")).	//20070305 //20080123
-	    	            ##(($tipodedato == "timestamptz" || $tipodedato=='date') ? " type=date format='aaaaa-mm-dd' onChange='validafecha(this)' " : " " ).
-	    	            //(($tipodedato == "timestamptz" || $tipodedato=='date') ? " onChange='validafecha(this)' " : " " ).
-	    	            $this->armaid_cc($j)." name=wl_".$nombre."__".$this->idmenu.
-						( $size!="" ? " size=".$size : ($espassword=="3" ? " size=14 " : ""));
-						($tcase==1) ? $wli=$wli." onkeyup='mayusculas(this,event);'" : "";  ##20071029
-						($tcase==2) ? $wli=$wli." onkeyup='minusculas(this,event);'" : "";  ##20071029
-                                                ($tcase==3) ? $wli=$wli." onkeyup='mayusletras(this,event);'" : "";  ##20071029
-						(substr($tipodedato,0,3)=='int') ? $wli=$wli." onKeyPress='return(SoloNumerico(event))'" : ($tipodedato=='numeric') ? $wli=$wli." onKeyPress='return(SoloMoneda(event,this))'" : $wli=$wli;
-                                                ($espassword=="4") ? $wli=$wli." type='email' " : " ";
-						$wlfocus=$this->foco($readonly);
-                                                $wlfocus.=($espassword=="3" ?  ";DrawCaptcha(this)" : "");
-						$wlonblur=$this->blur($readonly);
-                                                $wlonChange.=($espassword=="3" ?  ";ValidCaptcha(this)" : "");
-                                                $wlonChange.=($espassword=="4" ?  ";validaEmail(this)" : "");
-						$wlonChange=$this->agregaevento('2',$wlonChange,$menumce);
-						$wlfocus=$this->agregaevento('3',$wlfocus,$menumce);
-						$wlonblur=$this->agregaevento('1',$wlonblur,$menumce);						
-						$wlonkp=$this->agregaevento('5',$wlonkp,$menumce);
-						$wlonck=$this->agregaevento('4',$wlonck,$menumce);
-                                                $wlondck=($this->menu["esadmon"]!="0" && $this->menu["esadmon"]!="") ? 'abre_subvista("src/php/man_menus.php","idmenu='.MENUS_CAMPOS.'&filtro=idmenu='.$this->idmenu.' and idcampo='.$wlidcampo.'","","",'.MENUS_CAMPOS.',800,600,"Idmenu")' : "";
-						$wli=$wli.($wlfocus!="" ? " onFocus='".$wlfocus.";'" : "" );
-						$wli=$wli.($wlonChange!="" ? " onChange='".$wlonChange.";'" : "" );
-						$wli=$wli.($wlonblur!="" ? " onBlur='".$wlonblur.";'" : "" );						
-						$wli=$wli.($wlonkp !="" ? " onKeyPress='".$wlonkp.";'" : "" );
-						$wli=$wli.($wlonck !="" ? " onClick='".$wlonck.";'" : "" );	
-                                                $wli=$wli.($wlondck !="" ? " ondblclick='".$wlondck.";'" : "" );
-
-	    	            $wli=$wli.(($wltdf==3) ? " placeholder=\"".$wltdd."\"" : "").
-	    	            (($tipodedato != "text") ? " ></input>" : " >".$valordefault."</textarea>").
-/*
-	    	            (($tipodedato == "timestamptz" || $tipodedato == "date") & $readonly!='t' ? " <input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' class='img' type=image id='fe_".$nombre."' name=fe_".$nombre." src='img/icon_datepicker_pink.gif' onclick='muestrafecha(this);return false' title='Selecciona la fecha del calendario'></input>" : " " ). 
-*/
-                            (($espassword=="3") ? " <input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' size=20 class='captcha' readonly='on' type=text id='wl_".$nombre."_img"."__".$this->idmenu."' name=wl_".$nombre."_img__".$this->idmenu." title='Imagen de la captcha' ></input>&nbsp<input tabindex='-1' class='img' type=image id='wl_".$nombre."_bot__".$this->idmenu."' name=wl_".$nombre."_bot__".$this->idmenu." src='img/refresh.png' onclick='ReDrawCaptcha(this);return false' title='Refresca la imagen del captcha'></input>" : " " );
-			if ($mecq["upload_file"]=='t')
-			{ 
-                            $wli.=" <input class='img' type=image abbr='' id='upl_".$nombre."__".$this->idmenu."' name=upl_".
-                                  $nombre."__".$this->idmenu.
-                                  " src='/dist/img/carpeta.svg' onclick='subearchivo(this,".$this->idmenu.");return false' title='Adjunta archivo de explorador' />"; 
-                            $wli.=" <input class='img' type=hidden abbr='' id='uplh_".$nombre."__".$this->idmenu."' name=uplh_".$nombre."__".$this->idmenu."  />"; 
+					$Row = pg_fetch_array($sql_result, $i);
+					$a = trim($Row[1]);
+					$b = trim($Row[0]);
+					if (($a==$valorDefault & $valorDefault!="") )// 20070622
+					{ $DefaultSelect="<option selected value=".$valorDefault." >".$b."</option>\n";        			}// 20070622
+					if ($num==1 & $obligatorio=='t' & $DefaultSelect=="")// 20070622         			
+					{ $DefaultSelect="<option selected value=".$a." >".$b."</option>\n";        			}// 20070622 
+						$opciones=$opciones."<option value=$a>$b</option>\n";
+				}
 			}
-			(substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? $wli=$wli." <input type=hidden id='nu_"
-                                         .$nombre."' name=nu_".$nombre." value=1></input>\n" : $wli=$wli ; 
-	 		($tipodedato=='date' || $tipodedato=='timestampz') ? $wli=$wli." <input type=hidden id='_da_".$nombre."' name=_da_".$nombre
-                                    ." value=1></input>\n" : $wli=$wli ; 	      	
-			($busqueda=='t') ? $wli=$wli." <input type=hidden id='bu_".$nombre."' name=bu_".$nombre." value=1></input>\n" : $wli=$wli ; 
-			($mecq["imprime"]!='t') ? $wli=$wli." <input type=hidden id='_np_".$nombre."' name=_np_".$nombre." ></input>\n" : $wli=$wli ;
-			($val_particulares!='') ? $wli=$wli." <input type=hidden id='_vp_".$nombre."' name=_vp_".$nombre." value='"
-                                    .$val_particulares."'></input>\n" : $wli=$wli ; 			
-	    	        $wli.="</div></div>\n";
-	}
-    return $wli;
-  }
-  /**
-   ** 20071009   funcion que agrega codigo a un evento
-    *  @param string $queevento Numero de evento a agregar 1=blur  2=onchange
-    *  @param string $codigo    codigo al que hay que agregar codigo
-    *  @param arreglo que contiene el campo del evento
-    *  @return string  codigo ya agregado
-   */
+				
+				$vas=$vas.$DefaultSelect.$opciones."  </select>";
+				$vas = ($altaautomatico=='t' ? $vas.
+				       " <input tabindex='-1' type=image class='img ml-1'  src='dist/img/agregar.svg' title='Alta de un nuevo registro de: "
+				       .$descripcion."' value='Alta' id='aa_".$wlnombre."' name=matriz ". 
+			  "onclick='altaautomatico(\"".$idmenu."\",\"".$attnum."\",".   //20070214
+			  trim(substr($this->armaid_cc($j),4))."".
+			  ",\"".$menuc["fuente"]."\"".
+			  ",\"".$menuc["fuente_campodes"]."\"".            	  
+			  ",\"".$menuc["fuente_nspname"]."\"".       
+			  ",\"".$menuc["altaautomatico_idmenu"]."\"".      
+			  ",\"".$menuc["fuente_campodep"]."\"".   
+			  ",\"".$menuc["fuente_campofil"]."\"".   
+			  ",this);return false' />\n" : $vas ); 
+				$vas = ($fuente_busqueda=='t' ? $vas. //20070618
+			  "<input class=img type=image src='img/action_search_20.gif' title='Buscar opciones' value='Buscar' name=matriz value='Buscar' ". //20070618
+					  " onClick=\"pidebusqueda('". //20070618
+					  $this->dame_sql_sel($wlnombre,0)."','".$fuente_campofil."','".$wlnombre."','".$fuentewhere."','".$fuente_evento."',0".   //20080117
+				  ",'".$menuc["fuente_busqueda_idmenu"]."'"."); ". //20080117
+				  "return false;\"></input>\n" : $vas ); 
+			$vas = ((substr($tipodedato,0,3)==='int' || $tipodedato=='numeric') ? $vas." <input type=hidden name=nu_".$wlnombre." value=1></input>\n" : $vas ); 
+			$vas = (($tipodedato=='date' || $tipodedato=='timestampz') ? $vas." <input type=hidden name=_da_".$wlnombre." value=1></input>\n" : $vas ); 	 
+			($val_particulares!='') ? $vas=$vas." <input type=hidden name=_vp_".$wlnombre." value='".$val_particulares."'></input>\n" : $wli=$wli ; 
+			$vas = ($busqueda=='t' ? $vas." <input type=hidden name=bu_".$wlnombre." value=1></input>\n" : $vas ); 	 
+			  $vas=$vas."</div></div>";  //20070214   		     		
+			}
+			return $vas;
+	   }   
+	   
+	  /**
+	    * Funcion que arma los titulos de la tabla dinamica
+	    * @param recordset $sql_result recibe el result del sql
+	    * @param metada    $md  Metadata del menu
+	    */   
+	  function titulos_tab($sql_result,$md)  
+	  {
+		 $tt = "<script type=\"text/javascript\">\n";
+		 $tt .= "function pone_sort_scroll() {\n";
+		 $tt .= " initable( 'tabdinamica_".$this->idmenu."', [ ";
+	     $i = pg_numfields($sql_result);
+		for ($j = 0; $j < $i; $j++) {
+			$tt .= (($j==0) ? "null" : ",null");
+		}
+		 $tt .= " ], 0, null, 28 );";
+		 $tt .= "}";
+		 $tt .= "</script>\n";
+		 
+		 $tt .= "<thead class='scrolling_table_body'>\n";
+	     $tt .= "<tr>";
+	     if (strpos($md->camposm["movtos"],"d")!==false) 
+	     {
+		     $tt .= "<th id='baja_$this->idmenu' name=noimprime >Baja</th>\n";             
+	     }
+	     if (strpos($md->camposm["movtos"],"cc")!==false) 
+	     {
+		     $tt .= "<th id='copia_$this->idmenu' name=noimprime >Copia</th>\n";             
+	     }
 
-  function agregaevento($queevento,$codigo,$menumce)
-  {
-		if ($menumce[$queevento]["idevento"]==$queevento && $menumce[$queevento]["donde"]=='0' && $menumce[$queevento]["descripcion"]!='')
+	//20070611   lo modifique para que cuando sea solo select "s" se pudiese tambien seleccionar el registro
+	//20070611   ya que habia ocaciones que no se podiar dar update al registro y no se podia seleccionar
+	//20070611     if (strpos($md->camposm["movtos"],"u")!==false) 
+	     if (strpos($md->camposm["movtos"],"u")!==false || strpos($md->camposm["movtos"],"s")!==false || strpos($md->camposm["movtos"],"B")!==false)      
+	     {
+		     $tt .= "<th id='cambiotxt_$this->idmenu' name=noimprime >Sel</th>\n";                          
+	     }     
+
+		$tt .= $this->titulos_subvistas($md->camposmsv,0);
+	 
+	     // campos      	     
+	     $i = pg_numfields($sql_result);
+		for ($j = 0; $j < $i; $j++)
 		{
-		    if ($codigo!="") 
-		    { return $codigo=$codigo.";eventosparticulares(this,\"".$menumce[$queevento]["descripcion"]."\")"; ##20080209
+	##  20070503        Restaure la correccion del 20070118, ya que cuando hay una consulta y existe un campos de trabajo
+	##  20070503        este lo borra, el 20070213 se comentarizo no se porque no me acuerdo hay que dar seguimiento a este cambio	        
+	##  20070118        lo modifique para que los campos de trabajo osea los campos que no forman parte de la tabla
+	##					no los muestre en el renglon
+				if	($md->camposmc[pg_fieldname($sql_result, $j)]["attnum"]!="0") ## 20070213	
+				{ ## 20070213	
+	//20070515          		echo "<td>".$this->menuc[pg_fieldname($sql_result, $j)]["descripcion"]."</td>\n";## 20070213	
+				$tt .= "<th".($md->camposmc[pg_fieldname($sql_result, $j)]["totales"]=='t' ? " id=totales " : "").
+				">".$md->camposmc[pg_fieldname($sql_result, $j)]["descripcion"]."</th>";## 20070213	          		
+			} ## 20070213	
+		};
+	     $tt .= "</tr>";
+		$tt .= "</thead>\n";
+		return $tt;
+	  }
+
+	  /**
+	    * arma los titulos de la subvista
+	    * @param metada $md Arreglo de la subvistas
+	    * @param integer $cs Indica si hay colspan en los botones de acciones  0=no 1=si  (sirve para que las acciones esten centradas baja,cambio,xxxx,
+	    *       este dato hay que ponerlo en las tablas las tablas 
+	    * @return string  string armado con los titulos de las subvistas
+	    */
+	  function titulos_subvistas($md,$cs)
+	  {  
+		 $regresa="";
+		 $regresasel="";
+		 $wlcs=0;
+	     $i=0;
+	     while ($i < count($md))    // checa que subvistas hay o botones
+		 {
+			 if($md[$i]["esboton"]==0 || $md[$i]["esboton"]==1)
+			 {		 
+				if($md[$i]["posicion"]=="0")   // pone los titulos de vistas o botones que que van a nivel renglon
+				{
+					if ($cs ==0)
+					{
+	//20070524		 		$regresa.="<td>".$md[$i]["texto"]."</td>";
+						$regresa.="<th name=noimprime >".$md[$i]["texto"]."</th>";		 		
+					}
+					else
+					{   $wlcs+=1; }
+				}
+			}
+			$i=$i+1;
+	     }     
+	     
+	     //  20070629   se incluyo menus como opciones     
+	     $i=0;
+	     while ($i < count($md))    // checa que subvistas hay o botones
+		 {
+			 if($md[$i]["esboton"]==2 )
+			 {
+				 if($md[$i]["posicion"]=="0")   // pone los titulos de vistas o botones que que van a nivel renglon
+				 {
+					if ($cs ==0)
+					{
+						$regresasel="<th>Opciones</th>";
+					}
+					else
+					{   $wlcs+=1; }
+				}
+			 }
+			 $i=$i+1;
+	     }     
+		  
+	     if ($cs==1)
+	     {
+	//20070524	     $regresa="<td colspan=".$wlcs." >Acciones</td>";
+		     $regresa="<th colspan=".$wlcs." >Acciones</th>";	     
+	     }
+	     return $regresa.$regresasel; //  20070629
+	  }     
+	  
+	  
+	  /**
+	    *  funcion que arma los campos input a capturar
+	    *  @param string $nombre nombre del campo
+	    *  @param int $size tamañ desplegar en pantalla
+	    *  @param int $male maxima longitud recibida en la pantalla
+	    *  @param bool $obligatorio indica si es obligatorio el dato o no, este lo pone com hidden
+	    *  @param string $tip ayuda del campo
+	    *  @param string $tipodedato tipo de dato para ver si es numerico
+	    *  @param bool $busqueda   campos que indica si por este campo se puede hacer una busqueda
+	    *  @param int $tcase      indica si el dato que se capturar lleva case o no 1=upper 2=lower
+	    *  @param int $j numero de la columna
+	    *  @param bool $readonly  indica si el campo es de readonly
+	    *  @param string $valordefault  valor del campo a mostrar por default
+	    *  @param int $espassword  diferente de cero indica que el campo es un password
+	    *  @param string $movtos  Que movimiento se debe hacer a la tabla o vista
+	    *  @param string descripcion Descripcion del td
+	    *				20070622  se incluyo la logica para validar campos particulares
+	    *  @param string val_particulares  que validacion se va hacer en forma particular en este campo
+	    *									esto se programa en el archivo val_particulares.js y se debe de desarrollar
+	    *									la funcion caso contrario envia mensaje de error
+	    *  @param arreglo menumce      eventos del campos    
+	    *  @parma arreglo menuc todos los datos el campo        
+	    *  @return string Input armado
+	    */
+	##  function arma_input ($nombre,$size,$male,$obligatorio,$descripcion,$tipodedato,$busqueda,$tcase,$j,$readonly,$valordefault,$espassword)  //20070214
+	  function arma_input ($nombre,$size,$male,$obligatorio,$tip,$tipodedato,$busqueda,$tcase,$j,$readonly
+							,$valordefault,$espassword,$movtos,$descripcion,$val_particulares
+		      ,$menumce  // 20071009  
+		      ,$mecq  // 20080123
+	  )   // 20070214
+	  { 
+		  $wltdf=$mecq["formato_td"];
+		  $wltdd="".$mecq["descripcion"];
+	     if (strpos($movtos,"i")!==false 
+	     || ((strpos($movtos,"s")!==false ))      // 20060117
+	     || strpos($movtos,"u")!==false
+	     || strpos($movtos,"e")!==false     
+	     || strpos($movtos,"I")!==false          // 20080115  altas automaticas de catalogo
+	     || (strpos($movtos,"S")!==false )  //20080119   // 20070214     
+	     || (strpos($movtos,"B")!==false )  //20080119   // 20070214          
+	     ) 
+	     {
+		    $wlonchange=""; // 20071009 maneje variables ya que un evento puede ejecutar varias funciones
+				    // ejemplo el touupercase combinarse con una funcion particular
+		    $wlfocus="";
+		    $wlonblur="";
+		    $wlonkp="";	    
+		    $wlonck="";	    	    
+		    $wlonChange="";	    	    
+		    $wltipodedato="";
+	    $clase_dato=$mecq["clase_dato"]!="" ? $mecq["clase_dato"] : 'form-control form-control-custom';
+	    $descripcion=($espassword=="3" ? $tip : $descripcion);
+	    $wlvalordefault=" value=\"$valordefault\" ";
+	    $wlvalordefault=($valordefault=='hoy' ? " value=\"".date("Y")."-".date('m')."-".date("d")."\" " : ($valordefault=='hora' ? " value=\"".date("H").":".date('i').":".date('s')."\" " : ($valordefault=='hoyyhora' ? " value=\"".date("Y")."-".date('m')."-".date("d")." ".date("H").":".date('i').":".date('s')."\" " :$wlvalordefault)));
+	    $wleshiden=($mecq["eshidden"]!='t' ? "" : " d-none ");
+	    $wlbusqueda=   (($busqueda=='t')    ? "<font color='black'>*</font>" : "");
+	    $wlobligatorio=(($obligatorio=='t') ? "<font ".$wleshiden." color='red'>*</font>" : "");
+	    $wlobligatorio_=(($obligatorio=='t') ? "data-obligatorio=1" : "");
+	    $cambiarencambios_ = (($mecq["cambiarencambios"]=='f') ? "data-cambiarencambios=0" : "" );
+	    $tipodato_=((substr($tipodedato,0,3)==='int' || $tipodedato=='numeric') ? "data-numerico=1" : "" );
+	    $wlbusqueda_=   (($busqueda=='t')    ? "data-busqueda=1" : "");
+	    $wlidcampo=$mecq["idcampo"];
+	    if (substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') { $wltipodedato=" type='tel' "; }
+	    if ($tipodedato=='date' ) { $wltipodedato=" type='date' "; }
+		    $wli="<div class='".$mecq["clase"]."'><div class='d-flex'><label class='form-label-custom $wleshiden ".$mecq["clase_label"]."'  id='wlt_".$nombre."__".$this->idmenu."' name=wlt_".$nombre."__".$this->idmenu." title=\"".$descripcion."\" abbr=\"".$descripcion."\""
+				.">".$descripcion
+				."</label>".$wlobligatorio.$wlbusqueda."</div>"; 
+		    $wli=$wli.
+			(($tipodedato != "text") 
+			? "<div class='d-flex'><input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ $wltipodedato autocapitalize='none' class=".
+				    "'$clase_dato $wleshiden'  onKeydown='return quitaenter(this,event)' " 
+			: "<div class='d-flex'><textarea $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ class=".
+				    "'$clase_dato $wleshiden' ".((preg_match("/1|2|3/",$wltdf) && strlen($mecq["colspantxt"])>0) 
+								? "cols=".$mecq["colspantxt"] : "" )
+						).
+						(($tipodedato == "text") 
+							? ($mecq["rowspantxt"]=="" 
+								? "" 
+								: " rows=".$mecq["rowspantxt"]." " ) 
+								: " ").
+				    (($male!="" && $male!="0") ? " maxlength=".$male : ($espassword=="3" ? " maxlength=14 " : "") ).
+					(($readonly=='t') ? (($tipodedato == 'bool') ? " disabled=true " : " readonly=true ")." readonly " : " ").
+				    $wlvalordefault.
+				    ($tip!="" ? " title='".$tip."'" : " ").
+				    ($tipodedato == "bool" ? " type=checkbox onclick='ponvalor_cb(this)' value=f " 
+				    : ( $espassword=="1" ? " type=password onChange='seguridad(this)'"   //20070305
+				    : "")).	//20070305 //20080123
+				    ##(($tipodedato == "timestamptz" || $tipodedato=='date') ? " type=date format='aaaaa-mm-dd' onChange='validafecha(this)' " : " " ).
+				    //(($tipodedato == "timestamptz" || $tipodedato=='date') ? " onChange='validafecha(this)' " : " " ).
+				    $this->armaid_cc($j)." name=wl_".$nombre."__".$this->idmenu.
+							( $size!="" ? " size=".$size : ($espassword=="3" ? " size=14 " : ""));
+							($tcase==1) ? $wli=$wli." onkeyup='mayusculas(this,event);'" : "";  ##20071029
+							($tcase==2) ? $wli=$wli." onkeyup='minusculas(this,event);'" : "";  ##20071029
+							($tcase==3) ? $wli=$wli." onkeyup='mayusletras(this,event);'" : "";  ##20071029
+							(substr($tipodedato,0,3)=='int') ? $wli=$wli." onKeyPress='return(SoloNumerico(event))'" : ($tipodedato=='numeric') ? $wli=$wli." onKeyPress='return(SoloMoneda(event,this))'" : $wli=$wli;
+							($espassword=="4") ? $wli=$wli." type='email' " : " ";
+							$wlfocus=$this->foco($readonly);
+							$wlfocus.=($espassword=="3" ?  ";DrawCaptcha(this)" : "");
+							$wlonblur=$this->blur($readonly);
+							$wlonChange.=($espassword=="3" ?  ";ValidCaptcha(this)" : "");
+							$wlonChange.=($espassword=="4" ?  ";validaEmail(this)" : "");
+							$wlonChange=$this->agregaevento('2',$wlonChange,$menumce);
+							$wlfocus=$this->agregaevento('3',$wlfocus,$menumce);
+							$wlonblur=$this->agregaevento('1',$wlonblur,$menumce);						
+							$wlonkp=$this->agregaevento('5',$wlonkp,$menumce);
+							$wlonck=$this->agregaevento('4',$wlonck,$menumce);
+							$wlondck=($this->menu["esadmon"]!="0" && $this->menu["esadmon"]!="") ? 'abre_subvista("src/php/man_menus.php","idmenu='.MENUS_CAMPOS.'&filtro=idmenu='.$this->idmenu.' and idcampo='.$wlidcampo.'","","",'.MENUS_CAMPOS.',800,600,"Idmenu")' : "";
+							$wli=$wli.($wlfocus!="" ? " onFocus='".$wlfocus.";'" : "" );
+							$wli=$wli.($wlonChange!="" ? " onChange='".$wlonChange.";'" : "" );
+							$wli=$wli.($wlonblur!="" ? " onBlur='".$wlonblur.";'" : "" );						
+							$wli=$wli.($wlonkp !="" ? " onKeyPress='".$wlonkp.";'" : "" );
+							$wli=$wli.($wlonck !="" ? " onClick='".$wlonck.";'" : "" );	
+							$wli=$wli.($wlondck !="" ? " ondblclick='".$wlondck.";'" : "" );
+
+				    $wli=$wli.(($wltdf==3) ? " placeholder=\"".$wltdd."\"" : "").
+				    (($tipodedato != "text") ? " ></input>" : " >".$valordefault."</textarea>").
+	/*
+				    (($tipodedato == "timestamptz" || $tipodedato == "date") & $readonly!='t' ? " <input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' class='img' type=image id='fe_".$nombre."' name=fe_".$nombre." src='img/icon_datepicker_pink.gif' onclick='muestrafecha(this);return false' title='Selecciona la fecha del calendario'></input>" : " " ). 
+	*/
+				    (($espassword=="3") ? " <input $wlobligatorio_ $cambiarencambios_ $tipodato_ $wlbusqueda_ tabindex='-1' size=20 class='captcha' readonly='on' type=text id='wl_".$nombre."_img"."__".$this->idmenu."' name=wl_".$nombre."_img__".$this->idmenu." title='Imagen de la captcha' ></input>&nbsp<input tabindex='-1' class='img' type=image id='wl_".$nombre."_bot__".$this->idmenu."' name=wl_".$nombre."_bot__".$this->idmenu." src='img/refresh.png' onclick='ReDrawCaptcha(this);return false' title='Refresca la imagen del captcha'></input>" : " " );
+				if ($mecq["upload_file"]=='t')
+				{ 
+				    $wli.=" <input class='img' type=image abbr='' id='upl_".$nombre."__".$this->idmenu."' name=upl_".
+					  $nombre."__".$this->idmenu.
+					  " src='/dist/img/carpeta.svg' onclick='subearchivo(this,".$this->idmenu.");return false' title='Adjunta archivo de explorador' />"; 
+				    $wli.=" <input class='img' type=hidden abbr='' id='uplh_".$nombre."__".$this->idmenu."' name=uplh_".$nombre."__".$this->idmenu."  />"; 
+				}
+				(substr($tipodedato,0,3)=='int' || $tipodedato=='numeric') ? $wli=$wli." <input type=hidden id='nu_"
+						 .$nombre."' name=nu_".$nombre." value=1></input>\n" : $wli=$wli ; 
+				($tipodedato=='date' || $tipodedato=='timestampz') ? $wli=$wli." <input type=hidden id='_da_".$nombre."' name=_da_".$nombre
+					    ." value=1></input>\n" : $wli=$wli ; 	      	
+				($busqueda=='t') ? $wli=$wli." <input type=hidden id='bu_".$nombre."' name=bu_".$nombre." value=1></input>\n" : $wli=$wli ; 
+				($mecq["imprime"]!='t') ? $wli=$wli." <input type=hidden id='_np_".$nombre."' name=_np_".$nombre." ></input>\n" : $wli=$wli ;
+				($val_particulares!='') ? $wli=$wli." <input type=hidden id='_vp_".$nombre."' name=_vp_".$nombre." value='"
+					    .$val_particulares."'></input>\n" : $wli=$wli ; 			
+				$wli.="</div></div>\n";
+		}
+	    return $wli;
+	  }
+	  /**
+	   ** 20071009   funcion que agrega codigo a un evento
+	    *  @param string $queevento Numero de evento a agregar 1=blur  2=onchange
+	    *  @param string $codigo    codigo al que hay que agregar codigo
+	    *  @param arreglo que contiene el campo del evento
+	    *  @return string  codigo ya agregado
+	   */
+
+	  function agregaevento($queevento,$codigo,$menumce)
+	  {
+			if ($menumce[$queevento]["idevento"]==$queevento && $menumce[$queevento]["donde"]=='0' && $menumce[$queevento]["descripcion"]!='')
+			{
+			    if ($codigo!="") 
+			    { return $codigo=$codigo.";eventosparticulares(this,\"".$menumce[$queevento]["descripcion"]."\")"; ##20080209
+			    }
+			    else
+			    { return $codigo=$codigo."return eventosparticulares(this,\"".$menumce[$queevento]["descripcion"]."\")"; ##20080209
+			    }		    
 		    }
 		    else
-		    { return $codigo=$codigo."return eventosparticulares(this,\"".$menumce[$queevento]["descripcion"]."\")"; ##20080209
-		    }		    
-	    }
-	    else
-	    { return $codigo; }
- }
+		    { return $codigo; }
+	 }
 
-  /** 
-    * arma el id de la columna de captura para relacionarla con los cambios
-    * @param int $j recibe el numero de la columna
-    * @return string id armado
-    */
-  function armaid_cc($j)
-  { return " id=\"cc".$j."_".$this->idmenu."\" "; }
+	  /** 
+	    * arma el id de la columna de captura para relacionarla con los cambios
+	    * @param int $j recibe el numero de la columna
+	    * @return string id armado
+	    */
+	  function armaid_cc($j)
+	  { return " id=\"cc".$j."_".$this->idmenu."\" "; }
 
-  /**
-    * Arma el focus, para cambiara el color cuando tenga el focus y lo reestablesca cuando pierda el foco
-    * @param bool $readonly indica si el campo es de readyonly
-    * @return string regresa el foco armado
-    */
-  function foco($readonly)
-  { return " \"\""; }
-  function blur($readonly)  
-  { return $readonly=='t' ? " class='form-control form-control-custom' " : " \"\"" ; }
-    	  
-  /**
-    * desplega los campos para capturar en una tabla
-    * @param recordset $sql_result recordset de la tabla donde va a capturar o cambiar algun dato
-    * @param metadata $meda metadata de el menu o vista
-    */
-  function campo_cap($sql_result,$meda)
-  {
+	  /**
+	    * Arma el focus, para cambiara el color cuando tenga el focus y lo reestablesca cuando pierda el foco
+	    * @param bool $readonly indica si el campo es de readyonly
+	    * @return string regresa el foco armado
+	    */
+	  function foco($readonly)
+	  { return " \"\""; }
+	  function blur($readonly)  
+	  { return $readonly=='t' ? " class='form-control form-control-custom' " : " \"\"" ; }
+		  
+	  /**
+	    * desplega los campos para capturar en una tabla
+	    * @param recordset $sql_result recordset de la tabla donde va a capturar o cambiar algun dato
+	    * @param metadata $meda metadata de el menu o vista
+	    */
+	  function campo_cap($sql_result,$meda)
+	  {
 
-     $md = new menudata();	  
-	$this->inicio_tabcaptura($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);	  	     
-     	$i = pg_numfields($sql_result);
-	$wllinea="";
-        for ($j = 0; $j < $i; $j++)
-        {
-	        $z=0;
-	        $wltdf=$this->menuc[pg_fieldname($sql_result, $j)]["formato_td"];
-	        $wltdd=$this->menuc[pg_fieldname($sql_result, $j)]["descripcion"];
-        	  $nomcampo=pg_fieldname($sql_result, $j);		
-        	  if ($j==0) {
-                      $htmltableanterior=$this->menuc[$nomcampo]["htmltable"];
-                      $filaanterior=$this->menuc[$nomcampo]["fila"];
-	              $this->inicio_tabcaptura_t($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"],$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]);	  	     
-                  }
-				if ($this->menuc[$nomcampo]["htmltable"]!==$htmltableanterior)
-				{
-                                        error_log($this->dame_tiempo()." src/php/soldatos.php detecto cambio htmltable=".$htmltableanterior
-                                          ." de campos=".$this->menuc[$nomcampo]["htmltable"]." j=".$j."\n",3,"/var/tmp/errores.log");
-                                        $wllinea="<div id=".$filaanterior." class='d-flex justify-content-between flex-wrap align-items-end'>".$wllinea."</div>";
-                                        echo $wllinea;
-                                        $filaanterior=$this->menuc[$nomcampo]["fila"];
-                                        $wllinea="";
-	    			        $this->fin_tabcaptura();	  	    				
-                                        echo "<div class='subtitulos-formulario d-flex justify-content-end flex-row-reverse container grupo align-items-start' ><tr><td><button class='btn-mostrar ml-2'  tabindex='-1' align='left' type=button id='imostrar' ".
-                                        "onclick=\"return toggleDiv('".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."',this);\"></button></td>";
-                                        echo "<td><label>".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."</label></td></tr></div>";
-	    		                $this->inicio_tabcaptura_t($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"],
-                                          $this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]);	
-	    			        $htmltableanterior=$this->menuc[$nomcampo]["htmltable"];
-				} else {
-                                        error_log($this->dame_tiempo()." src/php/soldatos.php no detecto cambio j=".$j."\n",3,"/var/tmp/errores.log");
-                                }
-                  if ($this->menuc[$nomcampo]["fila"]!=$filaanterior) {
-                      $wllinea="<div id=".$filaanterior." class='d-flex justify-content-between flex-wrap mb-2 align-items-end'>".$wllinea."</div>";
-                      echo $wllinea;
-                      $filaanterior=$this->menuc[$nomcampo]["fila"];
-                      $wllinea="";
-                  }
+	     $md = new menudata();	  
+		$this->inicio_tabcaptura($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"]);	  	     
+		$i = pg_numfields($sql_result);
+		$wllinea="";
+		for ($j = 0; $j < $i; $j++)
+		{
+			$z=0;
+			$wltdf=$this->menuc[pg_fieldname($sql_result, $j)]["formato_td"];
+			$wltdd=$this->menuc[pg_fieldname($sql_result, $j)]["descripcion"];
+			  $nomcampo=pg_fieldname($sql_result, $j);		
+			  if ($j==0) {
+			      $htmltableanterior=$this->menuc[$nomcampo]["htmltable"];
+			      $filaanterior=$this->menuc[$nomcampo]["fila"];
+			      $this->inicio_tabcaptura_t($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"],$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]);	  	     
+			  }
+					if ($this->menuc[$nomcampo]["htmltable"]!==$htmltableanterior)
+					{
+						error_log($this->dame_tiempo()." src/php/soldatos.php detecto cambio htmltable=".$htmltableanterior
+						  ." de campos=".$this->menuc[$nomcampo]["htmltable"]." j=".$j."\n",3,"/var/tmp/errores.log");
+						$wllinea="<div id=".$filaanterior." class='d-flex justify-content-between flex-wrap align-items-end'>".$wllinea."</div>";
+						echo $wllinea;
+						$filaanterior=$this->menuc[$nomcampo]["fila"];
+						$wllinea="";
+						$this->fin_tabcaptura();	  	    				
+						echo "<div class='subtitulos-formulario d-flex justify-content-end flex-row-reverse container grupo align-items-start' ><tr><td><button class='btn-mostrar ml-2'  tabindex='-1' align='left' type=button id='imostrar' ".
+						"onclick=\"return toggleDiv('".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."',this);\"></button></td>";
+						echo "<td><label>".$this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]."</label></td></tr></div>";
+						$this->inicio_tabcaptura_t($this->menu["table_width"],$this->menu["table_height"],$this->menu["table_align"],
+						  $this->menumht[$this->menuc[$nomcampo]["htmltable"]]["descripcion"]);	
+						$htmltableanterior=$this->menuc[$nomcampo]["htmltable"];
+					} else {
+						error_log($this->dame_tiempo()." src/php/soldatos.php no detecto cambio j=".$j."\n",3,"/var/tmp/errores.log");
+					}
+			  if ($this->menuc[$nomcampo]["fila"]!=$filaanterior) {
+			      $wllinea="<div id=".$filaanterior." class='d-flex justify-content-between flex-wrap mb-2 align-items-end'>".$wllinea."</div>";
+			      echo $wllinea;
+			      $filaanterior=$this->menuc[$nomcampo]["fila"];
+			      $wllinea="";
+			  }
 
-	      	  $esFiltroDe=$md->dame_ultimo($this->menuc[$nomcampo]["esFiltroDe"]);
-	          if (strpos($this->movto_mantto,"i")!==false 
-	             || strpos($this->movto_mantto,"s")!==false
-		     || strpos($this->movto_mantto,"u")!==false
-		   || strpos($this->movto_mantto,"e")!==false
-		   || strpos($this->movto_mantto,"I")!==false   // 20080115 altas automaticas de catalogo
-     		   || (strpos($this->movto_mantto,"S")!==false)  // 20070214			       
-     		   || (strpos($this->movto_mantto,"B")!==false)  
-			     )  
-    		  {	  	
-	          		if ($this->menuc[$nomcampo]["fuente"]!="") // si no es espacio es un campos select
-	          		{   
-			         	$wllinea=$wllinea.     // 20070214
-		          		           $this->arma_selectn(
-		          		           						$this->dame_sql_sel($nomcampo,1)
-		          		                               ,$nomcampo
-		          		                               ,$this->menuc[$nomcampo]["fuente_campofil"]
-		          		                               ,$this->menuc[$nomcampo]["esFiltroDe"]
-		          		                               ,$this->menuc[$nomcampo]["obligatorio"]
-		          		                               ,$this->menuc[$nomcampo]["tipayuda"]
-		          		                               ,$this->menuc[$nomcampo]["typname"]
-		          		                               ,$this->menuc[$nomcampo]["busqueda"]
-		          		                               ,$j
-		          		                               ,
-		          		                               (strpos($this->menuc[$nomcampo]["esFiltroDe"],",")!==false ? $nomcampo :
-		          		                               		$this->menuc[$this->menuc[$nomcampo]["esFiltroDe"]]["fuente_campofil"])
-		          		                               ,$this->menuc[$nomcampo]["size"]
-	                                       			   ,$this->menuc[$nomcampo]["fuente_where"]	                                       			   
-	                								   ,$this->menuc[$nomcampo]["readonly"]	                					
-	                								   ,$this->menuc[$nomcampo]["valordefault"]
-													   ,$this->menuc[$nomcampo]["fuente_evento"]	                					
-													   ,$this->movto_mantto   //  20070214					
-													   ,$this->menuc[$nomcampo]["descripcion"]  // 20070214
-											           ,$this->menuc[$nomcampo]["altaautomatico"]  // 20070214																									   
-											           ,$this->menuc[$nomcampo]["idmenu"]  // 20070214												
-											           ,$this->menuc[$nomcampo]["attnum"]  // 20070214											    											    											           
-											           ,$this->menuc[$nomcampo]  // 20070214
-											    	   ,$this->menuc[$nomcampo]["fuente_busqueda"]  // 20070618											           
-											    	   ,$this->menuc[$nomcampo]["val_particulares"]  // 20070725	
-											    	   ,$this->menumce[$nomcampo]  // 20070804
-											    	   ,$this->menuc[$nomcampo]  // 20070804
+			  $esFiltroDe=@$md->dame_ultimo($this->menuc[$nomcampo]["esFiltroDe"]);
+			  if (strpos($this->movto_mantto,"i")!==false 
+			     || strpos($this->movto_mantto,"s")!==false
+			     || strpos($this->movto_mantto,"u")!==false
+			   || strpos($this->movto_mantto,"e")!==false
+			   || strpos($this->movto_mantto,"I")!==false   // 20080115 altas automaticas de catalogo
+			   || (strpos($this->movto_mantto,"S")!==false)  // 20070214			       
+			   || (strpos($this->movto_mantto,"B")!==false)  
+				     )  
+			  {	  	
+					if ($this->menuc[$nomcampo]["fuente"]!="") // si no es espacio es un campos select
+					{   
+						$wllinea=$wllinea.     // 20070214
+							   $this->arma_selectn(
+										$this->dame_sql_sel($nomcampo,1)
+									       ,$nomcampo
+									       ,$this->menuc[$nomcampo]["fuente_campofil"]
+									       ,@$this->menuc[$nomcampo]["esFiltroDe"]
+									       ,$this->menuc[$nomcampo]["obligatorio"]
+									       ,$this->menuc[$nomcampo]["tipayuda"]
+									       ,$this->menuc[$nomcampo]["typname"]
+									       ,$this->menuc[$nomcampo]["busqueda"]
+									       ,$j
+									       ,
+									       (strpos(@$this->menuc[$nomcampo]["esFiltroDe"],",")!==false ? $nomcampo :
+											@$this->menuc[$this->menuc[$nomcampo]["esFiltroDe"]]["fuente_campofil"])
+									       ,$this->menuc[$nomcampo]["size"]
+									   ,$this->menuc[$nomcampo]["fuente_where"]	                                    
+									   ,$this->menuc[$nomcampo]["readonly"]	                	
+									   ,$this->menuc[$nomcampo]["valordefault"]
+									   ,$this->menuc[$nomcampo]["fuente_evento"]	                		
+									   ,$this->movto_mantto   //  20070214					
+									   ,$this->menuc[$nomcampo]["descripcion"]  // 20070214
+									   ,$this->menuc[$nomcampo]["altaautomatico"]  // 20070214
+									   ,$this->menuc[$nomcampo]["idmenu"]  // 20070214	
+									   ,$this->menuc[$nomcampo]["attnum"]  // 20070214
+									   ,$this->menuc[$nomcampo]  ,$this->menuc[$nomcampo]["fuente_busqueda"]  
+									   ,@$this->menuc[$nomcampo]["val_particulares"] ,@$this->menumce[$nomcampo]  
+									   ,$this->menuc[$nomcampo]  // 20070804
 		          		                               ); 
 		          	}
 	          		else
 	          		{
-		                   if ($this->menu["tiene_pk_serial"]==$nomcampo)  // si se cumple el campo es un serial
+		                   if (@$this->menu["tiene_pk_serial"]==$nomcampo)  // si se cumple el campo es un serial
 		          	   {
                                        $nombre=pg_fieldname($sql_result, $j);
                                        $busqueda=$this->menuc[$nomcampo]["busqueda"];
@@ -1109,7 +1113,7 @@ class soldatos
 							    ,$this->movto_mantto   //  20070214
 							    ,$this->menuc[pg_fieldname($sql_result, $j)]["descripcion"]  // 20070214
 								,$this->menuc[pg_fieldname($sql_result, $j)]["val_particulares"] // 20070622							    
-								,$this->menumce[$nomcampo]  // 20071009					
+								,@$this->menumce[$nomcampo]  // 20071009					
 								,$this->menuc[$nomcampo]  // 20080123
 	             			);
 						}	             			
@@ -1132,24 +1136,24 @@ class soldatos
         ) 
         {
      		echo "<td  class='botones' > ".  //20070920
-            ($this->menum['i']['idmovto']=='i' && $this->menum['i']["descripcion"]!="" ? "<input type=button class='btn-02' id='iAlta' value='".$this->menum['i']["descripcion"]."' title='Alta'  " : "<input type=button class='btn-02' id='iAlta' src='img/add.gif' title='Alta' value='Alta' name=matriz ").  //20070920
+            (@$this->menum['i']['idmovto']=='i' && @$this->menum['i']["descripcion"]!="" ? "<input type=button class='btn-02' id='iAlta' value='".$this->menum['i']["descripcion"]."' title='Alta'  " : "<input type=button class='btn-02' id='iAlta' src='img/add.gif' title='Alta' value='Alta' name=matriz ").  //20070920
         	"onclick='mantto_tabla(\"".$this->idmenu.
         	                          "\",\"".
         	                          (strpos($this->movto_mantto,"i")!==false ? "i" : "")
         	                          .(strpos($this->movto_mantto,"I")!==false ? "I" : "")
         	                          ."\",\"\",\"\",\"".
         	                          // evento antes de dar de alta
-        	                          (($this->menue[3][2]['donde']==1) ? $this->menue[3][2]['descripcion'] : "").
+        	                          ((@$this->menue[3][2]['donde']==1) ? @$this->menue[3][2]['descripcion'] : "").
         	                          "\",\"".
         	                          // evento despues de dar de alta
-        	                          (($this->menue[4][2]['donde']==1) ? $this->menue[4][2]['descripcion'] : "").        	                          
+        	                          ((@$this->menue[4][2]['donde']==1) ? @$this->menue[4][2]['descripcion'] : "").        	                          
         	                          "\",\"".
 //20071112     se incluyo los evento que se efectuar en el cliente        	                          
         	                          // evento antes de dar de alta en el cliente    //20071112
-        	                          (($this->menue[3][1]['donde']==0) ? $this->menue[3][1]['descripcion'] : "").  //20071112
+        	                          ((@$this->menue[3][1]['donde']==0) ? @$this->menue[3][1]['descripcion'] : "").  //20071112
         	                          "\",\"". //20071112
         	                          // evento despues de dar de alta en el cliente   //20071112
-        	                          (($this->menue[4][1]['donde']==0) ? $this->menue[4][1]['descripcion'] : "").   //20071112
+        	                          ((@$this->menue[4][1]['donde']==0) ? @$this->menue[4][1]['descripcion'] : "").   //20071112
                                           // confirma el movimiento a efectuar
                                           "\",\"".$this->menu["noconfirmamovtos"]."\"".
                                           ",this);return false'></input></td>\n";
@@ -1168,16 +1172,16 @@ class soldatos
         	                          .(strpos($this->movto_mantto,"B")!==false ? "B" : "")        	                                  	                          
         	                          ."\",\"\",\"\",\"".
         	                          // evento antes 
-        	                          (($this->menue[9][2]['donde']==1) ? $this->menue[9][2]['descripcion'] : "").
+        	                          ((@$this->menue[9][2]['donde']==1) ? @$this->menue[9][2]['descripcion'] : "").
         	                          "\",\"".
         	                          // evento despues 
-        	                          (($this->menue[10][2]['donde']==1) ? $this->menue[10][2]['descripcion'] : "").
+        	                          ((@$this->menue[10][2]['donde']==1) ? @$this->menue[10][2]['descripcion'] : "").
         	                          "\",\"".
         	                          // evento despues    //20071113
-        	                          (($this->menue[9][1]['donde']==0) ? $this->menue[9][1]['descripcion'] : ""). //20071113
+        	                          ((@$this->menue[9][1]['donde']==0) ? @$this->menue[9][1]['descripcion'] : ""). //20071113
         	                          "\",\"". //20071113
         	                          // evento despues  //20071113
-        	                          (($this->menue[10][1]['donde']==0) ? $this->menue[10][1]['descripcion'] : ""). //20071113
+        	                          ((@$this->menue[10][1]['donde']==0) ? @$this->menue[10][1]['descripcion'] : ""). //20071113
                                           // confirma el movimiento a efectuar
                                           "\",\"".$this->menu["noconfirmamovtos"]."\"".
                                           ");return false'></input></td>\n";
@@ -1188,12 +1192,12 @@ class soldatos
     	if (strpos($this->movto_mantto,"u")!==false)     	  
         {
 	     	echo "<td id='cambio' class='botones' > ".
-	     	($this->menum['u']['idmovto']=='u' && $this->menum['u']["descripcion"]!="" ? "<input type='button' class='d-none btn-02' id='iCambio_".
+	     	(@$this->menum['u']['idmovto']=='u' && @$this->menum['u']["descripcion"]!="" ? "<input type='button' class='d-none btn-02' id='iCambio_".
                      $this->idmenu."' value='".$this->menum['u']["descripcion"].
                       "' title='Cambio'  " : "<input type=button class='d-none btn-02' id='iCambio_".$this->idmenu."'  title='Cambio' value='Cambio' ").
         	      "></input></td>\n";	        
         }    	
-		echo $this->arma_subvistas($sql_result,$Row,$z,$meda,1);        	      	    
+	echo $this->arma_subvistas($sql_result,@$Row,$z,$meda,1);        	      	    
 		
         if (strpos($this->movto_mantto,"p")!==false)     	  
         {
@@ -1233,16 +1237,16 @@ class soldatos
                 "onclick='mantto_tabla(\"".$this->idmenu.
                                           "\",\"ex\",\"\",\"\",\"".
                                           // evento antes
-                                          (($this->menue[9][2]['donde']==1) ? $this->menue[9][2]['descripcion'] : "").
+                                          ((@$this->menue[9][2]['donde']==1) ? @$this->menue[9][2]['descripcion'] : "").
                                           "\",\"".
                                           // evento despues
-                                          (($this->menue[10][2]['donde']==1) ? $this->menue[10][2]['descripcion'] : "").
+                                          ((@$this->menue[10][2]['donde']==1) ? @$this->menue[10][2]['descripcion'] : "").
                                           "\",\"".
                                           // evento despues    //20071113
-                                          (($this->menue[9][1]['donde']==0) ? $this->menue[9][1]['descripcion'] : ""). //20071113
+                                          ((@$this->menue[9][1]['donde']==0) ? @$this->menue[9][1]['descripcion'] : ""). //20071113
                                           "\",\"". //20071113
                                           // evento despues  //20071113
-                                          (($this->menue[10][1]['donde']==0) ? $this->menue[10][1]['descripcion'] : ""). //20071113
+                                          ((@$this->menue[10][1]['donde']==0) ? @$this->menue[10][1]['descripcion'] : ""). //20071113
                                           // confirma el movimiento a efectuar
                                           "\",\"".$this->menu["noconfirmamovtos"]."\"".
                                           ");return false' value='Archivo Excel'></input></td>\n";
@@ -1349,6 +1353,7 @@ class soldatos
 	  		$wl="";
 	  		$wlini="";
 	  		$wlcol=0;
+                        $wlllave="";
 	        $i = pg_numfields($sql_result);
 	        for ($j = 0; $j < $i; $j++)
     	    {
@@ -1432,16 +1437,16 @@ class soldatos
             	 $wlini=$wlini."<td name=noimprime ><button class='btn-eliminar'  title='Eliminar registro'  ".
                    "onclick='daunClick(\"cam".$z."\",".$this->idmenu.");mantto_tabla(\"".$meda->camposm['idmenu']."\",\"d\",\"".$wlllave."\",".($z).",\"".                   
         	                          // evento antes de dar de baja
-        	                          (($meda->camposme[5][2]['donde']==1) ? $meda->camposme[5][2]['descripcion'] : "").
+        	                          ((@$meda->camposme[5][2]['donde']==1) ? @$meda->camposme[5][2]['descripcion'] : "").
         	                          "\",\"".
         	                          // evento despues de dar de baja
-        	                          (($meda->camposme[6][2]['donde']==1) ? $meda->camposme[6][2]['descripcion'] : "").
+        	                          ((@$meda->camposme[6][2]['donde']==1) ? @$meda->camposme[6][2]['descripcion'] : "").
         	                          "\",\"". //20071113
         	                          // evento antes de dar de baja  //20071113
-        	                          (($meda->camposme[5][1]['donde']==0) ? $meda->camposme[5][1]['descripcion'] : "").//20071113
+        	                          ((@$meda->camposme[5][1]['donde']==0) ? @$meda->camposme[5][1]['descripcion'] : "").//20071113
         	                          "\",\"". //20071113
         	                          // evento despues de dar de baja  //20071113
-        	                          (($meda->camposme[6][1]['donde']==0) ? $meda->camposme[6][1]['descripcion'] : "").//20071113
+        	                          ((@$meda->camposme[6][1]['donde']==0) ? @$meda->camposme[6][1]['descripcion'] : "").//20071113
                                          // confirma el movimiento a efectuar
                                           "\",\"".$this->menu["noconfirmamovtos"]."\"".
                                                            ");return false'></input></td>\n";
@@ -1452,16 +1457,16 @@ class soldatos
             	 $wlini=$wlini."<td name=noimprime ><i class='fas fa-copy' type=image title='Copia registro' src='img/copy.gif' ".
                    "onclick='mantto_tabla(\"".$meda->camposm['idmenu']."\",\"cc\",\"".$wlllave."\",".($z).",\"".
         	                          // evento antes de dar de baja
-        	                          (($meda->camposme[5][2]['donde']==1) ? $meda->camposme[5][2]['descripcion'] : "").
+        	                          ((@$meda->camposme[5][2]['donde']==1) ? @$meda->camposme[5][2]['descripcion'] : "").
         	                          "\",\"".
         	                          // evento despues de dar de baja
-        	                          (($meda->camposme[6][2]['donde']==1) ? $meda->camposme[6][2]['descripcion'] : "").
+        	                          ((@$meda->camposme[6][2]['donde']==1) ? @$meda->camposme[6][2]['descripcion'] : "").
         	                          "\",\"".
         	                          // evento despues de dar de baja
-        	                          (($meda->camposme[5][1]['donde']==0) ? $meda->camposme[5][1]['descripcion'] : "").
+        	                          ((@$meda->camposme[5][1]['donde']==0) ? @$meda->camposme[5][1]['descripcion'] : "").
         	                          "\",\"".
         	                          // evento despues de dar de baja
-        	                          (($meda->camposme[6][1]['donde']==0) ? $meda->camposme[6][1]['descripcion'] : "").
+        	                          ((@$meda->camposme[6][1]['donde']==0) ? @$meda->camposme[6][1]['descripcion'] : "").
                                           // confirma el movimiento a efectuar
                                           "\",\"".$this->menu["noconfirmamovtos"]."\"".
                                                            ");return false'></i></td>\n";
@@ -1472,16 +1477,16 @@ class soldatos
             	 $wlini=$wlini."<td name=noimprime ><button class='btn-editar' name='botcam' id=cam".$z."_".$this->idmenu." title='Seleccionar renglon'  ".
                 	  "onclick='muestra_cambio(\"formpr\",".$z.",".$i.",\"".$wlllave."\",".$meda->camposm['idmenu'].",\"".
         	                          // evento antes de dar cambio
-        	                          (($meda->camposme[7][2]['donde']==1) ? $meda->camposme[7][2]['descripcion'] : "").
+        	                          ((@$meda->camposme[7][2]['donde']==1) ? @$meda->camposme[7][2]['descripcion'] : "").
         	                          "\",\"".
         	                          // evento despues de dar cambio
-        	                          (($meda->camposme[8][2]['donde']==1) ? $meda->camposme[8][2]['descripcion'] : "").
+        	                          ((@$meda->camposme[8][2]['donde']==1) ? @$meda->camposme[8][2]['descripcion'] : "").
         	                          "\",\"".//20071113
         	                          // evento despues de dar cambio  //20071113
-        	                          (($meda->camposme[7][1]['donde']==0) ? $meda->camposme[7][1]['descripcion'] : ""). //20071113
+        	                          ((@$meda->camposme[7][1]['donde']==0) ? @$meda->camposme[7][1]['descripcion'] : ""). //20071113
         	                          "\",\"".//20071113
         	                          // evento despues de dar cambio//20071113
-        	                          (($meda->camposme[8][1]['donde']==0) ? $meda->camposme[8][1]['descripcion'] : ""). //20071113
+        	                          ((@$meda->camposme[8][1]['donde']==0) ? @$meda->camposme[8][1]['descripcion'] : ""). //20071113
                                                           "\",\"u\"".
                                           ",\"".$this->menu["noconfirmamovtos"]."\"".
                                           "); return false;' ></input></td>\n";
@@ -1493,16 +1498,16 @@ class soldatos
             	 $wlini=$wlini."<td name=noimprime ><input  type=Image name='botcam' id=cam".$z." title='Seleccionar renglon' src='img/icon_enabled_checkbox_unchecked.gif' ".	        	
                 	  "onclick='muestra_cambio(\"formpr\",".$z.",".$i.",\"".$wlllave."\",".$meda->camposm['idmenu'].",\"".
         	                          // evento antes de dar cambio
-        	                          (($meda->camposme[7][2]['donde']==1) ? $meda->camposme[7][2]['descripcion'] : "").
+        	                          ((@$meda->camposme[7][2]['donde']==1) ? @$meda->camposme[7][2]['descripcion'] : "").
         	                          "\",\"".
         	                          // evento despues de dar cambio
-        	                          (($meda->camposme[8][2]['donde']==1) ? $meda->camposme[8][2]['descripcion'] : "").
+        	                          ((@$meda->camposme[8][2]['donde']==1) ? @$meda->camposme[8][2]['descripcion'] : "").
         	                          "\",\"".//20071113
         	                          // evento despues de dar cambio  //20071113
-        	                          (($meda->camposme[7][1]['donde']==0) ? $meda->camposme[7][1]['descripcion'] : ""). //20071113
+        	                          ((@$meda->camposme[7][1]['donde']==0) ? @$meda->camposme[7][1]['descripcion'] : ""). //20071113
         	                          "\",\"".//20071113
         	                          // evento despues de dar cambio//20071113
-        	                          (($meda->camposme[8][1]['donde']==0) ? $meda->camposme[8][1]['descripcion'] : ""). //20071113
+        	                          ((@$meda->camposme[8][1]['donde']==0) ? @$meda->camposme[8][1]['descripcion'] : ""). //20071113
                   					  "\",\"B\"); return false;' ></input></td>\n";	        
         	}
         	
@@ -1813,7 +1818,7 @@ class soldatos
 	if ($num != 0 )
 	{
       $reg= new logmenus($this->connection); //20070623
-      $reg->registra($this->idmenu ,trim($this->camposm["tabla"]." ".$this->filtro." regs=".$num));//20070623
+      $reg->registra($this->idmenu ,trim(@$this->camposm["tabla"]." ".$this->filtro." regs=".$num));//20070623
       $reg=null;        //20070623
   }
      if (   strpos($this->movto_mantto,"i")!==false 

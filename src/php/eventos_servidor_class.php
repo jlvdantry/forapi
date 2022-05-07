@@ -166,6 +166,7 @@ class eventos_servidor_class extends xmlhttp_class
 
 
 
+/*
     function Enviaemail($error)
     {
    $wlemail='jlvdantry@hotmail.com';
@@ -197,6 +198,7 @@ class eventos_servidor_class extends xmlhttp_class
                       }
                echo "<error>Envio correo</error>";
     }
+*/
         function creacitas()
         {
                 if ($this->argumentos["wl_fecha_inicial"]>$this->argumentos["wl_fecha_final"])

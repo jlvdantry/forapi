@@ -1,7 +1,7 @@
 # forapi
 formas rapidas
 
-Es una herramiente que permite generar formas donde se pueden realizar los clasicos movimiento de altas, baja, cambios y consultas.
+Es una herramiente que permite generar formulario en donde se pueden realizar los clasicos movimiento de altas, baja, cambios y consultas.
 
 Utiliza base de datos postgres 9.2 , php 7.3 y apache 2.0, entonces para poder utillizar esta herramienta hay que
 tener instalados estos paquetes.
