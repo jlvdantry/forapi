@@ -119,6 +119,7 @@ function arma_inicio_close($mensaje,$wlid_adjuntara,$wlext,$nombre)
                   error_log(dame_tiempo()."src/php/altaadjuntaran.php archivo a generar ".$dest."\n",3,"/var/tmp/errores.log");
                   if(!move_uploaded_file($_FILES['ficheroin']['tmp_name'], $dest)) {
                         $error="Error Hubo problemas al subir el archivo";
+                        error_log(dame_tiempo()."src/php/altaadjuntaran.php error al subir el archivo ".$dest." ".print_r($_FILES["ficheroin"],true)."\n",3,"/var/tmp/errores.log");
                   }
                   else {
                         chmod($dest, 0644);
