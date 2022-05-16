@@ -92,7 +92,7 @@ function arma_inicio_close($mensaje,$wlid_adjuntara,$wlext,$nombre)
         {
                 $error="El tamaño de archivo esta en ceros ".$_FILES['ficheroin']['size'] ;
         }
-        if($_FILES['ficheroin']['size'] > 2000000)
+        if($_FILES['ficheroin']['size'] > 10000000)
         {
                 $error="El tamaño del archivo es mayor a 1000000 caracteres ";
         }
@@ -100,26 +100,26 @@ function arma_inicio_close($mensaje,$wlid_adjuntara,$wlext,$nombre)
         $wlext=strtolower(substr($_FILES['ficheroin']['name'], strrpos($_FILES['ficheroin']['name'], '.') + 1));
         if (($wlext!="xls" && $wlext!="xlsx" && $wlext!="doc" && $wlext!="docx" && $wlext!="txt" && $wlext!="jpg" && $wlext!="pdf") && $error=="")
                 $wlext=strtolower(substr($_FILES['ficheroin']['name'], strrpos($_FILES['ficheroin']['name'], '.') + 1));
-        error_log(dame_tiempo()."src/php/altaadjuntaran.php entro a adjuntar extension=".$wlext."\n",3,"/var/tmp/errores.log");
+        error_log(dame_tiempo()." src/php/altaadjuntaran.php entro a adjuntar extension=".print_r($_FILES,true)."\n",3,"/var/tmp/errores.log");
         if (($wlext!="xls" && $wlext!="xlsx" && $wlext!="doc" && $wlext!="docx" && $wlext!="txt" && $wlext!="jpg" && $wlext!="pdf" 
                             && $wlext!="bmp" && $wlext!="zip" && $wlext!="gz" && $wlext!="tar"  && $wlext!="rar" && $wlext!="key" && $wlext!="cer") && $error=="")
         {
-                error_log(dame_tiempo()."src/php/altaadjuntaran.php lo archivos con extencsion no se puede subir ".$wlext."\n",3,"/var/tmp/errores.log");
+                error_log(dame_tiempo()." src/php/altaadjuntaran.php lo archivos con extencsion no se puede subir ".$wlext."\n",3,"/var/tmp/errores.log");
                 $error=" Error, Los archivos con extencion ".$wlext." no se permiten adjuntar ";
         }
         if ($error=="")
         {
                 $wlid_adjuntara=altaadjuntara($connection,$_FILES['ficheroin']['name']);
                 if (is_numeric($wlid_adjuntara)==false) {
-                    error_log(dame_tiempo()."src/php/altaadjuntaran.php adjunto".gettype($wlid_adjuntara)." ".$wlid_adjuntara."\n",3,"/var/tmp/errores.log");
+                    error_log(dame_tiempo()." src/php/altaadjuntaran.php adjunto".gettype($wlid_adjuntara)." ".$wlid_adjuntara."\n",3,"/var/tmp/errores.log");
                     $error=$wlid_adjuntara;
                 } else {
-                  error_log(dame_tiempo()."src/php/altaadjuntaran.php tipo wlid_adjuntara".gettype($wlid_adjuntara)."\n",3,"/var/tmp/errores.log");
+                  error_log(dame_tiempo()." src/php/altaadjuntaran.php tipo wlid_adjuntara".gettype($wlid_adjuntara)."\n",3,"/var/tmp/errores.log");
                   $dest = $_SERVER['DOCUMENT_ROOT']."/upload_ficheros/".$wlid_adjuntara.".".$wlext;
-                  error_log(dame_tiempo()."src/php/altaadjuntaran.php archivo a generar ".$dest."\n",3,"/var/tmp/errores.log");
+                  error_log(dame_tiempo()." src/php/altaadjuntaran.php archivo a generar ".$dest."\n",3,"/var/tmp/errores.log");
                   if(!move_uploaded_file($_FILES['ficheroin']['tmp_name'], $dest)) {
                         $error="Error Hubo problemas al subir el archivo";
-                        error_log(dame_tiempo()."src/php/altaadjuntaran.php error al subir el archivo ".$dest." ".print_r($_FILES["ficheroin"],true)."\n",3,"/var/tmp/errores.log");
+                        error_log(dame_tiempo()." src/php/altaadjuntaran.php error al subir el archivo ".$dest." ".print_r($_FILES["ficheroin"],true)."\n",3,"/var/tmp/errores.log");
                   }
                   else {
                         chmod($dest, 0644);
@@ -136,6 +136,7 @@ function arma_inicio_close($mensaje,$wlid_adjuntara,$wlext,$nombre)
       arma_inicio_close($error,$wlid_adjuntara,$wlext,$_FILES['ficheroin']['name']);
    function dame_tiempo()
    {
+                            date_default_timezone_set('America/Mexico_City');
                             $t=getdate();
                             return date('Y-m-d h:i:s',$t[0]);
    }
