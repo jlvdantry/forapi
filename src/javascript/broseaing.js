@@ -1711,13 +1711,16 @@ window.clearSelect = function(wl) {
 }
 
 
-window.muestra_vista = function (wlmenu,donde='entrada',filtro='',titulo='') {
+window.muestra_vista = function (wlmenu,donde='entrada',filtro='',titulo='',wlurll='src/php/xmlhttp.php') {
              try { $("#"+donde).children()[0].remove(); } catch(er) { };
-                        wlurl='src/php/xmlhttp.php';//20071105
-                        passData='&opcion=muestra_vista&idmenu='+wlmenu+'&donde='+donde+filtro;
-                        CargaXMLDoc();
-                        return;
+					wlurl=wlurll;
+                                        if (wlurl=='src/php/xmlhttp.php') {
+					   passData='&opcion=muestra_vista&idmenu='+wlmenu+'&donde='+donde+filtro;
+                                        } else { passData='&opcion=gen_pdf&idmenu='+wlmenu+'&donde='+donde+filtro;} 
+					CargaXMLDoc();
+					return;
 }
+
 window.muestra_menus = function (menus,donde='navbarSupportedContentul') {
      console.log('menus'+menus[0]); 
      m=menus[0].getElementsByTagName('menu');
