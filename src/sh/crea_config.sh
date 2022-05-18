@@ -23,6 +23,8 @@ select 'define(CORREO_HOST,'''');'
 union all
 select 'define(CORREO_PUERTO,'''');'
 union all
+select 'define(TITULO,''Titulo del aplicativo'');'
+union all
 select 'define(MANDRILL_USUARIO,'''');'
 union all
 select 'define(MANDRILL_APIKEY,'''');'
