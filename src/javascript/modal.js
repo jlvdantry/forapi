@@ -15,7 +15,7 @@ veilstack: 0,
 _doc: null,
 _fra: null,
 open:function(t, contenttype, contentsource, title, attr, recalonload){
-       muestra_vista(t,'modal-body');
+       muestra_vista(t,'modal-body','',title,contentsource);
        $('#msgModal').modal();
 },
 
