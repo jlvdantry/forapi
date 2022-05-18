@@ -97,7 +97,7 @@ class menudata
                " from forapi.menus where idmenu=".$this->idmenu;
       }
       $sql_result = pg_exec($this->connection,$sql)
-                    or die("Couldn't make query damemetadata2.");
+                    or die("Couldn't make query damemetadata22.");
       $num = pg_numrows($sql_result);
       if ( $num == 0 ) {$m->menerror("No Encontro la definicion de un menu "); die();};
       $this->camposm=pg_fetch_array($sql_result, 0);
