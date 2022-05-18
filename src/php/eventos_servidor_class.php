@@ -442,21 +442,6 @@ class eventos_servidor_class extends xmlhttp_class
           return;
         }
 
-        /**
-        *       Genera la impresion del volante de un tramite con firma
-        */
-        function ImprimeCita()
-        {
-             $wlfolio=($this->argumentos["iden"]!="" ? $this->argumentos["iden"] : $this->argumentos["wl_folioconsecutivo"]);
-             $wlemail=$this->argumentos["wl_email"];
-             $vas=exec("php impCitaPDF.php $wlfolio $wlemail"); 
-             echo $vas;
-    ##       parent::subvista("impCitaPDF.php","wlfolioconsecutivo=".$wlfolio.htmlspecialchars("&")."id_cveasunto=".$this->argumentos["wl_id_cveasunto"].htmlspecialchars("&")."fecharecibo=".$this->argumentos["wl_fecharecibo"],600);
-
-        }
-
-
-
         function presencia()
         {
             $estatus=$this->argumentos["wl_estatus"];
@@ -797,45 +782,11 @@ class eventos_servidor_class extends xmlhttp_class
 */
         }
 
-        /**
-        *       Genera reporte de foio recibidos y que son entregados a otras areas
-        */
-        function ventanillapdf()
+        function imprime_credencial()
         {
-           parent::subvista("ventanillaPDF.php","filtro=".$this->argumentos["filtro"].htmlspecialchars("&")."id_cveasunto=".$this->argumentos["wl_id_cveasunto"],600);
+           parent::subvista("src/php/imprime_credencial.php",$this->argumentos,159,0,'titulo');
         }
 
-        function caratula()
-        {
-             //if ($this->argumentos["wl_folioconsecutivo"]=="")
-             //{ echo "<error>El tramite no existe del codigo de barras tecleado ".$this->argumentos["wl_barras"]."</error>"; return; }
-             //echo "<error> folio".$this->argumentos["wl_folioconsecutivo"]."</error>"; return;
-             $wlfolio=$this->argumentos["wl_folioconsecutivo"];
-             parent::subvista("caratulaPDF.php","wl_folioconsecutivo=".$wlfolio."".htmlspecialchars("&")."wlemail=".$this->argumentos["wl_email"],600);
-        }
-
-
-        function impBoletaMasPDF()
-        {
-           parent::subvista("impBoletaMasPDF.php","filtro=".$this->argumentos["filtro"].htmlspecialchars("&")."id_cveasunto=".$this->argumentos["wl_id_cveasunto"].htmlspecialchars("&")."fecharecibo=".$this->argumentos["wl_fecharecibo"],600);
-        }
-
-        function impEntregaAvisos()
-        {
-           parent::subvista("impEntregaAvisos.php","filtro=".$this->argumentos["filtro"].htmlspecialchars("&")."and id_cveasunto=24".htmlspecialchars("&")."fecharecibo=".$this->argumentos["wl_fecharecibo"],600);
-        }
-
-
-        function impBoletaMas2PDF()
-        {
-           parent::subvista("impBoletaMas2PDF.php","filtro=".$this->argumentos["filtro"].htmlspecialchars("&")."id_cveasunto=".$this->argumentos["wl_id_cveasunto"].htmlspecialchars("&")."fecharecibo=".$this->argumentos["wl_fecharecibo"],600);
-        }
-
-
-        function impBoletaMas1PDF()
-        {
-           parent::subvista("impBoletaMas1PDF.php","filtro=".$this->argumentos["filtro"].htmlspecialchars("&")."id_cveasunto=".$this->argumentos["wl_id_cveasunto"].htmlspecialchars("&")."fecharecibo=".$this->argumentos["wl_fecharecibo"],600);
-        }
 
         /**
         *      abre el php que ejecuta las estadisticas
@@ -1922,78 +1873,6 @@ class eventos_servidor_class extends xmlhttp_class
                   { echo "<error>error no encontro folio asignado</error>"; }
                 }
         }
-	/**
-	*	Genera la impresion del volante de un tramite con firma
-	*/	
-	function impresionAltaTramite()
-	{
-	   $relevante=$this->argumentos["wl_relevante"];
-	   echo "<abresubvista></abresubvista>";
-       echo "<wlhoja>impTramitePDF.php</wlhoja>";
-       echo "<wlcampos>wlfolioconsecutivo=".$this->argumentos["wl_folioconsecutivo"]."".htmlspecialchars("&")."relevante=".$relevante."</wlcampos>";
-       echo "<wldialogWidth>50</wldialogWidth>";
-       echo "<wldialogHeight>30</wldialogHeight>";		
-       }   
-
-	/**
-	*	Genera la impresion del volante de un tramite con firma
-	*/	
-	function ImprimeBoleta()
-	{
-           if ($this->argumentos["iden"]!="" || $this->argumentos["wl_folioconsecutivo"]!="")
-           {
-           $wlfolio=($this->argumentos["iden"]!="" ? $this->argumentos["iden"] : $this->argumentos["wl_folioconsecutivo"]);
-	   $relevante=$this->argumentos["wl_relevante"];
-//           parent::subvista("impBoletaPDF.php","wlfolioconsecutivo=".$wlfolio."".htmlspecialchars("&")."relevante=".$relevante,600);
-           $this->quefolioAsigno();
-           } else {                 echo "<error>no encontro folio</error>"; }
-       }   
-
-        function ImprimeBoletacb()
-        {
-           parent::subvista("impBoletaMas1PDF.php","wl_folioconsecutivo=".$this->argumentos["wl_folioconsecutivo"].htmlspecialchars("&")."id_cveasunto=".$this->argumentos["wl_id_cveasunto"].htmlspecialchars("&")."fecharecibo=".$this->argumentos["wl_fecharecibo"],600);
-       }
-        function ImprimeBoleta3()
-        {
-           parent::subvista("impBoletaMas3PDF.php","wl_folioconsecutivo=".$this->argumentos["wl_folioconsecutivo"].htmlspecialchars("&")."id_cveasunto=".$this->argumentos["wl_id_cveasunto"].htmlspecialchars("&")."fecharecibo=".$this->argumentos["wl_fecharecibo"],600);
-       }
-
-
-        function ImprimeCertificacion()
-        {
-           parent::subvista("impCertificacion.php","wl_folioconsecutivo=".$this->argumentos["wl_folioconsecutivo"].htmlspecialchars("&")."id_cveasunto=".$this->argumentos["wl_id_cveasunto"].htmlspecialchars("&")."fecharecibo=".$this->argumentos["wl_fecharecibo"],600);
-        }
-
-        function ImprimeCertificacionVUAD()
-        {
-           parent::subvista("impCertificacionVUAD.php","wl_folioconsecutivo=".$this->argumentos["wl_folioconsecutivo"].htmlspecialchars("&")."id_cveasunto=".$this->argumentos["wl_id_cveasunto"].htmlspecialchars("&")."fecharecibo=".$this->argumentos["wl_fecharecibo"],600);
-        }
-
-        function ImprimeCaratula()
-        {
-             $wlfolio=$this->argumentos["wl_folioconsecutivo"];
-             parent::subvista("caratulaPDF_n.php","wl_folioconsecutivo=".$wlfolio."".htmlspecialchars("&")."wlemail=".$this->argumentos["wl_email"],600);
-        }
-
-        function ImprimeNotaMarginal()
-        {
-           parent::subvista("impNotaMarginal.php","wl_folioconsecutivo=".$this->argumentos["wl_folioconsecutivo"],600);
-        }
-
-        function ImprimeNotaMarginalMas()
-        {
-           parent::subvista("impNotaMarginalMas.php","wl_id_nota=".$this->argumentos["wl_id_nota"],600);
-        }
-
-        function ImprimeSolicitud()
-        {
-           parent::subvista("impSolicitudPDF.php","filtro=".$this->argumentos["filtro"],600);
-        }
-
-        function gen_lineacaptura()
-        {
-           parent::subvista("gen_lineacaptura.php","filtro=".$this->argumentos["filtro"],600);
-        }
 
         function EnviaEmailSolicitud()
         {
@@ -2003,42 +1882,6 @@ class eventos_servidor_class extends xmlhttp_class
 
 
 
-	/**
-	*	Genera la impresion del volante de un tramite sin firma
-	*/	
-	function impresionAltaTramiteConsulta()
-	{
-	   $relevante=$this->argumentos["wl_relevante"];
-	   echo "<abresubvista></abresubvista>";
-       echo "<wlhoja>impTramitePDFconsulta.php</wlhoja>";
-       echo "<wlcampos>wlfolioconsecutivo=".$this->argumentos["wl_folioconsecutivo"]."".htmlspecialchars("&")."relevante=".$relevante."</wlcampos>";
-       echo "<wldialogWidth>50</wldialogWidth>";
-       echo "<wldialogHeight>30</wldialogHeight>";		
-   }
-	/**
-	*	Genera la impresion del volante de un tramite con firma
-	*/	
-	function impresionAltaTramiteInterno()
-	{
-	   $relevante=$this->argumentos["wl_relevante"];
-	   echo "<abresubvista></abresubvista>";
-       echo "<wlhoja>impTramiteInternoPDF.php</wlhoja>";
-       echo "<wlcampos>wlfolioconsecutivo=".$this->argumentos["wl_folioconsecutivo"]."".htmlspecialchars("&")."relevante=".$relevante."</wlcampos>";
-       echo "<wldialogWidth>50</wldialogWidth>";
-       echo "<wldialogHeight>30</wldialogHeight>";		
-   }   
-	/**
-	*	Genera la impresion del volante de un tramite sin firma
-	*/	
-	function impresionAltaTramiteConsultaInterno()
-	{
-	   $relevante=$this->argumentos["wl_relevante"];
-	   echo "<abresubvista></abresubvista>";
-       echo "<wlhoja>impTramiteInternoPDFconsulta.php</wlhoja>";
-       echo "<wlcampos>wlfolioconsecutivo=".$this->argumentos["wl_folioconsecutivo"]."".htmlspecialchars("&")."relevante=".$relevante."</wlcampos>";
-       echo "<wldialogWidth>50</wldialogWidth>";
-       echo "<wldialogHeight>30</wldialogHeight>";		
-   }
 	/**
 	*	funcion que revisa el alta de un turno, CONTRA
 	*/	
