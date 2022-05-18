@@ -8,8 +8,13 @@
     echo "<html class=\"html-custom\" >";
     echo "<head>\n";
     echo " <meta name='viewport' content='width=device-width, initial-scale=1'>\n";
-    echo " <link rel='icon' type='image/png' href='favicon.png'>\n";
-    echo "<title>FORAPI</title>";
+    echo " <link rel='icon' type='image/png' href='dist/img/favicon.ico'>\n";
+    echo "<title>Credencialización</title>";
+    echo '    <meta property="og:image" content="https://solint.soluint.com/dist/img/favicon.ico" />';
+    echo '    <meta property="og:url" content="https://tomafot.soluint.com/">';
+    echo '    <meta property="og:type" content="website" />';
+    echo '    <meta property="og:title" content="Jlvdantry Desarrollador" />';
+    echo '    <meta property="og:description" content="Formulario para tomar foto y credencializar." />';
     echo "</head>\n";
     echo "<body name=principal class='body-custom' >\n";
     echo "<div  id='div_titulos'  >\n";
@@ -36,7 +41,8 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                    <div class="modal-body" id="modal-body"> </div>
+                    <div class="modal-body" id="modal-body"> 
+                    </div>
                 </div>
               </div>
             </div>
