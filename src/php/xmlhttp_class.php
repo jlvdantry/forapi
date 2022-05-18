@@ -71,7 +71,7 @@ class xmlhttp_class
    {
      $ventana=($ventana=="" ? "0" : $ventana);
      $titulo=($titulo=="" ? "Subvista" : $titulo);
-     $sql=" select dialogwidth,dialogheight,ventana from menus_subvistas where idmenus_subvistas=".$idmenu;
+     $sql=" select dialogwidth,dialogheight,ventana from forapi.menus_subvistas where idmenus_subvistas=".$idmenu;
      $sql_result = pg_exec($this->connection,$sql)
                    or die("Couldn't make query subvista ".$sql );
      $num = pg_numrows($sql_result);
@@ -90,8 +90,8 @@ class xmlhttp_class
      echo "<abresubvista>true</abresubvista>";
      echo "<wlhoja>".$wlhoja."</wlhoja>";
      echo "<wlcampos>".$otrosdatos."</wlcampos>";
-     echo "<wldialogWidth>100</wldialogWidth>";
-     echo "<wldialogHeight>80</wldialogHeight>";
+     echo "<wldialogWidth>1000</wldialogWidth>";
+     echo "<wldialogHeight>800</wldialogHeight>";
      echo "<ventana>".$ventana."</ventana>";
      echo "<titulo>".$titulo."</titulo>";
      }
