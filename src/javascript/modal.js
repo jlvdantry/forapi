@@ -15,7 +15,12 @@ veilstack: 0,
 _doc: null,
 _fra: null,
 open:function(t, contenttype, contentsource, title, attr, recalonload){
-       muestra_vista(t,'modal-body','',title,contentsource);
+       if (contentsource.indexOf('.pdf')>=0) {
+          var embed='<embed id="pdf" src="'+window.origin+"/"+contentsource+'" frameborder="0" width="100%" height="400px">'
+          $('#modal-body').append(embed);
+       }  else {
+          muestra_vista(t,'modal-body','',title,contentsource);
+       }
        $('#msgModal').modal();
 },
 

@@ -11,9 +11,8 @@ window.autocomplete = "";
 window._aa_ ;  // variable para la altaautomatica
 window._aad_ ;  // variable para altaadjuntar
 
-     window.showModalDialog = function (url,w,h,titulo,wlventana) 
+     window.showModalDialog = function (url,w,h,titulo,wlventana=0) 
      { 
-       if (!wlventana) { wlventana=0; }
        if (wlventana==0)
        { return dhtmlmodal.open(titulo, 'div', url, titulo, 'width='+w+'px,height='+h+'px,center=1,resize=1,scrolling=1')  }
        if (wlventana==1)
@@ -2617,8 +2616,14 @@ window.querespuesta = function()
                                 var desw = req.responseXML.getElementsByTagName("abremanual");
                                 var wlarchivo = desw[0].childNodes[0].nodeValue;
                                 open(wlarchivo,'nvo');
-                                //alert (wlarchivo);
                                 return;
+                        }
+                        if (req.responseText.indexOf("<abrepdf_modal>") != -1)
+                        {
+                              var desw = req.responseXML.getElementsByTagName("abrepdf_modal");
+                              var wlarchivo = desw[0].childNodes[0].nodeValue;
+                              showModalDialog(wlarchivo,100,300,'Subvista');
+                              return;
                         }
            //eventos_servidor('',"No esta progamada la respuesta que envia el servidor="+req.responseText,'Enviaemail','','',0,0);
            alert("No esta progamada la respuesta que envia el servidor="+req.responseText);
