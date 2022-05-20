@@ -16,6 +16,7 @@ _doc: null,
 _fra: null,
 open:function(t, contenttype, contentsource, title, attr, recalonload){
        if (contentsource.indexOf('.pdf')>=0) {
+          $('#pdf').remove();
           var embed='<embed id="pdf" src="'+window.origin+"/"+contentsource+'" frameborder="0" width="100%" height="400px">'
           $('#modal-body').append(embed);
        }  else {

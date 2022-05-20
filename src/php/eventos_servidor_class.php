@@ -784,7 +784,11 @@ class eventos_servidor_class extends xmlhttp_class
 
         function imprime_credencial()
         {
-           parent::subvista("src/php/imprime_credencial.php",$this->argumentos,159,0,'titulo');
+               error_log($today." src/php/eventos_servidor_class.php imprime_credencial argumentos=".print_r($this->argumentos,true)."\n",3,"/var/tmp/errores.log");
+           parent::subvista("src/php/imprime_credencial.php",
+                                      //$this->argumentos
+                                      "nombre=".$this->argumentos["wl_b"]
+                                      ,159,0,'titulo');
         }
 
 

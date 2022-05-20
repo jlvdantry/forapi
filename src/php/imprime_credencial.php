@@ -14,10 +14,11 @@ class gen_pdf_class extends xmlhttp_class {
 
 		// instantiate and use the dompdf class
 		$dompdf = new Dompdf();
-		$dompdf->loadHtml(credencial());
+		$dompdf->loadHtml(credencial($this->argumentos));
 
 		// (Optional) Setup the paper size and orientation
 		$dompdf->setPaper('A4', 'landscape');
+                error_log($today." Entro imprime_credencial.php basepath=".print_r($dompdf->getBasePath(),true)."\n",3,"/var/tmp/errores.log");
 
 		// Render the HTML as PDF
 		$dompdf->render();
@@ -46,5 +47,5 @@ else
 	$va->funcion = $_POST["opcion"];
 	$va->procesa();
 }
-error_log($today." paso if imprime_credencial.php  opcion ".$_POST["opcion"]."\n",3,"/var/tmp/errores.log");
+error_log($today." paso if imprime_credencial.php  post ".print_r($_POST,true)."\n"." get".print_r($_GET,true),3,"/var/tmp/errores.log");
 ?>
