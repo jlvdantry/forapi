@@ -1262,6 +1262,8 @@ SELECT pg_catalog.setval('menus_tiempos_idtiempo_seq', 1, false);
 --
 
 COPY tcases (tcase, descripcion) FROM stdin;
+1	UPPER
+2	lower
 \.
 
 
