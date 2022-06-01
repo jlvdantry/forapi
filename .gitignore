@@ -3,3 +3,5 @@ upload_ficheros
 ficheros
 src/php/config.php
 src/sh/crea_forapi.sh.sql
+vendor/*
+node_modules/
