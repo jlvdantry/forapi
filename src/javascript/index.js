@@ -10,10 +10,10 @@ import '@fortawesome/fontawesome-free/js/regular'
 import '@fortawesome/fontawesome-free/js/brands'
 
 //require('./fontawesome-all.js');
+require('./broseaing.js');
 require('./captcha.js');
 require('./altaadjuntara.js');
 require('./altaautomatica.js');
-require('./broseaing.js');
 require('./captcha.js');
 require('./common.js');
 require('./ContextMenu.js');

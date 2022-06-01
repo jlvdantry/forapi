@@ -24,11 +24,11 @@ class gen_pdf_class extends xmlhttp_class {
 		$dompdf->render();
                 $output = $dompdf->output();
                 $fileName = 'document.pdf';
-                file_put_contents('../../upload_ficheros/'.$fileName, $output);
+                //file_put_contents('../../upload_ficheros/'.$fileName, $output);
 
 		// Output the generated PDF to Browser
 	//	$dompdf->stream();
-            echo "<abrepdf_modal>upload_ficheros/".$fileName."</abrepdf_modal>";
+            echo "<abrepdf_modal>".base64_encode($output)."</abrepdf_modal>";
       }
 }
 $va = new gen_pdf_class();

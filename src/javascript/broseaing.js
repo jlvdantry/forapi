@@ -1,6 +1,7 @@
 //<script>
-// variables globales
-window.isIE = '\v'=='v';;
+// variables glo
+$(document).ready(function(){ 
+window.isIE = '\v'=='v';
 window.req;
 window.wlurl;
 window.glr=0 ;  // variable donde se gurdar el renglon a actualizar
@@ -10,6 +11,7 @@ window.Cambiosize = 0;
 window.autocomplete = "";
 window._aa_ ;  // variable para la altaautomatica
 window._aad_ ;  // variable para altaadjuntar
+window.dedonde_ = { id:1 } ;  // variable para almacenar el boton del DOM
 
      window.showModalDialog = function (url,w,h,titulo,wlventana=0) 
      { 
@@ -864,6 +866,14 @@ window.eventos_servidor = function (wlhoja,wlcampos,wleventoantes,wleventodespue
 //  ejecuta eventos en el servidor de funciones especificas de la aplicacion del usuario
 window.comandos_servidor = function(wlhoja,wlfuncion,idmenu)	
 {
+        
+        $('#'+dedonde_.id).addClass('btn-secondary').removeClass('btn-success').attr('disabled','disabled');
+        //$('#'+dedonde_.id).addClass('btn-secondary');
+        //$('#'+dedonde_.id).removeClass('btn-success');
+        //$('#'+dedonde_.id).prop('disabled',true);
+        //document.getElementById(dedonde_.id).classList.remove('btn-success');
+        //document.getElementById(dedonde_.id).classList.add('btn-secondary');
+        console.log('protegio el boton'+$('#'+dedonde_.id));
                 if (typeof(idmenu)!="object") {
                    forma=$("#formpr_"+idmenu)[0];
                 }
@@ -885,7 +895,7 @@ window.comandos_servidor = function(wlhoja,wlfuncion,idmenu)
         wlurl=wlhoja  //20071105
         passData='&opcion='+wlfuncion+'&wlhoja='+
         		wlhoja+buildQueryString(forma)+"&filtro="+escape(armaFiltro(forma));
-        CargaXMLDoc();
+         setTimeout(function(){ CargaXMLDoc(); },20);
 }
 	
 //  funcion que checa si en el cambio que boton se tecleo para mostrar los datos en los campos de captura
@@ -1085,8 +1095,17 @@ window.buildQueryString = function(theForm) {
       qs+=(qs=='')?'&':'&'
       /* se hace el split por __ ya que despues de estos caracteres esta el numero de menu */
       qs+=encodeURI(theForm.elements[e].name.split('__')[0])+'='+encodeURI(theForm.elements[e].value)
+      if (theForm.elements[e].type=='select-one') {
+         console.log('name='+theForm.elements[e].name+' type='+theForm.elements[e].type);
+         sel=theForm.elements[e];
+         if (sel.options.length>0) {
+		 texto=sel.options[sel.selectedIndex].text;
+		 qs+=(qs=='')?'&':'&'
+		 qs+=encodeURI(theForm.elements[e].name.split('__')[0])+'__des'+'='+encodeURI(texto); /* en el query string envia el texto de los campos selec t */
+         }
       }
     }
+  } 
   return qs
 }
 /* 20070710  funcion que regresa el onclick de un td 
@@ -1512,16 +1531,15 @@ window.CargaXMLDoc = function()
        {
         	isIE = true;
          	req = new ActiveXObject("Msxml2.XMLHTTP");         	
-        	if (req)
-        	{
-            	req.onreadystatechange = querespuesta;
-            	req.open("POST", wlurl, false);  // sincrona
-                req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");                   	
-            	req.send(passData);
-        	}
-		}        	
-		else
-		{
+        	if (req) {
+			req.onreadystatechange = querespuesta;
+			req.open("POST", wlurl, false);  // sincrona
+			req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");                   	
+			req.send(passData);
+        	        }
+	}        	
+	else
+	{
     		if (window.XMLHttpRequest) 
     		{
         		req = new XMLHttpRequest();
@@ -2183,6 +2201,11 @@ window.querespuesta = function()
 		window.status='req.readyState'+req.readyState+' req.status='+req.status;	    
         if (req.status == 200)
         {
+		$('#'+dedonde_.id).prop('disabled',false);
+		$('#'+dedonde_.id).removeClass('btn-secondary');
+		$('#'+dedonde_.id).addClass('btn-success');
+                console.log('restauro el boton'+$('#'+dedonde_.id));
+
            if (req.responseText.indexOf("<otrahoja>") != -1)
            {
 		var x = req.responseXML;
@@ -2622,7 +2645,9 @@ window.querespuesta = function()
                         {
                               var desw = req.responseXML.getElementsByTagName("abrepdf_modal");
                               var wlarchivo = desw[0].childNodes[0].nodeValue;
-                              showModalDialog(wlarchivo,100,300,'Subvista');
+                              var nombre = $('[name^="wl_b"]').val()+'_'+$('[name^="wl_c"]').val();
+                              //showModalDialog(wlarchivo,100,300,'Subvista');
+                              downloadPDF(wlarchivo,nombre);
                               return;
                         }
            //eventos_servidor('',"No esta progamada la respuesta que envia el servidor="+req.responseText,'Enviaemail','','',0,0);
@@ -2636,7 +2661,9 @@ window.querespuesta = function()
 	}
 	catch (err)
 	{
-                //eventos_servidor('',"_error que respuesta1 err.description="+err+" req.responseText="+req.responseText,'Enviaemail','','',0,0);
+                $('#'+dedonde_.id).removeClass('btn-secondary');
+                $('#'+dedonde_.id).addClass('btn-success');
+                $('#'+dedonde_.id).prop('disabled',false);
 		alert("_error que respuesta1 err.description="+err.message+" req.responseText="+req.responseText);
 	}
 }
@@ -2727,4 +2754,37 @@ function mesesEspanol ()
 }
 
 
+ /**
+ * Creates an anchor element `<a></a>` with
+ *   * HTML5 `download` attribute then clicks on it.
+ *    * @param  {string} pdf 
+ *     * @return {void}     
+ *      */
+function downloadPDF(pdf,nombre='',unico=generateUUID()) {
+    const linkSource = `data:application/pdf;base64,${pdf}`;
+    const downloadLink = document.createElement("a");
+    const fileName = nombre+"_"+unico+".pdf";
 
+    downloadLink.href = linkSource;
+    downloadLink.download = fileName;
+    downloadLink.click();
+}
+
+function generateUUID() { // Public Domain/MIT
+    var d = new Date().getTime();//Timestamp
+    var d2 = ((typeof performance !== 'undefined') && performance.now && (performance.now()*1000)) || 0;//Time in microseconds since page-load or 0 if unsupported
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16;//random number between 0 and 16
+        if(d > 0){//Use timestamp until depleted
+            r = (d + r)%16 | 0;
+            d = Math.floor(d/16);
+        } else {//Use microseconds since page-load if supported
+            r = (d2 + r)%16 | 0;
+            d2 = Math.floor(d2/16);
+        }
+        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+}
+
+     console.log('documento listo');
+});
