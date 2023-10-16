@@ -1,4 +1,4 @@
-export PGPASSWORD=inicio
+export PGPASSWORD=Ffarahi7_
 cat > $0.sql << fin
 --select * from forapi.menus_pg_tables where tablename='cat_bitacora_seq';
 --select * from forapi.menus where idmenu=17;
@@ -7,9 +7,15 @@ cat > $0.sql << fin
 --select * from forapi.menus_subvistas where clase<>'';
 --update forapi.menus_subvistas set clase='src/php/' || clase where clase<>'';
 --select * from forapi.cat_usuarios where usename='inicio';
-select * from pg_shadow
+--select * from pg_shadow
+--select idmenu,descripcion from forapi.menus order by descripcion
+--COPY forapi.tcases (tcase, descripcion) FROM stdin;
+--1	UPPER
+--2	lower
+--..\.
+select * from forapi.menus;
 fin
-psql prueba -h localhost -U inicio < $0.sql
+psql fotos -h localhost -U farahi7 < $0.sql
 ##psql inicio -h localhost -U inicio < cat_bitacora.sql
 ##my_name=$(basename -- "$0")
 ##echo $my_name

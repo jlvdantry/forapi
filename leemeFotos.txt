@@ -1,0 +1,8 @@
+link.
+
+##  para entrar como un usuario
+https://tomafoto.soluint.com/index.php
+
+
+##   para tomarse foto como una liga publica
+https://tomafoto.soluint.com/publica.php
