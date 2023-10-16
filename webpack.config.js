@@ -1,20 +1,14 @@
 
 const path = require('path');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-console.log('dirname'+__dirname);
+console.log('dirname='+__dirname);
 var webpack = require("webpack");
 
 module.exports = {
-    entry: [ 
-             './src/javascript/index.js',
-             './src/scss/app.scss'
-           ],
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
-    },
+    entry: [ './src/javascript/index.js', './src/scss/app.scss' ],
+    output: { path: path.resolve(__dirname, 'dist'), filename: 'bundle.js' },
     mode: 'development',
-    watch:true,
+    watch:false,
    plugins: [
         new CopyWebpackPlugin([
             {from:'src/css',to:'css'} 
